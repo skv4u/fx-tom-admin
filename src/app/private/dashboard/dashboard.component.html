@@ -1,0 +1,486 @@
+  
+  <div *ngIf="!showhidecnd.showEdit">
+  <!--Header Start Here-->
+  <header class="header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 d-flex flex-wrap align-items-center">
+          <div class="logo"><a href="#"><img src="assets/images/logo.jpg" alt="Logo" /></a></div>
+          <div class="top-title">
+            <h1>Admin  Dashboard</h1>
+          </div>
+          <div class="logo-right">
+            <div class="top-user">
+              <div class="top-name">
+                <div>
+                 <p class="mb-0"><strong>Welcome, Admin Name</strong> </p>
+                  
+                
+                  <div class="subscribe">
+                    <span>57 RJs</span>
+                    <span>100k Subscribers</span>
+                  </div>
+                  
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="top-img">
+                <img src="assets/images/login-img.jpg" alt="img" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!--Header End Here-->
+
+  <!--Title sec Start Here-->
+  <div class="admin-sec">
+    <div class="row admin-top">
+      <div class="col-md-8 px-1 d-flex">
+        
+        <div class="top-search">
+          <div class="input-group mb-0">
+            <button class="btn btn-outline-secondary" type="button" ><i class="fas fa-search"></i></button>
+            <input type="text" class="form-control" placeholder="Search for podcast or Company or Data" >
+          </div>
+
+        </div>
+        <a href="RJ-admin-dashboard.html" class="custome-button  mx-4"><i class="fal fa-cloud-upload"></i> Create a Add spot</a>
+       
+       
+      </div>
+     
+      <div class="col-md-4 settings-main" >
+        <div class="s_inner">
+          <div class="s-box">
+            <a id="btnGroupDrop4" class="dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false" (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter"><i class="fas fa-sliders-h"></i></a>
+            <ul class="dropdown-menu top-filter" aria-labelledby="btnGroupDrop4" *ngIf="showhidecnd.ShowFilter" [ngStyle]="{'display':showhidecnd.ShowFilter ? 'block':'none'}">
+              <form>
+              <li>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check1" >
+                  <label class="form-check-label" for="check1">RJ</label>
+                </div>
+
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check2">
+                  <label class="form-check-label">Thumbnails</label>
+                </div>
+
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check3">
+                  <label class="form-check-label">Title</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check4">
+                  <label class="form-check-label">Category</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check5">
+                  <label class="form-check-label">Upload Date</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check6">
+                  <label class="form-check-label">Update Date</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check7">
+                  <label class="form-check-label">Approvals</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check8">
+                  <label class="form-check-label">Broadcast Date</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check9">
+                  <label class="form-check-label">Notes</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check10">
+                  <label class="form-check-label">Edit</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check11">
+                  <label class="form-check-label">Delete</label>
+                </div>
+                <button class="custome-button my-3" (click)="ShowFilter = false">Done</button>
+              </li>
+            </form>
+            </ul>
+          </div>
+          <div class="s-box"><a (click)="showhidecnd.showBell = !showhidecnd.showBell"  id="btnGroupDrop3" class="dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false"><i class="fas fa-bell"></i><sup>5</sup></a>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3" [ngStyle]="{'display':showhidecnd.showBell ? 'block':'none'}">
+              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 1</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 2</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 3</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 4</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 5</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 6</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 7</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 8</a></li>
+            </ul>
+          </div>
+          <div class="s-box">
+            <a (click)="showhidecnd.showEmail = !showhidecnd.showEmail" id="btnGroupDrop4" class="dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false"><i class="fas fa-envelope"></i><sup>10</sup></a>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop4" [ngStyle]="{'display':showhidecnd.showEmail ? 'block':'none'}">
+              <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 1</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 2</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 3</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 4</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 5</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 6</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 7</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 8</a></li>
+            </ul>
+          </div>
+          <div class="s-box">
+            <a href="#" id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false"><i class="fas fa-cog"></i></a>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop5">             
+              <li><a class="dropdown-item" href="admin-dashboard.html">RJ Approvals</a></li>
+              <li><a class="dropdown-item" href="edit-category.html">Edit Category</a></li>
+              <li><a class="dropdown-item" href="edit-language.html">Edit Language</a></li>
+              <!-- <li><a class="dropdown-item" href="#">Manage Ads</a></li> -->
+              <li><a class="dropdown-item" href="signin.html">Log out</a></li>             
+            </ul>
+          </div>
+          <div class="s-box online"><a href="#"> Chat with RJs <i class="fas fa-user-cog"></i></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Title sec End Here-->
+
+
+  <div class="body-main">
+    <div class="body-content">
+      <div class="information dasdboard">        
+        <ul>
+          <li class="pending"><strong>3</strong> <a href="#">Pending</a></li>
+          <li class="rejected"><strong>1</strong> <a href="#">Rejected</a></li>
+          <li class="approved"><strong>3</strong> Approved</li>
+          <li class="approved"><strong>56</strong> Live</li>
+          <li class="comments"><strong>300</strong> Comments</li>
+        </ul>
+      </div> 
+      <div class="row">
+       <div class="col-12">
+
+
+          <!-- Modify The Modal -->
+          <div class="modal fade text-center" id="myModal4">
+            <div class="modal-dialog custome-modal modal-dialog-centered">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h3 class="mb-0"> Podcast Modification</h3>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                <h5 class="mb-4">Modification needs to be done on the following podcast</h5>
+                <div class="modify_changes">
+                  <span>
+                    <h5>RJ Name</h5>
+                    <p>Name 1</p>
+                  </span>
+                  <span>
+                    <h5>Title</h5>
+                    <p>Podcast 56</p>
+                  </span>
+                  <span>
+                    <h5>Project</h5>
+                    <p>Approve</p>
+                  </span>
+                </div>
+                <div class="modal-label mb-4">
+                  <label><strong>Notes to RJ</strong></label>
+                  <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
+                </div>
+                <div>
+                  <button class="custome-button">Modify</button>
+                </div>
+               
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--------------------------------->
+            <!--Approved The Modal -->
+            <div class="modal fade text-center" id="myModal5">
+              <div class="modal-dialog custome-modal modal-dialog-centered">
+                <div class="modal-content">
+
+                  <!--Approved  Modal Header -->
+                  <div class="modal-header">
+                    <h3 class="mb-0"> Podcast Approval</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                  <h5 class="mb-4">Are you sure you want to <strong>Approve</strong> following podcast</h5>
+                  <div class="modify_changes">
+                    <span>
+                      <h5>RJ Name</h5>
+                      <p>Name 1</p>
+                    </span>
+                    <span>
+                      <h5>Title</h5>
+                      <p>Podcast 56</p>
+                    </span>
+                    <span>
+                      <h5>Status</h5>
+                      <p>Pending</p>
+                    </span>
+                  </div>
+                  <div class="modal-label mb-4">
+                    <label><strong>Notes to RJ</strong></label>
+                    <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
+                  </div>
+                  <div>
+                    <button class="custome-button">Approve</button>
+                  </div>
+                 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--------------------------------->
+
+              <!--Rejected The Modal -->
+              <div class="modal fade text-center" id="myModal6">
+                <div class="modal-dialog custome-modal modal-dialog-centered">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h3 class="mb-0"> Podcast Rejected</h3>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    <h5 class="mb-4">Are you sure you want to <strong>Reject</strong> following podcast</h5>
+                    <div class="modify_changes">
+                      <span>
+                        <h5>RJ Name</h5>
+                        <p>Name 1</p>
+                      </span>
+                      <span>
+                        <h5>Title</h5>
+                        <p>Podcast 56</p>
+                      </span>
+                      <span>
+                        <h5>Status</h5>
+                        <p>Pending</p>
+                      </span>
+                    </div>
+                    <div class="modal-label mb-4">
+                      <label><strong>Notes to RJ</strong></label>
+                      <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
+                    </div>
+                    <div>
+                      <button class="custome-button">Reject</button>
+                    </div>
+                   
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--------------------------------->
+               <!--Broadcast The Modal -->
+               <div class="modal fade text-center" id="myModal7">
+                <div class="modal-dialog custome-modal modal-dialog-centered">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h3 class="mb-0"> Podcast Broadcast</h3>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    <h5 class="mb-4">Are you sure you want podcast to go Live</h5>
+                    <div class="modify_changes">
+                      <span>
+                        <h5>RJ Name</h5>
+                        <p>Name 1</p>
+                      </span>
+                      <span>
+                        <h5>Title</h5>
+                        <p>Podcast 56</p>
+                      </span>
+                      <span>
+                        <h5>Status</h5>
+                        <p>Pending</p>
+                      </span>
+                    </div>
+                    <div class="modal-label mb-4 p-0 col-md-6 col-12">
+                      <label><strong>Schedule</strong></label>
+                      <div class="form-floating mb-4">
+                        <input type="date" class="form-control" id="floatingInput" placeholder="Date">
+                        <label for="floatingInput">Date</label>
+                      </div>   
+                      <div class="form-floating mb-4">
+                        <input type="time" class="form-control" id="floatingInput" placeholder="Time">
+                        <label for="floatingInput">Time</label>
+                      </div>  
+                      
+                      
+                    </div>
+                    <div>
+                      <button class="custome-button">Go to Live</button>
+                    </div>
+                   
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--------------------------->
+               <!--Delete The Modal -->
+             <div class="modal fade text-center" id="myModal3">
+              <div class="modal-dialog custome-modal modal-dialog-centered">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="mb-0"> Delete</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                  </div>
+
+                  <!-- Modal body href="dashboard.html" 366,367-->
+                    <div class="modal-body">
+                   <p>Do you really want to delete the Podcast ?" </p>
+                   <a ><button class="custome-button mx-2">Confirm</button></a>
+                   <a ><button class="custome-outline mx-2">Cancle</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <div class="table-responsive dashboard-table">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>RJ</th>
+                <th class="pic">Picture</th>
+                <th>Title</th>
+                <th>
+                  <a href=""  id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
+                  aria-expanded="false">Category</a>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop5">
+                    <li><a class="dropdown-item" href="#">Comedy</a></li>
+                    <li ><a class="dropdown-item" href="#">Politics</a></li>
+                    <li><a class="dropdown-item" href="#">News</a></li>                    
+                  </ul>
+                </th>
+                <th class="text-center">Upload Date</th>
+                <th>
+                  <a href=""  id="btnGroupDrop6" class="dropdown-toggle" data-bs-toggle="dropdown"
+                  aria-expanded="false">Status</a>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6">
+                    <li class="modify"><a class="dropdown-item" href="#">Modify</a></li>
+                    <li class="pending"><a class="dropdown-item" href="#">Pending</a></li>
+                    
+                    <li class="approved"><a class="dropdown-item" href="#">Approved</a></li>
+                    <li class="rjapproved"><a class="dropdown-item" href="#">Broadcast</a></li>
+                    <li class="rejected"><a class="dropdown-item" href="#">Rejected</a></li>
+                    
+                  </ul>
+                </th>
+                <th class="text-center">Broadcast Data</th>
+                <th>Comments</th>                
+                <th class="text-center">Edit</th>
+                <th class="text-center">Delete</th>
+                
+              </tr>
+            </thead>
+            <tbody *ngFor="let a of dashboardList">
+              <tr>
+                <td><p class="mb-0">{{a.RJName}}</p></td>
+                <td class="pic">
+                  <img [src]="a.Picture" alt="img" />
+                </td>
+                <td class="rjsname">
+                  <h5 class="mb-0">{{a.Title}}</h5>
+                  <p><a style="cursor: pointer;color:#0e7ea3" (click)="a.ShowProcastComment = true">{{a.AboutTitle}}</a></p>                   
+                </td>
+                <td>{{a.Category}}</td>
+                <td class="text-center">
+                  <p class="mb-0">{{a.UpoladDate}}</p>
+                  <span class="small">{{a.UploadTime}}</span>
+                  
+                </td>
+
+                  <!-- The Modal -->
+                  <div class="modal fade" id="myModal" [ngStyle]="{'opacity':a.ShowProcastComment ? '1':'0','display':a.ShowProcastComment ? 'block':'None'}">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="mb-0"> Heading</h4>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="a.ShowProcastComment = false">X</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                         <p>{{a.AboutTitle}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <td>
+                    <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.StatusCode}}" data-bs-toggle="dropdown"
+                  aria-expanded="false" (click)="a.ShowstatusDropDown = !a.ShowstatusDropDown">
+                  {{a.Status}}
+                </button>                  
+                <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" [ngStyle]="{'display':a.ShowstatusDropDown ? 'block':'none'}">
+                  <li class="pending"><a class="dropdown-item" (click)="a.Status = 'Pending';a.StatusCode='pending';a.ShowstatusDropDown=false">pending</a></li>
+                  <li class="modify">
+                    <a class="dropdown-item" (click)="a.Status = 'Modify';a.StatusCode='Modify';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
+                   
+                  </li>
+                  
+                  <li class="rjapproved">
+                    <a class="dropdown-item" (click)="a.Status = 'Approved';a.StatusCode='approved';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal5">Approved</a>
+                  </li>
+                  <li class="rejected">
+                    <a class="dropdown-item" (click)="a.Status = 'Rejected';a.StatusCode='rejected';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal6">Rejected</a></li>
+                  <li class="broadcast"><a class="dropdown-item" (click)="a.Status = 'Broadcast';a.StatusCode='broadcast';a.ShowstatusDropDown=false"  data-bs-toggle="modal" data-bs-target="#myModal7">Broadcast</a></li>
+                </ul>
+                  </td>
+                <td class="text-center">
+                  <p class="mb-0">{{a.BroadCastData}}</p>
+                  <span class="small">{{a.BroadCastDataTime}}</span>                  
+                </td>
+                <td class="text-center">{{a.Comments}}</td>    
+                <td class="text-center" *ngIf="a.Status != 'Live'"><a (click)="a.Edit = true;showhidecnd.showEdit=true" ><i class="fas fa-pen"></i></a></td>
+                <td class="text-center" *ngIf="a.Status == 'Live'"><a href="edit-podcast.html"><i class="fas fa-eye"></i></a></td> 
+                <td class="text-center"><a href="#" data-bs-toggle="modal" data-bs-target="#myModal3"><i class="fas fa-trash-alt"></i></a></td>  
+                            
+              </tr>                      
+            </tbody>            
+          </table>
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <app-admin-edit-prodcast *ngIf="showhidecnd.showEdit" (back)="showEdit=false"></app-admin-edit-prodcast>

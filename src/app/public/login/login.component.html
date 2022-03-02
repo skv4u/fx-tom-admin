@@ -1,0 +1,75 @@
+    <!--Header Start Here-->
+    <header class="header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="logo"><a href="#"><img src="assets/images/logo.jpg" alt="Logo" /></a></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!--Header End Here-->
+
+    <!--Title sec Start Here-->
+    <div class="title-sec">
+
+      <div class="top-right">
+        <ul>
+          <li class="active"><a href="signin.html">Sign in</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+    <!--Title sec End Here-->
+
+
+    <div class="body-main">
+      <div class="body-content login_page">
+        <div class="sign-main">
+          <div class="sign-img">
+            <img src="assets/images/login-img.jpg" alt="Sign In" />
+          </div>
+          <div class="signin_form">
+            <form [formGroup]="loginForm">
+              <div class="row">
+                <div class="col-md-10 col-12">
+
+                  <div class="form-floating mb-4">
+                    <input type="text" class="form-control" id="floatingInput" formControlName="UserName"
+                      placeholder="User Name">
+                    <label for="floatingInput">User Name</label>
+                    <div class="required-error">
+                      <span class="error-span"
+                        *ngIf="loginForm.get('UserName').errors && (loginForm.get('UserName').touched || loginForm.get('UserName').dirty) || !loginFormValid">
+                        <span *ngIf="loginForm.get('UserName').hasError('required')">
+                          User Name is Required
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-floating mb-4">
+                    <input type="text" class="form-control" id="floatingInput" formControlName="Password"
+                      placeholder="Password" type="password">
+                    <label for="floatingInput">Password</label>
+                    <div class="required-error">
+                      <span class="error-span"
+                        *ngIf="loginForm.get('Password').errors && (loginForm.get('Password').touched || loginForm.get('Password').dirty) || !loginFormValid">
+                        <span *ngIf="loginForm.get('Password').hasError('required')">
+                          Password is Required
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+                <div>
+                  <a><button class="custome-button" (click)="login()">Sign In</button></a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
