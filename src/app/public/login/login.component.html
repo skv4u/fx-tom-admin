@@ -65,7 +65,8 @@
 
                 </div>
                 <div>
-                  <a><button class="custome-button" (click)="login()">Sign In</button></a>
+                  <button class="custome-button" (click)="login()">Sign In</button>
+                  <img *ngIf="apiCalled" src="./assets/images/loader.gif" style="width: auto;height: 38px;margin-left: 20px;">
                 </div>
               </div>
             </form>

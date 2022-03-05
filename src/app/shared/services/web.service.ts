@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigurationMicroService } from './configuration-micro.service';
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class WebService {
   APIUrl:any={};
   constructor(private http: HttpClient,public configurationService:ConfigurationMicroService) {

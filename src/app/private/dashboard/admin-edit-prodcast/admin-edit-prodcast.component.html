@@ -61,24 +61,24 @@
             <div class="row">
               <div class="col-md-9 mb-4">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Podcast Name" value="Podcast 34">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="Podcast Name" [(ngModel)]="EditData.name" value="Podcast 34">
                   <label for="floatingInput">Podcast Name</label>
                 </div>               
               </div>
               <div class="col-md-9 mb-4">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Author Name" value="RJ Name">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="Author Name" [(ngModel)]="EditData.author_name" value="RJ Name">
                   <label for="floatingInput">Author Name</label>
                 </div>                  
               </div>
               <div class="col-md-9 mb-4">
-               <select class="form-control">
-                 <option>Language</option>
+               <select class="form-control" [(ngModel)]="EditData.language">
+                 <option *ngFor="let a of LanguageList">{{a.name}}</option>
                </select>
               </div>
               <div class="col-md-9 mb-4">
-                <select class="form-control">
-                  <option>Category</option>
+                <select class="form-control" [(ngModel)]="EditData.category">
+                  <option *ngFor="let a of prodcastservice.CategoryList">{{a.name}}</option>
                 </select>
                </div>
                <div class="col-md-3 mb-4 d-flex align-items-center" >
@@ -113,7 +113,7 @@
                             <i class="glyphicon glyphicon-download-alt"></i>
                             <p class="mb-1">" Morning comedy ver3 " file added</p>                           
                           </div>
-                          <input type="file" name="img_logo" class="dropzone">
+                          <input type="file" name="img_logo" class="dropzone" [(ngModel)]="EditData.audiopath" [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
                     </div>
@@ -126,14 +126,14 @@
            
             <div class="drop-zone">
               <span class="drop-zone__prompt"><p>Upload <br/> Podcast picture <br/>Or<br/> Topic picture</p>                </span>
-              <input type="file" name="myFile" class="drop-zone__input">
+              <input type="file" name="myFile" class="drop-zone__input" style="display: block;" [(ngModel)]="EditData.imagepath">
             </div>
             
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <textarea class="form-control my-4">Notes to communicate </textarea>
+            <textarea class="form-control my-4" [(ngModel)]="EditData.Notestocommunicate">Notes to communicate </textarea>
             <button class="custome-button">Update</button>
           </div>
         </div>

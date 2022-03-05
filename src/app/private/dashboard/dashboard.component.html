@@ -1,5 +1,5 @@
   
-  <div *ngIf="!showhidecnd.showEdit">
+  <div *ngIf="!showhidecnd.showEdit && !showhidecnd.showEditProd">
   <!--Header Start Here-->
   <header class="header">
     <div class="container-fluid">
@@ -45,8 +45,8 @@
         
         <div class="top-search">
           <div class="input-group mb-0">
-            <button class="btn btn-outline-secondary" type="button" ><i class="fas fa-search"></i></button>
-            <input type="text" class="form-control" placeholder="Search for podcast or Company or Data" >
+            <button class="btn btn-outline-secondary" type="submit" (click)="searchList()" ><i class="fas fa-search"></i></button>
+            <input type="text" class="form-control" (keyup.enter)="searchList()" (keyup)="searchList()" [(ngModel)]="serachvalue" placeholder="Search for podcast or Company or Data" >
           </div>
 
         </div>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="form-check mb-2">
                   <input class="form-check-input" type="checkbox" id="check6">
-                  <label class="form-check-label">Update Date</label>
+                  <label class="form-check-label">Comments</label>
                 </div>
                 <div class="form-check mb-2">
                   <input class="form-check-input" type="checkbox" id="check7">
@@ -109,7 +109,7 @@
                   <input class="form-check-input" type="checkbox" id="check11">
                   <label class="form-check-label">Delete</label>
                 </div>
-                <button class="custome-button my-3" (click)="ShowFilter = false">Done</button>
+                <button class="custome-button my-3" (click)="showhidecnd.ShowFilter = false">Done</button>
               </li>
             </form>
             </ul>
@@ -142,14 +142,14 @@
             </ul>
           </div>
           <div class="s-box">
-            <a href="#" id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false"><i class="fas fa-cog"></i></a>
-            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop5">             
-              <li><a class="dropdown-item" href="admin-dashboard.html">RJ Approvals</a></li>
-              <li><a class="dropdown-item" href="edit-category.html">Edit Category</a></li>
-              <li><a class="dropdown-item" href="edit-language.html">Edit Language</a></li>
+            <a id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false" (click)="showhidecnd.showSettings = !showhidecnd.showSettings"><i class="fas fa-cog" ></i></a>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop5" [ngStyle]="{'display':showhidecnd.showSettings ? 'block':'none'}">             
+              <li><a class="dropdown-item" href="admin-dashboard.html" (click)="showhidecnd.showSettings = false">RJ Approvals</a></li>
+              <li><a class="dropdown-item" href="edit-category.html" (click)="showhidecnd.showSettings = false">Edit Category</a></li>
+              <li><a class="dropdown-item" href="edit-language.html" (click)="showhidecnd.showSettings = false">Edit Language</a></li>
               <!-- <li><a class="dropdown-item" href="#">Manage Ads</a></li> -->
-              <li><a class="dropdown-item" href="signin.html">Log out</a></li>             
+              <li><a class="dropdown-item"  (click)="showhidecnd.showSettings = false;logOut()">Log out</a></li>             
             </ul>
           </div>
           <div class="s-box online"><a href="#"> Chat with RJs <i class="fas fa-user-cog"></i></a></div>
@@ -380,25 +380,23 @@
                 <th class="pic">Picture</th>
                 <th>Title</th>
                 <th>
-                  <a href=""  id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
-                  aria-expanded="false">Category</a>
-                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop5">
-                    <li><a class="dropdown-item" href="#">Comedy</a></li>
-                    <li ><a class="dropdown-item" href="#">Politics</a></li>
-                    <li><a class="dropdown-item" href="#">News</a></li>                    
+                  <a  id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
+                  aria-expanded="false" (click)="showcatDropDown = !showcatDropDown" style="cursor: pointer;">Category</a>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop5" [ngStyle]="{'display':showcatDropDown ? 'block':'none'}">
+                    <li><a class="dropdown-item" *ngFor="let a of prodcastService.CategoryList" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>                  
                   </ul>
                 </th>
                 <th class="text-center">Upload Date</th>
                 <th>
-                  <a href=""  id="btnGroupDrop6" class="dropdown-toggle" data-bs-toggle="dropdown"
-                  aria-expanded="false">Status</a>
-                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6">
-                    <li class="modify"><a class="dropdown-item" href="#">Modify</a></li>
-                    <li class="pending"><a class="dropdown-item" href="#">Pending</a></li>
+                  <a id="btnGroupDrop6" class="dropdown-toggle" data-bs-toggle="dropdown"
+                  aria-expanded="false" (click)="showStatusDropDown = !showStatusDropDown" style="cursor: pointer;">Status</a>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" [ngStyle]="{'display':showStatusDropDown ? 'block':'none'}">
+                    <li class="modify"><a class="dropdown-item" (click)="searchList('Modify');showStatusDropDown = false">Modify</a></li>
+                    <li class="pending"><a class="dropdown-item" (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
                     
-                    <li class="approved"><a class="dropdown-item" href="#">Approved</a></li>
-                    <li class="rjapproved"><a class="dropdown-item" href="#">Broadcast</a></li>
-                    <li class="rejected"><a class="dropdown-item" href="#">Rejected</a></li>
+                    <li class="approved"><a class="dropdown-item" (click)="searchList('Approved');showStatusDropDown = false">Approved</a></li>
+                    <li class="rjapproved"><a class="dropdown-item" (click)="searchList('Broadcast');showStatusDropDown = false">Broadcast</a></li>
+                    <li class="rejected"><a class="dropdown-item" (click)="searchList('Rejected');showStatusDropDown = false">Rejected</a></li>
                     
                   </ul>
                 </th>
@@ -409,19 +407,19 @@
                 
               </tr>
             </thead>
-            <tbody *ngFor="let a of dashboardList">
+            <tbody *ngFor="let a of dashboardList;let i=index">
               <tr>
-                <td><p class="mb-0">{{a.RJName}}</p></td>
+                <td><p class="mb-0">{{a.author_name}}</p></td>
                 <td class="pic">
-                  <img [src]="a.Picture" alt="img" />
+                  <img [src]="a.imagepath" alt="img" />
                 </td>
                 <td class="rjsname">
-                  <h5 class="mb-0">{{a.Title}}</h5>
-                  <p><a style="cursor: pointer;color:#0e7ea3" (click)="a.ShowProcastComment = true">{{a.AboutTitle}}</a></p>                   
+                  <h5 class="mb-0">{{a.name}}</h5>
+                  <p><a style="cursor: pointer;color:#0e7ea3" (click)="a.ShowProcastComment = true">{{a.description}}</a></p>                   
                 </td>
-                <td>{{a.Category}}</td>
+                <td>{{a.category}}</td>
                 <td class="text-center">
-                  <p class="mb-0">{{a.UpoladDate}}</p>
+                  <p class="mb-0">{{a.upload_date}}</p>
                   <span class="small">{{a.UploadTime}}</span>
                   
                 </td>
@@ -439,7 +437,7 @@
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                         <p>{{a.AboutTitle}}</p>
+                         <p>{{a.description}}</p>
                         </div>
                       </div>
                     </div>
@@ -448,30 +446,30 @@
                   <td>
                     <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.StatusCode}}" data-bs-toggle="dropdown"
                   aria-expanded="false" (click)="a.ShowstatusDropDown = !a.ShowstatusDropDown">
-                  {{a.Status}}
+                  {{a.approvals}}
                 </button>                  
                 <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" [ngStyle]="{'display':a.ShowstatusDropDown ? 'block':'none'}">
-                  <li class="pending"><a class="dropdown-item" (click)="a.Status = 'Pending';a.StatusCode='pending';a.ShowstatusDropDown=false">pending</a></li>
+                  <li class="pending"><a class="dropdown-item" (click)="a.approvals = 'Pending';a.StatusCode='pending';a.ShowstatusDropDown=false">pending</a></li>
                   <li class="modify">
-                    <a class="dropdown-item" (click)="a.Status = 'Modify';a.StatusCode='Modify';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
+                    <a class="dropdown-item" (click)="a.approvals = 'Modify';a.StatusCode='Modify';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
                    
                   </li>
                   
                   <li class="rjapproved">
-                    <a class="dropdown-item" (click)="a.Status = 'Approved';a.StatusCode='approved';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal5">Approved</a>
+                    <a class="dropdown-item" (click)="a.approvals = 'Approved';a.StatusCode='approved';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal5">Approved</a>
                   </li>
                   <li class="rejected">
-                    <a class="dropdown-item" (click)="a.Status = 'Rejected';a.StatusCode='rejected';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal6">Rejected</a></li>
-                  <li class="broadcast"><a class="dropdown-item" (click)="a.Status = 'Broadcast';a.StatusCode='broadcast';a.ShowstatusDropDown=false"  data-bs-toggle="modal" data-bs-target="#myModal7">Broadcast</a></li>
+                    <a class="dropdown-item" (click)="a.approvals = 'Rejected';a.StatusCode='rejected';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal6">Rejected</a></li>
+                  <li class="broadcast"><a class="dropdown-item" (click)="a.approvals = 'Broadcast';a.StatusCode='broadcast';a.ShowstatusDropDown=false"  data-bs-toggle="modal" data-bs-target="#myModal7">Broadcast</a></li>
                 </ul>
                   </td>
                 <td class="text-center">
-                  <p class="mb-0">{{a.BroadCastData}}</p>
+                  <p class="mb-0">{{a.broadcast_date}}</p>
                   <span class="small">{{a.BroadCastDataTime}}</span>                  
                 </td>
                 <td class="text-center">{{a.Comments}}</td>    
-                <td class="text-center" *ngIf="a.Status != 'Live'"><a (click)="a.Edit = true;showhidecnd.showEdit=true" ><i class="fas fa-pen"></i></a></td>
-                <td class="text-center" *ngIf="a.Status == 'Live'"><a href="edit-podcast.html"><i class="fas fa-eye"></i></a></td> 
+                <td class="text-center" *ngIf="a.Status != 'Live'"><a (click)="a.Edit = true;showhidecnd.showEdit=true;prodcastService.editlist=a" ><i class="fas fa-pen"></i></a></td>
+                <td class="text-center" *ngIf="a.Status == 'Live'"><a (click)="a.EditProd = true;showhidecnd.showEditProd=true;prodcastService.editlist=a"><i class="fas fa-eye"></i></a></td> 
                 <td class="text-center"><a href="#" data-bs-toggle="modal" data-bs-target="#myModal3"><i class="fas fa-trash-alt"></i></a></td>  
                             
               </tr>                      
@@ -483,4 +481,5 @@
     </div>
   </div>
 </div>
-  <app-admin-edit-prodcast *ngIf="showhidecnd.showEdit" (back)="showEdit=false"></app-admin-edit-prodcast>
+  <app-admin-edit-prodcast *ngIf="showhidecnd.showEdit"  (back)="showhidecnd.showEdit=false"></app-admin-edit-prodcast>
+  <app-edit-prodcast *ngIf="showhidecnd.showEditProd" (back)="showhidecnd.showEditProd=false"></app-edit-prodcast>

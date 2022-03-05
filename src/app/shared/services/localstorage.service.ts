@@ -11,6 +11,8 @@ export class LocalstorageService {
   }
 
   getUserData() {
+    if(!localStorage.getItem('user_data'))
+    return null;
     let data = localStorage.getItem('user_data');
     data = atob(data);
     return JSON.parse(data);

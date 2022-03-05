@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import { WebService } from 'src/app/shared/services/web.service';
 
 @Component({
   selector: 'app-edit-prodcast',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-prodcast.component.scss']
 })
 export class EditProdcastComponent implements OnInit {
-
-  constructor() { }
+  @Output() back = new EventEmitter();
+  EditData:any={};
+  constructor(public webservice:WebService) { }
 
   ngOnInit() {
   }

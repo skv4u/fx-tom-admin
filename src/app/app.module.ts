@@ -13,6 +13,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DashboardComponent } from './private/dashboard/dashboard.component';
 import { AdminEditProdcastComponent } from './private/dashboard/admin-edit-prodcast/admin-edit-prodcast.component';
 import { EditProdcastComponent } from './private/dashboard/edit-prodcast/edit-prodcast.component';
+import { CreateCategoryComponent } from './private/dashboard/create-category/create-category.component';
+import { WebService } from './shared/services/web.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ProdcastService } from './shared/services/prodcast.service';
+import {ToastService} from './shared/services/toast.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,15 +26,17 @@ import { EditProdcastComponent } from './private/dashboard/edit-prodcast/edit-pr
     PodcastListComponent,
     DashboardComponent,
     AdminEditProdcastComponent,
-    EditProdcastComponent
+    EditProdcastComponent,
+    CreateCategoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [ConfigurationMicroService,CommonService,LocalstorageService],
+  providers: [ConfigurationMicroService,CommonService,LocalstorageService,WebService,ProdcastService,ToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
