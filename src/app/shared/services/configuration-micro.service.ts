@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class ConfigurationMicroService {
  private URL:any={
-  "DEV":"http://ec2-35-173-233-212.compute-1.amazonaws.com/api/",
-  "QA":"http://ec2-35-173-233-212.compute-1.amazonaws.com/api/", 
-  "PROD":"http://ec2-35-173-233-212.compute-1.amazonaws.com/api/"
+  "DEV":"http://ec2-35-173-233-212.compute-1.amazonaws.com/api",
+  "QA":"http://ec2-35-173-233-212.compute-1.amazonaws.com/api", 
+  "PROD":"http://ec2-35-173-233-212.compute-1.amazonaws.com/api"
   };
   constructor() { }
 
