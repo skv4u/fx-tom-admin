@@ -50,7 +50,7 @@
           </div>
 
         </div>
-        <a href="RJ-admin-dashboard.html" class="custome-button  mx-4"><i class="fal fa-cloud-upload"></i> Create a Add spot</a>
+        <!-- <a href="RJ-admin-dashboard.html" class="custome-button  mx-4"><i class="fal fa-cloud-upload"></i> Create a Add spot</a> -->
        
        
       </div>
@@ -420,7 +420,7 @@
                 <td>{{a.category}}</td>
                 <td class="text-center">
                   <p class="mb-0">{{a.upload_date}}</p>
-                  <span class="small">{{a.UploadTime}}</span>
+                  <!-- <span class="small">{{a.UploadTime}}</span> -->
                   
                 </td>
 
@@ -465,7 +465,7 @@
                   </td>
                 <td class="text-center">
                   <p class="mb-0">{{a.broadcast_date}}</p>
-                  <span class="small">{{a.BroadCastDataTime}}</span>                  
+                  <!-- <span class="small">{{a.BroadCastDataTime}}</span>                   -->
                 </td>
                 <td class="text-center">{{a.Comments}}</td>    
                 <td class="text-center" *ngIf="a.Status != 'Live'"><a (click)="a.Edit = true;showhidecnd.showEdit=true;prodcastService.editlist=a" ><i class="fas fa-pen"></i></a></td>
