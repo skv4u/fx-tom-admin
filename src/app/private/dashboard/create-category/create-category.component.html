@@ -1,3 +1,31 @@
-<p>
-  create-category works!
-</p>
+
+<app-generic-header></app-generic-header>
+
+<div class="body-main">
+  <div class="body-content">  
+    <h3><a (click)="router.navigateByUrl('/login')"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>   
+ 
+      <h3>Edit Catetory</h3>
+
+       
+          <div class="row">
+            <div class="col-md-12 px-1 d-flex">
+              <div class="top-search">
+                <div class="input-group mx-2">
+                    <input type="text" class="form-control" placeholder="Enter New Category" [(ngModel)]="NewCatName">
+                </div>
+              </div>
+              <button class="custome-button mx-4" (click)="createCategory()">Add New Category</button>
+              <img *ngIf="apiCalled" src="./assets/images/loader.gif" style="width: auto;height: 38px;margin-left: 20px;">
+            </div>
+          </div>            
+          <div class="row">
+            <div class="col-md-12 px-1 d-flex">
+             <ul class="c-list mt-5">
+               <li *ngFor="let a of prodCastService.CategoryList"><span>{{a.name}}</span> <i class="fas fa-trash-alt" (click)="deleteProdCast(a.id)"></i></li>
+             </ul>
+          </div>            
+     
+ 
+  </div>
+</div>

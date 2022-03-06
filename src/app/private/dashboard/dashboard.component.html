@@ -127,7 +127,7 @@
               <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 8</a></li>
             </ul>
           </div>
-          <div class="s-box">
+          <!-- <div class="s-box">
             <a (click)="showhidecnd.showEmail = !showhidecnd.showEmail" id="btnGroupDrop4" class="dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false"><i class="fas fa-envelope"></i><sup>10</sup></a>
             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop4" [ngStyle]="{'display':showhidecnd.showEmail ? 'block':'none'}">
@@ -140,19 +140,19 @@
               <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 7</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 8</a></li>
             </ul>
-          </div>
+          </div> -->
           <div class="s-box">
             <a id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false" (click)="showhidecnd.showSettings = !showhidecnd.showSettings"><i class="fas fa-cog" ></i></a>
             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop5" [ngStyle]="{'display':showhidecnd.showSettings ? 'block':'none'}">             
               <li><a class="dropdown-item" href="admin-dashboard.html" (click)="showhidecnd.showSettings = false">RJ Approvals</a></li>
-              <li><a class="dropdown-item" href="edit-category.html" (click)="showhidecnd.showSettings = false">Edit Category</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')">Edit Category</a></li>
               <li><a class="dropdown-item" href="edit-language.html" (click)="showhidecnd.showSettings = false">Edit Language</a></li>
               <!-- <li><a class="dropdown-item" href="#">Manage Ads</a></li> -->
               <li><a class="dropdown-item"  (click)="showhidecnd.showSettings = false;logOut()">Log out</a></li>             
             </ul>
           </div>
-          <div class="s-box online"><a href="#"> Chat with RJs <i class="fas fa-user-cog"></i></a></div>
+          <!-- <div class="s-box online"><a href="#"> Chat with RJs <i class="fas fa-user-cog"></i></a></div> -->
         </div>
       </div>
     </div>
@@ -400,7 +400,7 @@
                     
                   </ul>
                 </th>
-                <th class="text-center">Broadcast Data</th>
+                <th class="text-center">Broadcast Date</th>
                 <th>Comments</th>                
                 <th class="text-center">Edit</th>
                 <th class="text-center">Delete</th>
@@ -411,7 +411,7 @@
               <tr>
                 <td><p class="mb-0">{{a.author_name}}</p></td>
                 <td class="pic">
-                  <img [src]="a.imagepath" alt="img" />
+                  <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
                 </td>
                 <td class="rjsname">
                   <h5 class="mb-0">{{a.name}}</h5>

@@ -17,7 +17,8 @@ import { CreateCategoryComponent } from './private/dashboard/create-category/cre
 import { WebService } from './shared/services/web.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProdcastService } from './shared/services/prodcast.service';
-import {ToastService} from './shared/services/toast.service'
+import {ToastService} from './shared/services/toast.service';
+import { GenericHeaderComponent } from './private/generic-header/generic-header.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {ToastService} from './shared/services/toast.service'
     DashboardComponent,
     AdminEditProdcastComponent,
     EditProdcastComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    GenericHeaderComponent
   ],
   imports: [
     BrowserModule,

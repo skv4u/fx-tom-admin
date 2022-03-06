@@ -44,4 +44,23 @@ export class AdminEditProdcastComponent implements OnInit {
         this.noteList = data.Response;
       })
     }
+    uploadFile(element) {
+      const file = element[0];
+      if (file == undefined) return;
+      console.log(file, "element");
+      // if(file.type.include('audio')){
+      let formData = new FormData();
+      formData.append('filename', file, file.name);
+      this.webservice.UploadDocument("s3bucket/upload", formData).
+        subscribe((data: any) => {
+          this.EditData.imagepath = data.Response;
+        }, err => {
+          // this._toastService.error("Error uploading file.");
+        });
+      //}
+      //  else {
+      //    this.toaster.error('not a Audio File')
+      //  }
+    }
+    
 }

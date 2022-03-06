@@ -37,7 +37,7 @@
   <!--Header End Here-->
 
   <!--Title sec Start Here-->
-  <div class="admin-sec">
+  <!-- <div class="admin-sec">
     <div class="row admin-top">   
      
       <div class="col-md-12 settings-main">
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!--Title sec End Here-->
 
@@ -82,7 +82,7 @@
                 </select>
                </div>
                <div class="col-md-3 mb-4 d-flex align-items-center" >
-                 <p class="pe-3 mb-0">Explicit</p>
+                 <p class="pe-3 mb-0">Age Restriction</p>
                  <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                   <label class="form-check-label" for="flexSwitchCheckDefault"></label>
@@ -106,14 +106,20 @@
                           <div class="preview-zone hidden">
                             <div class="box box-solid">
                               
-                              <div class="box-body"></div>
+                              <div class="box-body" *ngIf="EditData.audiopath">
+                                <audio controls>
+                                  <source [src]="EditData.audiopath" type="audio/ogg"> 
+                                  </audio>
+                              </div>
                             </div>
                           </div>
+                          <div *ngIf="!EditData.audiopath">
                           <div class="dropzone-desc">
                             <i class="glyphicon glyphicon-download-alt"></i>
                             <p class="mb-1">" Morning comedy ver3 " file added</p>                           
                           </div>
                           <input type="file" name="img_logo" class="dropzone" [(ngModel)]="EditData.audiopath" [ngModelOptions]="{standalone: true}">
+                        </div>
                         </div>
                       </div>
                     </div>
@@ -124,9 +130,13 @@
             
             
            
-            <div class="drop-zone">
+            <div class="drop-zone upload-image" *ngIf="!EditData.imagepath">
               <span class="drop-zone__prompt"><p>Upload <br/> Podcast picture <br/>Or<br/> Topic picture</p>                </span>
-              <input type="file" name="myFile" class="drop-zone__input" style="display: block;" [(ngModel)]="EditData.imagepath">
+              <input type="file" name="myFile" class="drop-zone__input" style="display: block;" (change)="uploadFile($event.target.files)">
+            </div>
+
+            <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
+              <img [src]="EditData.imagepath" [alt]="EditData.imagepath">
             </div>
             
           </div>
