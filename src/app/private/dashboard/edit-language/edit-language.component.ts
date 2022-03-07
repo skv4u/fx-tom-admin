@@ -5,36 +5,38 @@ import { ProdcastService } from 'src/app/shared/services/prodcast.service';
 import { WebService } from 'src/app/shared/services/web.service';
 
 @Component({
-  selector: 'app-create-category',
-  templateUrl: './create-category.component.html',
-  styleUrls: ['./create-category.component.scss']
+  selector: 'app-edit-language',
+  templateUrl: './edit-language.component.html',
+  styleUrls: ['./edit-language.component.scss']
 })
-export class CreateCategoryComponent implements OnInit {
-  NewCatName:string='';
+export class EditLanguageComponent implements OnInit {
+
+  NewLangName:string='';
   apiCalled:boolean = false;
   constructor(public router: Router,public webservice:WebService,public prodCastService:ProdcastService,public localStorage:LocalstorageService) { }
 
   ngOnInit() {
   }
-  createCategory(){
+  createLanguage(){
     this.prodCastService.loader=true;
     let req={
-      "name": this.NewCatName,
+      "name": this.NewLangName,
       "created_by": this.localStorage.getUserData() ? this.localStorage.getUserData().username : ''
       }
-      this.webservice.commonMethod('/category', req, 'POST').subscribe(
+      this.webservice.commonMethod('/language', req, 'POST').subscribe(
         (data) => {
           this.prodCastService.loader=false;
-          this.prodCastService.getCategoryList();
+          this.prodCastService.getLanguageList();
         })
   }
-  deleteProdCast(id){
+  deleteLanguage(id){
     this.prodCastService.loader=true;
-    this.webservice.commonMethod('/category/'+id, '', 'DELETE').subscribe(
+    this.webservice.commonMethod('/language/'+id, '', 'DELETE').subscribe(
       (data)=>{
         this.prodCastService.loader=false;
-        this.prodCastService.getCategoryList();
+        this.prodCastService.getLanguageList();
       }
     )
   }
 }
+

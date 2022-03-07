@@ -18,11 +18,24 @@ export class DashboardComponent implements OnInit {
     "showSettings": false,
     "showEditProd": false
   }
+  showhidemenu:any={
+    "RJName":true,
+    "Thumbnails":true,
+    "Title":true,
+    "Category":true,
+    "UploadDate":true,
+    "Comments":true,
+    "Approvals":true,
+    "BroadcastDate":true,
+    "Edit":true,
+    "Delete":true
+  }
   dashboardList: any = [];
   dashboardList1: any = this.dashboardList;
   serachvalue: string = "";
   showStatusDropDown:boolean=false;
   showcatDropDown:boolean=false;
+  currentIndex:number=0;
   constructor(public router: Router, public webservice: WebService,public prodcastService:ProdcastService,public localStorage:LocalstorageService) { }
 
   ngOnInit() {
@@ -31,7 +44,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigateByUrl('/login');
       return;
     }
-
+    this.prodcastService.IsView = false;
     this.getDashBoardList();
 
   }
@@ -42,8 +55,10 @@ export class DashboardComponent implements OnInit {
   }
 
   getDashBoardList() {
+    // this.prodcastService.loader=true;
     this.webservice.commonMethod('podcast/all', '', 'GET').subscribe(
       (data) => {
+        // this.prodcastService.loader=false;
         this.dashboardList = [];
         if (data.Response && data.Response.length) {
           this.dashboardList = data.Response;
@@ -67,6 +82,35 @@ export class DashboardComponent implements OnInit {
   logOut(){
     localStorage.clear();
     this.router.navigateByUrl('/login');
+  }
+  changeStatus(id,i){
+    const el=document.getElementById(id);
+    el.style.display = "block";
+    el.style.opacity = "1";
+    this.currentIndex=i;
+  }
+  closePopUp(id,action,approvals?,StatusCode?){
+    const el=document.getElementById(id);
+    el.style.display = "none";
+    el.style.opacity = "0";
+    if(action){
+      this.dashboardList[this.currentIndex].approvals = approvals;
+      this.dashboardList[this.currentIndex].StatusCode = StatusCode;
+    }
+  }
+  closepopup(){
+    this.showhidemenu={
+      "RJName":true,
+      "Thumbnails":true,
+      "Title":true,
+      "Category":true,
+      "UploadDate":true,
+      "Comments":true,
+      "Approvals":true,
+      "BroadcastDate":true,
+      "Edit":true,
+      "Delete":true
+    }
   }
 }
 

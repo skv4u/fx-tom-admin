@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProdcastService } from 'src/app/shared/services/prodcast.service';
 
 @Component({
   selector: 'app-generic-header',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenericHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public prodcastService:ProdcastService,public router:Router) { }
 
   ngOnInit() {
   }
-
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl('/login')
+  }
 }

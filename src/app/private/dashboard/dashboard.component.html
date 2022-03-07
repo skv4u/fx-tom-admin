@@ -1,41 +1,8 @@
   
-  <div *ngIf="!showhidecnd.showEdit && !showhidecnd.showEditProd">
+  <div *ngIf="!showhidecnd.showEdit">
+ 
   <!--Header Start Here-->
-  <header class="header">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 d-flex flex-wrap align-items-center">
-          <div class="logo"><a href="#"><img src="assets/images/logo.jpg" alt="Logo" /></a></div>
-          <div class="top-title">
-            <h1>Admin  Dashboard</h1>
-          </div>
-          <div class="logo-right">
-            <div class="top-user">
-              <div class="top-name">
-                <div>
-                 <p class="mb-0"><strong>Welcome, Admin Name</strong> </p>
-                  
-                
-                  <div class="subscribe">
-                    <span>57 RJs</span>
-                    <span>100k Subscribers</span>
-                  </div>
-                  
-                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="top-img">
-                <img src="assets/images/login-img.jpg" alt="img" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <app-generic-header></app-generic-header>
   <!--Header End Here-->
 
   <!--Title sec Start Here-->
@@ -59,54 +26,54 @@
         <div class="s_inner">
           <div class="s-box">
             <a id="btnGroupDrop4" class="dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false" (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter"><i class="fas fa-sliders-h"></i></a>
-            <ul class="dropdown-menu top-filter" aria-labelledby="btnGroupDrop4" *ngIf="showhidecnd.ShowFilter" [ngStyle]="{'display':showhidecnd.ShowFilter ? 'block':'none'}">
+            aria-expanded="false" (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter;closepopup()"><i class="fas fa-sliders-h"></i></a>
+            <ul class="dropdown-menu top-filter" aria-labelledby="btnGroupDrop4" *ngIf="showhidecnd.ShowFilter" style="display: block;">
               <form>
               <li>
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check1" >
+                  <input class="form-check-input" type="checkbox" id="check1" [checked]="showhidemenu.RJName" (click)="showhidemenu.RJName = !showhidemenu.RJName">
                   <label class="form-check-label" for="check1">RJ</label>
                 </div>
 
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check2">
+                  <input class="form-check-input" type="checkbox" id="check2" [checked]="showhidemenu.Thumbnails" (click)="showhidemenu.Thumbnails = !showhidemenu.Thumbnails">
                   <label class="form-check-label">Thumbnails</label>
                 </div>
 
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check3">
+                  <input class="form-check-input" type="checkbox" id="check3" [checked]="showhidemenu.Title" (click)="showhidemenu.Title = !showhidemenu.Title">
                   <label class="form-check-label">Title</label>
                 </div>
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check4">
+                  <input class="form-check-input" type="checkbox" id="check4" [checked]="showhidemenu.Category" (click)="showhidemenu.Category = !showhidemenu.Category">
                   <label class="form-check-label">Category</label>
                 </div>
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check5">
+                  <input class="form-check-input" type="checkbox" id="check5" [checked]="showhidemenu.UploadDate" (click)="showhidemenu.UploadDate = !showhidemenu.UploadDate">
                   <label class="form-check-label">Upload Date</label>
                 </div>
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check6">
+                  <input class="form-check-input" type="checkbox" id="check6" [checked]="showhidemenu.Comments" (click)="showhidemenu.Comments = !showhidemenu.Comments">
                   <label class="form-check-label">Comments</label>
                 </div>
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check7">
+                  <input class="form-check-input" type="checkbox" id="check7" [checked]="showhidemenu.Approvals" (click)="showhidemenu.Approvals = !showhidemenu.Approvals">
                   <label class="form-check-label">Approvals</label>
                 </div>
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check8">
+                  <input class="form-check-input" type="checkbox" id="check8" [checked]="showhidemenu.BroadcastDate" (click)="showhidemenu.BroadcastDate = !showhidemenu.BroadcastDate">
                   <label class="form-check-label">Broadcast Date</label>
                 </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check9">
+                <!-- <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="check9" [checked]="showhidemenu.Notes" (click)="showhidemenu.Notes = !showhidemenu.Notes">
                   <label class="form-check-label">Notes</label>
-                </div>
+                </div> -->
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check10">
+                  <input class="form-check-input" type="checkbox" id="check10" [checked]="showhidemenu.Edit" (click)="showhidemenu.Edit = !showhidemenu.Edit">
                   <label class="form-check-label">Edit</label>
                 </div>
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="check11">
+                  <input class="form-check-input" type="checkbox" id="check11" [checked]="showhidemenu.Delete" (click)="showhidemenu.Delete = !showhidemenu.Delete">
                   <label class="form-check-label">Delete</label>
                 </div>
                 <button class="custome-button my-3" (click)="showhidecnd.ShowFilter = false">Done</button>
@@ -115,8 +82,9 @@
             </ul>
           </div>
           <div class="s-box"><a (click)="showhidecnd.showBell = !showhidecnd.showBell"  id="btnGroupDrop3" class="dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false"><i class="fas fa-bell"></i><sup>5</sup></a>
-            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3" [ngStyle]="{'display':showhidecnd.showBell ? 'block':'none'}">
+            aria-expanded="false"><i class="fas fa-bell"></i></a>
+            <!-- <sup>5</sup>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3" *ngIf="showhidecnd.showBell" style="display: block;">  
               <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 1</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 2</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 3</a></li>
@@ -125,7 +93,7 @@
               <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 6</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 7</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 8</a></li>
-            </ul>
+            </ul> -->
           </div>
           <!-- <div class="s-box">
             <a (click)="showhidecnd.showEmail = !showhidecnd.showEmail" id="btnGroupDrop4" class="dropdown-toggle" data-bs-toggle="dropdown"
@@ -144,10 +112,10 @@
           <div class="s-box">
             <a id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false" (click)="showhidecnd.showSettings = !showhidecnd.showSettings"><i class="fas fa-cog" ></i></a>
-            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop5" [ngStyle]="{'display':showhidecnd.showSettings ? 'block':'none'}">             
-              <li><a class="dropdown-item" href="admin-dashboard.html" (click)="showhidecnd.showSettings = false">RJ Approvals</a></li>
+            <ul class="dropdown-menu" *ngIf="showhidecnd.showSettings" aria-labelledby="btnGroupDrop5" style="position: absolute;right: 23px;display:block">             
+              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')">RJ Approvals</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')">Edit Category</a></li>
-              <li><a class="dropdown-item" href="edit-language.html" (click)="showhidecnd.showSettings = false">Edit Language</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-language')">Edit Language</a></li>
               <!-- <li><a class="dropdown-item" href="#">Manage Ads</a></li> -->
               <li><a class="dropdown-item"  (click)="showhidecnd.showSettings = false;logOut()">Log out</a></li>             
             </ul>
@@ -165,11 +133,11 @@
     <div class="body-content">
       <div class="information dasdboard">        
         <ul>
-          <li class="pending"><strong>3</strong> <a href="#">Pending</a></li>
-          <li class="rejected"><strong>1</strong> <a href="#">Rejected</a></li>
-          <li class="approved"><strong>3</strong> Approved</li>
-          <li class="approved"><strong>56</strong> Live</li>
-          <li class="comments"><strong>300</strong> Comments</li>
+          <li class="pending"><strong>{{prodcastService.UserStastics.PendingTotal}}</strong> <a href="#">Pending</a></li>
+          <li class="rejected"><strong>{{prodcastService.UserStastics.RejectedTotal}}</strong> <a href="#">Rejected</a></li>
+          <li class="approved"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
+          <li class="approved"><strong>{{prodcastService.UserStastics.LiveTotal}}</strong> Live</li>
+          <li class="comments"><strong>{{prodcastService.UserStastics.CommentTotal}}</strong> Comments</li>
         </ul>
       </div> 
       <div class="row">
@@ -184,7 +152,7 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                   <h3 class="mb-0"> Podcast Modification</h3>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closePopUp('myModal4',false)">X</button>
                 </div>
 
                 <!-- Modal body -->
@@ -193,15 +161,15 @@
                 <div class="modify_changes">
                   <span>
                     <h5>RJ Name</h5>
-                    <p>Name 1</p>
+                    <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].author_name}}</p>
                   </span>
                   <span>
                     <h5>Title</h5>
-                    <p>Podcast 56</p>
+                    <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].name}}</p>
                   </span>
                   <span>
                     <h5>Project</h5>
-                    <p>Approve</p>
+                    <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].approvals}}</p>
                   </span>
                 </div>
                 <div class="modal-label mb-4">
@@ -209,7 +177,7 @@
                   <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
                 </div>
                 <div>
-                  <button class="custome-button">Modify</button>
+                  <button class="custome-button" (click)="closePopUp('myModal4',true,'Modify','modify')">Modify</button>
                 </div>
                
                 </div>
@@ -225,7 +193,7 @@
                   <!--Approved  Modal Header -->
                   <div class="modal-header">
                     <h3 class="mb-0"> Podcast Approval</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closePopUp('myModal5',false)">X</button>
                   </div>
 
                   <!-- Modal body -->
@@ -234,15 +202,15 @@
                   <div class="modify_changes">
                     <span>
                       <h5>RJ Name</h5>
-                      <p>Name 1</p>
+                      <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].author_name}}</p>
                     </span>
                     <span>
                       <h5>Title</h5>
-                      <p>Podcast 56</p>
+                      <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].name}}</p>
                     </span>
                     <span>
                       <h5>Status</h5>
-                      <p>Pending</p>
+                      <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].approvals}}</p>
                     </span>
                   </div>
                   <div class="modal-label mb-4">
@@ -250,7 +218,7 @@
                     <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
                   </div>
                   <div>
-                    <button class="custome-button">Approve</button>
+                    <button class="custome-button" (click)="closePopUp('myModal5',true,'Approved','approved')">Approve</button>
                   </div>
                  
                   </div>
@@ -267,7 +235,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                       <h3 class="mb-0"> Podcast Rejected</h3>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closePopUp('myModal6')">X</button>
                     </div>
 
                     <!-- Modal body -->
@@ -276,15 +244,15 @@
                     <div class="modify_changes">
                       <span>
                         <h5>RJ Name</h5>
-                        <p>Name 1</p>
+                        <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].author_name}}</p>
                       </span>
                       <span>
                         <h5>Title</h5>
-                        <p>Podcast 56</p>
+                        <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].name}}</p>
                       </span>
                       <span>
                         <h5>Status</h5>
-                        <p>Pending</p>
+                        <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].approvals}}</p>
                       </span>
                     </div>
                     <div class="modal-label mb-4">
@@ -292,7 +260,7 @@
                       <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
                     </div>
                     <div>
-                      <button class="custome-button">Reject</button>
+                      <button class="custome-button" (click)="closePopUp('myModal6',true,'Rejected','rejected')">Reject</button>
                     </div>
                    
                     </div>
@@ -308,7 +276,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                       <h3 class="mb-0"> Podcast Broadcast</h3>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closePopUp('myModal7')">X</button>
                     </div>
 
                     <!-- Modal body -->
@@ -317,15 +285,15 @@
                     <div class="modify_changes">
                       <span>
                         <h5>RJ Name</h5>
-                        <p>Name 1</p>
+                        <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].author_name}}</p>
                       </span>
                       <span>
                         <h5>Title</h5>
-                        <p>Podcast 56</p>
+                        <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].name}}</p>
                       </span>
                       <span>
                         <h5>Status</h5>
-                        <p>Pending</p>
+                        <p *ngIf="dashboardList && dashboardList[currentIndex]">{{dashboardList[currentIndex].approvals}}</p>
                       </span>
                     </div>
                     <div class="modal-label mb-4 p-0 col-md-6 col-12">
@@ -342,7 +310,7 @@
                       
                     </div>
                     <div>
-                      <button class="custome-button">Go to Live</button>
+                      <button class="custome-button" (click)="closePopUp('myModal7',true,'Broadcast','broadcast')">Go to Live</button>
                     </div>
                    
                     </div>
@@ -359,14 +327,14 @@
                   <!-- Modal Header -->
                   <div class="modal-header">
                     <h4 class="mb-0"> Delete</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closePopUp('myModal3')">X</button>
                   </div>
 
                   <!-- Modal body href="dashboard.html" 366,367-->
                     <div class="modal-body">
                    <p>Do you really want to delete the Podcast ?" </p>
-                   <a ><button class="custome-button mx-2">Confirm</button></a>
-                   <a ><button class="custome-outline mx-2">Cancle</button></a>
+                   <a ><button class="custome-button mx-2" (click)="closePopUp('myModal3',true)">Confirm</button></a>
+                   <a ><button class="custome-outline mx-2" (click)="closePopUp('myModal3',false)">Cancle</button></a>
                   </div>
                 </div>
               </div>
@@ -376,21 +344,21 @@
           <table class="table">
             <thead>
               <tr>
-                <th>RJ</th>
-                <th class="pic">Picture</th>
-                <th>Title</th>
-                <th>
+                <th *ngIf="showhidemenu.RJName">RJ</th>
+                <th class="pic" *ngIf="showhidemenu.Thumbnails">Picture</th>
+                <th *ngIf="showhidemenu.Title">Title</th>
+                <th *ngIf="showhidemenu.Category">
                   <a  id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
                   aria-expanded="false" (click)="showcatDropDown = !showcatDropDown" style="cursor: pointer;">Category</a>
-                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop5" [ngStyle]="{'display':showcatDropDown ? 'block':'none'}">
+                  <ul class="dropdown-menu" style="display: block;" aria-labelledby="btnGroupDrop5" *ngIf="showcatDropDown">
                     <li><a class="dropdown-item" *ngFor="let a of prodcastService.CategoryList" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>                  
                   </ul>
                 </th>
-                <th class="text-center">Upload Date</th>
-                <th>
+                <th class="text-center" *ngIf="showhidemenu.UploadDate">Upload Date</th>
+                <th *ngIf="showhidemenu.Approvals">
                   <a id="btnGroupDrop6" class="dropdown-toggle" data-bs-toggle="dropdown"
                   aria-expanded="false" (click)="showStatusDropDown = !showStatusDropDown" style="cursor: pointer;">Status</a>
-                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" [ngStyle]="{'display':showStatusDropDown ? 'block':'none'}">
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block;" *ngIf="showStatusDropDown">
                     <li class="modify"><a class="dropdown-item" (click)="searchList('Modify');showStatusDropDown = false">Modify</a></li>
                     <li class="pending"><a class="dropdown-item" (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
                     
@@ -400,32 +368,33 @@
                     
                   </ul>
                 </th>
-                <th class="text-center">Broadcast Date</th>
-                <th>Comments</th>                
-                <th class="text-center">Edit</th>
-                <th class="text-center">Delete</th>
+                <th class="text-center" *ngIf="showhidemenu.BroadcastDate">Broadcast Date</th>
+                <th *ngIf="showhidemenu.Comments">Comments</th>                
+                <th class="text-center" *ngIf="showhidemenu.Edit">Edit</th>
+                <th class="text-center" *ngIf="showhidemenu.Delete">Delete</th>
                 
               </tr>
             </thead>
             <tbody *ngFor="let a of dashboardList;let i=index">
               <tr>
-                <td><p class="mb-0">{{a.author_name}}</p></td>
-                <td class="pic">
+                <td *ngIf="showhidemenu.RJName"><p class="mb-0">{{a.author_name}}</p></td>
+                <td class="pic" *ngIf="showhidemenu.Thumbnails">
                   <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
                 </td>
-                <td class="rjsname">
+                <td class="rjsname" *ngIf="showhidemenu.Title">
                   <h5 class="mb-0">{{a.name}}</h5>
-                  <p><a style="cursor: pointer;color:#0e7ea3" (click)="a.ShowProcastComment = true">{{a.description}}</a></p>                   
+                  <!-- a.ShowProcastComment = true -->
+                  <p><a style="cursor: pointer;color:#0e7ea3" (click)="prodcastService.IsView = true;prodcastService.editlist = a;showhidecnd.showEdit = true">{{a.description}}</a></p>                   
                 </td>
-                <td>{{a.category}}</td>
-                <td class="text-center">
+                <td *ngIf="showhidemenu.Category">{{a.category}}</td>
+                <td class="text-center" *ngIf="showhidemenu.UploadDate">
                   <p class="mb-0">{{a.upload_date}}</p>
                   <!-- <span class="small">{{a.UploadTime}}</span> -->
                   
                 </td>
 
-                  <!-- The Modal -->
-                  <div class="modal fade" id="myModal" [ngStyle]="{'opacity':a.ShowProcastComment ? '1':'0','display':a.ShowProcastComment ? 'block':'None'}">
+                  <!-- The Modal [ngStyle]="{'opacity':a.ShowProcastComment ? '1':'0','display':a.ShowProcastComment ? 'block':'None'}"-->
+                  <div class="modal fade" id="myModal" >
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
 
@@ -443,34 +412,34 @@
                     </div>
                   </div>
 
-                  <td>
+                  <td *ngIf="showhidemenu.Approvals">
                     <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.StatusCode}}" data-bs-toggle="dropdown"
                   aria-expanded="false" (click)="a.ShowstatusDropDown = !a.ShowstatusDropDown">
                   {{a.approvals}}
                 </button>                  
-                <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" [ngStyle]="{'display':a.ShowstatusDropDown ? 'block':'none'}">
+                <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" *ngIf="a.ShowstatusDropDown" style="display: block;">
                   <li class="pending"><a class="dropdown-item" (click)="a.approvals = 'Pending';a.StatusCode='pending';a.ShowstatusDropDown=false">pending</a></li>
                   <li class="modify">
-                    <a class="dropdown-item" (click)="a.approvals = 'Modify';a.StatusCode='Modify';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
+                    <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('myModal4',i)" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
                    
                   </li>
                   
                   <li class="rjapproved">
-                    <a class="dropdown-item" (click)="a.approvals = 'Approved';a.StatusCode='approved';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal5">Approved</a>
+                    <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('myModal5',i)" data-bs-toggle="modal" data-bs-target="#myModal5">Approved</a>
                   </li>
                   <li class="rejected">
-                    <a class="dropdown-item" (click)="a.approvals = 'Rejected';a.StatusCode='rejected';a.ShowstatusDropDown=false" data-bs-toggle="modal" data-bs-target="#myModal6">Rejected</a></li>
-                  <li class="broadcast"><a class="dropdown-item" (click)="a.approvals = 'Broadcast';a.StatusCode='broadcast';a.ShowstatusDropDown=false"  data-bs-toggle="modal" data-bs-target="#myModal7">Broadcast</a></li>
+                    <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('myModal6',i)" data-bs-toggle="modal" data-bs-target="#myModal6">Rejected</a></li>
+                  <li class="broadcast"><a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('myModal7',i)"  data-bs-toggle="modal" data-bs-target="#myModal7">Broadcast</a></li>
                 </ul>
                   </td>
-                <td class="text-center">
+                <td class="text-center" *ngIf="showhidemenu.BroadcastDate">
                   <p class="mb-0">{{a.broadcast_date}}</p>
                   <!-- <span class="small">{{a.BroadCastDataTime}}</span>                   -->
                 </td>
-                <td class="text-center">{{a.Comments}}</td>    
-                <td class="text-center" *ngIf="a.Status != 'Live'"><a (click)="a.Edit = true;showhidecnd.showEdit=true;prodcastService.editlist=a" ><i class="fas fa-pen"></i></a></td>
-                <td class="text-center" *ngIf="a.Status == 'Live'"><a (click)="a.EditProd = true;showhidecnd.showEditProd=true;prodcastService.editlist=a"><i class="fas fa-eye"></i></a></td> 
-                <td class="text-center"><a href="#" data-bs-toggle="modal" data-bs-target="#myModal3"><i class="fas fa-trash-alt"></i></a></td>  
+                <td class="text-center" *ngIf="showhidemenu.Comments">{{a.Comments}}</td>    
+                <td class="text-center" *ngIf="a.Status != 'Live' && showhidemenu.Edit" ><a (click)="a.Edit = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=false" ><i class="fas fa-pen"></i></a></td>
+                <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" ><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true"><i class="fas fa-eye"></i></a></td> 
+                <td class="text-center" *ngIf="showhidemenu.Delete"><a  data-bs-toggle="modal" data-bs-target="#myModal3" (click)="changeStatus('myModal3',i)"><i class="fas fa-trash-alt"></i></a></td>  
                             
               </tr>                      
             </tbody>            
@@ -482,4 +451,3 @@
   </div>
 </div>
   <app-admin-edit-prodcast *ngIf="showhidecnd.showEdit"  (back)="showhidecnd.showEdit=false"></app-admin-edit-prodcast>
-  <app-edit-prodcast *ngIf="showhidecnd.showEditProd" (back)="showhidecnd.showEditProd=false"></app-edit-prodcast>

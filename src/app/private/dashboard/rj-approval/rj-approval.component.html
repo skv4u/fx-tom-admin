@@ -1,0 +1,111 @@
+  <!--Header Start Here-->
+  <app-generic-header></app-generic-header>
+  <!--Header End Here-->
+
+  <!--Title sec Start Here-->
+  <div class="admin-sec">
+    <div class="row admin-top">
+      <div class="col-md-4 admin-title">
+        <h3 class="mb-0"><a href="/dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
+      </div>
+      <div class="col-md-4 tickets">
+        <ul>
+          <li class="pending"><strong>{{prodcastService.UserStastics.PendingTotal}}</strong> Pending</li>
+          <li class="rejected"><strong>{{prodcastService.UserStastics.RejectedTotal}}</strong> Rejected</li>
+          <li class="approved"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!--Title sec End Here-->
+
+
+  <div class="body-main">
+    <div class="body-content">
+      <div class="row">
+        <div class="col-12 col-lg-12">
+          <h3>RJ Approval board</h3>
+          <div class="shadow-sm border-0 card card-body admin-height table-text p-0">    
+            <div class="information">
+              <h4>Information</h4>
+              <ul>
+                <li class="pending"><strong>{{prodcastService.UserStastics.PendingTotal}}</strong> Pending</li>
+                <li class="rejected"><strong>{{prodcastService.UserStastics.RejectedTotal}}</strong> Rejected</li>
+                <li class="approved"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
+              </ul>
+            </div>        
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="pic">Picture</th>
+                    <th>Name of the the RJs</th>
+                    <th>
+
+                                           <button id="btnGroupDrop2" type="button" class="dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false" (click)="showStatus != showStatus">
+                    <strong>Status</strong>
+                  </button>                
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="display: block;" *ngIf="showStatus">
+                    <li class="pending"><a class="dropdown-item">pending</a></li>
+                    <li class="approved"><a class="dropdown-item">Approved</a></li>
+                    <li class="rejected"><a class="dropdown-item">Rejected</a></li>
+                    <li class="block"><a class="dropdown-item">Block</a></li>
+                  </ul>
+                    </th>
+                    <th>E-mail</th>
+                    <th>Phone Number</th>
+                    <th class="text-center">Edit Profile</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let a of RJList;let i=index">
+                    <td class="pic">
+                      <img src="assets/images/login-img.jpg" alt="img" />
+                    </td>
+                    <td class="rjsname">
+                      <h5 class="mb-0">{{a.fullname}}</h5>
+                      <!-- <p><a href="rj-profile.html">About the RJ</a></p>                     -->
+                    </td>
+
+                    <td>
+
+
+                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle" data-bs-toggle="dropdown"
+                      aria-expanded="false" (click)="a.ShowStatus = ! a.ShowStatus">
+                      {{a.approval_status}}
+                    </button>                 
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" *ngIf="a.ShowStatus" style="display: block;">
+                      <li class="pending"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Pending')">pending</a></li>
+                      <li class="approved"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Approved')">Approved</a></li>
+                      <li class="rejected"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Rejected')">Rejected</a></li>
+                      <li class="block"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Block')">Block</a></li>
+                    </ul>
+
+
+                      <!-- <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.StatusCode}}" data-bs-toggle="dropdown"
+                    aria-expanded="false" (click)="a.ShowStatus = ! a.ShowStatus">
+                    {{a.approval_status}}
+                  </button>                  
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2"  [ngStyle]="{'display' : a.ShowStatus ? 'block' : 'none'}">
+                    <li class="pending"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Pending')" >pending</a></li>
+                    <li class="approved"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Approved')">Approved</a></li>
+                    <li class="rejected"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Rejected')">Rejected</a></li>
+                    <li class="block"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Block')">Block</a></li>
+                  </ul> -->
+                    </td>
+                    <td>{{a.email}}</td>  
+                    <td>{{a.phone}}</td>   
+                    <td class="text-center"><a><i class="fas fa-pen"></i></a></td>              
+                  </tr>
+                </tbody>
+                
+              </table>
+            </div>
+          </div>
+        </div>       
+      </div>
+    </div>
+  </div>
+

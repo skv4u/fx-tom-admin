@@ -12,13 +12,15 @@ import { LocalstorageService } from './shared/services/localstorage.service';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DashboardComponent } from './private/dashboard/dashboard.component';
 import { AdminEditProdcastComponent } from './private/dashboard/admin-edit-prodcast/admin-edit-prodcast.component';
-import { EditProdcastComponent } from './private/dashboard/edit-prodcast/edit-prodcast.component';
 import { CreateCategoryComponent } from './private/dashboard/create-category/create-category.component';
 import { WebService } from './shared/services/web.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProdcastService } from './shared/services/prodcast.service';
 import {ToastService} from './shared/services/toast.service';
-import { GenericHeaderComponent } from './private/generic-header/generic-header.component'
+import { GenericHeaderComponent } from './private/generic-header/generic-header.component';
+import { RjApprovalComponent } from './private/dashboard/rj-approval/rj-approval.component';
+import { EditLanguageComponent } from './private/dashboard/edit-language/edit-language.component';
+import { PageLoaderComponent } from './private/page-loader/page-loader.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,9 +29,11 @@ import { GenericHeaderComponent } from './private/generic-header/generic-header.
     PodcastListComponent,
     DashboardComponent,
     AdminEditProdcastComponent,
-    EditProdcastComponent,
     CreateCategoryComponent,
-    GenericHeaderComponent
+    GenericHeaderComponent,
+    RjApprovalComponent,
+    EditLanguageComponent,
+    PageLoaderComponent
   ],
   imports: [
     BrowserModule,

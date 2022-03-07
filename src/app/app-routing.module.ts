@@ -3,6 +3,8 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AdminEditProdcastComponent } from './private/dashboard/admin-edit-prodcast/admin-edit-prodcast.component';
 import { CreateCategoryComponent } from './private/dashboard/create-category/create-category.component';
 import { DashboardComponent } from './private/dashboard/dashboard.component';
+import { EditLanguageComponent } from './private/dashboard/edit-language/edit-language.component';
+import { RjApprovalComponent } from './private/dashboard/rj-approval/rj-approval.component';
 import { LoginComponent } from './public/login/login.component';
 
 const routes: Routes = [
@@ -11,6 +13,8 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent },
   {path: 'admineditprodcast', component: AdminEditProdcastComponent },
   {path: 'create-category', component: CreateCategoryComponent },
+  {path: 'create-language', component: EditLanguageComponent },
+  {path: 'rj-approvals', component: RjApprovalComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
