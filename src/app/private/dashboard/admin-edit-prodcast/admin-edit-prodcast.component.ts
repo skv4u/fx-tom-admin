@@ -82,5 +82,27 @@ export class AdminEditProdcastComponent implements OnInit {
       }
     )
   }
-
+backtodashboard(){
+  // this.router.navigateByUrl('/dashboard');
+  this.back.emit()
+  this.prodcastservice.IsView = false;
+  }
+  removeAudio(){
+    let req = {
+      filename : this.EditData.audiopath
+  }
+    this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
+      subscribe((data: any) => {
+        this.EditData.audiopath = '';
+      });
+  }
+  removeFile(){
+    let req = {
+        filename : this.EditData.imagepath
+    }
+    this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
+      subscribe((data: any) => {
+        this.EditData.imagepath = '';
+      });
+  }
 }

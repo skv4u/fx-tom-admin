@@ -20,7 +20,8 @@ import {ToastService} from './shared/services/toast.service';
 import { GenericHeaderComponent } from './private/generic-header/generic-header.component';
 import { RjApprovalComponent } from './private/dashboard/rj-approval/rj-approval.component';
 import { EditLanguageComponent } from './private/dashboard/edit-language/edit-language.component';
-import { PageLoaderComponent } from './private/page-loader/page-loader.component'
+import { PageLoaderComponent } from './private/page-loader/page-loader.component';
+import { ApprovalPopupComponent } from './private/dashboard/approval-popup/approval-popup.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { PageLoaderComponent } from './private/page-loader/page-loader.component
     GenericHeaderComponent,
     RjApprovalComponent,
     EditLanguageComponent,
-    PageLoaderComponent
+    PageLoaderComponent,
+    ApprovalPopupComponent
   ],
   imports: [
     BrowserModule,

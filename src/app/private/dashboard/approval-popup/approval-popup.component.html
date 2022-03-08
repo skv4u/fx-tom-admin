@@ -1,0 +1,184 @@
+                
+                 
+                 <!-- Modify The Modal -->
+                   <div *ngIf="prodcastService.showPopUp.modify">
+                   <div class="background-grey"></div>
+                   <div class="popup-box">
+                     <div style="text-align: center;">
+                  <h3 class="mb-0"> Podcast Modification</h3>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.modify = false">X</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                <h5 class="mb-4">Modification needs to be done on the following podcast</h5>
+                <div class="modify_changes">
+                  <span>
+                    <h5>RJ Name</h5>
+                    <p>{{prodcastService.selectedData.author_name}}</p>
+                  </span>
+                  <span>
+                    <h5>Title</h5>
+                    <p>{{prodcastService.selectedData.name}}</p>
+                  </span>
+                  <span>
+                    <h5>Project</h5>
+                    <p>{{prodcastService.selectedData.approvals}}</p>
+                  </span>
+                </div>
+                <div class="modal-label mb-4">
+                  <label><strong>Notes to RJ</strong></label>
+                  <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
+                </div>
+                <div>
+                  <button class="custome-button" style="text-align: center;">Modify</button>
+                </div>
+               
+                </div>
+              </div>
+</div>
+           
+           <!--------------------------------->
+           <div *ngIf="prodcastService.showPopUp.approval">
+            <!--Approved The Modal -->
+            <div class="background-grey"></div>
+            <div class="popup-box">
+              <div style="text-align: center;">
+                <h3 class="mb-0"> Podcast Approval</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.approval = false">X</button>
+                <div class="modal-body">
+                  <h5 class="mb-4">Are you sure you want to <strong>Approve</strong> following podcast</h5>
+                  <div class="modify_changes">
+                    <span>
+                      <h5>RJ Name</h5>
+                      <p>{{prodcastService.selectedData.author_name}}</p>
+                    </span>
+                    <span>
+                      <h5>Title</h5>
+                      <p>{{prodcastService.selectedData.name}}</p>
+                    </span>
+                    <span>
+                      <h5>Status</h5>
+                      <p>{{prodcastService.selectedData.approvals}}</p>
+                    </span>
+                  </div>
+                  <div class="modal-label mb-4">
+                    <label><strong>Notes to RJ</strong></label>
+                    <textarea class="form-control" [(ngModel)]="notes">We see some updates to be done in the Audio area</textarea>
+                  </div>
+                  <div>
+                    <button class="custome-button" style="text-align: center;" (click)="approveProdCast()">Approve</button>
+                  </div>
+                 
+              </div>
+              </div>
+           </div>
+          </div>
+
+           <div *ngIf="prodcastService.showPopUp.rejected">
+ <!--------------------------------->
+
+              <!--Rejected The Modal -->
+              <div class="background-grey"></div>
+              <div class="popup-box">
+                <div style="text-align: center;">
+                      <h3 class="mb-0"> Podcast Rejected</h3>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.rejected = false">X</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    <h5 class="mb-4">Are you sure you want to <strong>Reject</strong> following podcast</h5>
+                    <div class="modify_changes">
+                      <span>
+                        <h5>RJ Name</h5>
+                        <p >{{prodcastService.selectedData.author_name}}</p>
+                      </span>
+                      <span>
+                        <h5>Title</h5>
+                        <p >{{prodcastService.selectedData.name}}</p>
+                      </span>
+                      <span>
+                        <h5>Status</h5>
+                        <p >{{prodcastService.selectedData.approvals}}</p>
+                      </span>
+                    </div>
+                    <div class="modal-label mb-4">
+                      <label><strong>Notes to RJ</strong></label>
+                      <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
+                    </div>
+                    <div>
+                      <button class="custome-button" style="text-align: center;">Reject</button>
+                    </div>
+                   
+                    </div>
+                  </div>
+                </div>
+
+
+                <div *ngIf="prodcastService.showPopUp.broadcast">
+ <!--------------------------------->
+               <!--Broadcast The Modal -->
+               <div class="background-grey"></div>
+               <div class="popup-box" style="height:73vh">
+                 <div style="text-align: center;">
+                      <h3 class="mb-0"> Podcast Broadcast</h3>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.broadcast = false">X</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    <h5 class="mb-4">Are you sure you want podcast to go Live</h5>
+                    <div class="modify_changes">
+                      <span>
+                        <h5>RJ Name</h5>
+                        <p>{{prodcastService.selectedData.author_name}}</p>
+                      </span>
+                      <span>
+                        <h5>Title</h5>
+                        <p>{{prodcastService.selectedData.name}}</p>
+                      </span>
+                      <span>
+                        <h5>Status</h5>
+                        <p>{{prodcastService.selectedData.approvals}}</p>
+                      </span>
+                    </div>
+                    <div class="modal-label mb-4 p-0 col-md-6 col-12">
+                      <label><strong>Schedule</strong></label>
+                      <div class="form-floating mb-4">
+                        <input type="date" class="form-control" id="floatingInput" placeholder="Date" [(ngModel)]="broadCastDate">
+                        <label for="floatingInput">Date</label>
+                      </div>   
+                      <div class="form-floating mb-4">
+                        <input type="time" class="form-control" id="floatingInput" placeholder="Time" [(ngModel)]="broadCastTime">
+                        <label for="floatingInput">Time</label>
+                      </div>  
+                      
+                      
+                    </div>
+                    <div>
+                      <button class="custome-button" style="text-align: center;" (click)="approveBroadcastCast()">Go to Live</button>
+                    </div>
+                   
+                    </div>
+                  </div>
+                </div>
+
+              <div *ngIf="prodcastService.showPopUp.delete">
+                 <!--------------------------->
+               <!--Delete The Modal -->
+               <div class="background-grey"></div>
+              <div class="popup-box" style="height: 32vh;text-align: center;">
+                 <div>
+                    <h4 class="mb-0" style="border-bottom: 1px solid #aaaa;"> Delete</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.delete = false">X</button>
+                  </div>
+
+                  <!-- Modal body href="dashboard.html" 366,367-->
+                    <div class="modal-body">
+                   <p>Do you really want to delete the Podcast ?" </p>
+                   <a ><button class="custome-button mx-2" >Confirm</button></a>
+                   <a ><button class="custome-outline mx-2" >Cancel</button></a>
+                  </div>
+                </div>
+              </div>

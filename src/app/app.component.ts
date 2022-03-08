@@ -11,19 +11,6 @@ import { WebService } from './shared/services/web.service';
 export class AppComponent {
   title = 'tomtom';
   constructor(public localStorage: LocalstorageService, public WebService: WebService,public ProdcastService:ProdcastService) {
+  }
 
-    this.getUserStatistics();
-  }
-  getUserStatistics() {
-    let req = {
-      "user_id": this.localStorage.getUserData().id
-    }
-    this.WebService.commonMethod('user/statistics/admin', req, 'GET').subscribe(
-      (data)=>{
-        if(data.Response && data.Response.length)
-        this.ProdcastService.UserStastics =data.Response[0];
-      
-      }
-    )
-  }
 }

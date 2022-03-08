@@ -74,11 +74,11 @@
                           <div class="preview-zone hidden">
                             <div class="box box-solid">
                               
-                              <div class="box-body" *ngIf="EditData.audiopath">
+                              <!-- <div class="box-body" *ngIf="EditData.audiopath">
                                 <audio controls>
                                   <source [src]="EditData.audiopath" type="audio/ogg"> 
                                   </audio>
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                           <div *ngIf="!EditData.audiopath">
@@ -88,6 +88,21 @@
                           </div>
                           <input type="file" name="img_logo"  class="dropzone" [(ngModel)]="EditData.audiopath" [ngModelOptions]="{standalone: true}">
                         </div>
+                        <div class="preview-zone" *ngIf="EditData.audiopath != ''">
+
+                          <div class="box box-solid">
+                              <button (click)="removeAudio()" style="right: -230px;
+                              position: relative;
+                              top: 10px;
+                              background: none;
+                              border: none;
+                              color: #f00;"><i class="fas fa-trash-alt"></i></button>
+                              <div class="box-body"> <audio controls>
+                                      <source src="{{EditData.audiopath}}" type="audio/ogg">
+                                  </audio></div>
+                          </div>
+
+                      </div>
                         </div>
                       </div>
                     </div>
@@ -103,10 +118,20 @@
               <input type="file" name="myFile" class="drop-zone__input" style="display: block;"  (change)="uploadFile($event.target.files)">
             </div>
 
-            <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
+            <!-- <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
               <img [src]="EditData.imagepath" [alt]="EditData.imagepath">
-            </div>
-            
+            </div> -->
+            <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
+
+              <img [src]="EditData.imagepath" [alt]="EditData.imagepath">
+              <button (click)="removeFile()" style="right: -11px;
+              cursor: pointer;
+              top: -11px;
+              position: absolute;
+              background: none;
+              border: none;
+              color: #f00;"><i class="fas fa-trash-alt"></i></button>
+          </div>
           </div>
         </div>
         <div class="row">
@@ -159,7 +184,7 @@
 
   <div class="body-main" *ngIf="prodcastservice.IsView">
     <div class="body-content">  
-      <h3><a href="dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>   
+      <h3><a (click)="backtodashboard()"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>   
       <div class="c-podcast">
         <h3>About Podcast</h3>
         <div class="row">
