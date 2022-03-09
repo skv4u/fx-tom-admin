@@ -81,19 +81,13 @@
             </form>
             </ul>
           </div>
-          <div class="s-box"><a (click)="showhidecnd.showBell = !showhidecnd.showBell"  id="btnGroupDrop3" class="dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false"><i class="fas fa-bell"></i></a>
-            <!-- <sup>5</sup>
-            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3" *ngIf="showhidecnd.showBell" style="display: block;">  
-              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 1</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 2</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 3</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 4</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 5</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 6</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 7</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showBell = false">link 8</a></li>
-            </ul> -->
+          <div class="s-box" style="position: relative;"><a (click)="showhidecnd.showBell = !showhidecnd.showBell;updateNotification()" style="cursor: pointer;"  id="btnGroupDrop3" class="dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false"><i class="fas fa-bell"><sup style="font-size: 9px;cursor:pointer" 
+              *ngIf="prodcastService.UserStastics.UnreadNotificationCount != '0'">{{prodcastService.UserStastics.UnreadNotificationCount}}</sup></i></a>
+            <!-- <sup>5</sup> -->
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3" *ngIf="showhidecnd.showBell && prodcastService.NotificationList.length" style="display: block;right: 0;">  
+              <li><a class="dropdown-item" (click)="getSelectedList(a)" *ngFor="let a of prodcastService.NotificationList" style="cursor: pointer;" [innerHTML]="a.message" [ngClass]="{'viewedlist':a.viewed == '1'}"></a></li>
+            </ul> 
           </div>
           <!-- <div class="s-box">
             <a (click)="showhidecnd.showEmail = !showhidecnd.showEmail" id="btnGroupDrop4" class="dropdown-toggle" data-bs-toggle="dropdown"

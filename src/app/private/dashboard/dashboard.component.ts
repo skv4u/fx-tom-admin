@@ -86,5 +86,20 @@ export class DashboardComponent implements OnInit {
       this.prodcastService.dashboardList[this.currentIndex].StatusCode = StatusCode;
     }
   }
+  getSelectedList(a){
+    this.showhidecnd.showBell = false;
+    if(a.notification_type == 'CREATE_PODCAST'){
+    let tempdata = a.podcast_id;
+    let temp = this.prodcastService.dashboardList1.filter(x => JSON.stringify(x.id).toLowerCase().includes(tempdata.toLowerCase()));
+    this.prodcastService.dashboardList = temp;
+    }
+  }
+  updateNotification(){
+    this.webservice.commonMethod('user/notification/adminupdate', '', 'PUT').subscribe(
+      (data)=>{
+        this.prodcastService.getUserStatistics();
+      }
+    )
+  }
 }
 

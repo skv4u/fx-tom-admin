@@ -18,7 +18,9 @@ export class ProdcastService {
     "BlockedTotal": "",
     "TotalRJ": "",
     "CommentTotal":"",
-    "LiveTotal":""
+    "LiveTotal":"",
+    "TotalNotificationCount":"",
+    "UnreadNotificationCount":""
   }
   showPopUp:any={
     'approval':false,
@@ -29,6 +31,7 @@ export class ProdcastService {
   }
   dashboardList:any=[];
   dashboardList1:any=[];
+  NotificationList:any=[];
   constructor(public webservice: WebService, public localStorage: LocalstorageService) {
     if(this.localStorage.getUserData()){
       this.loginUserName = this.localStorage.getUserData().fullname;
@@ -68,7 +71,19 @@ export class ProdcastService {
       (data)=>{
         if(data.Response && data.Response.length)
         this.UserStastics =data.Response[0];
-      
+        this.getNotificationList()
+      }
+    )
+  }
+  getNotificationList(){
+    let req = {
+      "user_id": this.localStorage.getUserData().id,
+      "usertype":"Admin"
+    }
+    this.webservice.commonMethod('user/notificationlist', req, 'POST').subscribe(
+      (data)=>{
+        if(data.Response && data.Response.length)
+        this.NotificationList =data.Response;
       }
     )
   }
