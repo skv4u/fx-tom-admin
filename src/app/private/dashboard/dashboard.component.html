@@ -1,5 +1,8 @@
   
+  <app-page-loader *ngIf="apicalled"></app-page-loader>
+  
   <div *ngIf="!showhidecnd.showEdit">
+
  
   <!--Header Start Here-->
   <app-generic-header></app-generic-header>
@@ -108,6 +111,7 @@
             aria-expanded="false" (click)="showhidecnd.showSettings = !showhidecnd.showSettings"><i class="fas fa-cog" ></i></a>
             <ul class="dropdown-menu"  *ngIf="showhidecnd.showSettings" aria-labelledby="btnGroupDrop5" style="position: absolute;right: 23px;display:block;cursor: pointer;">             
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')">RJ Approvals</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/podcast-delete')">Podcast Delete List</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')">Edit Category</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-language')">Edit Language</a></li>
               <!-- <li><a class="dropdown-item" href="#">Manage Ads</a></li> -->
@@ -182,14 +186,14 @@
             </thead>
             <tbody *ngFor="let a of prodcastService.dashboardList;let i=index">
               <tr>
-                <td *ngIf="showhidemenu.RJName"><p class="mb-0">{{a.author_name}}</p></td>
+                <td *ngIf="showhidemenu.RJName"><p class="mb-0">{{a.fullname}}</p></td>
                 <td class="pic" *ngIf="showhidemenu.Thumbnails">
                   <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
                 </td>
                 <td class="rjsname" *ngIf="showhidemenu.Title">
-                  <h5 class="mb-0">{{a.name}}</h5>
+                  <h5 class="mb-0">{{a.author_name}}</h5>
                   <!-- a.ShowProcastComment = true -->
-                  <p><a style="cursor: pointer;color:#0e7ea3" (click)="prodcastService.IsView = true;prodcastService.editlist = a;showhidecnd.showEdit = true">{{a.description}}</a></p>                   
+                  <p><a style="cursor: pointer;color:#0e7ea3" (click)="prodcastService.IsView = true;prodcastService.editlist = a;showhidecnd.showEdit = true">About Podcast</a></p>                   
                 </td>
                 <td *ngIf="showhidemenu.Category">{{a.category}}</td>
                 <td class="text-center" *ngIf="showhidemenu.UploadDate">
@@ -223,7 +227,7 @@
                   {{a.approvals}}
                 </button>                  
                 <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" *ngIf="a.ShowstatusDropDown" style="display: block;">
-                  <li class="pending"><a class="dropdown-item" (click)="a.approvals = 'Pending';a.StatusCode='pending';a.ShowstatusDropDown=false">pending</a></li>
+                  <li class="pending"><a class="dropdown-item" (click)="changeStatus('Pending',a,i);a.ShowstatusDropDown=false">pending</a></li>
                   <li class="modify">
                     <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Modify',a,i)" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
                    
@@ -245,12 +249,12 @@
                   <span *ngIf="a.comment_count == '0'">None</span>
                   <span *ngIf="a.comment_count != '0'">{{a.comment_count}}</span>
                   {{a.Comments}}</td>    
-                <td class="text-center" *ngIf="a.Status != 'Live' && showhidemenu.Edit" ><a (click)="a.Edit = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=false" ><i class="fas fa-pen"></i></a></td>
-                <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" ><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true"><i class="fas fa-eye"></i></a></td> 
-                <td class="text-center" *ngIf="showhidemenu.Delete" style="position: relative;"> 
-                  <a (click)="changeStatus('Delete',a,i)">
-                  <i class="fas fa-trash-alt"></i>
-                </a>
+                <td class="text-center" *ngIf="a.Status != 'Live' && showhidemenu.Edit && a.is_admin_deleted == '0'" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}" ><a (click)="a.Edit = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=false"  ><i class="fas fa-pen"></i></a></td>
+                <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit && a.is_admin_deleted == '0'" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true" ><i class="fas fa-eye"></i></a></td> 
+                <td class="text-center" *ngIf="showhidemenu.Delete" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"  style="position: relative;"> 
+                  <a (click)="changeStatus('Delete',a,i)" >
+                  <i class="fas fa-trash-alt" *ngIf="a.is_admin_deleted == '0'"></i >
+                  </a>
                 <span *ngIf="a.is_deleted == 1" title="Deleted by RJ" class="rj_deleted_span">Deleted</span>
               </td>  
                             

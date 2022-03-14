@@ -28,7 +28,7 @@
                 </div>
                 <div class="modal-label mb-4">
                   <label><strong>Notes to RJ</strong></label>
-                  <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
+                  <textarea class="form-control"></textarea>
                 </div>
                 <div>
                   <button class="custome-button" style="text-align: center;">Modify</button>
@@ -64,7 +64,7 @@
                   </div>
                   <div class="modal-label mb-4">
                     <label><strong>Notes to RJ</strong></label>
-                    <textarea class="form-control" [(ngModel)]="notes">We see some updates to be done in the Audio area</textarea>
+                    <textarea class="form-control" [(ngModel)]="notes"></textarea>
                   </div>
                   <div>
                     <button class="custome-button" style="text-align: center;" (click)="approveProdCast()">Approve</button>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="modal-label mb-4">
                       <label><strong>Notes to RJ</strong></label>
-                      <textarea class="form-control">We see some updates to be done in the Audio area</textarea>
+                      <textarea class="form-control" [(ngModel)]="notes"></textarea>
                     </div>
                     <div>
                       <button class="custome-button" style="text-align: center;">Reject</button>
@@ -168,7 +168,7 @@
                  <!--------------------------->
                <!--Delete The Modal -->
                <div class="background-grey"></div>
-              <div class="popup-box" style="height: 32vh;text-align: center;">
+              <div class="popup-box" style="height: 55vh;text-align: center;">
                  <div>
                     <h4 class="mb-0" style="border-bottom: 1px solid #aaaa;"> Delete</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.delete = false">X</button>
@@ -177,8 +177,12 @@
                   <!-- Modal body href="dashboard.html" 366,367-->
                     <div class="modal-body">
                    <p>Do you really want to delete the Podcast ?" </p>
-                   <a ><button class="custome-button mx-2" >Confirm</button></a>
-                   <a ><button class="custome-outline mx-2" >Cancel</button></a>
+                   <div class="modal-label mb-4">
+                    <label><strong>Notes to RJ</strong></label>
+                    <textarea class="form-control" [(ngModel)]="notes"></textarea>
+                  </div>
+                   <a ><button class="custome-button mx-2" (click)="deletePodCast()">Confirm</button></a>
+                   <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.delete = false">Cancel</button></a>
                   </div>
                 </div>
               </div>

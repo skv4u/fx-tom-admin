@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
   showStatusDropDown:boolean=false;
   showcatDropDown:boolean=false;
   currentIndex:number=0;
-
+  apicalled:boolean=false;
   constructor(public router: Router, public webservice: WebService,public prodcastService:ProdcastService,public localStorage:LocalstorageService,public toast:ToastService) { }
 
   ngOnInit() {
@@ -46,9 +46,9 @@ export class DashboardComponent implements OnInit {
     }
     this.prodcastService.loginUserName = this.localStorage.getUserData().fullname;
     this.prodcastService.IsView = false;
+    this.apicalled=true;
     this.prodcastService.getDashBoardList();
-    
-
+    this.apicalled=false;
   }
   searchList(data?:any) {
     let tempdata=data ? data : this.serachvalue
@@ -62,6 +62,14 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
   changeStatus(status,a,i){
+    if(a.approvals == 'Approved' || a.approvals == 'Live' && status == 'Pending'){
+      this.toast.error('Podcast is' +' '+a.approvals)
+      return
+    }
+    else if(status == 'Pending'){
+      a.approvals = 'Pending';
+      return
+    }
     this.currentIndex=i;
     this.prodcastService.selectedData = a;
     if(status == 'Approved')
@@ -70,15 +78,20 @@ export class DashboardComponent implements OnInit {
     this.prodcastService.showPopUp.rejected = true
     else if(status == 'Broadcast'){
       if(a.approvals != 'Approved'){
-        this.toast.error('selected prodcast is not approved');
+        this.toast.error('selected podcast is not approved');
         return;
       }
     this.prodcastService.showPopUp.broadcast = true;
     }
     else if(status == 'Modify')
     this.prodcastService.showPopUp.modify = true
-    else if(status == 'Delete')
-    this.prodcastService.showPopUp.delete = true
+    else if(status == 'Delete'){
+      if(a.approvals == 'Live'){
+        this.toast.error('Podcast has been live');
+        return;
+      }
+    this.prodcastService.showPopUp.delete = true;
+    }
   }
   closePopUp(id,action,approvals?,StatusCode?){
     if(action){
@@ -92,6 +105,10 @@ export class DashboardComponent implements OnInit {
     let tempdata = a.podcast_id;
     let temp = this.prodcastService.dashboardList1.filter(x => JSON.stringify(x.id).toLowerCase().includes(tempdata.toLowerCase()));
     this.prodcastService.dashboardList = temp;
+    }
+    if(a.notification_type == 'NEW_RJ' || a.notification_type =='UPDATE_RJ'){
+      // this.prodcastService.SelectedRJforApprove = a.user_id;
+      this.router.navigateByUrl('/rj-approvals');
     }
   }
   updateNotification(){

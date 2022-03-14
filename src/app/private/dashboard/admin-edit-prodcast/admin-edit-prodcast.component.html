@@ -44,7 +44,7 @@
                <label for="floatingInput" style="left: 18px;">Language</label>
               </div>
               <div class="col-md-9 mb-4 form-floating">
-                <select class="form-control" placeholder="Category" [(ngModel)]="EditData.category" >
+                <select class="form-control" placeholder="Category" [(ngModel)]="EditData.category" multiple>
                   <option *ngFor="let a of prodcastservice.CategoryList">{{a.name}}</option>
                 </select>
                 <label for="floatingInput" style="left: 18px;">Category</label>

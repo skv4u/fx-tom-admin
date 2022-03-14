@@ -21,7 +21,8 @@ import { GenericHeaderComponent } from './private/generic-header/generic-header.
 import { RjApprovalComponent } from './private/dashboard/rj-approval/rj-approval.component';
 import { EditLanguageComponent } from './private/dashboard/edit-language/edit-language.component';
 import { PageLoaderComponent } from './private/page-loader/page-loader.component';
-import { ApprovalPopupComponent } from './private/dashboard/approval-popup/approval-popup.component'
+import { ApprovalPopupComponent } from './private/dashboard/approval-popup/approval-popup.component';
+import { DeletePodcastListComponent } from './private/dashboard/delete-podcast-list/delete-podcast-list.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { ApprovalPopupComponent } from './private/dashboard/approval-popup/appro
     RjApprovalComponent,
     EditLanguageComponent,
     PageLoaderComponent,
-    ApprovalPopupComponent
+    ApprovalPopupComponent,
+    DeletePodcastListComponent
   ],
   imports: [
     BrowserModule,
