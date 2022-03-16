@@ -28,10 +28,10 @@
                 </div>
                 <div class="modal-label mb-4">
                   <label><strong>Notes to RJ</strong></label>
-                  <textarea class="form-control"></textarea>
+                  <textarea class="form-control" [(ngModel)]="notes"></textarea>
                 </div>
                 <div>
-                  <button class="custome-button" style="text-align: center;">Modify</button>
+                  <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Modify')">Modify</button>
                 </div>
                
                 </div>
@@ -67,7 +67,7 @@
                     <textarea class="form-control" [(ngModel)]="notes"></textarea>
                   </div>
                   <div>
-                    <button class="custome-button" style="text-align: center;" (click)="approveProdCast()">Approve</button>
+                    <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Approved')">Approve</button>
                   </div>
                  
               </div>
@@ -108,7 +108,7 @@
                       <textarea class="form-control" [(ngModel)]="notes"></textarea>
                     </div>
                     <div>
-                      <button class="custome-button" style="text-align: center;">Reject</button>
+                      <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Rejected')">Reject</button>
                     </div>
                    
                     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdcastService } from 'src/app/shared/services/prodcast.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { WebService } from 'src/app/shared/services/web.service';
 
 @Component({
@@ -12,9 +13,10 @@ export class DeletePodcastListComponent implements OnInit {
   showStatus:boolean=false;
   deleteList:any=[];
   deleteList1:any=[];
+  showcatDropDown:boolean=false;
   isProgressing:boolean=false;
-
-  constructor(public prodcastService:ProdcastService,public webService:WebService) { }
+  showStatusDropDown:boolean=false;
+  constructor(public prodcastService:ProdcastService,public webService:WebService,public toast:ToastService) { }
 
   ngOnInit() {
     this.getDeletedList();
@@ -41,7 +43,10 @@ export class DeletePodcastListComponent implements OnInit {
       this.webService.commonMethod('podcast/revoke/admin',req , 'POST').subscribe(
         (data) => {
           this.isProgressing=false;
+          if(data.Status == "Success" && data.Response == true){
+          this.toast.success('Revoked Sucessfully');
           this.getDeletedList();
+          }
         })
   }
 }

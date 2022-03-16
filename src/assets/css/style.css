@@ -363,6 +363,8 @@ border: none;
    .dashboard-table .dropdown-toggle.broadcast{position: relative;padding-left: 15px;}
    .dashboard-table .dropdown-toggle.broadcast:before{width:8px; height:8px; background: var(--broadcast); left:0px; top:6px;content: ""; position: absolute; border-radius: 50%;}
 
+   .dashboard-table .dropdown-toggle.modify{position: relative;padding-left: 15px;}
+   .dashboard-table .dropdown-toggle.modify:before{width:8px; height:8px; background: var(--modify); left:0px; top:6px;content: ""; position: absolute; border-radius: 50%;}
 
    .dashboard-table ul.dropdown-menu{ min-width:120px; padding: 0px;}
    .dashboard-table ul.dropdown-menu li{ position: relative; padding: 0px;}

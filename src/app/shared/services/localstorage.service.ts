@@ -7,13 +7,13 @@ export class LocalstorageService {
 
   setUserData(param) {
     let str = JSON.stringify(param)
-    localStorage.setItem('user_data', btoa(str));
+    localStorage.setItem('admin_user_data', btoa(str));
   }
 
   getUserData() {
-    if(!localStorage.getItem('user_data'))
-    return null;
-    let data = localStorage.getItem('user_data');
+    if (!localStorage.getItem('admin_user_data'))
+      return null;
+    let data = localStorage.getItem('admin_user_data');
     data = atob(data);
     return JSON.parse(data);
   }

@@ -36,6 +36,8 @@ export class DashboardComponent implements OnInit {
   showcatDropDown:boolean=false;
   currentIndex:number=0;
   apicalled:boolean=false;
+  showcomments:boolean=false;
+
   constructor(public router: Router, public webservice: WebService,public prodcastService:ProdcastService,public localStorage:LocalstorageService,public toast:ToastService) { }
 
   ngOnInit() {
@@ -62,7 +64,11 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
   changeStatus(status,a,i){
-    if(a.approvals == 'Approved' || a.approvals == 'Live' && status == 'Pending'){
+    if(a.approvals == 'Live'){
+      this.toast.error('Podcast is Live')
+      return
+    }
+    if((a.approvals == 'Approved') && status == 'Pending' || status == 'Approved'){
       this.toast.error('Podcast is' +' '+a.approvals)
       return
     }

@@ -16,7 +16,7 @@ export class ApprovalPopupComponent implements OnInit {
 
   ngOnInit() {
   }
-  approveProdCast() {
+  approveProdCast(status) {
     if (this.notes == '') {
       this.toast.error('Please add notes');
       return;
@@ -28,16 +28,18 @@ export class ApprovalPopupComponent implements OnInit {
       "user_id": this.prodcastService.selectedData.user_id,
       "usertype": "Admin",
       "note_description": this.notes,
-      "status": "Approved",
+      "status": status,
       "created_by": this.prodcastService.loginUserName,
       "audio_path": this.prodcastService.selectedData.audiopath
     }
-    this.webService.commonMethod('podcast/approval/admin', req, 'POST').subscribe(
+    this.webService.commonMethod('podcast/approvalstatus/admin', req, 'POST').subscribe(
       (data) => {
         this.prodcastService.loader = false;
         this.prodcastService.showPopUp.approval = false;
+        this.prodcastService.showPopUp.rejected = false;
+        this.prodcastService.showPopUp.modify = false;
         if (data.Status == 'Success' && data.Response) {
-          this.toast.success('Podcast Approved Sucessfully');
+          this.toast.success('Podcast '+status+' Sucessfully');
           this.prodcastService.getDashBoardList();
         } else
           this.toast.error('Internal Server error');
@@ -79,7 +81,7 @@ export class ApprovalPopupComponent implements OnInit {
       "created_by": "Admin",
       "audio_path":this.prodcastService.selectedData.audiopath
     }
-    this.webService.commonMethod('podcast/delete/Admin', req, 'POST').subscribe(
+    this.webService.commonMethod('podcast/delete/admin', req, 'POST').subscribe(
       (data) => {
         this.prodcastService.loader = false;
         this.prodcastService.showPopUp.delete = false;
@@ -93,34 +95,6 @@ export class ApprovalPopupComponent implements OnInit {
     )
   }
 
-  rejectProdCast() {
-    if (this.notes == '') {
-      this.toast.error('Please add notes');
-      return;
-    }
-    this.prodcastService.loader = true;
-    let req =
-    {
-      "id": this.prodcastService.selectedData.id,
-      "user_id": this.prodcastService.selectedData.user_id,
-      "usertype": "Admin",
-      "note_description": this.notes,
-      "status": this.prodcastService.selectedData.approvals,
-      "created_by": "Admin",
-      "audio_path":this.prodcastService.selectedData.audiopath
-    }
-    this.webService.commonMethod('podcast/reject/admin', req, 'POST').subscribe(
-      (data) => {
-        this.prodcastService.loader = false;
-        this.prodcastService.showPopUp.rejected = false;
-        if (data.Status == 'Success' && data.Response) {
-          this.toast.success('Rejected Sucessfully');
-          this.prodcastService.getDashBoardList();
-        }
-        else
-          this.toast.error('Internal Server error');
-      }
-    )
-  }
+
 
 }
