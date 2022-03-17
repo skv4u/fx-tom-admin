@@ -34,6 +34,8 @@ export class ProdcastService {
   NotificationList:any=[];
   SelectedRJforApprove:string="";
   RJStatistics:any;
+  filterApplied:boolean=false;
+
   constructor(public webservice: WebService, public localStorage: LocalstorageService) {
     if(this.localStorage.getUserData()){
       this.loginUserName = this.localStorage.getUserData().fullname;

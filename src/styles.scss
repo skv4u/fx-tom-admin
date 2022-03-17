@@ -299,3 +299,12 @@
   color: #a4a3a3 !important;
 
 }
+
+
+.s-box a {
+  cursor: pointer;
+  &.active {
+    color: #00bcfe;
+  }
+}
+

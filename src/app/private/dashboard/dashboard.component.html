@@ -16,7 +16,7 @@
         <div class="top-search">
           <div class="input-group mb-0">
             <button class="btn btn-outline-secondary" type="submit" (click)="searchList()" ><i class="fas fa-search"></i></button>
-            <input type="text" class="form-control" (keyup.enter)="searchList()" (keyup)="searchList()" [(ngModel)]="serachvalue" placeholder="Search for podcast or Company or Data" >
+            <input type="text" class="form-control" (keyup.enter)="searchList()" [(ngModel)]="serachvalue" placeholder="Search for podcast or Company or Data" >
           </div>
 
         </div>
@@ -27,6 +27,11 @@
      
       <div class="col-md-4 settings-main" >
         <div class="s_inner">
+          <div class="s-box">
+            <a [class.active]="prodcastService.filterApplied" (click)="searchList(' ');prodcastService.filterApplied=false;this.serachvalue=''">
+                <i class="fas fa-sync"></i>
+            </a>
+        </div>
           <div class="s-box">
             <a id="btnGroupDrop4" class="dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false" (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter;"><i class="fas fa-sliders-h"></i></a>
@@ -89,7 +94,7 @@
               *ngIf="prodcastService.UserStastics.UnreadNotificationCount != '0'">{{prodcastService.UserStastics.UnreadNotificationCount}}</sup></i></a>
             <!-- <sup>5</sup> -->
             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3" *ngIf="showhidecnd.showBell && prodcastService.NotificationList.length" style="display: block;right: 0;">  
-              <li><a class="dropdown-item" (click)="getSelectedList(a)" *ngFor="let a of prodcastService.NotificationList" style="cursor: pointer;" [innerHTML]="a.message" [ngClass]="{'viewedlist':a.viewed == '1'}"></a></li>
+              <li><a class="dropdown-item"  (click)="getSelectedList(a)" *ngFor="let a of prodcastService.NotificationList" style="cursor: pointer;" [innerHTML]="a.message" [ngClass]="{'viewedlist':a.viewed == '1'}"></a></li>
             </ul> 
           </div>
           <!-- <div class="s-box">
@@ -131,11 +136,14 @@
     <div class="body-content">
       <div class="information dasdboard">        
         <ul>
+          <li class="pending"><strong>{{prodcastService.UserStastics.PodcastTotal}}</strong> Total</li>
           <li class="pending"><strong>{{prodcastService.UserStastics.PendingTotal}}</strong> <a > Pending</a></li>
           <li class="rejected"><strong>{{prodcastService.UserStastics.RejectedTotal}}</strong> <a > Rejected</a></li>
-          <li class="approved"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
+          <li class="comments"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
           <li class="approved"><strong>{{prodcastService.UserStastics.LiveTotal}}</strong> Live</li>
           <li class="comments"><strong>{{prodcastService.UserStastics.CommentTotal}}</strong> Comments</li>
+          <li class="approved"><strong>{{prodcastService.UserStastics.BroadcastTotal}}</strong> Broadcast</li>
+          
         </ul>
       </div> 
       <div class="row">
@@ -147,7 +155,7 @@
 
 
 
-        <div class="table-responsive dashboard-table">
+        <div class="table-responsive dashboard-table" [ngStyle]="{'height' : prodcastService.dashboardList.length == 1 ? '226px':''}">
           <table class="table">
             <thead>
               <tr>
@@ -158,7 +166,7 @@
                   <a  id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
                   aria-expanded="false" (click)="showcatDropDown = !showcatDropDown" style="cursor: pointer;">Category</a>
                   <ul class="dropdown-menu" style="display: block;" aria-labelledby="btnGroupDrop5" *ngIf="showcatDropDown">
-                    <li><a class="dropdown-item" *ngFor="let a of prodcastService.CategoryList" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>                  
+                    <li *ngFor="let a of prodcastService.CategoryList"><a class="dropdown-item"  (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>                  
                   </ul>
                 </th>
                 <th class="text-center" *ngIf="showhidemenu.UploadDate">Upload Date</th>
@@ -166,6 +174,7 @@
                   <a id="btnGroupDrop6" class="dropdown-toggle" data-bs-toggle="dropdown"
                   aria-expanded="false" (click)="showStatusDropDown = !showStatusDropDown" style="cursor: pointer;">Status</a>
                   <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block;" *ngIf="showStatusDropDown">
+                    <!-- <li class="pending" (click)="searchList('');showStatusDropDown = false"><a class="dropdown-item">All</a></li> -->
                     <li class="modify"><a class="dropdown-item" (click)="searchList('Modify');showStatusDropDown = false">Modify</a></li>
                     <li class="pending"><a class="dropdown-item" (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
                     
@@ -191,7 +200,7 @@
                   <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
                 </td>
                 <td class="rjsname" *ngIf="showhidemenu.Title">
-                  <h5 class="mb-0">{{a.author_name}}</h5>
+                  <h5 class="mb-0">{{a.name}}</h5>
                   <!-- a.ShowProcastComment = true -->
                   <p><a style="cursor: pointer;color:#0e7ea3" (click)="prodcastService.IsView = true;prodcastService.editlist = a;showhidecnd.showEdit = true">About Podcast</a></p>                   
                 </td>
@@ -227,7 +236,7 @@
                   {{a.approvals}}
                 </button>                  
                 <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" *ngIf="a.ShowstatusDropDown" style="display: block;">
-                  <li class="pending"><a class="dropdown-item" (click)="changeStatus('Pending',a,i);a.ShowstatusDropDown=false">pending</a></li>
+                  <!-- <li class="pending"><a class="dropdown-item" (click)="changeStatus('Pending',a,i);a.ShowstatusDropDown=false">pending</a></li> -->
                   <li class="modify">
                     <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Modify',a,i)" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
                    
@@ -249,10 +258,10 @@
                   <span *ngIf="a.comment_count == '0'">None</span>
                   <span *ngIf="a.comment_count != '0'" (click)="showcomments = true" style="cursor: pointer;">{{a.comment_count}}</span>
                   {{a.Comments}}</td>    
-                <td class="text-center" *ngIf="a.Status != 'Live' && showhidemenu.Edit" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}" ><a (click)="a.Edit = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=false"  *ngIf="a.is_admin_deleted == '0' && a.approvals != 'Modify'"><i class="fas fa-pen"></i></a></td>
+                <td class="text-center" *ngIf="a.Status != 'Live' && showhidemenu.Edit"  ><a (click)="a.Edit = true;enableEdit(a)"  style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'"><i class="fas fa-pen"></i></a></td>
                 <!-- <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true" *ngIf="a.is_admin_deleted == '0' && a.approvals != 'Modify'"><i class="fas fa-eye"></i></a></td>  -->
-                <td class="text-center" *ngIf="showhidemenu.Delete" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"  style="position: relative;"> 
-                  <a (click)="changeStatus('Delete',a,i)" *ngIf="a.approvals != 'Modify' && a.is_admin_deleted == '0'">
+                <td class="text-center" *ngIf="showhidemenu.Delete"  style="position: relative;"> 
+                  <a (click)="changeStatus('Delete',a,i)" style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'">
                   <i class="fas fa-trash-alt" ></i >
                   </a>
                   <span *ngIf="a.is_admin_deleted == '1'" title="Deleted by Admin" style="color:var(--red-color)">Deleted</span>
