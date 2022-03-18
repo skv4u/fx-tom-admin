@@ -347,8 +347,8 @@
                 (change)="uploadFile($event.target.files)" accept="image/">
             </div>
             <div class="profile-pic drop-zone upload-image" style="max-width: 100%;" *ngIf="pictureFileName">
-              <img [src]="pictureFileName" style="margin-left: 32px;" [alt]="pictureFileName">
-              <button (click)="removeFile()" style="right: -15px;
+              <img [src]="pictureFileName" style="position:absolute;" [alt]="pictureFileName">
+              <button (click)="removeFile()" style="right: -140px;
                           cursor: pointer;
                           top: -155px;
                           background: none;
@@ -401,7 +401,7 @@
                 <div class="form-floating">
                   <input type="text" class="form-control" id="floatingInput" placeholder="Telegran"
                     formControlName="telegram">
-                  <label for="floatingInput">Telegran</label>
+                  <label for="floatingInput">Telegram</label>
                 </div>
               </div>
               <div class="col-md-6 col-12 mb-4">
