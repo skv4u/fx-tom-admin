@@ -1,4 +1,5 @@
 import { Route } from '@angular/compiler/src/core';
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalstorageService } from 'src/app/shared/services/localstorage.service';
@@ -21,6 +22,8 @@ export class AdminEditProdcastComponent implements OnInit {
 
   ngOnInit() {
     this.EditData = this.prodcastservice.editlist;
+    this.EditData.category = this.EditData.category.split(",");
+    this.EditData.age_restriction = this.EditData.age_restriction == 1 ? true : false;
     this.getProdNoteList();
   }
   getProdNoteList() {
@@ -60,12 +63,12 @@ export class AdminEditProdcastComponent implements OnInit {
       "name": this.EditData.name,
       "author_name": this.EditData.author_name,
       "language": this.EditData.language,
-      "category": this.EditData.category,
+      "category": this.EditData.category.join(","),
       "description": this.EditData.description,
       "imagepath": this.EditData.imagepath,
       "audiopath": this.EditData.audiopath,
       "status": this.EditData.approvals,
-      "age_restriction": this.EditData.age_restriction,
+      "age_restriction": this.EditData.age_restriction ? 1 : 0,
       "created_by": this.LocalStorage.getUserData().username,
       "usertype": "Admin",
       "note_description": this.EditData.Notestocommunicate,
@@ -83,25 +86,36 @@ export class AdminEditProdcastComponent implements OnInit {
     )
   }
 backtodashboard(){
+  this.prodcastservice.loader=true;
   // this.router.navigateByUrl('/dashboard');
   this.back.emit()
   this.prodcastservice.IsView = false;
   }
   removeAudio(){
+    this.prodcastservice.loader=true;
     let req = {
       filename : this.EditData.audiopath
   }
-    this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
+    this.webservice.commonMethod("s3bucket/remove", this.EditData.audiopath, 'DELETE').
       subscribe((data: any) => {
+        this.prodcastservice.loader=false;
         this.EditData.audiopath = '';
+      },err=>{
+        this.prodcastservice.loader=false;
+        this.EditData.audiopath = '';//temp added due to api error
       });
   }
   removeFile(){
+    this.prodcastservice.loader=true;
     let req = {
         filename : this.EditData.imagepath
     }
     this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
       subscribe((data: any) => {
+        this.EditData.imagepath = '';
+        this.prodcastservice.loader=false;
+      },err=>{
+        this.prodcastservice.loader=false;
         this.EditData.imagepath = '';
       });
   }

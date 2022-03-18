@@ -29,8 +29,8 @@ export class RjApprovalComponent implements OnInit {
   pictureFileName: string = '';
   isPersonalInformationOpen: boolean = false;
   isdisplayinformationOpen: boolean = false;
-  MINIMUM_AGE: number = 15;
-  MAXIMUM_AGE: number = 60;
+  MINIMUM_AGE: number = 13;
+  MAXIMUM_AGE: number = 100;
   isindividual: boolean = false;
   ISD: string = '';
   RJList1:any=[];
@@ -78,12 +78,15 @@ export class RjApprovalComponent implements OnInit {
         this.RJList[i].approval_status = status;
         this.RJList[i].StatusCode = status.toLowerCase();
          this.toast.success('Status Updated Sucessfully');
+         this.prodcastService.getRjStatistics();
          
        }
        else{
          this.toast.error('invalid data')
        }
-      },
+      },err=>{
+        this.prodcastService.loader=false;
+      }
     )
   }
   getRJDetails(a){
@@ -99,6 +102,7 @@ export class RjApprovalComponent implements OnInit {
          this.country =this.editData.country;
          this.state =this.editData.state;
          this.ISD = this.editData.isd ? this.editData.isd : "+91";
+         this.pictureFileName = this.editData.profile_image;
           this.registerForm = this.fb.group({
             fullname: [this.editData.fullname, [Validators.required]],
             username: [this.editData.username, [Validators.required]],
@@ -210,16 +214,19 @@ export class RjApprovalComponent implements OnInit {
       data => {
         if(data.Status == 'Success' && data.Response && data.Response.length){
           this.countryList = data.Response;
-          this. getStateList();
+          // let selectedcountry=this.countryList.filter(x => x.name == this.country);
+         // this.country = selectedcountry[0].id;
+          this. getStateList(this.country);
           this.prodcastService.loader=false;
         }
       }
     )
   }
 
-  getStateList(){
+  getStateList(countryname){
+    let id=this.getCountryId()
     this.stateList = [];
-    this.webService.commonMethod('country/state/' + this.country, '', "GET").subscribe(
+    this.webService.commonMethod('country/state/' + id, '', "GET").subscribe(
       data => {
         if(data.Status == 'Success' && data.Response && data.Response.length){
           this.stateList = data.Response;
@@ -275,6 +282,29 @@ export class RjApprovalComponent implements OnInit {
   }
 
   getpodcastdisable(){
-    this.isindividual = this.registerForm.value.podcaster_type == 'Individual' ? true : false;
+    if(this.registerForm.value.podcaster_type == 'individual'){
+      this.isindividual = true;
+     this.registerForm.get("podcaster_value").setValue('');
+    }else{
+      this.isindividual = false;
+    }
+  }
+  validation() {
+    let diff = new Date().getFullYear() - new Date(this.registerForm.value.dob).getFullYear();
+    if ((this.MAXIMUM_AGE < diff) || (this.MINIMUM_AGE > diff)) {
+      this.toast.error("Invalid date of birth");
+      return
+    }
+
+  }
+  getCountryId() {
+    let id = '';
+    for (let a of this.countryList) {
+      if (a.name == this.country) {
+        id = a.id;
+        break;
+      }
+    }
+    return id
   }
 }

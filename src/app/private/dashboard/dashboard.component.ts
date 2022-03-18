@@ -51,11 +51,15 @@ export class DashboardComponent implements OnInit {
     this.apicalled=true;
     this.prodcastService.getDashBoardList();
     this.apicalled=false;
+    this.prodcastService.filterApplied=false;
   }
   searchList(data?:any) {
     let tempdata=data ? data : this.serachvalue
     let temp = this.prodcastService.dashboardList1.filter(x => JSON.stringify(x).toLowerCase().includes(tempdata.toLowerCase()));
     this.prodcastService.dashboardList = temp;
+    this.prodcastService.filterApplied=true;
+
+    this.resetvalues();
   }
 
 
@@ -64,18 +68,15 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
   changeStatus(status,a,i){
-    if(a.approvals == 'Live'){
-      this.toast.error('Podcast is Live')
-      return
+
+    if(['Live','Broadcasting','Rejected','Modify'].indexOf(a.approvals) != -1){
+      this.toast.error('Podcast is '+a.approvals);
+      return;
     }
-    if((a.approvals == 'Approved') && status == 'Pending' || status == 'Approved'){
-      this.toast.error('Podcast is' +' '+a.approvals)
-      return
-    }
-    else if(status == 'Pending'){
-      a.approvals = 'Pending';
-      return
-    }
+    // if((a.approvals == 'Approved') && status == 'Pending'){
+    //   this.toast.error('Podcast is' +' '+a.approvals)
+    //   return
+    // }
     this.currentIndex=i;
     this.prodcastService.selectedData = a;
     if(status == 'Approved')
@@ -107,10 +108,13 @@ export class DashboardComponent implements OnInit {
   }
   getSelectedList(a){
     this.showhidecnd.showBell = false;
+    this.prodcastService.filterApplied=true;
     if(a.notification_type == 'CREATE_PODCAST'){
     let tempdata = a.podcast_id;
     let temp = this.prodcastService.dashboardList1.filter(x => JSON.stringify(x.id).toLowerCase().includes(tempdata.toLowerCase()));
     this.prodcastService.dashboardList = temp;
+    this.resetvalues();
+    this.prodcastService.filterApplied=true;
     }
     if(a.notification_type == 'NEW_RJ' || a.notification_type =='UPDATE_RJ'){
       // this.prodcastService.SelectedRJforApprove = a.user_id;
@@ -123,6 +127,32 @@ export class DashboardComponent implements OnInit {
         this.prodcastService.getUserStatistics();
       }
     )
+  }
+  enableEdit(a){   
+    if(['Live','Broadcasting','Rejected','Modify'].indexOf(a.approvals) != -1){
+      this.toast.error('Podcast is '+a.approvals);
+      return;
+    }
+    else{
+    this.showhidecnd.showEdit=true;
+    this.prodcastService.editlist=a;
+    this.prodcastService.IsView=false;
+    }
+  }
+  resetvalues(){
+    this.showhidecnd = {
+      "showEdit": false,
+      "ShowFilter": false,
+      "showBell": false,
+      "showEmail": false,
+      "showSettings": false,
+      "showEditProd": false
+    }
+    this.showStatusDropDown=false;
+    this.showcatDropDown=false;
+    for(let a of this.prodcastService.dashboardList){
+      a.ShowstatusDropDown = false;
+    }
   }
 }
 

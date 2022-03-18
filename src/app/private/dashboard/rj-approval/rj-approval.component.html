@@ -7,13 +7,14 @@
   <div class="admin-sec">
     <div class="row admin-top">
       <div class="col-md-4 admin-title">
-        <h3 class="mb-0"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
+        <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
       </div>
       <div class="col-md-4 tickets">
         <ul>
           <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
           <li class="rejected"><strong>{{prodcastService.RJStatistics.RejectedRJTotal}}</strong> Rejected</li>
           <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
+          <li class="blocked"><strong>{{prodcastService.RJStatistics.BlockedRJTotal}}</strong> Blocked</li>
         </ul>
       </div>
     </div>
@@ -34,6 +35,7 @@
                 <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
                 <li class="rejected"><strong>{{prodcastService.RJStatistics.RejectedRJTotal}}</strong> Rejected</li>
                 <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
+                <li class="blocked"><strong>{{prodcastService.RJStatistics.BlockedRJTotal}}</strong> Blocked</li>
               </ul>
             </div>
             <div class="table-responsive">
@@ -41,7 +43,7 @@
                 <thead>
                   <tr>
                     <th class="pic">Picture</th>
-                    <th>Name of the the RJs</th>
+                    <th>RJ Name</th>
                     <th>
 
                       <button id="btnGroupDrop2" type="button" class="dropdown-toggle" data-bs-toggle="dropdown"
@@ -51,8 +53,8 @@
                       <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" [ngStyle]="{'display' : showStatus ? 'block':'none'}"
                         >
                         <li class="pending" (click)="searchList('');showStatus = false"><a class="dropdown-item">All</a></li>
-                        <li class="pending"><a class="dropdown-item"
-                            (click)="searchList('Pending');showStatus = false">Pending</a></li>
+                        <!-- <li class="pending"><a class="dropdown-item"
+                            (click)="searchList('Pending');showStatus = false">Pending</a></li> -->
                         <li class="approved"><a class="dropdown-item"
                             (click)="searchList('Approved');showStatus = false">Approved</a></li>
                         <li class="rejected"><a class="dropdown-item"
@@ -79,14 +81,14 @@
                     <td style="position: relative;">
 
 
-                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle" data-bs-toggle="dropdown"
+                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approval_status.toLowerCase()}}" data-bs-toggle="dropdown"
                         aria-expanded="false" (click)="a.ShowStatus = ! a.ShowStatus">
                         {{a.approval_status}}
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" *ngIf="a.ShowStatus"
                         style="display: block;">
-                        <li class="pending"><a class="dropdown-item"
-                            (click)="a.ShowStatus=false;getApproveStatus(i,'Pending')">pending</a></li>
+                        <!-- <li class="pending"><a class="dropdown-item"
+                            (click)="a.ShowStatus=false;getApproveStatus(i,'Pending')">pending</a></li> -->
                         <li class="approved"><a class="dropdown-item"
                             (click)="a.ShowStatus=false;getApproveStatus(i,'Approved')">Approved</a></li>
                         <li class="rejected"><a class="dropdown-item"
@@ -109,7 +111,7 @@
                     </td>
                     <td>{{a.email}}</td>
                     <td>{{a.phone}}</td>
-                    <td class="text-center"><a><i class="fas fa-pen" (click)="IsEdit = true;getRJDetails(a)"></i></a></td>
+                    <td class="text-center"><a><i class="fas fa-pen" style="cursor:pointer" (click)="IsEdit = true;getRJDetails(a)"></i></a></td>
                   </tr>
                 </tbody>
 
@@ -190,7 +192,7 @@
           </div>
           <div class="col-md-4 col-12 mb-4">
             <div class="form-floating">
-              <input type="date" class="form-control" id="dob" placeholder="Date of Birth *" formControlName="dob">
+              <input type="date" class="form-control" id="dob" placeholder="Date of Birth *" formControlName="dob" (change)="validation()">
               <label for="dob">Date of Birth *</label>
             </div>
             <div class="required-error">
@@ -202,7 +204,16 @@
               </span>
             </div>
           </div>
-          <div class="col-md-6 col-12 mb-4">
+          <div class="col-md-1 col-12 mb-4">
+            <div class="form-floating">
+                <select class="form-control" placeholder="ISD" [(ngModel)]="ISD" [ngModelOptions]="{standalone: true}" (click)="getStateList()">
+                    <option *ngFor="let country of countryList" [value]="country.dialcode">
+                        {{country.dialcode}}</option>
+                </select>
+                <label for="floatingInput">ISD</label>
+            </div>
+        </div>
+          <div class="col-md-5 col-12 mb-4">
             <div class="form-floating">
               <input type="text" class="form-control" id="floatingInput" placeholder="+91 Phone Number *"
                 formControlName="phone">
@@ -272,8 +283,8 @@
           <div class="col-md-3 mb-4">
             <div class="form-floating">
               <select class="form-control" placeholder="Country" [(ngModel)]="country"
-                [ngModelOptions]="{standalone: true}" (click)="getStateList()">
-                <option *ngFor="let country of countryList" [value]="country.id">
+                [ngModelOptions]="{standalone: true}" (click)="getStateList(country)">
+                <option *ngFor="let country of countryList" [value]="country.name">
                   {{country.name}}</option>
               </select>
               <label for="floatingInput">Country</label>
@@ -293,18 +304,18 @@
           <div class="col-md-12 col-12 mb-4 d-flex align-items-center flex-wrap radio-width">
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="podcaster_type" id="inlineRadio1" value="Individual"
-                formControlName="podcaster_type">
+                formControlName="podcaster_type" (change)="getpodcastdisable();">
               <label class="form-check-label" for="inlineRadio1">Individual Podcaster</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="podcaster_type" id="inlineRadio2" value="Organisation"
-                formControlName="podcaster_type">
-              <label class="form-check-label" for="inlineRadio2">Organisation</label>
+                formControlName="podcaster_type" (change)="getpodcastdisable();">
+              <label class="form-check-label" for="inlineRadio2" >Organisation</label>
             </div>
             <div class="w-50">
               <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput" placeholder="Organisation working for?"
-                  formControlName="podcaster_value">
+                  formControlName="podcaster_value" [readOnly]="isindividual">
                 <label for="floatingInput">Organisation working for?</label>
               </div>
             </div>
@@ -336,8 +347,8 @@
                 (change)="uploadFile($event.target.files)" accept="image/">
             </div>
             <div class="profile-pic drop-zone upload-image" style="max-width: 100%;" *ngIf="pictureFileName">
-              <img [src]="pictureFileName" style="margin-left: 32px;" [alt]="pictureFileName">
-              <button (click)="removeFile()" style="right: -15px;
+              <img [src]="pictureFileName" style="position:absolute;" [alt]="pictureFileName">
+              <button (click)="removeFile()" style="right: -140px;
                           cursor: pointer;
                           top: -155px;
                           background: none;
@@ -390,7 +401,7 @@
                 <div class="form-floating">
                   <input type="text" class="form-control" id="floatingInput" placeholder="Telegran"
                     formControlName="telegram">
-                  <label for="floatingInput">Telegran</label>
+                  <label for="floatingInput">Telegram</label>
                 </div>
               </div>
               <div class="col-md-6 col-12 mb-4">
@@ -442,8 +453,7 @@
             <label><strong>Notes </strong></label>
             <textarea class="form-control mb-4" [(ngModel)]="reasonforEdit"
               [ngModelOptions]="{standalone: true}">Reason for edit</textarea>
-            <button class="custome-button" (click)="updateProfile()"><a>Register as
-                Podcaster</a></button>
+            <button class="custome-button" (click)="updateProfile()"><a>Update</a></button>
           </div>
 
         </div>

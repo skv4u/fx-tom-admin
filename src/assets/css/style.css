@@ -1040,7 +1040,7 @@ tr:nth-child(even) {
     border: none;
     background: none;
     padding: 0px;
-    font-size: var(--clamp18);
+    font-size: var(--clamp16);
     color: var(--text-color);
 }
 
