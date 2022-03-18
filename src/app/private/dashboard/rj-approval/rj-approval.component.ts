@@ -282,9 +282,9 @@ export class RjApprovalComponent implements OnInit {
   }
 
   getpodcastdisable(){
-    if(this.registerForm.value.podcaster_type == 'individual'){
+    if(this.registerForm.value.podcaster_type == 'Individual'){
       this.isindividual = true;
-     this.registerForm.get("podcaster_value").setValue('');
+     this.registerForm.get("podcaster_value").setValue(' ');
     }else{
       this.isindividual = false;
     }
