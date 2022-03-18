@@ -115,12 +115,12 @@
             <a id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false" (click)="showhidecnd.showSettings = !showhidecnd.showSettings"><i class="fas fa-cog" ></i></a>
             <ul class="dropdown-menu"  *ngIf="showhidecnd.showSettings" aria-labelledby="btnGroupDrop5" style="position: absolute;right: 23px;display:block;cursor: pointer;">             
-              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')">RJ Approvals</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/podcast-delete')">Podcast Delete List</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')">Edit Category</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-language')">Edit Language</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')"><i class="fas fa-check-circle"></i> RJ Approvals</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/podcast-delete')"><i class="fas fa-trash-alt"></i> Podcast Delete List</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')"><i class="fas fa-edit"></i> Edit Category</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-language')"><i class="fas fa-file-edit"></i> Edit Language</a></li>
               <!-- <li><a class="dropdown-item" href="#">Manage Ads</a></li> -->
-              <li><a class="dropdown-item"  (click)="showhidecnd.showSettings = false;logOut()">Log out</a></li>             
+              <li><a class="dropdown-item"  (click)="showhidecnd.showSettings = false;logOut()"><i class="fas fa-sign-out"></i> Log out</a></li>             
             </ul>
           </div>
           <!-- <div class="s-box online"><a href="#"> Chat with RJs <i class="fas fa-user-cog"></i></a></div> -->
@@ -140,11 +140,11 @@
           <li class="pending"><strong>{{prodcastService.UserStastics.PendingTotal}}</strong> <a > Pending</a></li>
           <li class="rejected"><strong>{{prodcastService.UserStastics.RejectedTotal}}</strong> <a > Rejected</a></li>
           <li class="modify"><strong>{{prodcastService.UserStastics.ModifyTotal}}</strong> Modify</li>
-          <li class="comments"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
-          <li class="approved"><strong>{{prodcastService.UserStastics.LiveTotal}}</strong> Live</li>
+          <li class="approved"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
+          <li class="live"><strong>{{prodcastService.UserStastics.LiveTotal}}</strong> Live</li>
           <!-- <li class="comments"><strong>{{prodcastService.UserStastics.CommentTotal}}</strong> Comments</li> -->
-          <li class="approved"><strong>{{prodcastService.UserStastics.BroadcastTotal}}</strong> Broadcast</li>
-          
+          <li class="live"><strong>{{prodcastService.UserStastics.BroadcastTotal}}</strong> Broadcast</li>
+         
         </ul>
       </div> 
       <div class="row">
@@ -170,7 +170,7 @@
                     <li *ngFor="let a of prodcastService.CategoryList"><a class="dropdown-item"  (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>                  
                   </ul>
                 </th>
-                <th class="text-center" *ngIf="showhidemenu.UploadDate">Upload Date</th>
+                <th width="170"  *ngIf="showhidemenu.UploadDate">Upload Date</th>
                 <th *ngIf="showhidemenu.Approvals">
                   <a id="btnGroupDrop6" class="dropdown-toggle" data-bs-toggle="dropdown"
                   aria-expanded="false" (click)="showStatusDropDown = !showStatusDropDown" style="cursor: pointer;">Status</a>
@@ -185,18 +185,18 @@
                     
                   </ul>
                 </th>
-                <th class="text-center" *ngIf="showhidemenu.BroadcastDate">Broadcast Date</th>
+                <th  width="240"  *ngIf="showhidemenu.BroadcastDate">Broadcast Date</th>
                 <th *ngIf="showhidemenu.Comments">Comments
                 
                 </th>                
-                <th class="text-center" *ngIf="showhidemenu.Edit">Edit</th>
-                <th class="text-center" *ngIf="showhidemenu.Delete">Delete</th>
+                <th  *ngIf="showhidemenu.Edit">Edit</th>
+                <th  *ngIf="showhidemenu.Delete">Delete</th>
                 
               </tr>
             </thead>
             <tbody *ngFor="let a of prodcastService.dashboardList;let i=index">
               <tr>
-                <td *ngIf="showhidemenu.RJName"><p class="mb-0">{{a.fullname}}</p></td>
+                <td *ngIf="showhidemenu.RJName"><p class="mb-0 rjname">{{a.fullname}}</p></td>
                 <td class="pic" *ngIf="showhidemenu.Thumbnails">
                   <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
                 </td>
@@ -206,8 +206,8 @@
                   <p><a style="cursor: pointer;color:#0e7ea3" (click)="prodcastService.IsView = true;prodcastService.editlist = a;showhidecnd.showEdit = true">About Podcast</a></p>                   
                 </td>
                 <td *ngIf="showhidemenu.Category">{{a.category}}</td>
-                <td class="text-center" *ngIf="showhidemenu.UploadDate">
-                  <p class="mb-0">{{a.upload_date}}</p>
+                <td  *ngIf="showhidemenu.UploadDate">
+                  <p class="mb-0 width-100">{{a.upload_date}}</p>
                   <!-- <span class="small">{{a.UploadTime}}</span> -->
                   
                 </td>
@@ -251,17 +251,17 @@
                   <li class="broadcast"><a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Broadcast',a,i)"  data-bs-toggle="modal" data-bs-target="#myModal7">Broadcast</a></li>
                 </ul>
                   </td>
-                <td class="text-center" *ngIf="showhidemenu.BroadcastDate">
-                  <p class="mb-0">{{a.broadcast_date}}</p>
+                <td  *ngIf="showhidemenu.BroadcastDate">
+                  <p class="mb-0 width-100">{{a.broadcast_date}}</p>
                   <!-- <span class="small">{{a.BroadCastDataTime}}</span>                   -->
                 </td>
-                <td class="text-center" *ngIf="showhidemenu.Comments">
+                <td *ngIf="showhidemenu.Comments">
                   <span *ngIf="a.comment_count == '0'">None</span>
                   <span *ngIf="a.comment_count != '0'" (click)="showcomments = true" style="cursor: pointer;">{{a.comment_count}}</span>
                   </td>    
                 <td class="text-center" *ngIf="a.Status != 'Live' && showhidemenu.Edit"  ><a (click)="a.Edit = true;enableEdit(a)"  style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'"><i class="fas fa-pen"></i></a></td>
                 <!-- <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true" *ngIf="a.is_admin_deleted == '0' && a.approvals != 'Modify'"><i class="fas fa-eye"></i></a></td>  -->
-                <td class="text-center" *ngIf="showhidemenu.Delete"  style="position: relative;"> 
+                <td  *ngIf="showhidemenu.Delete"  style="position: relative;"> 
                   <a (click)="changeStatus('Delete',a,i)" style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'">
                   <i class="fas fa-trash-alt" ></i >
                   </a>
