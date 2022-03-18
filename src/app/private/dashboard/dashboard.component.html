@@ -28,7 +28,7 @@
       <div class="col-md-4 settings-main" >
         <div class="s_inner">
           <div class="s-box">
-            <a [class.active]="prodcastService.filterApplied" (click)="searchList(' ');prodcastService.filterApplied=false;this.serachvalue=''">
+            <a [class.active]="prodcastService.filterApplied" (click)="prodcastService.getDashBoardList();prodcastService.filterApplied=false;this.serachvalue=''">
                 <i class="fas fa-sync"></i>
             </a>
         </div>
@@ -139,9 +139,10 @@
           <li class="pending"><strong>{{prodcastService.UserStastics.PodcastTotal}}</strong> Total</li>
           <li class="pending"><strong>{{prodcastService.UserStastics.PendingTotal}}</strong> <a > Pending</a></li>
           <li class="rejected"><strong>{{prodcastService.UserStastics.RejectedTotal}}</strong> <a > Rejected</a></li>
+          <li class="modify"><strong>{{prodcastService.UserStastics.ModifyTotal}}</strong> Modify</li>
           <li class="comments"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
           <li class="approved"><strong>{{prodcastService.UserStastics.LiveTotal}}</strong> Live</li>
-          <li class="comments"><strong>{{prodcastService.UserStastics.CommentTotal}}</strong> Comments</li>
+          <!-- <li class="comments"><strong>{{prodcastService.UserStastics.CommentTotal}}</strong> Comments</li> -->
           <li class="approved"><strong>{{prodcastService.UserStastics.BroadcastTotal}}</strong> Broadcast</li>
           
         </ul>
@@ -257,7 +258,7 @@
                 <td class="text-center" *ngIf="showhidemenu.Comments">
                   <span *ngIf="a.comment_count == '0'">None</span>
                   <span *ngIf="a.comment_count != '0'" (click)="showcomments = true" style="cursor: pointer;">{{a.comment_count}}</span>
-                  {{a.Comments}}</td>    
+                  </td>    
                 <td class="text-center" *ngIf="a.Status != 'Live' && showhidemenu.Edit"  ><a (click)="a.Edit = true;enableEdit(a)"  style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'"><i class="fas fa-pen"></i></a></td>
                 <!-- <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true" *ngIf="a.is_admin_deleted == '0' && a.approvals != 'Modify'"><i class="fas fa-eye"></i></a></td>  -->
                 <td class="text-center" *ngIf="showhidemenu.Delete"  style="position: relative;"> 

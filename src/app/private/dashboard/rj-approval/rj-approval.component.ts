@@ -62,7 +62,7 @@ export class RjApprovalComponent implements OnInit {
 
   getApproveStatus(i,status){
     if(this.RJList[i].approval_status == 'Approved'){
-      this.toast.success('User Already Approved')
+      this.toast.error('User Already Approved')
       return;
     }
     this.prodcastService.loader=true;
@@ -172,7 +172,7 @@ export class RjApprovalComponent implements OnInit {
           "username":  this.registerForm.value.username,
           "dob": this.registerForm.value.dob,
           "isd": this.ISD,
-          "phone": this.ISD ? this.ISD + this.registerForm.value.phone : this.registerForm.value.phone,
+          "phone": this.registerForm.value.phone,
           "email": this.registerForm.value.email,
           "profile_image": this.pictureFileName,
           "podcaster_type": this.registerForm.value.podcaster_type,
@@ -198,7 +198,7 @@ export class RjApprovalComponent implements OnInit {
         data => {
           if(data.Status == 'Success' && data.Response){
             this.prodcastService.loader=false;
-            this.toast.success('Register Updated Successfully');
+            this.toast.success('Updated Successfully');
             this.getRjApprovalsList()
             this.IsEdit=false;
             }else {

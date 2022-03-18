@@ -20,7 +20,7 @@ export class ProdcastService {
     "CommentTotal":"",
     "LiveTotal":"",
     "TotalNotificationCount":"",
-    "UnreadNotificationCount":""
+    "UnreadNotificationCount":"0"
   }
   showPopUp:any={
     'approval':false,
@@ -56,8 +56,11 @@ export class ProdcastService {
       })
   }
   getDashBoardList() {
+    this.loader=true;
     this.webservice.commonMethod('podcast/all', '', 'GET').subscribe(
       (data) => {
+        this.loader=false;
+        this.filterApplied=false;
         this.dashboardList = [];
         if (data.Response && data.Response.length) {
           this.dashboardList = data.Response;

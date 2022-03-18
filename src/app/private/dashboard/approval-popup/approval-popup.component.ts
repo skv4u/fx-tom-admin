@@ -30,7 +30,8 @@ export class ApprovalPopupComponent implements OnInit {
       "note_description": this.notes,
       "status": status,
       "created_by": this.prodcastService.loginUserName,
-      "audio_path": this.prodcastService.selectedData.audiopath
+      "audio_path": this.prodcastService.selectedData.audiopath,
+      "podcast_name":this.prodcastService.selectedData.name
     }
     this.webService.commonMethod('podcast/approvalstatus/admin', req, 'POST').subscribe(
       (data) => {
@@ -53,7 +54,8 @@ export class ApprovalPopupComponent implements OnInit {
     {
       "podcast_id": this.prodcastService.selectedData.id,
       "created_by": this.prodcastService.loginUserName,
-      "broadcast_date": this.broadCastDate + ' ' + this.broadCastTime
+      "broadcast_date": this.broadCastDate + ' ' + this.broadCastTime,
+      "podcast_name":this.prodcastService.selectedData.name
     }
     this.webService.commonMethod('podcast/broadcast/admin', req, 'PUT').subscribe(
       (data) => {

@@ -178,13 +178,13 @@
           <div class="col-md-4 col-12 mb-4">
             <div class="form-floating">
               <input type="text" class="form-control" id="username" placeholder="User Name *"
-                formControlName="username">
+                formControlName="username" disabled>
               <label for="username">User Name *</label>
             </div>
             <div class="required-error">
               <span class="error-span"
                 *ngIf="registerForm.get('username').errors && (registerForm.get('username').touched || registerForm.get('username').dirty) || !isregisterFormValid">
-                <span *ngIf="registerForm.get('username').hasError('required')" style="color:#f00">
+                <span *ngIf="registerForm.get('username').hasError('required')" style="color:#f00" >
                   User Name is required
                 </span>
               </span>
@@ -217,7 +217,7 @@
             <div class="form-floating">
               <input type="text" class="form-control" id="floatingInput" placeholder="+91 Phone Number *"
                 formControlName="phone">
-              <label for="floatingInput">+91 Phone Number *</label>
+              <label for="floatingInput">Phone Number *</label>
             </div>
             <div class="required-error">
               <span class="error-span"

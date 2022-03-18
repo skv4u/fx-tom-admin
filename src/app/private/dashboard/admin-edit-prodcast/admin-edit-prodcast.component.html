@@ -165,7 +165,7 @@
                       <p class="mb-0">{{a.note_date}}</p>                      
                     </td>
                     <td>
-                      <p class="m-0">{{a.usertype}}</p>
+                      <p class="m-0">{{a.fullname}}({{a.usertype}})</p>
                     </td>
                     
                     <td>{{a.status}}</td>
@@ -277,7 +277,8 @@
                     <th>User</th> 
                     <th>Status</th>                    
                     <th>Notes</th>                
-                    <th class="text-center">File</th>                    
+                    <th class="text-center">File</th>  
+                                
                   </tr>
                 </thead>
                 <tbody>
@@ -286,7 +287,7 @@
                       <p class="mb-0">{{a.note_date}}</p>                      
                     </td>
                     <td>
-                      <p class="m-0">{{a.usertype}}</p>
+                      <p class="m-0">{{a.fullname}}({{a.usertype}})</p>
                     </td>
                     
                     <td>{{a.status}}</td>
