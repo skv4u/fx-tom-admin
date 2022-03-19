@@ -22,6 +22,7 @@ export class AdminEditProdcastComponent implements OnInit {
 
   ngOnInit() {
     this.EditData = this.prodcastservice.editlist;
+    if(this.EditData.category.length)
     this.EditData.category = this.EditData.category.split(",");
     this.EditData.age_restriction = this.EditData.age_restriction == 1 ? true : false;
     this.getProdNoteList();
@@ -86,10 +87,11 @@ export class AdminEditProdcastComponent implements OnInit {
     )
   }
 backtodashboard(){
-  this.prodcastservice.loader=true;
+  this.prodcastservice.loader=false;
   // this.router.navigateByUrl('/dashboard');
-  this.back.emit()
   this.prodcastservice.IsView = false;
+  this.EditData.category = this.EditData.category.join(",");
+  this.back.emit()
   }
   removeAudio(){
     this.prodcastservice.loader=true;
