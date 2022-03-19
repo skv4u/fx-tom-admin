@@ -52,7 +52,7 @@ export class AdminEditProdcastComponent implements OnInit {
   }
 
   updateProdCast() {
-    
+    this.EditData.category = this.EditData.category.join(',');
     if(this.EditData.Notestocommunicate == ''){
       this.toast.error('Please add Notes');
       return;
@@ -64,7 +64,7 @@ export class AdminEditProdcastComponent implements OnInit {
       "name": this.EditData.name,
       "author_name": this.EditData.author_name,
       "language": this.EditData.language,
-      "category": this.EditData.category.join(","),
+      "category": this.EditData.category,
       "description": this.EditData.description,
       "imagepath": this.EditData.imagepath,
       "audiopath": this.EditData.audiopath,
