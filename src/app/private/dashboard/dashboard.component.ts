@@ -41,6 +41,7 @@ export class DashboardComponent implements OnInit {
   constructor(public router: Router, public webservice: WebService,public prodcastService:ProdcastService,public localStorage:LocalstorageService,public toast:ToastService) { }
 
   ngOnInit() {
+    this.prodcastService.loader=false;
     console.log("this.localStorage.getUserData()",this.localStorage.getUserData())
     if(!this.localStorage.getUserData()){
       this.router.navigateByUrl('/login');

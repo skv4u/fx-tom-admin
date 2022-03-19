@@ -104,7 +104,10 @@ export class ProdcastService {
     this.webservice.commonMethod('user/notificationlist', req, 'POST').subscribe(
       (data)=>{
         if(data.Response && data.Response.length)
-        this.NotificationList =data.Response;
+        this.NotificationList = data.Response;
+      },
+      err=>{
+        
       }
     )
   }
