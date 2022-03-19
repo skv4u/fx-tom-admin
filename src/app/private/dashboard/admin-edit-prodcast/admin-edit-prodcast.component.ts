@@ -22,7 +22,7 @@ export class AdminEditProdcastComponent implements OnInit {
 
   ngOnInit() {
     this.EditData = this.prodcastservice.editlist;
-    if(this.EditData.category.length)
+    if(!Array.isArray(this.EditData.category))
     this.EditData.category = this.EditData.category.split(",");
     this.EditData.age_restriction = this.EditData.age_restriction == 1 ? true : false;
     this.getProdNoteList();
@@ -52,7 +52,7 @@ export class AdminEditProdcastComponent implements OnInit {
   }
 
   updateProdCast() {
-    
+    this.EditData.category = this.EditData.category.join(",");
     if(this.EditData.Notestocommunicate == ''){
       this.toast.error('Please add Notes');
       return;
@@ -64,7 +64,7 @@ export class AdminEditProdcastComponent implements OnInit {
       "name": this.EditData.name,
       "author_name": this.EditData.author_name,
       "language": this.EditData.language,
-      "category": this.EditData.category.join(","),
+      "category": this.EditData.category,
       "description": this.EditData.description,
       "imagepath": this.EditData.imagepath,
       "audiopath": this.EditData.audiopath,
@@ -81,6 +81,7 @@ export class AdminEditProdcastComponent implements OnInit {
         this.prodcastservice.loader=false;
         if(data.Status == 'Success' && data.Response && data.Response.length){
           this.toast.success('Updated Sucessfully');
+          this.EditData.category = this.EditData.category.join(",");
           this.router.navigateByUrl('/dashboard');
         }
       }

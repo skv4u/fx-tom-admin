@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit {
 
 
   logOut(){
-    localStorage.clear();
+    localStorage.removeItem('admin_user_data');
     this.router.navigateByUrl('/login');
   }
   changeStatus(status,a,i){
