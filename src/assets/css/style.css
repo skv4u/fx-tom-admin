@@ -215,6 +215,7 @@ a {
     --rjapproved: #ffa600;
     --broadcast: #1aa70a;
     --live: #14ac02;
+    --total: #000;
     /*-------font-sizes-----*/
     --clamp12: clamp(10px, 0.625vw, 12px);
     --clamp14: clamp(12px, 0.72916vw, 14px);
@@ -389,6 +390,7 @@ textarea.form-control {
 .header {
     background: var(--header-bg) repeat;
     padding: 15px 0px;
+    min-height: 95px;
 }
 
 .logo img {
@@ -397,6 +399,7 @@ textarea.form-control {
 
 .title-sec {
     display: flex;
+   
     padding: 10px 15px 0px;
     background: var(--header-bg2) repeat;
     width: 100%;
@@ -481,6 +484,7 @@ textarea.form-control {
 .body-content {
     background: var(--white-color);
     padding: 20px;
+    
 }
 
 .body-content.login_page {
@@ -488,12 +492,12 @@ textarea.form-control {
 }
 
 .body-content h3 a {
-    color: var(--red-color);
+    color: var(--text-color);
     display: block;
 }
 
 .body-content h3 a:hover {
-    color: var(--text-color);
+    color: var(--red-color) !important;
 }
 
 .sign-main {
@@ -579,7 +583,7 @@ textarea.form-control {
 }
 
 .tickets ul li strong {
-    font-size: var(--clamp24);
+    font-size: var(--clamp30);
     font-weight: 700;
     color: var(--tickets-color);
     line-height: 20px;
@@ -919,6 +923,7 @@ td.rjsname p {
 .information ul {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .information ul li {
@@ -936,6 +941,10 @@ td.rjsname p {
 .information ul li.pending,
 .information ul li.pending a {
     color: var(--pending);
+}
+.information ul li.total,
+.information ul li.total a {
+    color: var(--total);
 }
 
 .information ul li.rejected,
@@ -1222,7 +1231,7 @@ tr:nth-child(even) {
 }
 
 .dashboard-table ul.dropdown-menu li.approved:before {
-    background: var(--approved);
+    background: var(--link-color);
 }
 
 .dashboard-table ul.dropdown-menu li.block:before {
@@ -1335,10 +1344,14 @@ tr:nth-child(even) {
 .dropzone-wrapper {
     border: 1px solid var(--light-gray);
     color: var(--text-color);
-    position: relative;
+    
     height: 150px;
     margin-bottom: 30px;
     border-radius: 10px;
+    background: #ecf0f5;
+    display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .dropzone-desc {
@@ -1559,6 +1572,6 @@ td i {
 .settings-main .s-box li i {
   font-size: 13px;
   padding-top: 5px;
-  opacity: 0.8;
+  opacity: 0.7;
   margin-right: 4px;
 }

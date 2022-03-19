@@ -136,7 +136,7 @@
     <div class="body-content">
       <div class="information dasdboard">        
         <ul>
-          <li class="pending"><strong>{{prodcastService.UserStastics.PodcastTotal}}</strong> Total</li>
+          <li class="total"><strong>{{prodcastService.UserStastics.PodcastTotal}}</strong> Total</li>
           <li class="pending"><strong>{{prodcastService.UserStastics.PendingTotal}}</strong> <a > Pending</a></li>
           <li class="rejected"><strong>{{prodcastService.UserStastics.RejectedTotal}}</strong> <a > Rejected</a></li>
           <li class="modify"><strong>{{prodcastService.UserStastics.ModifyTotal}}</strong> Modify</li>
@@ -176,13 +176,14 @@
                   aria-expanded="false" (click)="showStatusDropDown = !showStatusDropDown" style="cursor: pointer;">Status</a>
                   <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block;" *ngIf="showStatusDropDown">
                     <!-- <li class="pending" (click)="searchList('');showStatusDropDown = false"><a class="dropdown-item">All</a></li> -->
-                    <li class="modify"><a class="dropdown-item" (click)="searchList('Modify');showStatusDropDown = false">Modify</a></li>
-                    <li class="pending"><a class="dropdown-item" (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
-                    
-                    <li class="approved"><a class="dropdown-item" (click)="searchList('Approved');showStatusDropDown = false">Approved</a></li>
-                    <li class="rjapproved"><a class="dropdown-item" (click)="searchList('Broadcast');showStatusDropDown = false">Broadcast</a></li>
+                   
+                     <li class="pending"><a class="dropdown-item" (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
                     <li class="rejected"><a class="dropdown-item" (click)="searchList('Rejected');showStatusDropDown = false">Rejected</a></li>
-                    
+                    <li class="modify"><a class="dropdown-item" (click)="searchList('Modify');showStatusDropDown = false">Modify</a></li>
+                  
+                    <li class="approved"><a class="dropdown-item" (click)="searchList('Approved');showStatusDropDown = false">Approved</a></li>
+                    <li class="live"><a class="dropdown-item" (click)="searchList('Broadcast');showStatusDropDown = false">Broadcast</a></li>
+                   
                   </ul>
                 </th>
                 <th  width="240"  *ngIf="showhidemenu.BroadcastDate">Broadcast Date</th>
