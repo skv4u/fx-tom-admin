@@ -18,7 +18,7 @@ export class GenericHeaderComponent implements OnInit {
     }
   }
   logout(){
-    localStorage.clear();
+    localStorage.removeItem('admin_user_data');
     this.router.navigateByUrl('/login');
     
   }
