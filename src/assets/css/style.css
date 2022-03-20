@@ -403,7 +403,7 @@ textarea.form-control {
     padding: 10px 15px 0px;
     background: var(--header-bg2) repeat;
     width: 100%;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .main-title {
@@ -611,7 +611,7 @@ textarea.form-control {
 .settings-main .s_inner {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .settings-main .s_inner .dropdown-toggle::after {
