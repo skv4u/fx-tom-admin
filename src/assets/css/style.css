@@ -1133,6 +1133,22 @@ tr:nth-child(even) {
     border-radius: 50%;
 }
 
+
+.dashboard-table .dropdown-toggle.broadcasting {
+    position: relative;
+    padding-left: 15px;
+}
+
+.dashboard-table .dropdown-toggle.broadcasting:before {
+    width: 8px;
+    height: 8px;
+    background: var(--live);
+    left: 0px;
+    top: 6px;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
 .dashboard-table .dropdown-toggle.approved {
     position: relative;
     padding-left: 15px;
