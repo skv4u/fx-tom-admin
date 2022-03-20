@@ -56,7 +56,9 @@ export class DashboardComponent implements OnInit {
   }
   searchList(data?:any) {
     let tempdata=data ? data : this.serachvalue
-    let temp = this.prodcastService.dashboardList1.filter(x => JSON.stringify(x).toLowerCase().includes(tempdata.toLowerCase()));
+    // let temp = this.prodcastService.dashboardList1.filter(x => JSON.stringify(x).toLowerCase().includes(tempdata.toLowerCase()));
+    let temp = this.prodcastService.dashboardList1.filter(x => Object.values(x).join("").toLowerCase().includes(tempdata.toLowerCase()));
+
     this.prodcastService.dashboardList = temp;
     this.prodcastService.filterApplied=true;
 
