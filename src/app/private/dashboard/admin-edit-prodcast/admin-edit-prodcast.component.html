@@ -70,16 +70,39 @@
                     <div class="col-md-12">
                       <div class="form-group">
                       
-                      
                         <div class="dropzone-wrapper">
+                          <div class="preview-zone" *ngIf="EditData.audiopath != ''">
+                              <div class="box box-solid">
+                                  <button (click)="removeAudio()" style="right: -230px;
+                                  position: relative;
+                                  top: 10px;
+                                  background: none;
+                                  border: none;
+                                  color: #f00;"><i class="fas fa-trash-alt"></i></button>
+                                  <div class="box-body">
+                                      <audio controls preload="auto">
+                                          <source [src]="EditData.audiopath" type="audio/mpeg">
+                                          <source [src]="EditData.audiopath" type="audio/ogg">
+                                          Your browser does not support the audio element.
+                                      </audio>
+                                  </div>
+                              </div>
+                          </div>
+                          <div *ngIf="EditData.audiopath == ''">
+                              <div class="dropzone-desc">
+                                  <i class="glyphicon glyphicon-download-alt"></i>
+                                  <p class="mb-1">Drag and Drop Audio file</p>
+                                  <p class="mb-1">Or</p>
+                                  <p>Double click here to add form library</p>
+                              </div>
+                              <input type="file" #fileInput (change)="uploadaudio($event.target.files)" name="img_logo" class="dropzone" accept="audio/*,video/*">
+                          </div>
+                      </div>
+                        <!-- <div class="dropzone-wrapper">
                           <div class="preview-zone hidden">
                             <div class="box box-solid">
                               
-                              <!-- <div class="box-body" *ngIf="EditData.audiopath">
-                                <audio controls>
-                                  <source [src]="EditData.audiopath" type="audio/ogg"> 
-                                  </audio>
-                              </div> -->
+                            
                             </div>
                           </div>
                           <div *ngIf="!EditData.audiopath">
@@ -87,7 +110,7 @@
                             <i class="glyphicon glyphicon-download-alt"></i>
                             <p class="mb-1">" Morning comedy ver3 " file added</p>                           
                           </div>
-                          <input type="file" name="img_logo"  class="dropzone" [(ngModel)]="EditData.audiopath" [ngModelOptions]="{standalone: true}">
+                          <input type="file" name="img_logo"  class="dropzone" [(ngModel)]="EditData.audiopath" [ngModelOptions]="{standalone: true}" (click)="uploadaudio()">
                         </div>
                         <div class="preview-zone" *ngIf="EditData.audiopath != ''">
 
@@ -106,7 +129,7 @@
                           </div>
 
                       </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -139,7 +162,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <textarea class="form-control my-4"  [(ngModel)]="EditData.Notestocommunicate">Notes to communicate </textarea>
+            <textarea class="form-control my-4" placeholder="Notes to communicate"  [(ngModel)]="EditData.Notestocommunicate"></textarea>
             <button class="custome-button"  (click)="updateProdCast()">Update</button>
           </div>
         </div>
