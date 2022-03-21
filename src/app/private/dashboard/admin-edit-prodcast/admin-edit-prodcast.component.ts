@@ -122,4 +122,7 @@ backtodashboard(){
         this.EditData.imagepath = '';
       });
   }
+  enableagerestriction(){
+    this.EditData.age_restriction = this.EditData.age_restriction == true ? false : true;
+  }
 }

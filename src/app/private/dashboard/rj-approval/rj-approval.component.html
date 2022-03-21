@@ -32,7 +32,7 @@
             <div class="information">
              
               <ul>
-                <li> <h4>Information</h4></li>
+                <!-- <li> <h4>Information</h4></li> -->
                 <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
                 <li class="rejected"><strong>{{prodcastService.RJStatistics.RejectedRJTotal}}</strong> Rejected</li>
                 <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
@@ -90,12 +90,14 @@
                         style="display: block;">
                         <!-- <li class="pending"><a class="dropdown-item"
                             (click)="a.ShowStatus=false;getApproveStatus(i,'Pending')">pending</a></li> -->
-                        <li class="approved"><a class="dropdown-item"
-                            (click)="a.ShowStatus=false;getApproveStatus(i,'Approved')">Approved</a></li>
-                        <li class="rejected"><a class="dropdown-item"
-                            (click)="a.ShowStatus=false;getApproveStatus(i,'Rejected')">Rejected</a></li>
+                            <ng-container *ngFor="let b of statusList">
+                        <li class="{{b.toLowerCase()}}" *ngIf="a.approval_status != b">
+                          <a class="dropdown-item" (click)="a.ShowStatus=false;showPopup(i,b)">{{b}}</a></li>
+                        </ng-container>
+                        <!-- <li class="rejected"><a class="dropdown-item"
+                            (click)="a.ShowStatus=false;showPopup(i,'Rejected')">Rejected</a></li>
                         <li class="block"><a class="dropdown-item"
-                            (click)="a.ShowStatus=false;getApproveStatus(i,'Blocked')">Block</a></li>
+                            (click)="a.ShowStatus=false;showPopup(i,'Blocked')">Block</a></li> -->
                       </ul>
 
 
@@ -164,29 +166,29 @@
         <div class="row" *ngIf="isPersonalInformationOpen">
           <div class="col-md-4 col-12 mb-4">
             <div class="form-floating">
-              <input type="text" class="form-control" id="fullname" placeholder="Full Name" formControlName="fullname">
-              <label for="fullname">Full Name *</label>
+              <input type="text" class="form-control" id="fullname" placeholder="RJ Name" formControlName="fullname">
+              <label for="fullname">RJ Name *</label>
             </div>
             <div class="required-error">
               <span class="error-span"
                 *ngIf="registerForm.get('fullname').errors && (registerForm.get('fullname').touched || registerForm.get('fullname').dirty) || !isregisterFormValid">
                 <span *ngIf="registerForm.get('fullname').hasError('required')" style="color:#f00">
-                  Full Name is required
+                  RJ Name is required
                 </span>
               </span>
             </div>
           </div>
           <div class="col-md-4 col-12 mb-4">
             <div class="form-floating">
-              <input type="text" class="form-control" id="username" placeholder="User Name *"
+              <input type="text" class="form-control" id="username" placeholder="Login ID *"
                 formControlName="username" disabled>
-              <label for="username">User Name *</label>
+              <label for="username">Login ID *</label>
             </div>
             <div class="required-error">
               <span class="error-span"
                 *ngIf="registerForm.get('username').errors && (registerForm.get('username').touched || registerForm.get('username').dirty) || !isregisterFormValid">
                 <span *ngIf="registerForm.get('username').hasError('required')" style="color:#f00" >
-                  User Name is required
+                  Login ID is required
                 </span>
               </span>
             </div>
@@ -216,7 +218,7 @@
         </div>
           <div class="col-md-5 col-12 mb-4">
             <div class="form-floating">
-              <input type="text" class="form-control" id="floatingInput" placeholder="+91 Phone Number *"
+              <input type="text" class="form-control" id="floatingInput" placeholder="Phone Number *"
                 formControlName="phone">
               <label for="floatingInput">Phone Number *</label>
             </div>
@@ -462,4 +464,24 @@
       </form>
     </div>
   </div>
+</div>
+
+
+
+<div *ngIf="showConfirmPopup">
+  <!--------------------------->
+<!--Delete The Modal -->
+<div class="background-grey"></div>
+<div class="popup-box" style="height: 130px;text-align: center;">
+  <div>
+     <h4 class="mb-0"> Please Confirm on Status Change ?</h4>
+     <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
+   </div>
+
+   <!-- Modal body href="dashboard.html" 366,367-->
+     <div class="modal-body">
+    <a ><button class="custome-button mx-2" (click)="getApproveStatus()">Confirm</button></a>
+    <a ><button class="custome-outline mx-2"  (click)="showConfirmPopup = false">Cancel</button></a>
+   </div>
+ </div>
 </div>

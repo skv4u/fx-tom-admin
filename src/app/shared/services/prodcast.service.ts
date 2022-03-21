@@ -76,6 +76,7 @@ export class ProdcastService {
     }
     this.webservice.commonMethod('user/statistics/admin', req, 'GET').subscribe(
       (data)=>{
+        debugger;
         if(data.Response && data.Response.length)
         this.UserStastics =data.Response[0];
         this.getRjStatistics();

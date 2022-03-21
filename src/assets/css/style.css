@@ -892,11 +892,11 @@ td.rjsname p {
     background: var(--red-color);
 }
 
-.table-text ul.dropdown-menu li.block:before {
+.table-text ul.dropdown-menu li.blocked:before {
     background: var(--text-color);
 }
 
-.table-text ul.dropdown-menu li.block a {
+.table-text ul.dropdown-menu li.blocked a {
     color: var(--text-color);
     font-weight: 500;
 }
@@ -1250,7 +1250,7 @@ tr:nth-child(even) {
     background: var(--link-color);
 }
 
-.dashboard-table ul.dropdown-menu li.block:before {
+.dashboard-table ul.dropdown-menu li.blocked:before {
     background: var(--text-color);
 }
 

@@ -35,11 +35,14 @@ export class RjApprovalComponent implements OnInit {
   ISD: string = '';
   RJList1:any=[];
   editData:any;
+  showConfirmPopup:boolean=false;
+  status:string="";
+  statusList:any=["Approved","Rejected","Blocked"]
   constructor(public prodcastService:ProdcastService,public webService:WebService,public toast:ToastService, public fb: FormBuilder,public _localStorage:LocalstorageService,public _commonService:CommonService) { }
 
   ngOnInit() {
     this.getRjApprovalsList();
-    this.prodcastService.getRjStatistics();
+    this.prodcastService.getUserStatistics();
   }
   getRjApprovalsList(){
     this.prodcastService.loader=true;
@@ -59,33 +62,43 @@ export class RjApprovalComponent implements OnInit {
     let temp = this.RJList1.filter(x => JSON.stringify(x).toLowerCase().includes(data.toLowerCase()));
     this.RJList = temp;
   }
-
-  getApproveStatus(i,status){
-    if(this.RJList[i].approval_status == 'Approved'){
-      this.toast.error('User Already Approved')
+  showPopup(i,status){
+    if(this.RJList[i].approval_status == 'Blocked' && status == 'Rejected'){
+      this.toast.error('User is Blocked');
       return;
     }
+    this.currentIndex = i;
+    this.status = status;
+    this.showConfirmPopup = true;
+  }
+  getApproveStatus(){
+    // if(this.RJList[this.currentIndex].approval_status == 'Approved'){
+    //   this.toast.error('User Already Approved')
+    //   return;
+    // }
     this.prodcastService.loader=true;
     let req={
-    "user_id":this.RJList[i].id ,
-    "approval_status": status,
+    "user_id":this.RJList[this.currentIndex].id ,
+    "approval_status": this.status,
     "created_by":"Admin"
     }   
     this.webService.commonMethod('user/approve/admin',req , 'PUT').subscribe(
       (data) => {
         this.prodcastService.loader=false;
+        this.showConfirmPopup = false;
        if(data.Status == 'Success' && data.Response){
-        this.RJList[i].approval_status = status;
-        this.RJList[i].StatusCode = status.toLowerCase();
+        this.RJList[this.currentIndex].approval_status = this.status;
+        this.RJList[this.currentIndex].StatusCode = this.status.toLowerCase();
          this.toast.success('Status Updated Sucessfully');
          this.prodcastService.getRjStatistics();
          
        }
        else{
-         this.toast.error('invalid data')
+         this.toast.error('invalid data');         
        }
       },err=>{
         this.prodcastService.loader=false;
+        this.showConfirmPopup = false;
       }
     )
   }

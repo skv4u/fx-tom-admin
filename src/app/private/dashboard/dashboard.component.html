@@ -160,7 +160,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th *ngIf="showhidemenu.RJName">RJ</th>
+                <th *ngIf="showhidemenu.RJName">RJ Name</th>
                 <th class="pic" *ngIf="showhidemenu.Thumbnails">Picture</th>
                 <th *ngIf="showhidemenu.Title">Title</th>
                 <th *ngIf="showhidemenu.Category">
@@ -233,13 +233,17 @@
                   </div>
 
                   <td *ngIf="showhidemenu.Approvals" style="position: relative;">
-                    <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approvals.toLowerCase()}}" data-bs-toggle="dropdown"
+                    <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approvals.toLowerCase()}}" *ngIf="a.approvals == 'Approved' || a.approvals == 'Pending'"  data-bs-toggle="dropdown"
                   aria-expanded="false" (click)="a.ShowstatusDropDown = !a.ShowstatusDropDown">
                   {{a.approvals}}
-                </button>                  
-                <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" *ngIf="a.ShowstatusDropDown" style="display: block;">
+                </button>  
+                <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approvals.toLowerCase()}}" *ngIf="a.approvals != 'Approved' && a.approvals != 'Pending'"  data-bs-toggle="dropdown"
+                aria-expanded="false">
+                {{a.approvals}}
+              </button>          
+                <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" style="display: block;" *ngIf="a.ShowstatusDropDown && (a.approvals == 'Approved' || a.approvals == 'Pending')">
                   <!-- <li class="pending"><a class="dropdown-item" (click)="changeStatus('Pending',a,i);a.ShowstatusDropDown=false">pending</a></li> -->
-                  <li class="modify">
+                  <li class="modify" >
                     <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Modify',a,i)" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
                    
                   </li>
@@ -257,12 +261,12 @@
                   <!-- <span class="small">{{a.BroadCastDataTime}}</span>                   -->
                 </td>
                 <td *ngIf="showhidemenu.Comments">
-                  <span *ngIf="a.comment_count == '0'">None</span>
-                  <span *ngIf="a.comment_count != '0'" (click)="showcomments = true" style="cursor: pointer;">{{a.comment_count}}</span>
+                  <!-- <span *ngIf="a.comment_count == '0'">None</span> -->
+                  <span (click)="showcomments = true" style="cursor: pointer;">{{a.comment_count}}</span>
                   </td>    
-                <td class="text-center" *ngIf="a.Status != 'Live' && showhidemenu.Edit"  ><a (click)="a.Edit = true;enableEdit(a)"  style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'"><i class="fas fa-pen"></i></a></td>
+                <td class="text-center" *ngIf="a.approvals!= 'Live' && a.approvals!= 'Broadcasting' && a.approvals!= 'Rejected' && a.approvals!= 'Modify' && showhidemenu.Edit"  ><a (click)="a.Edit = true;enableEdit(a)"  style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'"><i class="fas fa-pen"></i></a></td>
                 <!-- <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true" *ngIf="a.is_admin_deleted == '0' && a.approvals != 'Modify'"><i class="fas fa-eye"></i></a></td>  -->
-                <td  *ngIf="showhidemenu.Delete"  style="position: relative;"> 
+                <td  *ngIf="showhidemenu.Delete && a.approvals!= 'Live' && a.approvals!= 'Broadcasting' && a.approvals!= 'Rejected' && a.approvals!= 'Modify'"  style="position: relative;"> 
                   <a (click)="changeStatus('Delete',a,i)" style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'">
                   <i class="fas fa-trash-alt" ></i >
                   </a>
