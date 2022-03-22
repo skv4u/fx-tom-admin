@@ -4,7 +4,7 @@
   <!--Header End Here-->
 
 <div class="body-main">
-  <div class="body-content">  
+  <div class="body-content" style="height: 85vh;">
     <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/login')"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>   
  
       <h3>Add Language</h3>
@@ -23,7 +23,7 @@
           </div>            
           <div class="row">
             <div class="col-md-12 px-1 d-flex">
-             <ul class="c-list mt-5">
+             <ul class="c-list">
                <li *ngFor="let a of prodCastService.LanguageList"><span>{{a.name}}</span> <i class="fas fa-trash-alt" (click)="deleteLanguage(a.id)"></i></li>
              </ul>
           </div>            
