@@ -45,7 +45,7 @@ export class ProdcastService {
     this.getLanguageList();
   }
   getCategoryList() {
-    this.webservice.commonMethod('category', '', 'GET').subscribe(
+    this.webservice.commonMethod('category/web', '', 'GET').subscribe(
       (data) => {
         this.CategoryList = data.Response;
       })

@@ -4,7 +4,7 @@
   <!--Header End Here-->
 
 <div class="body-main">
-  <div class="body-content">  
+  <div class="body-content" style="height: 85vh;">  
     <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/login')"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>   
  
       <h3>Add Catetory</h3>
@@ -24,7 +24,16 @@
           <div class="row">
             <div class="col-md-12 px-1 d-flex">
              <ul class="c-list mt-5">
-               <li *ngFor="let a of prodCastService.CategoryList"><span>{{a.name}}</span> <i class="fas fa-trash-alt" (click)="deleteProdCast(a.id)"></i></li>
+               <li *ngFor="let a of prodCastService.CategoryList">
+                 <div>
+                  
+
+                  <img *ngIf="!a.image" src="./assets/images/1024px-No_image_available.svg.webp" alt="No Image" />
+                  <img *ngIf="a.image" [src]="a.image" alt="No Image" />
+                 </div> 
+                 <span>{{a.name}}</span> 
+                 <i class="fas fa-trash-alt" (click)="deleteProdCast(a.id)"></i>
+                </li>
              </ul>
           </div>            
      
