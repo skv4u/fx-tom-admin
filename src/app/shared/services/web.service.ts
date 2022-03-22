@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { ConfigurationMicroService } from './configuration-micro.service';
 @Injectable()
 export class WebService {
@@ -38,5 +38,23 @@ export class WebService {
     };
     return this.http.post(this.APIUrl.DEV + '/' + url, data, headers);
 
+  }
+  UploadFile(url,formData) {
+    const headers = new HttpHeaders({
+      'enctype': 'multipart/form-data'
+    });
+    this.http.post(this.APIUrl.DEV + '/' + url, formData, {
+      headers,
+      reportProgress: true,
+      observe: 'events'
+    }).subscribe(resp => {
+      if (resp.type === HttpEventType.Response) {
+        console.log('Upload complete');
+      }
+      if (resp.type === HttpEventType.UploadProgress) {
+        const percentDone = Math.round(100 * resp.loaded / resp.total);
+        console.log('Progress ' + percentDone + '%');
+      }
+    });
   }
 }

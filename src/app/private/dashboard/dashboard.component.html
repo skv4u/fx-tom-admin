@@ -261,8 +261,8 @@
                   <!-- <span class="small">{{a.BroadCastDataTime}}</span>                   -->
                 </td>
                 <td *ngIf="showhidemenu.Comments">
-                  <!-- <span *ngIf="a.comment_count == '0'">None</span> -->
-                  <span (click)="showcomments = true" style="cursor: pointer;">{{a.comment_count}}</span>
+                  <span *ngIf="a.comment_count == '0'"></span>
+                  <span (click)="showcomments = true" style="cursor: pointer;" *ngIf="a.comment_count != '0'">{{a.comment_count}}</span>
                   </td>    
                 <td class="text-center" *ngIf="a.approvals!= 'Live' && a.approvals!= 'Broadcasting' && a.approvals!= 'Rejected' && a.approvals!= 'Modify' && showhidemenu.Edit"  ><a (click)="a.Edit = true;enableEdit(a)"  style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'"><i class="fas fa-pen"></i></a></td>
                 <!-- <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true" *ngIf="a.is_admin_deleted == '0' && a.approvals != 'Modify'"><i class="fas fa-eye"></i></a></td>  -->

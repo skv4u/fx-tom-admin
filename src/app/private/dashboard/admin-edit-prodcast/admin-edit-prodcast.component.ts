@@ -51,18 +51,17 @@ export class AdminEditProdcastComponent implements OnInit {
     let formData = new FormData();
     formData.append('filename', file, file.name);
     this.prodcastservice.loader = true;
-    this.webservice.UploadDocument("s3bucket/upload", formData).
-      subscribe((data: any) => {
-        this.EditData.audiopath = data.Response;
-        this.prodcastservice.loader = false;
-      }, err => {
-        // this._toastService.error("Error uploading file.");
-      });
+    this.webservice.UploadFile("s3bucket/upload", formData);
+    // this.webservice.UploadDocument("s3bucket/upload", formData).
+    //   subscribe((data: any) => {
+    //     this.EditData.audiopath = data.Response;
+    //     this.prodcastservice.loader = false;
+    //   }, err => {
+    //     // this._toastService.error("Error uploading file.");
+    //   });
     //  else {
     //    this.toaster.error('not a Audio File')
     //  }
-
-
   }
 
   uploadFile(element) {
@@ -108,8 +107,9 @@ export class AdminEditProdcastComponent implements OnInit {
         this.prodcastservice.loader=false;
         if(data.Status == 'Success' && data.Response && data.Response.length){
           this.toast.success('Updated Sucessfully');
-          this.EditData.category = this.EditData.category.join(",");
           this.router.navigateByUrl('/dashboard');
+         // this.EditData.category = this.EditData.category.join(",");
+          
         }
       }
     )

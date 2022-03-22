@@ -32,6 +32,7 @@
                 </div>
                 <div>
                   <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Modify')">Modify</button>
+                  <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.modify = false">Cancel</button></a>
                 </div>
                
                 </div>
@@ -68,6 +69,7 @@
                   </div>
                   <div>
                     <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Approved')">Approve</button>
+                    <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.approval = false">Cancel</button></a>
                   </div>
                  
               </div>
@@ -109,6 +111,7 @@
                     </div>
                     <div>
                       <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Rejected')">Reject</button>
+                      <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.rejected = false">Cancel</button></a>
                     </div>
                    
                     </div>
@@ -158,6 +161,7 @@
                     </div>
                     <div>
                       <button class="custome-button" style="text-align: center;" (click)="approveBroadcastCast()">Go to Live</button>
+                      <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.broadcast = false">Cancel</button></a>
                     </div>
                    
                     </div>
