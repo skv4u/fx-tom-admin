@@ -27,14 +27,14 @@
           <div class="row">
             <div class="col-md-12 px-1 d-flex">
              <ul class="c-list">
-               <li *ngFor="let a of prodCastService.CategoryList">
+               <li *ngFor="let a of prodCastService.WebCategoryList">
                  <div>
                   
 
                   <img *ngIf="!a.image" src="./assets/images/1024px-No_image_available.svg.webp" alt="No Image" />
                   <img *ngIf="a.image" [src]="a.image" alt="No Image" />
                  </div> 
-                 <span>{{a.name}}</span> 
+                 <span class="ml30">{{a.name}}</span> 
                  <i class="fas fa-trash-alt" (click)="deleteProdCast(a.id)"></i>
                 </li>
              </ul>
