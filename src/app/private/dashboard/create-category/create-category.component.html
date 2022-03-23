@@ -4,7 +4,7 @@
   <!--Header End Here-->
 
 <div class="body-main">
-  <div class="body-content">  
+  <div class="body-content" style="height: 85vh;">  
     <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/login')"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>   
  
       <h3>Add Catetory</h3>
@@ -12,10 +12,13 @@
        
           <div class="row">
             <div class="col-md-12 px-1 d-flex">
-              <div class="top-search">
+              <div style="min-width: 70%;">
                 <div class="input-group mx-2">
                     <input type="text" class="form-control" placeholder="Enter New Category" [(ngModel)]="NewCatName">
-                </div>
+                &nbsp;
+                &nbsp;
+                  <input type="text" class="form-control" placeholder="SVG Url(Optional)" [(ngModel)]="NewCatImage">
+              </div>
               </div>
               <button class="custome-button mx-4" (click)="createCategory()">Add New Category</button>
               <img *ngIf="apiCalled" src="./assets/images/loader.gif" style="width: auto;height: 38px;margin-left: 20px;">
@@ -23,11 +26,39 @@
           </div>            
           <div class="row">
             <div class="col-md-12 px-1 d-flex">
-             <ul class="c-list mt-5">
-               <li *ngFor="let a of prodCastService.CategoryList"><span>{{a.name}}</span> <i class="fas fa-trash-alt" (click)="deleteProdCast(a.id)"></i></li>
+             <ul class="c-list">
+               <li *ngFor="let a of prodCastService.WebCategoryList">
+                 <div>
+                  
+
+                  <img *ngIf="!a.image" src="./assets/images/1024px-No_image_available.svg.webp" alt="No Image" />
+                  <img *ngIf="a.image" [src]="a.image" alt="No Image" />
+                 </div> 
+                 <span class="ml30">{{a.name}}</span> 
+                 <i class="fas fa-trash-alt" (click)="Id=a.id;showConfirmPopup=true;"></i>
+                </li>
              </ul>
           </div>            
      
  
   </div>
+</div>
+</div>
+
+<div *ngIf="showConfirmPopup">
+  <!--------------------------->
+<!--Delete The Modal -->
+<div class="background-grey"></div>
+<div class="popup-box" style="height: 130px;text-align: center;">
+  <div>
+     <h4 class="mb-0"> Please Confirm on Delete ?</h4>
+     <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
+   </div>
+
+   <!-- Modal body href="dashboard.html" 366,367-->
+     <div class="modal-body">
+    <a ><button class="custome-button mx-2" (click)="deleteProdCast(Id)">Confirm</button></a>
+    <a ><button class="custome-outline mx-2"  (click)="showConfirmPopup = false">Cancel</button></a>
+   </div>
+ </div>
 </div>

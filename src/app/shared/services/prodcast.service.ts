@@ -6,6 +6,8 @@ import { WebService } from './web.service';
 export class ProdcastService {
   editlist: any = {}
   CategoryList: any = [];
+  WebCategoryList: any = [];
+  
   LanguageList:any = [];
   IsView:boolean=false;
   loginUserName: string = "";
@@ -43,11 +45,18 @@ export class ProdcastService {
     }
     this.getCategoryList();
     this.getLanguageList();
+    this.getWebCategoryList();
   }
   getCategoryList() {
     this.webservice.commonMethod('category', '', 'GET').subscribe(
       (data) => {
         this.CategoryList = data.Response;
+      })
+  }
+  getWebCategoryList() {
+    this.webservice.commonMethod('category/web', '', 'GET').subscribe(
+      (data) => {
+        this.WebCategoryList = data.Response;
       })
   }
   getLanguageList() {

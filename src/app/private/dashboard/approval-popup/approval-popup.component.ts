@@ -15,6 +15,10 @@ export class ApprovalPopupComponent implements OnInit {
   constructor(public prodcastService: ProdcastService, public webService: WebService, public toast: ToastService) { }
 
   ngOnInit() {
+    if(this.prodcastService.showPopUp.broadcast){
+      this.broadCastDate=this.prodcastService.selectedData.broadcast_date_actual;
+      this.broadCastTime=this.prodcastService.selectedData.broadcast_date_actual;
+    }
   }
   approveProdCast(status) {
     if (this.notes == '') {

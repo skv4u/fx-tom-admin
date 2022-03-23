@@ -258,7 +258,7 @@
                 </ul>
                   </td>
                 <td  *ngIf="showhidemenu.BroadcastDate">
-                  <p class="mb-0 width-100">{{a.broadcast_date}}</p>
+                  <p class="mb-0 width-100" style="position: relative;">{{a.broadcast_date}}  <i class="fas fa-edit broadcat_edit" *ngIf="a.approvals == 'Broadcasting'"  (click)="prodcastService.showPopUp.broadcast = true;prodcastService.selectedData = a"></i></p>
                   <!-- <span class="small">{{a.BroadCastDataTime}}</span>                   -->
                 </td>
                 <td *ngIf="showhidemenu.Comments">
