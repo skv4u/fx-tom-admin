@@ -1,3 +1,4 @@
+import { HttpEventType } from '@angular/common/http';
 import { Route } from '@angular/compiler/src/core';
 import { error } from '@angular/compiler/src/util';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
@@ -40,10 +41,10 @@ export class AdminEditProdcastComponent implements OnInit {
   }
 
   uploadaudio(element) {
-    debugger
+
     const file = element[0];
     if (file == undefined) return;
-    console.log(file.type, "element");
+    // console.log(file.type, "element");
      if(!(file.type.indexOf('audio') != -1 || file.type.indexOf('video') != -1)){
        this.toast.error("Invalid audio file");
        return
@@ -51,30 +52,78 @@ export class AdminEditProdcastComponent implements OnInit {
     let formData = new FormData();
     formData.append('filename', file, file.name);
     this.prodcastservice.loader = true;
-    this.webservice.UploadFile("s3bucket/upload", formData);
-    // this.webservice.UploadDocument("s3bucket/upload", formData).
-    //   subscribe((data: any) => {
-    //     this.EditData.audiopath = data.Response;
-    //     this.prodcastservice.loader = false;
-    //   }, err => {
-    //     // this._toastService.error("Error uploading file.");
-    //   });
-    //  else {
-    //    this.toaster.error('not a Audio File')
-    //  }
+    this.webservice.UploadDocument("s3bucket/upload", formData).
+    subscribe((data: any) => {
+        if (data.type === HttpEventType.Response) {
+          console.log(data);
+        this.EditData.audiopath = data.body.Response;
+        this.prodcastservice.loader = false;
+        this.prodcastservice.loaderMessage = "Uploading...";
+        }
+        if (data.type === HttpEventType.UploadProgress) {
+          const percentDone = Math.round(100 * data.loaded / data.total);
+          this.prodcastservice.loaderMessage = " Uploading :  " + percentDone + "%";
+        }
+      }, err => {
+
+        this.prodcastservice.loader = false;
+        this.prodcastservice.loaderMessage = "Uploading...";
+        this.EditData.audiopath = "";
+      });
+
+
+      // subscribe((data: any) => {
+      //   this.EditData.audiopath = data.Response;
+      //   this.prodcastservice.loader = false;
+      // }, err => {
+        
+      // });
+
   }
 
   uploadFile(element) {
+    this.prodcastservice.loader=true;
     const file = element[0];
     if (file == undefined) return;
-    console.log(file, "element");
+    // console.log(file, "element");
     let formData = new FormData();
     formData.append('filename', file, file.name);
     this.webservice.UploadDocument("s3bucket/upload", formData).
       subscribe((data: any) => {
-        this.EditData.imagepath = data.Response;
+        if (data.type === HttpEventType.Response) {
+        this.EditData.imagepath = data.body.Response;
+        this.prodcastservice.loader = false;
+        this.prodcastservice.loaderMessage = "Uploading...";
+        }
+        if (data.type === HttpEventType.UploadProgress) {
+          const percentDone = Math.round(100 * data.loaded / data.total);
+          this.prodcastservice.loaderMessage = " Uploading :  " + percentDone + "%";
+        }
       }, err => {
+        this.prodcastservice.loader = false;
+        this.EditData.imagepath = "";
+        this.prodcastservice.loaderMessage = "Uploading...";
       });
+
+      
+     
+      //   this.http.post(this.APIUrl.DEV + '/' + url, formData, {
+      //     headers,
+      //     reportProgress: true,
+      //     observe: 'events'
+      //   }).subscribe(resp => {
+      //     if (resp.type === HttpEventType.Response) {
+      //       console.log('Upload complete');
+      //     }
+      //     if (resp.type === HttpEventType.UploadProgress) {
+      //       const percentDone = Math.round(100 * resp.loaded / resp.total);
+      //       console.log('Progress ' + percentDone + '%');
+      //     }
+      //   });
+      // }
+
+
+
   }
 
   updateProdCast() {
@@ -107,7 +156,8 @@ export class AdminEditProdcastComponent implements OnInit {
         this.prodcastservice.loader=false;
         if(data.Status == 'Success' && data.Response && data.Response.length){
           this.toast.success('Updated Sucessfully');
-          this.router.navigateByUrl('/dashboard');
+          this.back.emit();
+          // this.router.navigateByUrl('/dashboard');
          // this.EditData.category = this.EditData.category.join(",");
           
         }

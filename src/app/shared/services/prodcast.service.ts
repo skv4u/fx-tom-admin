@@ -10,6 +10,7 @@ export class ProdcastService {
   IsView:boolean=false;
   loginUserName: string = "";
   loader:boolean=false;
+  loaderMessage:string="Loading...";
   selectedData:any={};
   UserStastics: any = {
     "PendingTotal":"",
@@ -76,7 +77,6 @@ export class ProdcastService {
     }
     this.webservice.commonMethod('user/statistics/admin', req, 'GET').subscribe(
       (data)=>{
-        debugger;
         if(data.Response && data.Response.length)
         this.UserStastics =data.Response[0];
         this.getRjStatistics();

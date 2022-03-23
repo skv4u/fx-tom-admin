@@ -237,7 +237,8 @@
                   aria-expanded="false" (click)="a.ShowstatusDropDown = !a.ShowstatusDropDown">
                   {{a.approvals}}
                 </button>  
-                <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approvals.toLowerCase()}}" *ngIf="a.approvals != 'Approved' && a.approvals != 'Pending'"  data-bs-toggle="dropdown"
+                <button id="btnGroupDrop2" type="button" style="background: none;border: none;cursor: default; position: relative;
+                padding-left: 15px;" class="dropdown-not-toggle {{a.approvals.toLowerCase()}}" *ngIf="a.approvals != 'Approved' && a.approvals != 'Pending'"  data-bs-toggle="dropdown"
                 aria-expanded="false">
                 {{a.approvals}}
               </button>          

@@ -73,14 +73,15 @@
                         <div class="dropzone-wrapper">
                           <div class="preview-zone" *ngIf="EditData.audiopath != ''">
                               <div class="box box-solid">
-                                  <button (click)="removeAudio()" style="right: -230px;
-                                  position: relative;
-                                  top: 10px;
-                                  background: none;
+                                  <button (click)="removeAudio()" style="background: none;
+                                  color: #f00;
                                   border: none;
-                                  color: #f00;"><i class="fas fa-trash-alt"></i></button>
+                                  position: absolute;
+                                  right: -10px;
+                                  top: -10px;
+                              "><i class="fas fa-trash-alt"></i></button>
                                   <div class="box-body">
-                                      <audio controls preload="auto">
+                                      <audio controls preload="auto" *ngIf="EditData.audiopath">
                                           <source [src]="EditData.audiopath" type="audio/mpeg">
                                           <source [src]="EditData.audiopath" type="audio/ogg">
                                           Your browser does not support the audio element.
@@ -89,7 +90,7 @@
                               </div>
                           </div>
                           <div *ngIf="EditData.audiopath == ''">
-                              <div class="dropzone-desc">
+                              <div class="" style="text-align: center;">
                                   <i class="glyphicon glyphicon-download-alt"></i>
                                   <p class="mb-1">Drag and Drop Audio file</p>
                                   <p class="mb-1">Or</p>
@@ -253,7 +254,8 @@
                               
                               <div class="box-body">
                                 <div class="box-body" *ngIf="EditData.audiopath">
-                                  <audio controls>
+                                  <audio controls preload="auto" >
+                                    <source [src]="EditData.audiopath" type="audio/mpeg">
                                     <source [src]="EditData.audiopath" type="audio/ogg"> 
                                     </audio>
                                 </div>

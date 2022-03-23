@@ -72,7 +72,8 @@
                 <tbody>
                   <tr *ngFor="let a of RJList;let i=index">
                     <td class="pic">
-                      <img [src]="a.imagepath" alt="img" />
+                      <img [src]="a.profile_image" alt="img" *ngIf="a.profile_image" />
+                      <img src="assets/images/login-img.jpg" *ngIf="!a.profile_image" alt="img" />
                     </td>
                     <td class="rjsname">
                       <h5 class="mb-0">{{a.fullname}}</h5>

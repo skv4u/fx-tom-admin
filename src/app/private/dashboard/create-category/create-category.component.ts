@@ -12,15 +12,32 @@ import { WebService } from 'src/app/shared/services/web.service';
 export class CreateCategoryComponent implements OnInit {
   NewCatName:string='';
   apiCalled:boolean = false;
+  CategoryList:any=[];
+  imageUrl:any="";
   constructor(public router: Router,public webservice:WebService,public prodCastService:ProdcastService,public localStorage:LocalstorageService) { }
 
   ngOnInit() {
+  }
+   
+  categoryList(){
+    this.prodCastService.loader=true;
+    let req={
+      "name": this.NewCatName,
+      "created_by": this.localStorage.getUserData() ? this.localStorage.getUserData().username : ''
+      }
+      this.webservice.commonMethod('category/web', req, 'POST').subscribe(
+        (data) => {
+          this.prodCastService.loader=false;
+          this.CategoryList = data.Response;
+          this.prodCastService.getCategoryList();
+        })
   }
   createCategory(){
     this.prodCastService.loader=true;
     let req={
       "name": this.NewCatName,
-      "created_by": this.localStorage.getUserData() ? this.localStorage.getUserData().username : ''
+      "created_by": this.localStorage.getUserData() ? this.localStorage.getUserData().username : '',
+      "image":
       }
       this.webservice.commonMethod('/category', req, 'POST').subscribe(
         (data) => {

@@ -3,10 +3,10 @@ import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { ConfigurationMicroService } from './configuration-micro.service';
 @Injectable()
 export class WebService {
-  APIUrl:any={};
-  constructor(private http: HttpClient,public configurationService:ConfigurationMicroService) {
+  APIUrl: any = {};
+  constructor(private http: HttpClient, public configurationService: ConfigurationMicroService) {
     this.APIUrl = this.configurationService.getUrl();
-   }
+  }
 
   commonMethod(url: string, data: any, method?: string, url_type?: string): any {
     method = method ? method : 'POST';
@@ -14,7 +14,7 @@ export class WebService {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-      })
+    })
     let endPoint = this.APIUrl[url_type] + "/" + url;
     if (method == 'POST')
       return this.http.post(endPoint, data, { headers });
@@ -31,12 +31,19 @@ export class WebService {
     }
   }
   UploadDocument(url: string, data: any) {
-    let headers = {
-      headers: new HttpHeaders({
-        'enctype': 'multipart/form-data'
-      })
-    };
-    return this.http.post(this.APIUrl.DEV + '/' + url, data, headers);
+    // let headers = {
+    //   headers: new HttpHeaders({
+    //     'enctype': 'multipart/form-data'
+    //   })
+    // };
+    const headers = new HttpHeaders({
+      'enctype': 'multipart/form-data'
+    });
+    return this.http.post(this.APIUrl.DEV + '/' + url, data, {
+      headers,
+      reportProgress: true,
+      observe: 'events'
+    });
 
   }
   UploadFile(url,formData) {

@@ -5,6 +5,7 @@ import { WebService } from 'src/app/shared/services/web.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LocalstorageService } from 'src/app/shared/services/localstorage.service';
 import { CommonService } from 'src/app/shared/services/common.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-rj-approval',
@@ -263,12 +264,21 @@ export class RjApprovalComponent implements OnInit {
     this.isProgessing = true;
     this.webService.UploadDocument("s3bucket/upload", formData).
       subscribe((data: any) => {
-        this.pictureFileName = data.Response;
-        this.editData.profile_image = data.Response;
-        this.registerForm.value.profile_image = data.Response;
+      if (data.type === HttpEventType.Response) {
+        this.pictureFileName = data.body.Response
+        this.editData.profile_image = data.body.Response
+        this.registerForm.value.profile_image = data.body.Response
         this.prodcastService.loader=false;
+        this.prodcastService.loaderMessage = "Uploading...";
+        }
+        if (data.type === HttpEventType.UploadProgress) {
+          const percentDone = Math.round(100 * data.loaded / data.total);
+          this.prodcastService.loaderMessage = " Uploading :  " + percentDone + "%";
+        }
       }, err => {
-         this.toast.error("Error uploading file.");
+        this.prodcastService.loader = false;
+        this.pictureFileName = "";
+        this.prodcastService.loaderMessage = "Uploading...";
       });
     //}
     //  else {
