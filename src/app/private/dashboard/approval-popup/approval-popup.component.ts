@@ -16,8 +16,15 @@ export class ApprovalPopupComponent implements OnInit {
 
   ngOnInit() {
     if(this.prodcastService.showPopUp.broadcast){
-      this.broadCastDate=this.prodcastService.selectedData.broadcast_date_actual;
-      this.broadCastTime=this.prodcastService.selectedData.broadcast_date_actual;
+      try{
+        let part=this.prodcastService.selectedData.broadcast_date_actual.split(' ');
+        this.broadCastDate=part[0];
+        this.broadCastTime=part[1];
+      }
+      catch(er){
+        console.log("date issue")
+      }
+     
     }
   }
   approveProdCast(status) {
