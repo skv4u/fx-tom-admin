@@ -31,12 +31,12 @@
                   <label for="floatingInput">Podcast Name</label>
                 </div>               
               </div>
-              <div class="col-md-9 mb-4">
+              <!-- <div class="col-md-9 mb-4">
                 <div class="form-floating">
                   <input type="text" class="form-control" id="floatingInput" placeholder="Author Name"  [(ngModel)]="EditData.author_name" value="RJ Name">
                   <label for="floatingInput">Author Name</label>
                 </div>                  
-              </div>
+              </div> -->
               <div class="col-md-9 mb-4 form-floating">
                <select class="form-control" placeholder="Language" [(ngModel)]="EditData.language" >
                  <option *ngFor="let a of prodcastservice.LanguageList">{{a.name}}</option>
@@ -221,10 +221,10 @@
                <p class="m-0">Podcast Name</p>
                <h4>{{EditData.name}}</h4>
              </div>
-             <div class="col-12 mb-4">
+             <!-- <div class="col-12 mb-4">
               <p class="m-0">Author Name</p>
               <h4>{{EditData.author_name}}</h4>
-            </div>
+            </div> -->
             <div class="col-12 mb-4">
               <p class="m-0">Language</p>
               <h4>{{EditData.language}}</h4>

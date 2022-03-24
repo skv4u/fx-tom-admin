@@ -127,10 +127,13 @@
   top: 0;
   border-radius: 20px;
   img{
-    height: 39px !important;
-    width: 39px !important;
+    opacity: 0.35;
+    height: 35px !important;
+    width: 32px !important;
+    margin-top: 2px;
   }
 }
+
 
 .c-list li span.ml30 {
   margin-left: 30px;
@@ -356,4 +359,8 @@
   font-size: 12px;
   top: 23px;
   color: #4b30de;
+}
+
+.form-control:focus {
+  outline: 1px solid #000 !important;
 }
