@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AdminEditProdcastComponent } from './private/dashboard/admin-edit-prodcast/admin-edit-prodcast.component';
+import { CommentsComponent } from './private/dashboard/comments/comments.component';
 import { CreateCategoryComponent } from './private/dashboard/create-category/create-category.component';
 import { DashboardComponent } from './private/dashboard/dashboard.component';
 import { DeletePodcastListComponent } from './private/dashboard/delete-podcast-list/delete-podcast-list.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'create-language', component: EditLanguageComponent },
   {path: 'rj-approvals', component: RjApprovalComponent },
   {path: 'podcast-delete', component: DeletePodcastListComponent },
+  {path: 'comments', component: CommentsComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 

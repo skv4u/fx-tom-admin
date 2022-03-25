@@ -11,6 +11,7 @@ import { WebService } from './shared/services/web.service';
 export class AppComponent {
   title = 'tomtom';
   constructor(public localStorage: LocalstorageService, public WebService: WebService,public ProdcastService:ProdcastService) {
+    this.ProdcastService.loader=false;
   }
-
+  
 }
