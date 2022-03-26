@@ -10,9 +10,8 @@ import { WebService } from './shared/services/web.service';
 })
 export class AppComponent {
   title = 'tomtom';
-  loader:false;
-  constructor(public localStorage: LocalstorageService, public WebService: WebService,public prodcastService:ProdcastService) {
-    console.log("App COM")
+  constructor(public localStorage: LocalstorageService, public WebService: WebService,public ProdcastService:ProdcastService) {
+    this.ProdcastService.loader=false;
   }
-
+  
 }

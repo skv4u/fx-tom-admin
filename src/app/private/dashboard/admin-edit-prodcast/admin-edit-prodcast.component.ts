@@ -148,7 +148,7 @@ export class AdminEditProdcastComponent implements OnInit {
       "created_by": this.LocalStorage.getUserData().username,
       "usertype": "Admin",
       "note_description": this.EditData.Notestocommunicate,
-      "audio_path": this.EditData.audiopath
+      // "audio_path": this.EditData.audiopath
 
     }
     this.webservice.commonMethod('podcast/update', req, 'PUT').subscribe(

@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit {
   showcatDropDown:boolean=false;
   currentIndex:number=0;
   apicalled:boolean=false;
-  showcomments:boolean=false;
 
 
   constructor(public router: Router, public webservice: WebService,public prodcastService:ProdcastService,public localStorage:LocalstorageService,public toast:ToastService, public renderer : Renderer2) { }

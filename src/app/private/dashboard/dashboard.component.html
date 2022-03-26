@@ -1,7 +1,7 @@
   
   <app-page-loader *ngIf="apicalled"></app-page-loader>
   
-  <div *ngIf="!showhidecnd.showEdit && !showcomments">
+  <div *ngIf="!showhidecnd.showEdit && !prodcastService.showComments">
 
  
   <!--Header Start Here-->
@@ -263,7 +263,7 @@
                 </td>
                 <td *ngIf="showhidemenu.Comments">
                   <span *ngIf="a.comment_count == '0'"></span>
-                  <span (click)="showcomments = true" style="cursor: pointer;" *ngIf="a.comment_count != '0'">{{a.comment_count}}</span>
+                  <span (click)="prodcastService.selectedData=a;prodcastService.showComments = true;" style="cursor: pointer;" *ngIf="a.comment_count != '0'">{{a.comment_count}}</span>
                   </td>    
                 <td class="text-center" *ngIf="a.approvals!= 'Live' && a.approvals!= 'Broadcasting' && a.approvals!= 'Rejected' && a.approvals!= 'Modify' && showhidemenu.Edit"  ><a (click)="a.Edit = true;enableEdit(a)"  style="cursor: pointer;" *ngIf="a.is_admin_deleted == '0'"><i class="fas fa-pen"></i></a></td>
                 <!-- <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true" *ngIf="a.is_admin_deleted == '0' && a.approvals != 'Modify'"><i class="fas fa-eye"></i></a></td>  -->
@@ -285,114 +285,7 @@
   </div>
 </div>
 
-
-<div *ngIf="showcomments">
-
-<app-generic-header></app-generic-header>
-
-  <div class="body-main">
-    <div class="body-content">
-      <h3><a style="cursor: pointer;" (click)="showcomments = false"><i class="fas fa-angle-left" ></i> Back to Dashboard</a></h3>   
-      
-    
-      <div class="row">
-        <div class="col-12">
-          <div class="rj-coomments">
-            <div class="c-name"><p class="m-0">RJ Name</p></div>
-            <div class="c-img"><img src="./assets/images/login-img.jpg" alt="img" /></div>
-            <div class="c-text">
-              <h4 class="mb-0">Podcast 50</h4>
-              <p class="mb-0"><a href="about-podcast-admin.html">About the Podcasters</a></p> 
-            </div>
-            <div class="c-comment"> <h4 class="mb-0">300</h4> <p class="mb-0 px-2">Comments</p></div>
-
-          </div>
-          <h4>Comments</h4>
-          
-            <form action="" method="POST" enctype="multipart/form-data">
-              
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                    
-                    
-                      <div class="dropzone-wrapper">
-                        <div class="preview-zone hidden">
-                          <div class="box box-solid">
-                            
-                            <div class="box-body"></div>
-                          </div>
-                        </div>
-                        <div class="dropzone-desc">
-                          <i class="glyphicon glyphicon-download-alt"></i>
-                          <p class="mb-1">"Add text OR Drag and drop Image/Audio/Video "</p>                           
-                        </div>
-                        <input type="file" name="img_logo" class="dropzone">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-             
-            </form>
-            <div class="d-flex align-items-center">
-              <p><strong>Abeer M</strong> 7 months ago</p>
-              <div class="delete-comment"><a href="#"><i class="far fa-trash-alt"></i></a></div>
-            </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <div class="reply">
-              <div class="d-flex">
-                <p><img src="./assets/images/icon1.jpg" alt="" />  335</p>
-               
-              </div>
-              <div class="d-flex">
-                <p><img src="./assets/images/icon2.jpg" alt="" /> Reply</p>
-               
-              </div>
-
-            </div>
-
-            <h4><a href="#">View 18 Replies</a></h4>
-
-            <p><strong>Speak Like David</strong> 11 months ago</p>
-            <div class="speak-img"><img src="./assets/images/speak-img.jpg" alt="images" /></div>
-            <div class="reply">
-              <div class="d-flex">
-                <p><img src="./assets/images/icon1.jpg" alt="" />  335</p>
-               
-              </div>
-              <div class="d-flex">
-                <p><img src="./assets/images/icon2.jpg" alt="" /> Reply</p>
-               
-              </div>
-
-            </div>
-
-            <h4><a href="#">View 18 Replies</a></h4>
-
-            <div class="d-flex align-items-center">
-              <p><strong>Abeer M</strong> 7 months ago</p>
-              <div class="delete-comment"><a href="#"><i class="far fa-trash-alt"></i></a></div>
-            </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-            <div class="reply">
-              <div class="d-flex">
-                <p><img src="./assets/images/icon1.jpg" alt="" />  335</p>
-               
-              </div>
-              <div class="d-flex">
-                <p><img src="./assets/images/icon2.jpg" alt="" /> Reply</p>
-               
-              </div>
-
-            </div>
-
-        
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-comments *ngIf="prodcastService.showComments" ></app-comments>
   <app-admin-edit-prodcast *ngIf="showhidecnd.showEdit"  (back)="showhidecnd.showEdit=false"></app-admin-edit-prodcast>
 
   <app-approval-popup *ngIf="prodcastService.showPopUp.approval || prodcastService.showPopUp.rejected || prodcastService.showPopUp.broadcast|| prodcastService.showPopUp.modify || prodcastService.showPopUp.delete"></app-approval-popup>

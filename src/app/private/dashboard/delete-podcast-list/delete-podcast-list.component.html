@@ -37,7 +37,7 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>RJ</th>
+                    <th>RJ Name</th>
                     <th class="pic">Picture</th>
                     <th >Title</th>
                     <th >
@@ -76,7 +76,7 @@
                       <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
                     </td>
                     <td class="rjsname" >
-                      <h5 class="mb-0">{{a.author_name}}</h5>
+                      <h5 class="mb-0">{{a.name}}</h5>
                       <!-- a.ShowProcastComment = true -->
                       <p><a style="cursor: pointer;color:#0e7ea3" (click)="prodcastService.IsView = true;prodcastService.editlist = a;showhidecnd.showEdit = true">About Podcast</a></p>                   
                     </td>
