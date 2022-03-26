@@ -28,68 +28,68 @@
       <div class="col-md-4 settings-main" >
         <div class="s_inner">
           <div class="s-box">
-            <a [class.active]="prodcastService.filterApplied" (click)="prodcastService.getDashBoardList();prodcastService.filterApplied=false;this.serachvalue=''">
+            <a [class.active]="prodcastService.filterApplied" (click)="prodcastService.getDashBoardList();prodcastService.filterApplied=false;this.serachvalue='';">
                 <i class="fas fa-sync"></i>
             </a>
         </div>
-          <div class="s-box">
-            <a id="btnGroupDrop4" class="dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false" (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter;"><i class="fas fa-sliders-h"></i></a>
+          <div class="s-box outsideclick">
+            <a id="btnGroupDrop4" class="outsideclick" data-bs-toggle="dropdown"
+            aria-expanded="false" (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter; bindSingleClickEvent();"><i class="fas fa-sliders-h"></i></a>
             <ul class="dropdown-menu top-filter" aria-labelledby="btnGroupDrop4" *ngIf="showhidecnd.ShowFilter" style="display: block;">
               <form>
-              <li>
-                <div class="form-check mb-2">
+              <li class="outsideclick">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check1" [checked]="showhidemenu.RJName" (change)="showhidemenu.RJName = !showhidemenu.RJName">
                   <label class="form-check-label" for="check1">RJ</label>
                 </div>
 
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check2" [checked]="showhidemenu.Thumbnails" (change)="showhidemenu.Thumbnails = !showhidemenu.Thumbnails">
-                  <label class="form-check-label">Thumbnails</label>
+                  <label class="form-check-label" for="check2">Thumbnails</label>
                 </div>
 
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check3" [checked]="showhidemenu.Title" (change)="showhidemenu.Title = !showhidemenu.Title">
-                  <label class="form-check-label">Title</label>
+                  <label class="form-check-label" for="check3">Title</label>
                 </div>
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check4" [checked]="showhidemenu.Category" (change)="showhidemenu.Category = !showhidemenu.Category">
-                  <label class="form-check-label">Category</label>
+                  <label class="form-check-label" for="check4">Category</label>
                 </div>
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check5" [checked]="showhidemenu.UploadDate" (change)="showhidemenu.UploadDate = !showhidemenu.UploadDate">
-                  <label class="form-check-label">Upload Date</label>
+                  <label class="form-check-label" for="check5">Upload Date</label>
                 </div>
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check6" [checked]="showhidemenu.Comments" (change)="showhidemenu.Comments = !showhidemenu.Comments">
-                  <label class="form-check-label">Comments</label>
+                  <label class="form-check-label" for="check6">Comments</label>
                 </div>
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check7" [checked]="showhidemenu.Approvals" (change)="showhidemenu.Approvals = !showhidemenu.Approvals">
-                  <label class="form-check-label">Approvals</label>
+                  <label class="form-check-label" for="check7">Approvals</label>
                 </div>
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check8" [checked]="showhidemenu.BroadcastDate" (change)="showhidemenu.BroadcastDate = !showhidemenu.BroadcastDate">
-                  <label class="form-check-label">Broadcast Date</label>
+                  <label class="form-check-label" for="check8">Broadcast Date</label>
                 </div>
-                <!-- <div class="form-check mb-2">
+                <!-- <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check9" [checked]="showhidemenu.Notes" (click)="showhidemenu.Notes = !showhidemenu.Notes">
-                  <label class="form-check-label">Notes</label>
+                  <label class="form-check-label" for="check9">Notes</label>
                 </div> -->
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check10" [checked]="showhidemenu.Edit" (change)="showhidemenu.Edit = !showhidemenu.Edit">
-                  <label class="form-check-label">Edit</label>
+                  <label class="form-check-label" for="check10">Edit</label>
                 </div>
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check11" [checked]="showhidemenu.Delete" (change)="showhidemenu.Delete = !showhidemenu.Delete">
-                  <label class="form-check-label">Delete</label>
+                  <label class="form-check-label" for="check11">Delete</label>
                 </div>
                 <button class="custome-button my-3" (click)="showhidecnd.ShowFilter = false">Done</button>
               </li>
             </form>
             </ul>
           </div>
-          <div class="s-box" style="position: relative;"><a (click)="showhidecnd.showBell = !showhidecnd.showBell;updateNotification()" style="cursor: pointer;"  id="btnGroupDrop3" class="dropdown-toggle" data-bs-toggle="dropdown"
+          <div class="s-box" style="position: relative;"><a (click)="showhideBellList()" style="cursor: pointer;"  id="btnGroupDrop3" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
             aria-expanded="false"><i class="fas fa-bell"><sup style="font-size: 9px;cursor:pointer" 
               *ngIf="prodcastService.UserStastics.UnreadNotificationCount != '0'">{{prodcastService.UserStastics.UnreadNotificationCount}}</sup></i></a>
             <!-- <sup>5</sup> -->
@@ -111,9 +111,9 @@
               <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 8</a></li>
             </ul>
           </div> -->
-          <div class="s-box">
-            <a id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false" (click)="showhidecnd.showSettings = !showhidecnd.showSettings"><i class="fas fa-cog" ></i></a>
+          <div class="s-box outsideclick">
+            <a id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
+            aria-expanded="false" (click)="showhidecnd.showSettings = !showhidecnd.showSettings; bindSingleClickEvent();"><i class="fas fa-cog" ></i></a>
             <ul class="dropdown-menu"  *ngIf="showhidecnd.showSettings" aria-labelledby="btnGroupDrop5" style="position: absolute;right: 23px;display:block;cursor: pointer;">             
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')"><i class="fas fa-check-circle"></i> RJ Approvals</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/podcast-delete')"><i class="fas fa-trash-alt"></i> Podcast Delete List</a></li>
@@ -164,16 +164,16 @@
                 <th class="pic" *ngIf="showhidemenu.Thumbnails">Picture</th>
                 <th *ngIf="showhidemenu.Title">Title</th>
                 <th *ngIf="showhidemenu.Category">
-                  <a  id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
-                  aria-expanded="false" (click)="showcatDropDown = !showcatDropDown" style="cursor: pointer;">Category</a>
+                  <a  id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
+                  aria-expanded="false" (click)="expandCategoryFilter();" style="cursor: pointer;">Category</a>
                   <ul class="dropdown-menu" style="display: block;" aria-labelledby="btnGroupDrop5" *ngIf="showcatDropDown">
                     <li *ngFor="let a of prodcastService.CategoryList"><a class="dropdown-item"  (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>                  
                   </ul>
                 </th>
                 <th width="170"  *ngIf="showhidemenu.UploadDate">Upload Date</th>
                 <th *ngIf="showhidemenu.Approvals">
-                  <a id="btnGroupDrop6" class="dropdown-toggle" data-bs-toggle="dropdown"
-                  aria-expanded="false" (click)="showStatusDropDown = !showStatusDropDown" style="cursor: pointer;">Status</a>
+                  <a id="btnGroupDrop6" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
+                  aria-expanded="false" (click)="expandStatusFilter()" style="cursor: pointer;">Status</a>
                   <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block;" *ngIf="showStatusDropDown">
                     <!-- <li class="pending" (click)="searchList('');showStatusDropDown = false"><a class="dropdown-item">All</a></li> -->
                    

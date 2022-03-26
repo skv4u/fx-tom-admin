@@ -121,14 +121,17 @@
   border-radius: 20px;
 }
 
-.c-list li div.no_image{
+.c-list li div.no_image {
   position: absolute;
   left: 0;
   top: 0;
   border-radius: 20px;
-  img{
-    height: 39px !important;
-    width: 39px !important;
+
+  img {
+    opacity: 0.35;
+    height: 35px !important;
+    width: 32px !important;
+    margin-top: 2px;
   }
 }
 
@@ -349,11 +352,15 @@
   }
 }
 
-.broadcat_edit{
+.broadcat_edit {
   cursor: pointer;
   position: absolute;
   right: 0;
   font-size: 12px;
   top: 23px;
   color: #4b30de;
+}
+
+.form-control:focus {
+  outline: 1px solid #000 !important;
 }

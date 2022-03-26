@@ -11,7 +11,7 @@ export class ProdcastService {
   LanguageList:any = [];
   IsView:boolean=false;
   loginUserName: string = "";
-  loader:boolean=false;
+  loader:boolean=true;
   loaderMessage:string="Loading...";
   selectedData:any={};
   UserStastics: any = {

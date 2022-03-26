@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalstorageService } from 'src/app/shared/services/localstorage.service';
 import { ProdcastService } from 'src/app/shared/services/prodcast.service';
@@ -38,11 +38,12 @@ export class DashboardComponent implements OnInit {
   apicalled:boolean=false;
   showcomments:boolean=false;
 
-  constructor(public router: Router, public webservice: WebService,public prodcastService:ProdcastService,public localStorage:LocalstorageService,public toast:ToastService) { }
+
+  constructor(public router: Router, public webservice: WebService,public prodcastService:ProdcastService,public localStorage:LocalstorageService,public toast:ToastService, public renderer : Renderer2) { }
 
   ngOnInit() {
-    this.prodcastService.loader=false;
-    console.log("this.localStorage.getUserData()",this.localStorage.getUserData())
+    // this.prodcastService.loader=false;
+    // console.log("this.localStorage.getUserData()",this.localStorage.getUserData())
     if(!this.localStorage.getUserData()){
       this.router.navigateByUrl('/login');
       return;
@@ -158,5 +159,39 @@ export class DashboardComponent implements OnInit {
       a.ShowstatusDropDown = false;
     }
   }
+  
+
+  showhideBellList(){   
+    this.showhidecnd.showBell = !this.showhidecnd.showBell;
+    if(this.showhidecnd.showBell){
+     this.bindSingleClickEvent();
+    }
+    this.updateNotification();
+  }
+  expandCategoryFilter(){
+    this.showcatDropDown = !this.showcatDropDown; 
+    if(this.showcatDropDown)
+    this.bindSingleClickEvent();
+  }
+  expandStatusFilter(){
+    this.showStatusDropDown = !this.showStatusDropDown; 
+    if(this.showStatusDropDown)
+    this.bindSingleClickEvent();
+  }
+  private cancelClick: Function;
+  handleClick($event: any) {
+    console.log("unbind")
+    let target = $event.target.classList.contains('outsideclick') ||
+                    $event.target.parentNode.classList.contains('outsideclick')
+      if (target || target == null) return;
+      this.resetvalues();
+    this.cancelClick();    
+  }
+  bindSingleClickEvent(){
+    if(this.cancelClick) this.cancelClick();
+    this.cancelClick = this.renderer.listen('document', 'click',
+    ($event: any) => this.handleClick($event));
+  }
+
 }
 
