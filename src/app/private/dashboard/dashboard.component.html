@@ -263,7 +263,7 @@
                 </td>
                 <td *ngIf="showhidemenu.Comments">
                  
-                  <span (click)="prodcastService.selectedData=a;prodcastService.showComments = true;" class="comment-count" *ngIf="a.comment_count != '0'">
+                  <span (click)="prodcastService.selectedData=a;prodcastService.showComments = true;" class="comment-count" *ngIf="a.approvals== 'Live'">
                     <i class="far fa-comment-dots"></i> 
                     <span> {{a.comment_count}}</span>
                   </span>
