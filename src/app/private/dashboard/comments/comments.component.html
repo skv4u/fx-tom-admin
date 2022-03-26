@@ -67,7 +67,7 @@
                 color: #ce0400;
                 right: -140px;border: none;background: none;"><i class="far fa-trash-alt"></i></button></div> -->
 
-            <p [innerHTML]="a.comment_description"></p>
+               <span> <i class="fas fa-trash-alt" title="delete comment" (click)="deleteCommets(a.comment_id)" style="position: absolute;" ></i > <p style="    position: relative;left: 19px;" [innerHTML]="a.comment_description"></p></span>
             <!-- <div class="reply"> -->
             <!-- <div class="col-md-1 col-12 mb-4 d-flex"> -->
             <div class="col-md-1 col-12 mb-4">
@@ -85,7 +85,11 @@
               <input type="text" [(ngModel)]="a.replycomment" style="border: 1px solid black;" (keyup.enter)="replyComment(a.comment_id,a.replycomment)"> 
               <button (click)="replyComment(i,a.comment_id,a.replycomment)" style="position: absolute;border: rgb(234, 250, 234);margin-left: 11px;" >Reply</button>
           </div>
-            <h4><a *ngIf="a.replylist.length">View {{a.replylist.length}} Replies</a></h4>
+          <br>
+            <h4><a *ngIf="a.replylist.length" style="color: #c45cd1;"> {{a.replylist.length}} Replies</a></h4>
+            <div *ngFor="let b of a.replylist">                
+               <span> <i class="fas fa-trash-alt" title="delete reply" (click)="deleteReply(b.reply_id)" style="position: absolute;" ></i > <p style="    position: relative;left: 19px;" >{{b.replyer_description}}</p></span>
+            </div>
             <br>
         </div>
     </div>
