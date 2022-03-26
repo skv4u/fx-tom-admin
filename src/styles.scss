@@ -367,69 +367,92 @@
 }
 
 .comment-img {
-  height: 50px;
-  width: 50px;
+  height: 46px;
+  width: auto;
 }
 
 .comment-text {
   width: 100%;
   height: 100px;
   border: 1px solid #888;
-  margin-top: 20px;
+  // margin-top: 20px;
   padding: 10px;
   overflow: auto;
   border-radius: 5px;
+  text-align: left;
+}
+
+.padd {
+  padding: 0px 0 20px 0px!important;
 }
 
 
-.comment-button{
-
-    border-radius: 50%;
-    /* transform: rotate(45deg); */
-    /* font-size: 26px; */
-    position: absolute;
-    right: 12px;
-    border: 1px solid #d3d3d3;
-    /* padding: 2px; */
-    top: 128px;
-    height: 42px;
-    width: 42px;
-    /* text-align: center; */
-    padding-top: 7px;
-    padding-left: 5px;
-    /* background: #27e41a; */
-    i{
-      font-size: 26px;
-      transform: rotate(45deg);
-      color: #d82121;
-    }
+.comment-button {
+  border-radius: 50%;
+  position: absolute;
+  right: 12px;
+  border: 1px solid #d3d3d3;
+  height: 42px;
+  width: 42px;
+  padding-top: 5px;
+  background: #ebeceb;
+  margin-top: 5px;
+  i {
+    font-size: 26px;
+    transform: rotate(45deg);
+    color: #d82121;
+  }
 }
 
-.like{
+.like {
   color: #000;
-  &.active{
+
+  &.active {
     color: #4b30de !important;
   }
 }
 
-.heart{
+.heart {
   color: #000;
-  &.active{
+
+  &.active {
     color: #ff0000 !important;
   }
 }
 
-.comment-count{
+.comment-count {
   color: #d82121;
   cursor: pointer;
-  span{
+
+  span {
     position: relative;
     top: -4px;
   }
 }
-.relative{
+
+.relative {
   position: relative
 }
-.pointer{
+
+.pointer {
   cursor: pointer;
+}
+
+.podcast-commnet-data {
+ 
+  font-size: 12px;
+  text-transform: capitalize;
+
+  span:first-child {
+    width: 100px;
+    color: #979797;
+    display: block;
+    font-size: 10px;
+
+  }
+}
+
+.comment-box {
+  background: #f3f3f3;
+  margin-top: 10px;
 }

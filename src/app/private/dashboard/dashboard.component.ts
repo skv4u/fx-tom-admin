@@ -191,6 +191,10 @@ export class DashboardComponent implements OnInit {
     this.cancelClick = this.renderer.listen('document', 'click',
     ($event: any) => this.handleClick($event));
   }
+  showCommentSection(elem){
+    this.prodcastService.selectedData = elem;
+    this.prodcastService.showComments = true;
+  }
 
 }
 

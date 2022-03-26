@@ -12,6 +12,8 @@ export class CommentsComponent implements OnInit {
   CommentsList: any = [];
   commentText: any;
   replycomment: string = ""
+  showplayer: boolean = false;
+  postCommentVisible: boolean = false;
   constructor(public prodcastService: ProdcastService, public webService: WebService, public LocalStorage: LocalstorageService) { }
 
   ngOnInit() {
@@ -31,6 +33,7 @@ export class CommentsComponent implements OnInit {
         for (let a of this.CommentsList) {
           a.replycomment = "";
         }
+        this.showplayer = true;
       },
       err => {
         this.prodcastService.loader = false;
@@ -86,11 +89,14 @@ export class CommentsComponent implements OnInit {
 
   createCommets() {
     this.prodcastService.loader = true;
-    console.log("commentText", this.commentText);
+    // console.log("commentText", this.commentText);
+    let elem: any = <HTMLMapElement>document.getElementById('commenttext');
+    let commentHTML = elem.innerHTML;
+
     let req = {
       "podcast_id": this.prodcastService.selectedData.id,
       "user_id": this.LocalStorage.getUserData().id,
-      "description": this.commentText,
+      "description": commentHTML,
       "filepath": "",
       "created_by": this.LocalStorage.getUserData().username
     };
