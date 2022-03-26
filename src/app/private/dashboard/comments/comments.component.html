@@ -43,7 +43,7 @@
                                 </div>
                                 <input type="file" name="img_logo" class="dropzone" >
                             </div> -->
-                            <div contenteditable="true" class="comment-text" [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" (input)="commentText = $event.target.innerText">
+                            <div contenteditable="true" class="comment-text" id="commenttext" [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" (input)="commentText = $event.target.innerText">
                            </div>
                            <i class="fas fa-location-arrow comment-button" (click)="createCommets()"></i>
                            <!--  -->

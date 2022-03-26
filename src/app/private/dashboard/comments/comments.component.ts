@@ -10,7 +10,7 @@ import { WebService } from 'src/app/shared/services/web.service';
 })
 export class CommentsComponent implements OnInit {
   CommentsList:any=[];
-  commentText:any;
+  commentText:any ;
   replycomment:string=""
   constructor(public prodcastService:ProdcastService,public webService:WebService,public LocalStorage:LocalstorageService) { }
 
@@ -89,6 +89,7 @@ export class CommentsComponent implements OnInit {
         (data)=>{
           this.prodcastService.loader = false;
           this.commentText = "";
+          document.getElementById('commenttext').innerHTML="";
           this.getCommentList();
           // this.CommentsList=data.Response;
         }
