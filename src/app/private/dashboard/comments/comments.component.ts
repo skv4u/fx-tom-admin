@@ -18,6 +18,7 @@ export class CommentsComponent implements OnInit {
     this.getCommentList();
   }
   getCommentList(){
+    this.prodcastService.loader = true;
     let req={
       "podcast_id": this.prodcastService.selectedData.id,
       "user_id": this.LocalStorage.getUserData().id
@@ -25,6 +26,7 @@ export class CommentsComponent implements OnInit {
       this.webService.commonMethod('mobuser/podcast/commentreplylist',req,'POST').subscribe(
         (data)=>{
           console.log(data);
+          this.prodcastService.loader = false;
           this.CommentsList=data.Response;
           for(let a of this.CommentsList){
             a.replycomment = "";
@@ -54,6 +56,7 @@ export class CommentsComponent implements OnInit {
   }
 
   replyComment(i,id,comment){
+    this.prodcastService.loader=true;
     let req={
       "comment_id":id,
       "user_id":this.LocalStorage.getUserData().id,
@@ -62,9 +65,11 @@ export class CommentsComponent implements OnInit {
       this.webService.commonMethod('podcast/comment/reply',req,'POST').subscribe(
         (data)=>{
           console.log(data);
-          if(data.Status == 'Success' && data.Response){
+          this.prodcastService.loader=false;
+          if(data.Status == 'Success' && data.Response != ''){
             this.CommentsList[i].replycomment = "";
           this.CommentsList=data.Response;
+          this.getCommentList();
           }
         }
       )
@@ -83,8 +88,7 @@ export class CommentsComponent implements OnInit {
       this.webService.commonMethod('podcast/comment',req,'POST').subscribe(
         (data)=>{
           this.prodcastService.loader = false;
-          console.log(data);
-          this.commentText="";
+          this.commentText = "";
           this.getCommentList();
           // this.CommentsList=data.Response;
         }

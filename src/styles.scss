@@ -392,3 +392,17 @@
     padding: 8px;
     top: 128px
 }
+
+.like{
+  color: #000;
+  &.active{
+    color: #4b30de !important;
+  }
+}
+
+.heart{
+  color: #000;
+  &.active{
+    color: #ff0000 !important;
+  }
+}

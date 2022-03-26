@@ -73,8 +73,8 @@ export class ProdcastService {
         this.filterApplied=false;
         this.dashboardList = [];
         if (data.Response && data.Response.length) {
-          this.dashboardList = data.Response;
           this.dashboardList1= data.Response;
+          this.dashboardList = data.Response;
           this.getUserStatistics();
         }
       }
