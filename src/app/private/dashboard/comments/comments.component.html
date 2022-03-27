@@ -55,11 +55,7 @@
     <!-- </div> -->
     <!-- </div> -->
     <div class="row">
-      <!-- <h4>Comments</h4> -->
 
-      <!-- <form action="" method="POST" enctype="multipart/form-data"> -->
-
-      <div class="row">
         <div class="col-md-12" style="position: relative; text-align: center;">
           <a style="border-bottom: 1px solid;
           padding-bottom: 3px;
@@ -87,40 +83,102 @@
          
           </div>
 
-          <!--  -->
-        </div>
+      
       </div>
-      <!-- </div> -->
-
+  
       <!-- </form> -->
     </div>
-    <div class="row comment-box" *ngFor="let a of CommentsList;let i=index">
-      <!-- <div class="d-flex align-items-center"> -->
-      <p> <img style="height: 35px;width: 35px;border-radius: 20px;" *ngIf="a.commenter_image"
-          src="{{a.commenter_image}}" alt="images" /><img style="height: 35px;width: 35px;border-radius: 20px;"
-          *ngIf="!a.commenter_image" src="../assets/images/noimage.png" alt="images" /> &nbsp;&nbsp;<span
-          style="position: relative;top: 10px;"><strong>{{a.commenter_name}}</strong> {{a.comment_date_inago}}</span>
-      </p>
+    <div class="row">
 
-      <div class="speak-img">
-        <!-- <img style="height: 150px;width: 150px;" *ngIf="a.commenter_image" src="{{a.commenter_image}}" alt="images" /> -->
+    <ul  *ngFor="let a of CommentsList;let i=index">
+        <li class="comment-box">
+            <button class="delete-comment">
+                <i class="fas fa-trash-alt" title="delete comment" (click)="deleteCommets(a.comment_id)"></i>
+            </button>
+            <div> 
+                <img class="user-image" *ngIf="a.commenter_image" src="{{a.commenter_image}}" alt="images" />
+                <img class="user-image"
+                *ngIf="!a.commenter_image" src="../assets/images/nopicuser.png" alt="images" />
+                <span class="commenter-name"><strong>{{a.commenter_name}}</strong></span>
+                <span class="timeago"> {{a.comment_date_inago}}</span>
+                  <div class="cdescription" [innerHTML]="a.comment_description"></div>
+            </div>
+            <div class="ldh-button">
+                <button type="button"><i class="far fa-thumbs-up like" [class.active]="a.comment_you_liked != '0'" 
+                    (click)="LikeandHeart(a.comment_id,'like')"></i> 
+                   <span> {{a.likecount}} </span>
+                </button>
+                <button type="button"><i class="far fa-thumbs-down dislike" [class.active]="a.comment_you_disliked != '0'" (click)="LikeandHeart(a.comment_id,'dislike')"></i>
+                   <span> {{a.dislikecount}} </span>
+                </button>
+                <button type="button">
+                    <i class="far fa-heart heart" [class.active]="a.comment_you_hearted != '0'" 
+                    (click)="LikeandHeart(a.comment_id,'heart')"></i>
+                   <span> {{a.heartcount}} </span>
+                </button>
+              </div>
+
+              <!-- 
+                  Reply start from HERE...
+              -->
+
+              <h4><a *ngIf="a.replylist.length" style="color: #c45cd1;"> {{a.replylist.length}} Replies</a></h4>
+    
+              <ul *ngIf="a.replylist.length">
+                <li class="reply-box" *ngFor="let b of a.replylist">
+                    <button class="delete-comment">
+                        <i class="fas fa-trash-alt" title="delete comment" (click)="deleteCommets(b.reply_id)"></i>
+                    </button>
+                    <div> 
+                        <img class="user-image" *ngIf="a.replyer_image" src="{{b.replyer_image}}" alt="images" />
+                        <img class="user-image"
+                        *ngIf="!a.replyer_image" src="../assets/images/nopicuser.png" alt="images" />
+                        <span class="replyer-name"><strong>{{a.replyer_name}}</strong></span>
+                        <span class="timeago"> {{b.reply_date_inago}}</span>
+                          <div class="cdescription" [innerHTML]="b.replyer_description"></div>
+                    </div>
+                    <div class="ldh-button">
+                        <button type="button"><i class="far fa-thumbs-up like" [class.active]="b.reply_you_liked != '0'" (click)="LikeandHeart(b.reply_id,'like')"></i> 
+                           <span> {{b.likecount}} </span>
+                        </button>
+                        <button type="button"><i class="far fa-thumbs-down dislike" [class.active]="a.reply_you_disliked != '0'" (click)="LikeandHeart(b.reply_id,'dislike')"></i>
+                           <span> {{b.dislikecount}} </span>
+                        </button>
+                        <button type="button">
+                            <i class="far fa-heart heart" [class.active]="a.reply_you_hearted != '0'" 
+                            (click)="LikeandHeart(b.reply_id,'heart')"></i>
+                           <span> {{b.heartcount}} </span>
+                        </button>
+                      </div>
+                      </li>
+              </ul>
+
+              
+      
+         
+        </li>
+    </ul>
+    </div>
+    <!-- <div class="row comment-box" *ngFor="let a of CommentsList;let i=index">
+      <div> <img style="height: 35px;width: auto;" *ngIf="a.commenter_image"
+          src="{{a.commenter_image}}" alt="images" />
+          <img class="no-image"
+          *ngIf="!a.commenter_image" src="../assets/images/nopicuser.png" alt="images" />
+          <span style="position: relative;top: 10px; left: 4px;">
+            <strong>{{a.commenter_name}}</strong> 
+            {{a.comment_date_inago}}</span>
       </div>
-      <!-- <div class="delete-comment" *ngIf="a.commenter_image"><button style="position: relative;
-                top: -160px;
-                color: #ce0400;
-                right: -140px;border: none;background: none;"><i class="far fa-trash-alt"></i></button></div> -->
 
       <span> <i class="fas fa-trash-alt" title="delete comment" (click)="deleteCommets(a.comment_id)"
           style="position: absolute;"></i>
         <p style="    position: relative;left: 19px;" [innerHTML]="a.comment_description"></p>
       </span>
-      <!-- <div class="reply"> -->
-      <!-- <div class="col-md-1 col-12 mb-4 d-flex"> -->
+    
       <div class="col-md-1 col-12 mb-4">
         <p><i class="far fa-thumbs-up like" [class.active]="a.comment_you_liked != '0'" style="cursor: pointer;"
             (click)="LikeandHeart(a.comment_id,'like')"></i> {{a.likecount}}</p>
       </div>
-      <!-- <div class="col-md-1 col-12 mb-4 d-flex"> -->
+    
       <div class="col-md-1 col-12 mb-4">
         <p (click)="replyComment(a.comment_id)" style="cursor: pointer;"><i class="far fa-thumbs-down "
             (click)="LikeandHeart(a.comment_id,'dislike')"></i> {{a.dislikecount}}</p>
@@ -129,7 +187,7 @@
         <p><i class="far fa-heart heart" [class.active]="a.comment_you_hearted != '0'" style="cursor: pointer;"
             (click)="LikeandHeart(a.comment_id,'heart')"></i> {{a.heartcount}}</p>
       </div>
-      <!-- </div> -->
+    
       <div class="col-md-12 col-12 mb-12" style="position: relative;">
         <input type="text" [(ngModel)]="a.replycomment" style="border: 1px solid black;"
           (keyup.enter)="replyComment(a.comment_id,a.replycomment)">
@@ -144,8 +202,5 @@
           <p style="    position: relative;left: 19px;">{{b.replyer_description}}</p>
         </span>
       </div>
-      <br>
-    </div>
+    </div> -->
   </div>
-  <!-- </div> -->
-  <!-- </div> -->

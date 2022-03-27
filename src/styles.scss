@@ -367,8 +367,9 @@
 }
 
 .comment-img {
-  height: 46px;
-  width: auto;
+  height: 52px;
+  max-width: 52px;
+  border-radius: 50%;
 }
 
 .comment-text {
@@ -383,7 +384,7 @@
 }
 
 .padd {
-  padding: 0px 0 20px 0px!important;
+  padding: 0px 0 20px 0px !important;
 }
 
 
@@ -397,6 +398,7 @@
   padding-top: 5px;
   background: #ebeceb;
   margin-top: 5px;
+
   i {
     font-size: 26px;
     transform: rotate(45deg);
@@ -409,6 +411,13 @@
 
   &.active {
     color: #4b30de !important;
+  }
+}
+.dislike {
+  color: #000;
+
+  &.active {
+    color: #e6cb0d !important;
   }
 }
 
@@ -439,7 +448,7 @@
 }
 
 .podcast-commnet-data {
- 
+
   font-size: 12px;
   text-transform: capitalize;
 
@@ -453,6 +462,68 @@
 }
 
 .comment-box {
-  background: #f3f3f3;
   margin-top: 10px;
+  border: 1px solid #bbb;
+  padding: 10px;
+  border-radius: 20px;
+  position: relative;
+  .delete-comment{
+    position: absolute;
+    background: none;
+    border: none;
+    right: 0;
+    color: #ff6c6c;
+  }
+  .user-image {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+  }
+
+  .cdescription {
+    padding-left: 38px;
+    position: relative;
+    top: -7px;
+  }
+
+  .commenter-name {
+    position: relative;
+    left: 4px;
+
+  }
+
+  .timeago {
+    font-size: 11px;
+    position: relative;
+    top: 3px;
+    left: 10px;
+  }
+
+  .ldh-button {
+    padding-top: 15px;
+
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-right: 20px;
+    }
+
+    span {
+      position: relative;
+      top: -4px;
+      left: 3px
+    }
+  }
+}
+
+.reply-box {
+  margin-top: 10px;
+  border: 1px solid #bbb;
+  padding: 10px;
+  border-radius: 20px;
+  position: relative;
+  background: #fafafa;
+  left: 25px;
+  width: 96%;
 }
