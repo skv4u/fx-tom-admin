@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalstorageService } from 'src/app/shared/services/localstorage.service';
 import { ProdcastService } from 'src/app/shared/services/prodcast.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { WebService } from 'src/app/shared/services/web.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class CommentsComponent implements OnInit {
   replycomment: string = ""
   showplayer: boolean = false;
   postCommentVisible: boolean = false;
-  constructor(public prodcastService: ProdcastService, public webService: WebService, public LocalStorage: LocalstorageService) { }
+  constructor(public prodcastService: ProdcastService, public webService: WebService, public LocalStorage: LocalstorageService,public toast:ToastService) { }
 
   ngOnInit() {
     this.getCommentList();
@@ -65,6 +66,10 @@ export class CommentsComponent implements OnInit {
   }
 
   replyComment(i, id, comment) {
+    if(!comment.trim().length){
+      this.toast.error('Please add reply')
+      return;
+    }
     this.prodcastService.loader = true;
     let req = {
       "comment_id": id,
@@ -88,11 +93,14 @@ export class CommentsComponent implements OnInit {
   }
 
   createCommets() {
-    this.prodcastService.loader = true;
     // console.log("commentText", this.commentText);
     let elem: any = <HTMLMapElement>document.getElementById('commenttext');
     let commentHTML = elem.innerHTML;
-
+    if(!elem.innerText.trim().length){
+      this.toast.error('Please add comment')
+      return;
+    }
+    this.prodcastService.loader = true;
     let req = {
       "podcast_id": this.prodcastService.selectedData.id,
       "user_id": this.LocalStorage.getUserData().id,
@@ -157,7 +165,6 @@ export class CommentsComponent implements OnInit {
       "user_id": this.LocalStorage.getUserData().id,
       "type": type,
     }
-
     this.webService.commonMethod('mobuser/podcast/replyldh', req, 'POST').subscribe(
       (data) => {
         console.log(data);
