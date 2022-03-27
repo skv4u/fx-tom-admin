@@ -1,7 +1,7 @@
 <app-generic-header></app-generic-header>
 <div class="body-main">
   <div class="body-content">
-    <h3 class="padd"><a (click)="prodcastService.showComments = false;">
+    <h3 class="padd"><a (click)="prodcastService.showComments = false;prodcastService.getDashBoardList();">
         <i class="fas fa-angle-left"></i>
         Back to Dashboard
       </a>
@@ -62,7 +62,7 @@
           color: #0a58ca; cursor: pointer;" *ngIf="!postCommentVisible" (click)="postCommentVisible=true">
             Post your comment 
         </a>
-          <div *ngIf="postCommentVisible">
+          <div *ngIf="postCommentVisible" style="height: 165px;">
             <div style="
             text-align: left;           
             font-size: 12px;
@@ -75,7 +75,7 @@
                 right: 60px;
                 font-size: 12px;
                 top: 10px;
-                color: #3058d6;" (click)="postCommentVisible=false">Hide</span>
+                color: #3058d6;" class="pointer" (click)="postCommentVisible=false">Hide</span>
                 <span class="pointer" (click)="createCommets()">
                     <i class="fas fa-location-arrow "></i>
                   </span>
@@ -116,7 +116,24 @@
                     (click)="LikeandHeart(a.comment_id,'heart')"></i>
                    <span> {{a.heartcount}} </span>
                 </button>
+                <button type="button" *ngIf="!a.comment_input_visible" (click)="a.comment_input_visible = true">                   
+                     <a style="border-bottom: 1px solid;
+                    padding-bottom: 3px;
+                    color: #0a58ca; cursor: pointer;" > Add Reply</a> 
+                </button>
+                <br>
+                <div *ngIf="a.comment_input_visible" style="position: relative;top: 4px;">
+                    <div class="form-floating" style="width: 500px;display: inline-block;">
+                        <input type="text" class="form-control" id="Reply" placeholder="Reply to this Comment" [(ngModel)]="a.replycomment" (keyup.enter)="replyComment(i,a.comment_id,a.replycomment)">
+                        <label for="Reply">Reply to this Comment</label>
+                      </div>
+                <!-- <input type="text" class="form-control" id="fullname" placeholder="Reply" [(ngModel)]="a.replycomment" style="border: 1px solid black;"
+                (keyup.enter)="replyComment(a.comment_id,a.replycomment)"> -->
+              <button (click)="replyComment(i,a.comment_id,a.replycomment)"
+                class="reply-button">Reply</button>
+            </div>
               </div>
+
 
               <!-- 
                   Reply start from HERE...
@@ -127,7 +144,7 @@
               <ul *ngIf="a.replylist.length">
                 <li class="reply-box" *ngFor="let b of a.replylist">
                     <button class="delete-comment">
-                        <i class="fas fa-trash-alt" title="delete comment" (click)="deleteCommets(b.reply_id)"></i>
+                        <i class="fas fa-trash-alt" title="delete comment" (click)="deleteReply(b.reply_id)"></i>
                     </button>
                     <div> 
                         <img class="user-image" *ngIf="a.replyer_image" src="{{b.replyer_image}}" alt="images" />
@@ -138,15 +155,15 @@
                           <div class="cdescription" [innerHTML]="b.replyer_description"></div>
                     </div>
                     <div class="ldh-button">
-                        <button type="button"><i class="far fa-thumbs-up like" [class.active]="b.reply_you_liked != '0'" (click)="LikeandHeart(b.reply_id,'like')"></i> 
+                        <button type="button"><i class="far fa-thumbs-up like" [class.active]="b.reply_you_liked != '0'" (click)="replyldh(b.reply_id,'like')"></i> 
                            <span> {{b.likecount}} </span>
                         </button>
-                        <button type="button"><i class="far fa-thumbs-down dislike" [class.active]="a.reply_you_disliked != '0'" (click)="LikeandHeart(b.reply_id,'dislike')"></i>
+                        <button type="button"><i class="far fa-thumbs-down dislike" [class.active]="b.reply_you_disliked != '0'" (click)="replyldh(b.reply_id,'dislike')"></i>
                            <span> {{b.dislikecount}} </span>
                         </button>
                         <button type="button">
-                            <i class="far fa-heart heart" [class.active]="a.reply_you_hearted != '0'" 
-                            (click)="LikeandHeart(b.reply_id,'heart')"></i>
+                            <i class="far fa-heart heart" [class.active]="b.reply_you_hearted != '0'" 
+                            (click)="replyldh(b.reply_id,'heart')"></i>
                            <span> {{b.heartcount}} </span>
                         </button>
                       </div>

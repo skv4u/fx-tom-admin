@@ -149,4 +149,25 @@ export class CommentsComponent implements OnInit {
       }
     )
   }
+
+  replyldh(id, type) {
+    this.prodcastService.loader = true;
+    let req = {
+      "reply_id": id,
+      "user_id": this.LocalStorage.getUserData().id,
+      "type": type,
+    }
+
+    this.webService.commonMethod('mobuser/podcast/replyldh', req, 'POST').subscribe(
+      (data) => {
+        console.log(data);
+        this.prodcastService.loader = false;
+        if (data.Status == "Success" && data.Response)
+          this.getCommentList();
+      },
+      err => {
+        this.prodcastService.loader = false;
+      }
+    )
+  }
 }
