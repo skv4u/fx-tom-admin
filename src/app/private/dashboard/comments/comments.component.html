@@ -10,7 +10,8 @@
 
     <div class="row">
       <div class="col-md-4 col-12 mb-4">
-        <img class="comment-img" [src]="prodcastService.selectedData.imagepath" alt="img" />
+        <img class="comment-img" *ngIf="prodcastService.selectedData.imagepath" [src]="prodcastService.selectedData.imagepath" alt="img" />
+        <img class="comment-img" *ngIf="!prodcastService.selectedData.imagepath" src="../assets/images/nopicuser.png" alt="img" />
         <span *ngIf="showplayer">
           <audio controls preload="auto">
             <source [src]="prodcastService.selectedData.audiopath" type="audio/mpeg">
