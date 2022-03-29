@@ -12,6 +12,8 @@ export class ApprovalPopupComponent implements OnInit {
   notes: string = "";
   broadCastDate: string = "";
   broadCastTime: string = "";
+  hh:string = "";
+  mm:string = "";
   constructor(public prodcastService: ProdcastService, public webService: WebService, public toast: ToastService) { }
 
   ngOnInit() {

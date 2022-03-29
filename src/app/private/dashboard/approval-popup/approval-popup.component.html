@@ -152,9 +152,20 @@
                         <input type="date" class="form-control" id="floatingInput" placeholder="Date" [(ngModel)]="broadCastDate">
                         <label for="floatingInput">Date</label>
                       </div>   
-                      <div class="form-floating mb-4">
+                      <!-- <div class="form-floating mb-4">
                         <input type="time" class="form-control" id="floatingInput" placeholder="Time" [(ngModel)]="broadCastTime">
                         <label for="floatingInput">Time</label>
+                      </div>   -->
+
+                      <div class="mb-4">
+                        <div class="form-floating timehh" >
+                          <input type="text" class="form-control" id="floatingInput" placeholder="Hour" [(ngModel)]="hh">
+                          <label for="floatingInput">Hour</label>
+                        </div>
+                        <div class="form-floating timehh" >
+                          <input type="text" class="form-control" id="floatingInput" placeholder="Minute" [(ngModel)]="mm">
+                          <label for="floatingInput">Minute</label>
+                        </div>  
                       </div>  
                       
                       
