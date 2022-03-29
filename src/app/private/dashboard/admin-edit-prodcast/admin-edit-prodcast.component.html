@@ -43,12 +43,20 @@
                </select>
                <label for="floatingInput" style="left: 18px;">Language</label>
               </div>
+          
               <div class="col-md-9 mb-4 form-floating">
                 <select class="form-control" placeholder="Category" [(ngModel)]="EditData.category" multiple style="height: 100% !important;background: none;">
                   <option *ngFor="let a of prodcastservice.CategoryList" [value]="a.name">{{a.name}}</option>
                 </select>
                 <label for="floatingInput" style="left: 18px;">Category</label>
                 <span style="font-size: 10px;">Use Ctrl or Shift key for multiple selection</span>
+               </div>
+               <div class="col-md-9 mb-4 form-floating">
+                <select class="form-control" placeholder="Show" [(ngModel)]="EditData.shows_id" >
+                  <option value="-1">None - Individual Podcast</option>
+                  <option *ngFor="let a of ShowList" [value]="a.shows_id">{{a.name}}</option>
+                </select>
+                <label for="floatingInput" style="left: 18px;">Shows</label>
                </div>
                <div class="col-md-3 mb-4 d-flex align-items-center" >
                  <p class="pe-3 mb-0">Age Restriction</p>
@@ -144,12 +152,7 @@
               <span class="drop-zone__prompt"><p>Upload <br/> Podcast picture <br/>Or<br/> Topic picture</p>                </span>
               <input type="file" name="myFile" class="drop-zone__input" style="display: block;"  (change)="uploadFile($event.target.files)">
             </div>
-
-            <!-- <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
-              <img [src]="EditData.imagepath" [alt]="EditData.imagepath">
-            </div> -->
             <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
-
               <img [src]="EditData.imagepath" [alt]="EditData.imagepath">
               <button (click)="removeFile()" style="right: -11px;
               cursor: pointer;
@@ -159,6 +162,7 @@
               border: none;
               color: #f00;"><i class="fas fa-trash-alt"></i></button>
           </div>
+
           </div>
         </div>
         <div class="row">
@@ -232,6 +236,10 @@
             <div class="col-12 mb-4">
               <p class="m-0">Category</p>
               <h4>{{EditData.category}}</h4>
+            </div>
+            <div class="col-12 mb-4">
+              <p class="m-0">Show</p>
+              <h4>{{EditData.shows_name}}</h4>
             </div>
             <div class="col-12 mb-4">
               <p class="m-0">Discription</p>

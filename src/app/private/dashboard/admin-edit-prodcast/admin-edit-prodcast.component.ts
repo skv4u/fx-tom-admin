@@ -19,6 +19,7 @@ export class AdminEditProdcastComponent implements OnInit {
   CategoryList: any = [];
   LanguageList: any = [];
   noteList: any = [];
+  ShowList: any = [];
   constructor(public webservice: WebService, public prodcastservice: ProdcastService,public LocalStorage:LocalstorageService,public toast:ToastService,public router:Router) { }
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class AdminEditProdcastComponent implements OnInit {
     this.EditData.category = this.EditData.category.split(",");
     this.EditData.age_restriction = this.EditData.age_restriction == 1 ? true : false;
     this.getProdNoteList();
+    this.getShowList();
   }
   getProdNoteList() {
     this.prodcastservice.loader=true;
@@ -125,6 +127,13 @@ export class AdminEditProdcastComponent implements OnInit {
 
 
   }
+  // getnamebyid(id){
+  //   for(let a of this.ShowList){
+  //     if(a.shows_id == id){
+  //       return a.show
+  //     }
+  //   }
+  // }
 
   updateProdCast() {
     this.EditData.category = this.EditData.category.join(",");
@@ -148,6 +157,7 @@ export class AdminEditProdcastComponent implements OnInit {
       "created_by": this.LocalStorage.getUserData().username,
       "usertype": "Admin",
       "note_description": this.EditData.Notestocommunicate,
+      "shows_id":this.EditData.shows_id
       // "audio_path": this.EditData.audiopath
 
     }
@@ -202,4 +212,11 @@ backtodashboard(){
   enableagerestriction(){
     this.EditData.age_restriction = this.EditData.age_restriction == true ? false : true;
   }
+  getShowList() {
+    this.webservice.commonMethod('/user/shows/'+this.EditData.user_id, '', 'GET').subscribe(
+      (data) => {
+        this.ShowList = data.Response;
+      })
+  }
+
 }

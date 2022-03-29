@@ -291,6 +291,6 @@
 </div>
 
 <app-comments *ngIf="prodcastService.showComments" ></app-comments>
-  <app-admin-edit-prodcast *ngIf="showhidecnd.showEdit"  (back)="showhidecnd.showEdit=false"></app-admin-edit-prodcast>
+  <app-admin-edit-prodcast *ngIf="showhidecnd.showEdit"  (back)="showhidecnd.showEdit=false;prodcastService.getDashBoardList();"></app-admin-edit-prodcast>
 
   <app-approval-popup *ngIf="prodcastService.showPopUp.approval || prodcastService.showPopUp.rejected || prodcastService.showPopUp.broadcast|| prodcastService.showPopUp.modify || prodcastService.showPopUp.delete"></app-approval-popup>

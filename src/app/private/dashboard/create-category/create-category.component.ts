@@ -1,3 +1,4 @@
+import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalstorageService } from 'src/app/shared/services/localstorage.service';
@@ -23,6 +24,14 @@ export class CreateCategoryComponent implements OnInit {
   ngOnInit() {
   }
   createCategory(){
+    if(this.NewCatName == ''){
+      this.toast.error('Please add category name');
+      return;
+    }
+    if(this.NewCatImage == ''){
+      this.toast.error('Please select image');
+      return;
+    }
     this.prodCastService.loader=true;
     let req={
       "name": this.NewCatName,
@@ -65,5 +74,30 @@ export class CreateCategoryComponent implements OnInit {
         this.toast.error("Oops, Something went wrong");
       }
     )
+  }
+
+  uploadFile(element) {
+    this.prodCastService.loader=true;
+    const file = element[0];
+    if (file == undefined) return;
+    // console.log(file, "element");
+    let formData = new FormData();
+    formData.append('filename', file, file.name);
+    this.webservice.UploadDocument("s3bucket/upload", formData).
+      subscribe((data: any) => {
+        if (data.type === HttpEventType.Response) {
+        this.NewCatImage = data.body.Response;
+        this.prodCastService.loader = false;
+        this.prodCastService.loaderMessage = "Uploading...";
+        }
+        if (data.type === HttpEventType.UploadProgress) {
+          const percentDone = Math.round(100 * data.loaded / data.total);
+          this.prodCastService.loaderMessage = " Uploading :  " + percentDone + "%";
+        }
+      }, err => {
+        this.prodCastService.loader = false;
+        this.NewCatImage = "";
+        this.prodCastService.loaderMessage = "Uploading...";
+      });
   }
 }

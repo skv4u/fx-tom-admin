@@ -94,7 +94,7 @@
     <ul  *ngFor="let a of CommentsList;let i=index">
         <li class="comment-box">
             <button class="delete-comment">
-                <i class="fas fa-trash-alt" title="delete comment" (click)="deleteCommets(a.comment_id)"></i>
+                <i class="fas fa-trash-alt" title="delete comment" (click)="popupdetails.PopupType = 'comment';popupdetails.Id = a.comment_id;showConfirmPopup=true;"></i>
             </button>
             <div> 
                 <img class="user-image" *ngIf="a.commenter_image" src="{{a.commenter_image}}" alt="images" />
@@ -145,7 +145,7 @@
               <ul *ngIf="a.replylist.length">
                 <li class="reply-box" *ngFor="let b of a.replylist">
                     <button class="delete-comment">
-                        <i class="fas fa-trash-alt" title="delete comment" (click)="deleteReply(b.reply_id)"></i>
+                        <i class="fas fa-trash-alt" title="delete comment" (click)="popupdetails.PopupType = 'reply';popupdetails.Id = b.reply_id;showConfirmPopup=true;"></i>
                     </button>
                     <div> 
                         <img class="user-image" *ngIf="a.replyer_image" src="{{b.replyer_image}}" alt="images" />
@@ -221,4 +221,21 @@
         </span>
       </div>
     </div> -->
+  </div>
+  <div *ngIf="showConfirmPopup">
+    <!--------------------------->
+  <!--Delete The Modal -->
+  <div class="background-grey"></div>
+  <div class="popup-box" style="height: 130px;text-align: center;">
+    <div>
+       <h4 class="mb-0"> Please Confirm on Delete ?</h4>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
+     </div>
+  
+     <!-- Modal body href="dashboard.html" 366,367-->
+       <div class="modal-body">
+      <a ><button class="custome-button mx-2" (click)="deletePopupAction()">Confirm</button></a>
+      <a ><button class="custome-outline mx-2"  (click)="showConfirmPopup = false">Cancel</button></a>
+     </div>
+   </div>
   </div>

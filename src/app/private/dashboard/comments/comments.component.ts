@@ -15,6 +15,11 @@ export class CommentsComponent implements OnInit {
   replycomment: string = ""
   showplayer: boolean = false;
   postCommentVisible: boolean = false;
+  showConfirmPopup:boolean=false;
+  popupdetails:any={
+    "PopupType":"",
+    "Id":0
+  }
   constructor(public prodcastService: ProdcastService, public webService: WebService, public LocalStorage: LocalstorageService,public toast:ToastService) { }
 
   ngOnInit() {
@@ -176,5 +181,14 @@ export class CommentsComponent implements OnInit {
         this.prodcastService.loader = false;
       }
     )
+  }
+  deletePopupAction(){
+    this.showConfirmPopup=false;
+    if(this.popupdetails.PopupType == 'comment'){
+      this.deleteCommets(this.popupdetails.Id)
+    }
+    else{
+      this.deleteReply(this.popupdetails.Id)
+    }
   }
 }

@@ -7,7 +7,6 @@ export class ProdcastService {
   editlist: any = {}
   CategoryList: any = [];
   WebCategoryList: any = [];
-  
   LanguageList:any = [];
   IsView:boolean=false;
   loginUserName: string = "";
@@ -59,6 +58,7 @@ export class ProdcastService {
         this.WebCategoryList = data.Response;
       })
   }
+
   getLanguageList() {
     this.webservice.commonMethod('language', '', 'GET').subscribe(
       (data) => {

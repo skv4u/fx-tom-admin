@@ -23,7 +23,7 @@ import { EditLanguageComponent } from './private/dashboard/edit-language/edit-la
 import { PageLoaderComponent } from './private/page-loader/page-loader.component';
 import { ApprovalPopupComponent } from './private/dashboard/approval-popup/approval-popup.component';
 import { DeletePodcastListComponent } from './private/dashboard/delete-podcast-list/delete-podcast-list.component';
-import { CommentsComponent } from './private/dashboard/comments/comments.component'
+import { CommentsComponent } from './private/dashboard/comments/comments.component';
 @NgModule({
   declarations: [
     AppComponent,
