@@ -413,6 +413,7 @@
     color: #4b30de !important;
   }
 }
+
 .dislike {
   color: #000;
 
@@ -467,13 +468,15 @@
   padding: 10px;
   border-radius: 20px;
   position: relative;
-  .delete-comment{
+
+  .delete-comment {
     position: absolute;
     background: none;
     border: none;
     right: 0;
     color: #ff6c6c;
   }
+
   .user-image {
     height: 35px;
     width: 35px;
@@ -508,21 +511,22 @@
       padding: 0;
       margin-right: 20px;
     }
-    
+
     span {
       position: relative;
       top: -4px;
       left: 3px
     }
-    
+
   }
-  .reply-button{
+
+  .reply-button {
     position: absolute;
     margin-left: 11px;
     background: #d8d8d8 !important;
     padding: 10px 20px !important;
   }
-  
+
 }
 
 .reply-box {
@@ -536,8 +540,35 @@
   width: 96%;
 }
 
-.timehh{
+.timehh {
   width: 70px;
   display: inline-block;
   margin-right: 4px;
+  input{
+    text-align: center;
+  }
+}
+
+.hrmin {
+  font-size: 40px;
+  width: 38px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  top: -13px;
+  
+}
+.plus{
+  position: absolute;
+  right: 0;
+  top: 45px;
+  font-size: 17px;
+  cursor: pointer;
+}
+.minus{
+  position: absolute;
+  left: 0;
+  top: 45px;
+  font-size: 17px;
+  cursor: pointer;
 }

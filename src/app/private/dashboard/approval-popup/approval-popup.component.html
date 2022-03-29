@@ -159,13 +159,17 @@
 
                       <div class="mb-4">
                         <div class="form-floating timehh" >
-                          <input type="text" class="form-control" id="floatingInput" placeholder="Hour" [(ngModel)]="hh">
+                          <input type="text" class="form-control" id="floatingInput" placeholder="Hour" [(ngModel)]="hh" (keydown)="keyUpdownHH($event)">
                           <label for="floatingInput">Hour</label>
+                          <span class="minus" (click)="updateHHMM('HH','-')"><i class="fas fa-minus-circle"></i></span>
+                          <span class="plus" (click)="updateHHMM('HH','+')"><i class="fas fa-plus-circle"></i></span>
                         </div>
-                        <span style="font-size: 26px;">: </span>
+                        <span class="hrmin">:</span>
                         <div class="form-floating timehh" >
-                          <input type="text" class="form-control" id="floatingInput" placeholder="Minute" [(ngModel)]="mm">
+                          <input type="text" class="form-control" id="floatingInput" placeholder="Minute" [(ngModel)]="mm" (keydown)="keyUpdownMM($event)">
                           <label for="floatingInput">Minute</label>
+                          <span class="minus" (click)="updateHHMM('MM','-')"><i class="fas fa-minus-circle"></i></span>
+                          <span class="plus" (click)="updateHHMM('MM','+')"><i class="fas fa-plus-circle"></i></span>
                         </div>  
                       </div>  
                       
