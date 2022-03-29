@@ -12,8 +12,8 @@ export class ApprovalPopupComponent implements OnInit {
   notes: string = "";
   broadCastDate: string = "";
   broadCastTime: string = "";
-  hh:string = "";
-  mm:string = "";
+  hh:string = "00";
+  mm:string = "00";
   constructor(public prodcastService: ProdcastService, public webService: WebService, public toast: ToastService) { }
 
   ngOnInit() {
@@ -22,6 +22,9 @@ export class ApprovalPopupComponent implements OnInit {
         let part=this.prodcastService.selectedData.broadcast_date_actual.split(' ');
         this.broadCastDate=part[0];
         this.broadCastTime=part[1];
+        let timepart = this.broadCastTime.split(':')
+        this.hh=timepart[0];
+        this.mm=timepart[1];
       }
       catch(er){
         console.log("date issue")
