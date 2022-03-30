@@ -103,6 +103,9 @@
                 <span class="commenter-name"><strong>{{a.commenter_name}}</strong></span>
                 <span class="timeago"> {{a.comment_date_inago}}</span>
                   <div class="cdescription" [innerHTML]="a.comment_description"></div>
+                  <a [href]="a.filepath" target="_blank" *ngIf="a.filepath"><i class="fas fa-paperclip" style="
+                    margin-top: 3px;
+                "></i> Preview</a>
             </div>
             <div class="ldh-button">
                 <button type="button"><i class="far fa-thumbs-up like" [class.active]="a.comment_you_liked != '0'" 
