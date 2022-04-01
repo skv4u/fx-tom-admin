@@ -12,45 +12,58 @@ import { WebService } from 'src/app/shared/services/web.service';
   styleUrls: ['./user-spots.component.scss']
 })
 export class UserSpotsComponent implements OnInit {
-  NewSpotImage: any;
-  NewSpotName: string;
+  // NewSpotImage: any;
+  // NewSpotName: string;
   apiCalled: boolean = false;
   showPodCast: boolean = true;
   podCastList: any = [];
   showConfirmPopup: boolean = false;
-  selectedpodcast: any;
-  Id: any;
+  // selectedpodcast: any;
+  // Id: any;
+
+  addSpot = {
+    "title":"",
+    "link_type": "web",
+    "link_value": "",
+    "image":"",
+    "sequence":"1"
+    }
+  
   constructor(public router: Router, public toast: ToastService, public prodCastService: ProdcastService, public localStorage: LocalstorageService, public webservice
     : WebService) { }
 
 
   ngOnInit() {
-    this.podCastList = this.prodCastService.dashboardList;
-    if (this.podCastList.length)
-      this.selectedpodcast = this.podCastList[0].id;
+    // this.podCastList = this.prodCastService.dashboardList;
+    // if (this.podCastList.length)
+    // addSpot = this.podCastList[0].id;
+    this.getLivepodcastList();
   }
   CreateSpot() {
-    if (this.NewSpotName == '') {
+    if (!this.addSpot.title.trim().length) {
       this.toast.error('Please add Spot name');
       return;
     }
-    if (this.NewSpotImage == '') {
+
+    if (!this.addSpot.image.trim().length) {
       this.toast.error('Please select image');
       return;
     }
     this.prodCastService.loader = true;
-    let req = {
-      "title": this.NewSpotName,
-      "link_type": "web",
-      "link_value": this.selectedpodcast,
-      "image": this.NewSpotImage,
-      "sequence": "3"
-    }
-    this.webservice.commonMethod('/user/addspot', req, 'POST').subscribe(
+   
+    this.webservice.commonMethod('/user/addspot', this.addSpot, 'POST').subscribe(
       (data) => {
         this.toast.success("Add Spot created successfully")
-        this.NewSpotName = "";
-        this.NewSpotImage = "";
+        // this.NewSpotName = "";
+        // this.NewSpotImage = "";
+        this.addSpot = {
+          "title":"",
+          "link_type": "web",
+          "link_value": "",
+          "image":"",
+          "sequence":"1"
+          };
+
         this.prodCastService.loader = false;
         this.prodCastService.getSpotList();
       },
@@ -97,7 +110,7 @@ export class UserSpotsComponent implements OnInit {
     this.webservice.UploadDocument("s3bucket/upload", formData).
       subscribe((data: any) => {
         if (data.type === HttpEventType.Response) {
-          this.NewSpotImage = data.body.Response;
+          this.addSpot.image = data.body.Response;
           this.prodCastService.loader = false;
           this.prodCastService.loaderMessage = "Uploading...";
         }
@@ -107,7 +120,7 @@ export class UserSpotsComponent implements OnInit {
         }
       }, err => {
         this.prodCastService.loader = false;
-        this.NewSpotImage = "";
+        this.addSpot.image = "";
         this.prodCastService.loaderMessage = "Uploading...";
       });
   }
@@ -117,8 +130,13 @@ export class UserSpotsComponent implements OnInit {
       (data) => {
         this.prodCastService.loader = false;
         this.podCastList = data.Response;
-        if (this.podCastList.length)
-          this.selectedpodcast = this.podCastList[0].podcast_id;
+        // if (this.podCastList.length)
+        //   this.addSpot.link_value = this.podCastList[0].podcast_id;
       })
+  }
+  LinkTypeChage(){
+    if(this.addSpot.link_type == 'podcast'){
+      this.addSpot.link_value = this.podCastList[0].podcast_id
+    }
   }
 }

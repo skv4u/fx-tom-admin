@@ -571,3 +571,18 @@
   font-size: 17px;
   cursor: pointer;
 }
+
+.c-list li.addspot {
+  position: relative;
+  padding: 0px 20px 21px 20px;
+  border: 1px solid #ddd;
+  margin: 20px 20px 0px 20px;
+  width: 260px;
+  overflow: hidden;
+  .link{
+    position: absolute;
+    bottom: 3px;
+    left: 50px;
+    font-size: 10px;
+  }
+}
