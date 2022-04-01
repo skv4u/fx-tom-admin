@@ -18,8 +18,8 @@ export class UserSpotsComponent implements OnInit {
   showPodCast: boolean = true;
   podCastList: any = [];
   showConfirmPopup: boolean = false;
+  Id: any;
   // selectedpodcast: any;
-  // Id: any;
 
   addSpot = {
     "title":"",
