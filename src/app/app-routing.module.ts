@@ -7,6 +7,7 @@ import { DashboardComponent } from './private/dashboard/dashboard.component';
 import { DeletePodcastListComponent } from './private/dashboard/delete-podcast-list/delete-podcast-list.component';
 import { EditLanguageComponent } from './private/dashboard/edit-language/edit-language.component';
 import { RjApprovalComponent } from './private/dashboard/rj-approval/rj-approval.component';
+import { UserSpotsComponent } from './private/dashboard/user-spots/user-spots.component';
 import { LoginComponent } from './public/login/login.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent },
   {path: 'admineditprodcast', component: AdminEditProdcastComponent },
   {path: 'create-category', component: CreateCategoryComponent },
+  {path: 'user-spot', component: UserSpotsComponent },
   {path: 'create-language', component: EditLanguageComponent },
   {path: 'rj-approvals', component: RjApprovalComponent },
   {path: 'podcast-delete', component: DeletePodcastListComponent },

@@ -38,6 +38,7 @@ export class ProdcastService {
   RJStatistics:any;
   filterApplied:boolean=false;
   showComments:boolean=false;
+  spotlist:any=[];
   constructor(public webservice: WebService, public localStorage: LocalstorageService) {
     if(this.localStorage.getUserData()){
       this.loginUserName = this.localStorage.getUserData().fullname;
@@ -45,6 +46,7 @@ export class ProdcastService {
     this.getCategoryList();
     this.getLanguageList();
     this.getWebCategoryList();
+    this.getSpotList();
   }
   getCategoryList() {
     this.webservice.commonMethod('category', '', 'GET').subscribe(
@@ -58,6 +60,13 @@ export class ProdcastService {
         this.WebCategoryList = data.Response;
       })
   }
+  
+  getSpotList() {
+    this.webservice.commonMethod('user/addspot', '', 'GET').subscribe(
+      (data) => {
+        this.spotlist = data.Response;
+      })
+  } 
 
   getLanguageList() {
     this.webservice.commonMethod('language', '', 'GET').subscribe(

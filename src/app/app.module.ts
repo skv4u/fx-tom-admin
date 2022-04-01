@@ -24,6 +24,7 @@ import { PageLoaderComponent } from './private/page-loader/page-loader.component
 import { ApprovalPopupComponent } from './private/dashboard/approval-popup/approval-popup.component';
 import { DeletePodcastListComponent } from './private/dashboard/delete-podcast-list/delete-podcast-list.component';
 import { CommentsComponent } from './private/dashboard/comments/comments.component';
+import { UserSpotsComponent } from './private/dashboard/user-spots/user-spots.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { CommentsComponent } from './private/dashboard/comments/comments.compone
     PageLoaderComponent,
     ApprovalPopupComponent,
     DeletePodcastListComponent,
-    CommentsComponent
+    CommentsComponent,
+    UserSpotsComponent
   ],
   imports: [
     BrowserModule,
