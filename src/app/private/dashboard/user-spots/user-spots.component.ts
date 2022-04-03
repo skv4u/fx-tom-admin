@@ -19,7 +19,7 @@ export class UserSpotsComponent implements OnInit {
   podCastList: any = [];
   showConfirmPopup: boolean = false;
   // selectedpodcast: any;
-  // Id: any;
+  Id: any;
 
   addSpot = {
     "title":"",
@@ -73,7 +73,7 @@ export class UserSpotsComponent implements OnInit {
       }
     )
   }
-  deleteSpot(id) {
+  deleteSpot() {
     this.prodCastService.loader = true;
     let req = {
       "addspot_id": this.Id
