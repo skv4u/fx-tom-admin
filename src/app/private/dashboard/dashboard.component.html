@@ -119,7 +119,7 @@
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/podcast-delete')"><i class="fas fa-trash-alt"></i> Podcast Delete List</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')"><i class="fas fa-edit"></i> Edit Category</a></li>
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-language')"><i class="fas fa-file-edit"></i> Edit Language</a></li>
-              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/user-spot')"><i class="fas fa-file-edit"></i> Adds Spot</a></li>
+              <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/user-spot')"><i class="fas fa-film"></i> Adds Spot</a></li>
               
               <!-- <li><a class="dropdown-item" href="#">Manage Ads</a></li> -->
               <li><a class="dropdown-item"  (click)="showhidecnd.showSettings = false;logOut()"><i class="fas fa-sign-out"></i> Log out</a></li>             
@@ -185,7 +185,7 @@
                   
                     <li class="approved"><a class="dropdown-item" (click)="searchList('Approved');showStatusDropDown = false">Approved</a></li>
                     <li class="live"><a class="dropdown-item" (click)="searchList('Broadcast');showStatusDropDown = false">Broadcast</a></li>
-                   
+                    <li class="live"><a class="dropdown-item" (click)="searchList('Live');showStatusDropDown = false">Live</a></li>
                   </ul>
                 </th>
                 <th  width="240"  *ngIf="showhidemenu.BroadcastDate">Broadcast Date</th>

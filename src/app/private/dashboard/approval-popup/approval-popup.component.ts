@@ -1,4 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { CommonService } from 'src/app/shared/services/common.service';
 import { ProdcastService } from 'src/app/shared/services/prodcast.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { WebService } from 'src/app/shared/services/web.service';
@@ -14,12 +15,16 @@ export class ApprovalPopupComponent implements OnInit {
   broadCastTime: string = "";
   hh: string = "00";
   mm: string = "00";
-  constructor(public prodcastService: ProdcastService, public webService: WebService, public toast: ToastService) { }
+  constructor(public prodcastService: ProdcastService, public webService: WebService, public toast: ToastService,public commonService:CommonService) { }
 
   ngOnInit() {
+    let datesplit=this.prodcastService.selectedData.broadcast_date_actual;
     if (this.prodcastService.showPopUp.broadcast) {
       try {
-        let part = this.prodcastService.selectedData.broadcast_date_actual.split(' ');
+        if(!this.prodcastService.selectedData.broadcast_date_actual){
+          datesplit = this.commonService.formatDate(new Date(),'yy-mm-dd','-',true);
+        }
+        let part = datesplit.split(' ');
         this.broadCastDate = part[0];
         this.broadCastTime = part[1];
         let timepart = this.broadCastTime.split(':')
