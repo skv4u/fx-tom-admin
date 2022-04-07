@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
     "Thumbnails":true,
     "Title":true,
     "Category":true,
-    "UploadDate":true,
+    "UploadDate":false,
     "Comments":true,
     "Approvals":true,
     "BroadcastDate":true,

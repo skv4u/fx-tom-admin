@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ProdcastService } from 'src/app/shared/services/prodcast.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { WebService } from 'src/app/shared/services/web.service';
@@ -39,7 +39,7 @@ export class RjApprovalComponent implements OnInit {
   showConfirmPopup:boolean=false;
   status:string="";
   statusList:any=["Approved","Rejected","Blocked"]
-  constructor(public prodcastService:ProdcastService,public webService:WebService,public toast:ToastService, public fb: FormBuilder,public _localStorage:LocalstorageService,public _commonService:CommonService) { }
+  constructor(public prodcastService:ProdcastService,public webService:WebService,public toast:ToastService, public fb: FormBuilder,public _localStorage:LocalstorageService,public _commonService:CommonService,public render:Renderer2) { }
 
   ngOnInit() {
     this.getRjApprovalsList();
@@ -329,5 +329,21 @@ export class RjApprovalComponent implements OnInit {
       }
     }
     return id
+  }
+
+  private cancelClick: Function;
+  handleClick($event: any) {
+    console.log("unbind")
+    let target = $event.target.classList.contains('outsideclick') ||
+                    $event.target.parentNode.classList.contains('outsideclick')
+      if (target || target == null) return;
+    this.showStatus=false;
+    this.RJList[this.currentIndex].ShowStatus = false;
+    this.cancelClick();    
+  }
+  bindSingleClickEvent(){
+    if(this.cancelClick) this.cancelClick();
+    this.cancelClick = this.render.listen('document', 'click',
+    ($event: any) => this.handleClick($event));
   }
 }

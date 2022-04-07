@@ -35,7 +35,12 @@ export class ProdcastService {
   dashboardList1:any=[];
   NotificationList:any=[];
   SelectedRJforApprove:string="";
-  RJStatistics:any;
+  RJStatistics:any={
+    "PendingRJTotal":"",
+    "RejectedRJTotal": "",
+    "ApprovedRJTotal": "",
+    "BlockedRJTotal": "",
+  };
   filterApplied:boolean=false;
   showComments:boolean=false;
   spotlist:any=[];

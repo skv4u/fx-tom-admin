@@ -47,11 +47,11 @@
                     <th>RJ Name</th>
                     <th>
 
-                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false" (click)="showStatus = !showStatus">
+                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
+                        aria-expanded="false" (click)="showStatus = !showStatus;bindSingleClickEvent()">
                         <strong>Status</strong>
                       </button>
-                      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" [ngStyle]="{'display' : showStatus ? 'block':'none'}"
+                      <ul class="dropdown-menu " aria-labelledby="btnGroupDrop2" [ngStyle]="{'display' : showStatus ? 'block':'none'}"
                         >
                         <li class="pending" (click)="searchList('');showStatus = false"><a class="dropdown-item">All</a></li>
                         <!-- <li class="pending"><a class="dropdown-item"
@@ -83,8 +83,8 @@
                     <td style="position: relative;">
 
 
-                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approval_status.toLowerCase()}}" data-bs-toggle="dropdown"
-                        aria-expanded="false" (click)="a.ShowStatus = ! a.ShowStatus">
+                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle outsideclick {{a.approval_status.toLowerCase()}}" data-bs-toggle="dropdown"
+                        aria-expanded="false" (click)="a.ShowStatus = ! a.ShowStatus;currentIndex = i;bindSingleClickEvent()">
                         {{a.approval_status}}
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" *ngIf="a.ShowStatus"

@@ -631,7 +631,7 @@ textarea.form-control {
 .settings-main .s-box a {
   color: var(--light-gray);
 }
-
+/* 
 .settings-main .s-box sup {
   background: var(--red-color);
   color: var(--white-color);
@@ -640,6 +640,20 @@ textarea.form-control {
   border-radius: 50%;
   top: 0px;
   right: 9px;
+} */
+
+.settings-main .s-box sup {
+  background: var(--red-color);
+  color: var(--white-color);
+  font-size: var(--clamp14);
+  padding: 10px 0;
+  border-radius: 50% 50% 50% 3%;
+  top: -16px;
+  right: 2px;
+  height: 22px;
+  width: 22px;
+  display: inline-block;
+  text-align: center;
 }
 
 .settings-main .s-box.online {
