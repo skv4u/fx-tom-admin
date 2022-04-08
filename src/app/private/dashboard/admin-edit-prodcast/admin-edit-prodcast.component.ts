@@ -136,7 +136,6 @@ export class AdminEditProdcastComponent implements OnInit {
   // }
 
   updateProdCast() {
-    this.EditData.category = this.EditData.category.join(",");
     if(this.EditData.Notestocommunicate == ''){
       this.toast.error('Please add Notes');
       return;
@@ -149,7 +148,12 @@ export class AdminEditProdcastComponent implements OnInit {
       this.toast.error('Please upload image');
       return;
     }
+    if(this.EditData.category == ''){
+      this.toast.error('Please select category');
+      return;
+    }
     this.prodcastservice.loader=true;
+    this.EditData.category = this.EditData.category.join(",");
     let req = {
       "id": this.EditData.id,
       "user_id": this.EditData.user_id,
