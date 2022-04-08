@@ -27,6 +27,7 @@ export class AdminEditProdcastComponent implements OnInit {
     if(!Array.isArray(this.EditData.category))
     this.EditData.category = this.EditData.category.split(",");
     this.EditData.age_restriction = this.EditData.age_restriction == 1 ? true : false;
+    this.EditData.Notestocommunicate = "";
     this.getProdNoteList();
     this.getShowList();
   }
@@ -136,7 +137,7 @@ export class AdminEditProdcastComponent implements OnInit {
   // }
 
   updateProdCast() {
-    if(this.EditData.Notestocommunicate == ''){
+    if(!this.EditData.Notestocommunicate.trim().length){
       this.toast.error('Please add Notes');
       return;
     }
