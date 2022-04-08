@@ -75,7 +75,7 @@ export class ApprovalPopupComponent implements OnInit {
     {
       "podcast_id": this.prodcastService.selectedData.id,
       "created_by": this.prodcastService.loginUserName,
-      "broadcast_date": this.broadCastDate + ' ' + this.broadCastTime,
+      "broadcast_date": this.broadCastDate + ' ' + this.hh +':' + this.mm,
       "podcast_name": this.prodcastService.selectedData.name
     }
     this.webService.commonMethod('podcast/broadcast/admin', req, 'PUT').subscribe(

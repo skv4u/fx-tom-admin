@@ -141,6 +141,14 @@ export class AdminEditProdcastComponent implements OnInit {
       this.toast.error('Please add Notes');
       return;
     }
+    if(this.EditData.audiopath == ''){
+      this.toast.error('Please upload audio');
+      return;
+    }
+    if(this.EditData.imagepath == ''){
+      this.toast.error('Please upload image');
+      return;
+    }
     this.prodcastservice.loader=true;
     let req = {
       "id": this.EditData.id,

@@ -28,12 +28,12 @@
       <div class="col-md-4 settings-main" >
         <div class="s_inner">
           <div class="s-box">
-            <a [class.active]="prodcastService.filterApplied" (click)="prodcastService.getDashBoardList();prodcastService.filterApplied=false;this.serachvalue='';">
+            <a [class.active]="prodcastService.filterApplied" title="Refresh" (click)="prodcastService.getDashBoardList();prodcastService.filterApplied=false;this.serachvalue='';">
                 <i class="fas fa-sync"></i>
             </a>
         </div>
           <div class="s-box outsideclick">
-            <a id="btnGroupDrop4" class="outsideclick" data-bs-toggle="dropdown"
+            <a id="btnGroupDrop4" class="outsideclick" data-bs-toggle="dropdown" title="Filter"
             aria-expanded="false" (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter; bindSingleClickEvent();"><i class="fas fa-sliders-h"></i></a>
             <ul class="dropdown-menu top-filter" aria-labelledby="btnGroupDrop4" *ngIf="showhidecnd.ShowFilter" style="display: block;">
               <form>
@@ -89,11 +89,12 @@
             </form>
             </ul>
           </div>
-          <div class="s-box" style="position: relative;"><a (click)="showhideBellList()" style="cursor: pointer;"  id="btnGroupDrop3" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
+          <div class="s-box" style="position: relative;"><a (click)="showhideBellList()" style="cursor: pointer;"  title="Notification" id="btnGroupDrop3" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
             aria-expanded="false"><i class="fas fa-bell"><sup style="font-size: 9px;cursor:pointer" 
               *ngIf="prodcastService.UserStastics.UnreadNotificationCount != '0'">{{prodcastService.UserStastics.UnreadNotificationCount}}</sup></i></a>
             <!-- <sup>5</sup> -->
-            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3" *ngIf="showhidecnd.showBell && prodcastService.NotificationList.length" style="display: block;right: 0;">  
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3" *ngIf="showhidecnd.showBell && prodcastService.NotificationList.length" style="display: block;right: 0;height: 70vh;
+            overflow: auto;">  
               <li><a class="dropdown-item"  (click)="getSelectedList(a)" *ngFor="let a of prodcastService.NotificationList" style="cursor: pointer;" [innerHTML]="a.message" [ngClass]="{'viewedlist':a.viewed == '1'}"></a></li>
             </ul> 
           </div>
@@ -112,7 +113,7 @@
             </ul>
           </div> -->
           <div class="s-box outsideclick">
-            <a id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
+            <a id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" title="Setting"
             aria-expanded="false" (click)="showhidecnd.showSettings = !showhidecnd.showSettings; bindSingleClickEvent();"><i class="fas fa-cog" ></i></a>
             <ul class="dropdown-menu"  *ngIf="showhidecnd.showSettings" aria-labelledby="btnGroupDrop5" style="position: absolute;right: 23px;display:block;cursor: pointer;">             
               <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')"><i class="fas fa-check-circle"></i> RJ Approvals</a></li>
