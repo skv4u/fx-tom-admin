@@ -325,7 +325,7 @@
                     <td *ngIf="showhidemenu.Rank" >
                       <div style="width: 55px;" *ngIf="a.approvals == 'Live'">
                         <input type="number" class="rank-input" min="0" max="1000" id="Rank" placeholder="Rank" [(ngModel)]="a.rank" (keyup.enter)="setrank(a.id,a.rank)">
-                        <i class="far fa-check-circle rank-icon" (click)="setrank(a.id,a.rank)" title="Save Rank"></i>
+                        <i class="far fa-check-circle rank-icon pointer" (click)="setrank(a.id,a.rank)" title="Save Rank"></i>
                       </div>
                     </td>
                     <td *ngIf="showhidemenu.BroadcastDate">
