@@ -16,6 +16,9 @@ export class DeletePodcastListComponent implements OnInit {
   showcatDropDown:boolean=false;
   isProgressing:boolean=false;
   showStatusDropDown:boolean=false;
+  IsView:boolean=false;
+  currentIndex:number=0;
+  noteList: any = [];
   constructor(public prodcastService:ProdcastService,public webService:WebService,public toast:ToastService) { }
 
   ngOnInit() {
@@ -49,4 +52,20 @@ export class DeletePodcastListComponent implements OnInit {
           }
         })
   }
+  backtodashboard(){
+    this.prodcastService.loader=false;
+    // this.router.navigateByUrl('/dashboard');
+    this.IsView = false;
+    }
+    getProdNoteList() {
+      this.prodcastService.loader=true;
+      let req = {
+        "podcast_id": this.deleteList[this.currentIndex].id
+      }
+      this.webService.commonMethod('podcast/note/list ', req, 'POST').subscribe(
+        (data) => {
+          this.prodcastService.loader=false;
+          this.noteList = data.Response;
+        })
+    }
 }

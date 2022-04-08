@@ -1,8 +1,8 @@
 <div>
 
   <app-generic-header></app-generic-header>
-
-  <div class="admin-sec">
+<div *ngIf="!IsView">
+  <div class="admin-sec" >
     <div class="row admin-top">
       <div class="col-md-4 admin-title">
         <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
@@ -33,7 +33,7 @@
                 <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
               </ul>
             </div> -->
-            <div class="table-responsive dashboard-table">
+            <div class="table-responsive dashboard-table" >
               <table class="table">
                 <thead>
                   <tr>
@@ -78,7 +78,7 @@
                     <td class="rjsname" >
                       <h5 class="mb-0">{{a.name}}</h5>
                       <!-- a.ShowProcastComment = true -->
-                      <p><a style="cursor: pointer;color:#0e7ea3" (click)="prodcastService.IsView = true;prodcastService.editlist = a;showhidecnd.showEdit = true">About Podcast</a></p>                   
+                      <p><a style="cursor: pointer;color:#0e7ea3" (click)="IsView = true;currentIndex=i;getProdNoteList();">About Podcast</a></p>                   
                     </td>
                     <td >{{a.category}}</td>
                     <td class="text-center">
@@ -146,5 +146,131 @@
     </div>
   </div>
 </div>
+</div>
 
+
+<div class="body-main" *ngIf="IsView">
+  <div class="body-content">  
+    <h3 style="cursor: pointer;"><a (click)="backtodashboard()"><i class="fas fa-angle-left"></i> Back to Delete Podcast board</a></h3>   
+    <div class="c-podcast">
+      <h3>About Delete Podcast</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+           <div class="col-12 mb-4">
+             <p class="m-0">Podcast Name</p>
+             <h4>{{deleteList[currentIndex].name}}</h4>
+           </div>
+           <!-- <div class="col-12 mb-4">
+            <p class="m-0">Author Name</p>
+            <h4>{{EditData.author_name}}</h4>
+          </div> -->
+          <div class="col-12 mb-4">
+            <p class="m-0">Language</p>
+            <h4>{{deleteList[currentIndex].language}}</h4>
+          </div>
+          <div class="col-12 mb-4">
+            <p class="m-0">Category</p>
+            <h4>{{deleteList[currentIndex].category}}</h4>
+          </div>
+          <div class="col-12 mb-4">
+            <p class="m-0">Show</p>
+            <h4>{{deleteList[currentIndex].shows_name}}</h4>
+          </div>
+          <div class="col-12 mb-4">
+            <p class="m-0">Discription</p>
+            <h4>{{deleteList[currentIndex].description}}</h4>
+          </div>
+          </div>            
+        </div>
+        <div class="col-md-6">
+          <section>
+            <form action="" method="POST" enctype="multipart/form-data">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                    
+                    
+                      <div class="dropzone-wrapper border-0">
+                        <div class="preview-zone hidden">
+                          <div class="box box-solid">
+                            
+                            <div class="box-body">
+                              <div class="box-body" *ngIf="deleteList[currentIndex].audiopath">
+                                <audio controls preload="auto" >
+                                  <source [src]="deleteList[currentIndex].audiopath" type="audio/mpeg">
+                                  <source [src]="deleteList[currentIndex].audiopath" type="audio/ogg"> 
+                                  </audio>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="dropzone-desc">
+                          <i class="glyphicon glyphicon-download-alt"></i>
+                          <p class="mb-1">" Morning comedy ver3 " file added</p>                           
+                        </div>
+                        <input type="file" name="img_logo" class="dropzone"> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </section>           
+          <!-- <div class="drop-zone  border-0">
+            <span class="drop-zone__prompt"><p>Upload <br/> Podcast picture <br/>Or<br/> Topic picture</p>                </span>
+            <input type="file" name="myFile" class="drop-zone__input">
+          </div> -->
+          <div class="drop-zone upload-image" *ngIf="deleteList[currentIndex].imagepath">
+            <img [src]="deleteList[currentIndex].imagepath" [alt]="deleteList[currentIndex].imagepath">
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-12">
+         
+          <button class="custome-button">Close</button>
+        </div>
+      </div> -->
+
+      <div class="row my-4">
+        <div class="col-12 mt-4">
+          <h2 class="mb-4">Notes on Podcast</h2>
+          <!-- <textarea class="form-control mb-4">Notes on edit if you wish to communicate admin</textarea> -->
+          <div class="table-responsive dashboard-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>User</th> 
+                  <th>Status</th>                    
+                  <th>Notes</th>                
+                  <th class="text-center">File</th>  
+                              
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let a of noteList">
+                  <td>
+                    <p class="mb-0">{{a.note_date}}</p>                      
+                  </td>
+                  <td>
+                    <p class="m-0">{{a.fullname}}({{a.usertype}})</p>
+                  </td>
+                  
+                  <td>{{a.status}}</td>
+                  <td>{{a.description}}</td>
+                  <td class="text-center"><a download="audio.mp3" [href]="a.audio_path" target="_blank"><i class="far fa-file-download"></i></a></td>
+                </tr>
+                           
+               
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <app-page-loader *ngIf="isProgressing"></app-page-loader>
