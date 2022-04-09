@@ -343,17 +343,17 @@
                     </td>
                     <td class="text-center"
                       *ngIf="a.approvals!= 'Live' && a.approvals!= 'Broadcasting' && a.approvals!= 'Rejected' && a.approvals!= 'Modify' && showhidemenu.Edit">
-                      <a (click)="a.Edit = true;enableEdit(a)" class="pointer" *ngIf="a.is_admin_deleted == '0'"><i
+                      <a (click)="a.Edit = true;enableEdit(a)" class="pointer"><i
                           class="fas fa-pen"></i></a></td>
                     <!-- <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true" *ngIf="a.is_admin_deleted == '0' && a.approvals != 'Modify'"><i class="fas fa-eye"></i></a></td>  -->
                     <td
                       *ngIf="showhidemenu.Delete && a.approvals!= 'Live' && a.approvals!= 'Broadcasting' && a.approvals!= 'Rejected' && a.approvals!= 'Modify'"
                       class="relative">
-                      <a (click)="changeStatus('Delete',a,i)" class="pointer" *ngIf="a.is_admin_deleted == '0'">
+                      <a (click)="changeStatus('Delete',a,i)" class="pointer">
                         <i class="fas fa-trash-alt"></i>
                       </a>
-                      <span *ngIf="a.is_admin_deleted == '1'" title="Deleted by Admin"
-                        style="color:var(--red-color)">Deleted</span>
+                      <!-- <span *ngIf="a.is_admin_deleted == '1'" title="Deleted by Admin"
+                        style="color:var(--red-color)">Deleted</span> -->
                       <!-- <span *ngIf="a.is_deleted == 1 || a.is_admin_deleted == '1'" [ngStyle]="{'margin-top':a.is_admin_deleted == '1' ? '0px' :'25px'}" title="Deleted by RJ" class="rj_deleted_span">Deleted</span> -->
                     </td>
                    
