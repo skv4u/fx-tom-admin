@@ -120,6 +120,7 @@ export class DashboardComponent implements OnInit {
       this.prodcastService.dashboardList = this.prodcastService.dashboardList1.filter(v => v.id == a.podcast_id);
       this.resetvalues();
       this.prodcastService.filterApplied = true;
+      return;
     }
     if (a.notification_type == 'NEW_RJ' || a.notification_type == 'UPDATE_RJ') {
       // this.prodcastService.SelectedRJforApprove = a.user_id;
