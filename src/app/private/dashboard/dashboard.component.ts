@@ -114,10 +114,10 @@ export class DashboardComponent implements OnInit {
   getSelectedList(a) {
     this.showhidecnd.showBell = false;
     this.prodcastService.filterApplied = true;
-    if (a.notification_type == 'CREATE_PODCAST') {
-      let tempdata = a.podcast_id;
-      let temp = this.prodcastService.dashboardList1.filter(x => JSON.stringify(x.id).toLowerCase().includes(tempdata.toLowerCase()));
-      this.prodcastService.dashboardList = temp;
+    if (a.notification_type.includes('PODCAST')) {
+      // let tempdata = a.podcast_id;
+      // let temp = this.prodcastService.dashboardList1.filter(x => JSON.stringify(x.id).toLowerCase().includes(tempdata.toLowerCase()));
+      this.prodcastService.dashboardList = this.prodcastService.dashboardList1.filter(v => v.id == a.podcast_id);
       this.resetvalues();
       this.prodcastService.filterApplied = true;
     }
