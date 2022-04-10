@@ -237,7 +237,11 @@
                             (click)="searchList('Live');showStatusDropDown = false">Live</a></li>
                       </ul>
                     </th>
-                    <th *ngIf="showhidemenu.Rank">Rank</th>
+                    <th *ngIf="showhidemenu.Rank" class="pointer" (click)="sortListByRank()">
+                      Rank 
+                      <span style="position: relative;
+                      top: 5px;"><i  class="fas fa-sort"></i></span>
+                    </th>
                     <th width="240" *ngIf="showhidemenu.BroadcastDate">Broadcast Date</th>
                     <th *ngIf="showhidemenu.Comments">Comments
 

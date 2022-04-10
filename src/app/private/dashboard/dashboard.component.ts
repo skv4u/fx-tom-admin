@@ -37,7 +37,9 @@ export class DashboardComponent implements OnInit {
   showcatDropDown: boolean = false;
   currentIndex: number = 0;
   apicalled: boolean = false;
+  rankSortApplied: boolean = true;
 
+  upsort: boolean = false;
 
   constructor(public router: Router, public webservice: WebService, public prodcastService: ProdcastService, public localStorage: LocalstorageService, public toast: ToastService, public renderer: Renderer2) { }
 
@@ -64,6 +66,26 @@ export class DashboardComponent implements OnInit {
     this.prodcastService.filterApplied = true;
 
     this.resetvalues();
+  }
+  sortListByRank() {
+    // if(this.)
+    let list = this.prodcastService.dashboardList1.filter(v => v.approvals == 'Live' && v.rank != 0);
+    let list1 = this.prodcastService.dashboardList1.filter(v => v.approvals == 'Live' && v.rank == 0);
+    if (this.rankSortApplied) {
+      list = list.sort((a, b) => {
+        return a.rank - b.rank;
+      });
+    } else {
+      list = list.sort((a, b) => {
+        return b.rank-a.rank;
+      });
+    }
+    this.rankSortApplied = !this.rankSortApplied;
+
+    list = list.concat(list1);
+    this.prodcastService.dashboardList = list;
+    this.prodcastService.filterApplied = true;
+
   }
 
 
@@ -197,8 +219,8 @@ export class DashboardComponent implements OnInit {
     this.prodcastService.selectedData = elem;
     this.prodcastService.showComments = true;
   }
-  setrank(id,rank) {
-    if(rank <= 0){
+  setrank(id, rank) {
+    if (rank <= 0) {
       this.toast.error('Rank should be greater or equal to one');
       return;
     }
@@ -209,8 +231,8 @@ export class DashboardComponent implements OnInit {
     }
     this.webservice.commonMethod('podcast/updaterank/admin', req, 'PUT').subscribe(
       (data) => {
-        this.prodcastService.loader=false;
-        if(data.Status == 'Success' && data.Response){
+        this.prodcastService.loader = false;
+        if (data.Status == 'Success' && data.Response) {
           this.toast.success('Rank Updated Sucesfully');
         }
       }
