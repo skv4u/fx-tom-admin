@@ -4,6 +4,7 @@ import { ConfigurationMicroService } from './configuration-micro.service';
 @Injectable()
 export class WebService {
   APIUrl: any = {};
+  APIToken:any = "";
   constructor(private http: HttpClient, public configurationService: ConfigurationMicroService) {
     this.APIUrl = this.configurationService.getUrl();
   }
@@ -13,7 +14,8 @@ export class WebService {
     url_type = url_type ? url_type : 'DEV';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      'Authorization':'bearer ' + localStorage.getItem('tomtomtoken')
     })
     let endPoint = this.APIUrl[url_type] + "/" + url;
     if (method == 'POST')
@@ -37,7 +39,8 @@ export class WebService {
     //   })
     // };
     const headers = new HttpHeaders({
-      'enctype': 'multipart/form-data'
+      'enctype': 'multipart/form-data',
+      'Authorization':'bearer ' + localStorage.getItem('tomtomtoken')
     });
     return this.http.post(this.APIUrl.DEV + '/' + url, data, {
       headers,
@@ -48,7 +51,8 @@ export class WebService {
   }
   UploadFile(url,formData) {
     const headers = new HttpHeaders({
-      'enctype': 'multipart/form-data'
+      'enctype': 'multipart/form-data',
+      'Authorization':'bearer ' + localStorage.getItem('tomtomtoken')
     });
     this.http.post(this.APIUrl.DEV + '/' + url, formData, {
       headers,
@@ -64,4 +68,6 @@ export class WebService {
       }
     });
   }
+ 
+
 }

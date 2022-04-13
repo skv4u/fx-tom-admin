@@ -185,6 +185,10 @@ export class DashboardComponent implements OnInit {
 
 
   showhideBellList() {
+    if(!this.prodcastService.NotificationList.length){
+      this.toast.info("Notification list is empty")
+      return;
+    }
     this.showhidecnd.showBell = !this.showhidecnd.showBell;
     if (this.showhidecnd.showBell) {
       this.bindSingleClickEvent();
