@@ -57,6 +57,14 @@ export class ProdcastService {
     this.webservice.commonMethod('category', '', 'GET').subscribe(
       (data) => {
         this.CategoryList = data.Response;
+      },
+      err =>{
+        // console.log(err);
+        if(err.status === 401){
+          localStorage.removeItem('adminttptoken');
+          alert("Token expired!, Reloading the page");
+          window.location.reload();
+        }
       })
   }
   getWebCategoryList() {
