@@ -18,7 +18,7 @@ export class CreateCategoryComponent implements OnInit {
   CategoryList: any = [];
   imageUrl: any = "";
   showConfirmPopup: any = "";
-  Id: any = "";
+  Id: any = 0;
   caption = {
     "title":"Add Category",
     "button":"Add New Category"
@@ -26,6 +26,7 @@ export class CreateCategoryComponent implements OnInit {
   constructor(public router: Router, public webservice: WebService, public prodCastService: ProdcastService, public localStorage: LocalstorageService, public toast: ToastService) { }
 
   ngOnInit() {
+    
   }
   createCategory() {
 
@@ -46,14 +47,24 @@ export class CreateCategoryComponent implements OnInit {
     this.prodCastService.loader = true;
     let req = {
       "name": this.NewCatName,
+      "category_id": this.Id,
       "created_by": this.localStorage.getUserData() ? this.localStorage.getUserData().username : '',
       "image": this.NewCatImage
     }
     this.webservice.commonMethod('/category', req, 'POST').subscribe(
       (data) => {
-        this.toast.success("Category created successfully")
-        this.NewCatName = "";
-        this.NewCatImage = "";
+        if(data.Status == 'Success'){
+        if(this.Id){
+          this.toast.success("Category updated successfully");
+        }else{
+          this.toast.success("Category created successfully");
+        }
+      }else{
+        this.toast.error(data.Response);
+      }
+        // this.NewCatName = "";
+        // this.NewCatImage = "";
+        this.ResetCategory();
         this.prodCastService.loader = false;
         this.prodCastService.getWebCategoryList();
       },
@@ -68,7 +79,8 @@ export class CreateCategoryComponent implements OnInit {
     this.webservice.commonMethod('/category/' + id, '', 'DELETE').subscribe(
       (data) => {
         if (data.Status == "Success") {
-          this.toast.success("Deleted successfully")
+          this.toast.success("Deleted successfully");
+          this.ResetCategory();
           this.prodCastService.loader = false;
           this.showConfirmPopup = false;
           this.prodCastService.getWebCategoryList();
@@ -119,5 +131,29 @@ export class CreateCategoryComponent implements OnInit {
       "title":"Edit Category",
       "button":"Update Category"
     }
+  }
+  ResetCategory(){
+    this.NewCatName = '';
+    this.NewCatImage ='';
+    this.caption = {
+      "title":"Add Category",
+      "button":"Add New Category"
+    }
+    this.Id = 0;
+  }
+  removeFile(){
+    let req = {
+      filename : this.NewCatImage
+  }
+  this.prodCastService.loader = true;
+  this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
+    subscribe((data: any) => {
+      this.prodCastService.loader = false;
+      this.NewCatImage = '';
+    },err => {
+      this.prodCastService.loader = false;
+      this.NewCatImage = '';
+    });
+
   }
 }
