@@ -18,17 +18,21 @@ export class UserSpotsComponent implements OnInit {
   showPodCast: boolean = true;
   podCastList: any = [];
   showConfirmPopup: boolean = false;
-  Id: any;
+  Id: any = 0;
+  caption = {
+    "title": "Ads Spot",
+    "button": "Create Ads"
+  }
   // selectedpodcast: any;
 
   addSpot = {
-    "title":"",
+    "title": "",
     "link_type": "web",
     "link_value": "",
-    "image":"",
-    "sequence":"1"
-    }
-  
+    "image": "",
+    "sequence": "1"
+  }
+
   constructor(public router: Router, public toast: ToastService, public prodCastService: ProdcastService, public localStorage: LocalstorageService, public webservice
     : WebService) { }
 
@@ -50,20 +54,28 @@ export class UserSpotsComponent implements OnInit {
       return;
     }
     this.prodCastService.loader = true;
-   
+
     this.webservice.commonMethod('/user/addspot', this.addSpot, 'POST').subscribe(
       (data) => {
-        this.toast.success("Add Spot created successfully")
+        if(data.Status == 'Success'){
+          if(this.Id){
+            this.toast.success("Ad Spot updated successfully");
+          }else{
+            this.toast.success("Ad Spot created successfully");
+          }
+        }else{
+          this.toast.error(data.Response); 
+        }
         // this.NewSpotName = "";
         // this.NewSpotImage = "";
+        this.ResetCategory();
         this.addSpot = {
-          "title":"",
+          "title": "",
           "link_type": "web",
           "link_value": "",
-          "image":"",
-          "sequence":"1"
-          };
-
+          "image": "",
+          "sequence": "1"
+        };
         this.prodCastService.loader = false;
         this.prodCastService.getSpotList();
       },
@@ -85,6 +97,7 @@ export class UserSpotsComponent implements OnInit {
           this.prodCastService.loader = false;
           this.showConfirmPopup = false;
           this.prodCastService.getSpotList();
+          this.ResetCategory()
         } else {
           this.prodCastService.loader = false;
           this.showConfirmPopup = false;
@@ -134,9 +147,37 @@ export class UserSpotsComponent implements OnInit {
         //   this.addSpot.link_value = this.podCastList[0].podcast_id;
       })
   }
-  LinkTypeChage(){
-    if(this.addSpot.link_type == 'podcast'){
+  LinkTypeChage() {
+    if (this.addSpot.link_type == 'podcast') {
       this.addSpot.link_value = this.podCastList[0].podcast_id
     }
+  }
+  editCategory(elem: any) {
+    this.addSpot = {
+      "title": elem.title,
+      "link_type": elem.link_type,
+      "link_value": elem.link_value,
+      "image": elem.image,
+      "sequence": elem.sequence
+    }
+    this.Id = elem.addspot_id;
+    this.caption = {
+      "title": "Edit Ads Spot",
+      "button": "Update Ads"
+    }
+  }
+  ResetCategory() {
+    this.caption = {
+      "title": "Ads Spot",
+      "button": "Create Ads"
+    }
+    this.addSpot = {
+      "title": "",
+      "link_type": "web",
+      "link_value": "",
+      "image": "",
+      "sequence": "1"
+    }
+    this.Id = 0;
   }
 }

@@ -1,6 +1,6 @@
-  <app-page-loader *ngIf="apicalled"></app-page-loader>
+<app-page-loader *ngIf="apicalled"></app-page-loader>
 
-  <div *ngIf="!showhidecnd.showEdit && !prodcastService.showComments">
+<div *ngIf="!showhidecnd.showEdit && !prodcastService.showComments">
 
 
     <!--Header Start Here-->
@@ -9,119 +9,101 @@
 
     <!--Title sec Start Here-->
     <div class="admin-sec">
-      <div class="row admin-top">
-        <div class="col-md-8 px-1 d-flex">
+        <div class="row admin-top">
+            <div class="col-md-8 px-1 d-flex">
 
-          <div class="top-search">
-            <div class="input-group mb-0">
-              <button class="btn btn-outline-secondary" type="submit" (click)="searchList()"><i
-                  class="fas fa-search"></i></button>
-              <input type="text" class="form-control" (keyup.enter)="searchList()" [(ngModel)]="serachvalue"
-                placeholder="Search for podcast or Company or Data">
+                <div class="top-search">
+                    <div class="input-group mb-0">
+                        <button class="btn btn-outline-secondary" type="submit" (click)="searchList()"><i
+                class="fas fa-search"></i></button>
+                        <input type="text" class="form-control" (keyup.enter)="searchList()" [(ngModel)]="serachvalue" placeholder="Search for podcast or Company or Data">
+                    </div>
+
+                </div>
+                <!-- <a href="RJ-admin-dashboard.html" class="custome-button  mx-4"><i class="fal fa-cloud-upload"></i> Create a Add spot</a> -->
+
+
             </div>
 
-          </div>
-          <!-- <a href="RJ-admin-dashboard.html" class="custome-button  mx-4"><i class="fal fa-cloud-upload"></i> Create a Add spot</a> -->
+            <div class="col-md-4 settings-main">
+                <div class="s_inner">
+                    <div class="s-box">
+                        <a [class.active]="prodcastService.filterApplied" title="Refresh" (click)="prodcastService.getDashBoardList();prodcastService.filterApplied=false;this.serachvalue='';">
+                            <i class="fas fa-sync"></i>
+                        </a>
+                    </div>
+                    <div class="s-box outsideclick">
+                        <a id="btnGroupDrop4" class="outsideclick" data-bs-toggle="dropdown" title="Filter" aria-expanded="false" (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter; bindSingleClickEvent();"><i
+                class="fas fa-sliders-h"></i></a>
+                        <ul class="dropdown-menu top-filter" aria-labelledby="btnGroupDrop4" *ngIf="showhidecnd.ShowFilter" style="display: block;">
+                            <form>
+                                <li class="outsideclick">
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check1" [checked]="showhidemenu.RJName" (change)="showhidemenu.RJName = !showhidemenu.RJName">
+                                        <label class="form-check-label" for="check1">RJ</label>
+                                    </div>
 
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check2" [checked]="showhidemenu.Thumbnails" (change)="showhidemenu.Thumbnails = !showhidemenu.Thumbnails">
+                                        <label class="form-check-label" for="check2">Thumbnails</label>
+                                    </div>
 
-        </div>
-
-        <div class="col-md-4 settings-main">
-          <div class="s_inner">
-            <div class="s-box">
-              <a [class.active]="prodcastService.filterApplied" title="Refresh"
-                (click)="prodcastService.getDashBoardList();prodcastService.filterApplied=false;this.serachvalue='';">
-                <i class="fas fa-sync"></i>
-              </a>
-            </div>
-            <div class="s-box outsideclick">
-              <a id="btnGroupDrop4" class="outsideclick" data-bs-toggle="dropdown" title="Filter" aria-expanded="false"
-                (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter; bindSingleClickEvent();"><i
-                  class="fas fa-sliders-h"></i></a>
-              <ul class="dropdown-menu top-filter" aria-labelledby="btnGroupDrop4" *ngIf="showhidecnd.ShowFilter"
-                style="display: block;">
-                <form>
-                  <li class="outsideclick">
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check1" [checked]="showhidemenu.RJName"
-                        (change)="showhidemenu.RJName = !showhidemenu.RJName">
-                      <label class="form-check-label" for="check1">RJ</label>
-                    </div>
-
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check2" [checked]="showhidemenu.Thumbnails"
-                        (change)="showhidemenu.Thumbnails = !showhidemenu.Thumbnails">
-                      <label class="form-check-label" for="check2">Thumbnails</label>
-                    </div>
-
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check3" [checked]="showhidemenu.Title"
-                        (change)="showhidemenu.Title = !showhidemenu.Title">
-                      <label class="form-check-label" for="check3">Title</label>
-                    </div>
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check4" [checked]="showhidemenu.Category"
-                        (change)="showhidemenu.Category = !showhidemenu.Category">
-                      <label class="form-check-label" for="check4">Category</label>
-                    </div>
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check5" [checked]="showhidemenu.UploadDate"
-                        (change)="showhidemenu.UploadDate = !showhidemenu.UploadDate">
-                      <label class="form-check-label" for="check5">Upload Date</label>
-                    </div>
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check6" [checked]="showhidemenu.Comments"
-                        (change)="showhidemenu.Comments = !showhidemenu.Comments">
-                      <label class="form-check-label" for="check6">Comments</label>
-                    </div>
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check7" [checked]="showhidemenu.Approvals"
-                        (change)="showhidemenu.Approvals = !showhidemenu.Approvals">
-                      <label class="form-check-label" for="check7">Approvals</label>
-                    </div>
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check8" [checked]="showhidemenu.BroadcastDate"
-                        (change)="showhidemenu.BroadcastDate = !showhidemenu.BroadcastDate">
-                      <label class="form-check-label" for="check8">Broadcast Date</label>
-                    </div>
-                    <!-- <div class="form-check mb-2 outsideclick">
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check3" [checked]="showhidemenu.Title" (change)="showhidemenu.Title = !showhidemenu.Title">
+                                        <label class="form-check-label" for="check3">Title</label>
+                                    </div>
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check4" [checked]="showhidemenu.Category" (change)="showhidemenu.Category = !showhidemenu.Category">
+                                        <label class="form-check-label" for="check4">Category</label>
+                                    </div>
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check5" [checked]="showhidemenu.UploadDate" (change)="showhidemenu.UploadDate = !showhidemenu.UploadDate">
+                                        <label class="form-check-label" for="check5">Upload Date</label>
+                                    </div>
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check6" [checked]="showhidemenu.Comments" (change)="showhidemenu.Comments = !showhidemenu.Comments">
+                                        <label class="form-check-label" for="check6">Comments</label>
+                                    </div>
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check7" [checked]="showhidemenu.Approvals" (change)="showhidemenu.Approvals = !showhidemenu.Approvals">
+                                        <label class="form-check-label" for="check7">Approvals</label>
+                                    </div>
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check8" [checked]="showhidemenu.BroadcastDate" (change)="showhidemenu.BroadcastDate = !showhidemenu.BroadcastDate">
+                                        <label class="form-check-label" for="check8">Broadcast Date</label>
+                                    </div>
+                                    <!-- <div class="form-check mb-2 outsideclick">
                   <input class="form-check-input" type="checkbox" id="check9" [checked]="showhidemenu.Notes" (click)="showhidemenu.Notes = !showhidemenu.Notes">
                   <label class="form-check-label" for="check9">Notes</label>
                 </div> -->
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check10" [checked]="showhidemenu.Edit"
-                        (change)="showhidemenu.Edit = !showhidemenu.Edit">
-                      <label class="form-check-label" for="check10">Edit</label>
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check10" [checked]="showhidemenu.Edit" (change)="showhidemenu.Edit = !showhidemenu.Edit">
+                                        <label class="form-check-label" for="check10">Edit</label>
+                                    </div>
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check11" [checked]="showhidemenu.Delete" (change)="showhidemenu.Delete = !showhidemenu.Delete">
+                                        <label class="form-check-label" for="check11">Delete</label>
+                                    </div>
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check11" [checked]="showhidemenu.Rank" (change)="showhidemenu.Rank = !showhidemenu.Rank">
+                                        <label class="form-check-label" for="check11">Rank</label>
+                                    </div>
+                                    <button class="custome-button my-3" (click)="showhidecnd.ShowFilter = false">Done</button>
+                                </li>
+                            </form>
+                        </ul>
                     </div>
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check11" [checked]="showhidemenu.Delete"
-                        (change)="showhidemenu.Delete = !showhidemenu.Delete">
-                      <label class="form-check-label" for="check11">Delete</label>
-                    </div>
-                    <div class="form-check mb-2 outsideclick">
-                      <input class="form-check-input" type="checkbox" id="check11" [checked]="showhidemenu.Rank"
-                        (change)="showhidemenu.Rank = !showhidemenu.Rank">
-                      <label class="form-check-label" for="check11">Rank</label>
-                    </div>
-                    <button class="custome-button my-3" (click)="showhidecnd.ShowFilter = false">Done</button>
-                  </li>
-                </form>
-              </ul>
-            </div>
-            <div class="s-box" style="position: relative;"><a (click)="showhideBellList()" style="cursor: pointer;"
-                title="Notification" id="btnGroupDrop3" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
-                aria-expanded="false"><i class="fas fa-bell"><sup style="font-size: 9px;cursor:pointer"
-                    *ngIf="prodcastService.UserStastics.UnreadNotificationCount != '0'">{{prodcastService.UserStastics.UnreadNotificationCount}}</sup></i></a>
-              <!-- <sup>5</sup> -->
-              <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3"
-                *ngIf="showhidecnd.showBell && prodcastService.NotificationList.length" style="display: block;right: 0;height: 70vh;
+                    <div class="s-box" style="position: relative;"><a (click)="showhideBellList()" style="cursor: pointer;" title="Notification" id="btnGroupDrop3" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-bell"><sup style="font-size: 9px;cursor:pointer"
+                  *ngIf="prodcastService.UserStastics.UnreadNotificationCount != '0'">{{prodcastService.UserStastics.UnreadNotificationCount}}</sup></i></a>
+                        <!-- <sup>5</sup> -->
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop3" *ngIf="showhidecnd.showBell && prodcastService.NotificationList.length" style="display: block;right: 0;height: 70vh;
             overflow: auto;">
-                <li><a class="dropdown-item" (click)="getSelectedList(a)"
-                    *ngFor="let a of prodcastService.NotificationList" style="cursor: pointer;" [innerHTML]="a.message"
-                    [ngClass]="{'viewedlist':a.viewed == '1'}"></a></li>
-              </ul>
-            </div>
-            <!-- <div class="s-box">
+                            <li>
+                                <a class="dropdown-item" (click)="getSelectedList(a)" *ngFor="let a of prodcastService.NotificationList" style="cursor: pointer;" [innerHTML]="a.message" [ngClass]="{'viewedlist':a.viewed == '1'}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <div class="s-box">
             <a (click)="showhidecnd.showEmail = !showhidecnd.showEmail" id="btnGroupDrop4" class="dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false"><i class="fas fa-envelope"></i><sup>10</sup></a>
             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop4" [ngStyle]="{'display':showhidecnd.showEmail ? 'block':'none'}">
@@ -135,248 +117,211 @@
               <li><a class="dropdown-item" (click)="showhidecnd.showEmail = false">link 8</a></li>
             </ul>
           </div> -->
-            <div class="s-box outsideclick">
-              <a id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" title="Setting"
-                aria-expanded="false"
-                (click)="showhidecnd.showSettings = !showhidecnd.showSettings; bindSingleClickEvent();"><i
-                  class="fas fa-cog"></i></a>
-              <ul class="dropdown-menu" *ngIf="showhidecnd.showSettings" aria-labelledby="btnGroupDrop5"
-                style="position: absolute;right: 23px;display:block;cursor: pointer;">
-                <li><a class="dropdown-item"
-                    (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')"><i
-                      class="fas fa-check-circle"></i> RJ Approvals</a></li>
-                <li><a class="dropdown-item"
-                    (click)="showhidecnd.showSettings = false;router.navigateByUrl('/podcast-delete')"><i
-                      class="fas fa-trash-alt"></i> Podcast Delete List</a></li>
-                <li><a class="dropdown-item"
-                    (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')"><i
-                      class="fas fa-edit"></i> Edit Category</a></li>
-                <li><a class="dropdown-item"
-                    (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-language')"><i
-                      class="fas fa-file-edit"></i> Edit Language</a></li>
-                <li><a class="dropdown-item"
-                    (click)="showhidecnd.showSettings = false;router.navigateByUrl('/user-spot')"><i
-                      class="fas fa-film"></i> Adds Spot</a></li>
+                    <div class="s-box outsideclick">
+                        <a id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" title="Setting" aria-expanded="false" (click)="showhidecnd.showSettings = !showhidecnd.showSettings; bindSingleClickEvent();"><i
+                class="fas fa-cog"></i></a>
+                        <ul class="dropdown-menu" *ngIf="showhidecnd.showSettings" aria-labelledby="btnGroupDrop5" style="position: absolute;right: 23px;display:block;cursor: pointer;">
+                            <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')"><i
+                    class="fas fa-check-circle"></i> RJ Approvals</a></li>
+                            <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/podcast-delete')"><i
+                    class="fas fa-trash-alt"></i> Podcast Delete List</a></li>
+                            <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')"><i
+                    class="fas fa-edit"></i> Edit Category</a></li>
+                            <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-language')"><i
+                    class="fas fa-file-edit"></i> Edit Language</a></li>
+                            <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/user-spot')"><i
+                    class="fas fa-film"></i> Ads Spot</a></li>
 
-                <!-- <li><a class="dropdown-item" href="#">Manage Ads</a></li> -->
-                <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;logOut()"><i
-                      class="fas fa-sign-out"></i> Log out</a></li>
-              </ul>
+                            <!-- <li><a class="dropdown-item" href="#">Manage Ads</a></li> -->
+                            <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;logOut()"><i
+                    class="fas fa-sign-out"></i> Log out</a></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="s-box online"><a href="#"> Chat with RJs <i class="fas fa-user-cog"></i></a></div> -->
+                </div>
             </div>
-            <!-- <div class="s-box online"><a href="#"> Chat with RJs <i class="fas fa-user-cog"></i></a></div> -->
-          </div>
         </div>
-      </div>
     </div>
 
     <!--Title sec End Here-->
 
 
     <div class="body-main">
-      <div class="body-content">
-        <div class="information dasdboard">
-          <ul>
-            <li class="total"><strong>{{prodcastService.UserStastics.PodcastTotal}}</strong> Total</li>
-            <li class="pending"><strong>{{prodcastService.UserStastics.PendingTotal}}</strong> <a> Pending</a></li>
-            <li class="rejected"><strong>{{prodcastService.UserStastics.RejectedTotal}}</strong> <a> Rejected</a></li>
-            <li class="modify"><strong>{{prodcastService.UserStastics.ModifyTotal}}</strong> Modify</li>
-            <li class="approved"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
-            <li class="live"><strong>{{prodcastService.UserStastics.BroadcastTotal}}</strong> Broadcast</li>
-            <li class="live"><strong>{{prodcastService.UserStastics.LiveTotal}}</strong> Live</li>
-            <!-- <li class="comments"><strong>{{prodcastService.UserStastics.CommentTotal}}</strong> Comments</li> -->
+        <div class="body-content">
+            <div class="information dasdboard">
+                <ul>
+                    <li class="total"><strong>{{prodcastService.UserStastics.PodcastTotal}}</strong> Total</li>
+                    <li class="pending"><strong>{{prodcastService.UserStastics.PendingTotal}}</strong> <a> Pending</a></li>
+                    <li class="rejected"><strong>{{prodcastService.UserStastics.RejectedTotal}}</strong> <a> Rejected</a></li>
+                    <li class="modify"><strong>{{prodcastService.UserStastics.ModifyTotal}}</strong> Modify</li>
+                    <li class="approved"><strong>{{prodcastService.UserStastics.ApprovedTotal}}</strong> Approved</li>
+                    <li class="live"><strong>{{prodcastService.UserStastics.BroadcastTotal}}</strong> Broadcast</li>
+                    <li class="live"><strong>{{prodcastService.UserStastics.LiveTotal}}</strong> Live</li>
+                    <!-- <li class="comments"><strong>{{prodcastService.UserStastics.CommentTotal}}</strong> Comments</li> -->
 
-          </ul>
-        </div>
-        <div class="row">
-          <div class="col-12">
-
-
-
-
-
-
-
-            <div class="table-responsive dashboard-table"
-              [ngStyle]="{'height' : prodcastService.dashboardList.length == 1 ? '226px':''}">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th *ngIf="showhidemenu.RJName">RJ Name</th>
-                    <th class="pic" *ngIf="showhidemenu.Thumbnails">Picture</th>
-                    <th *ngIf="showhidemenu.Title">Title</th>
-                    <th *ngIf="showhidemenu.Category">
-                      <a id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
-                        aria-expanded="false" (click)="expandCategoryFilter();" style="cursor: pointer;">Category</a>
-                      <ul class="dropdown-menu" style="display: block;" aria-labelledby="btnGroupDrop5"
-                        *ngIf="showcatDropDown">
-                        <li *ngFor="let a of prodcastService.CategoryList"><a class="dropdown-item"
-                            (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>
-                      </ul>
-                    </th>
-                    <th width="170" *ngIf="showhidemenu.UploadDate">Upload Date</th>  
-
-                    <th *ngIf="showhidemenu.Approvals">
-                      <a id="btnGroupDrop6" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
-                        aria-expanded="false" (click)="expandStatusFilter()" style="cursor: pointer;">Status</a>
-                      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block;"
-                        *ngIf="showStatusDropDown">
-                        <!-- <li class="pending" (click)="searchList('');showStatusDropDown = false"><a class="dropdown-item">All</a></li> -->
-
-                        <li class="pending"><a class="dropdown-item"
-                            (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
-                        <li class="rejected"><a class="dropdown-item"
-                            (click)="searchList('Rejected');showStatusDropDown = false">Rejected</a></li>
-                        <li class="modify"><a class="dropdown-item"
-                            (click)="searchList('Modify');showStatusDropDown = false">Modify</a></li>
-
-                        <li class="approved"><a class="dropdown-item"
-                            (click)="searchList('Approved');showStatusDropDown = false">Approved</a></li>
-                        <li class="live"><a class="dropdown-item"
-                            (click)="searchList('Broadcast');showStatusDropDown = false">Broadcast</a></li>
-                        <li class="live"><a class="dropdown-item"
-                            (click)="searchList('Live');showStatusDropDown = false">Live</a></li>
-                      </ul>
-                    </th>
-                    <th *ngIf="showhidemenu.Rank" class="pointer" (click)="sortListByRank()">
-                      Rank 
-                      <span style="position: relative;
-                      top: 5px;"><i  class="fas fa-sort"></i></span>
-                    </th>
-                    <th width="240" *ngIf="showhidemenu.BroadcastDate">Broadcast Date</th>
-                    <th *ngIf="showhidemenu.Comments">Comments
-
-                    </th>
-                    <th *ngIf="showhidemenu.Edit">Edit</th>
-                    <th *ngIf="showhidemenu.Delete">Delete</th>
-                  
-                  </tr>
-                </thead>
-                <tbody *ngFor="let a of prodcastService.dashboardList;let i=index">
-                  <tr>
-                    <td *ngIf="showhidemenu.RJName">
-                      <p class="mb-0 rjname">{{a.fullname}}</p>
-                    </td>
-                    <td class="pic" *ngIf="showhidemenu.Thumbnails">
-                      <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
-                    </td>
-                    <td class="rjsname" *ngIf="showhidemenu.Title">
-                      <h5 class="mb-0">{{a.name}}</h5>
-                      <!-- a.ShowProcastComment = true -->
-                      <p><a style="cursor: pointer;color:#0e7ea3"
-                          (click)="prodcastService.IsView = true;prodcastService.editlist = a;showhidecnd.showEdit = true">About
-                          Podcast</a></p>
-                    </td>
-                    <td *ngIf="showhidemenu.Category">{{a.category}}</td>
-                    <td *ngIf="showhidemenu.UploadDate">
-                      <p class="mb-0 width-100">{{a.upload_date}}</p>
-                      <!-- <span class="small">{{a.UploadTime}}</span> -->
-
-                    </td>
-                  
-                    <!-- The Modal [ngStyle]="{'opacity':a.ShowProcastComment ? '1':'0','display':a.ShowProcastComment ? 'block':'None'}"-->
-                    <div class="modal fade" id="myModal">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-
-                          <!-- Modal Header -->
-                          <div class="modal-header">
-                            <h4 class="mb-0"> Heading</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                              (click)="a.ShowProcastComment = false">X</button>
-                          </div>
-
-                          <!-- Modal body -->
-                          <div class="modal-body">
-                            <p>{{a.description}}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <td *ngIf="showhidemenu.Approvals" style="position: relative;">
-                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approvals.toLowerCase()}}"
-                        *ngIf="a.approvals == 'Approved' || a.approvals == 'Pending'" data-bs-toggle="dropdown"
-                        aria-expanded="false" (click)="a.ShowstatusDropDown = !a.ShowstatusDropDown">
-                        {{a.approvals}}
-                      </button>
-                      <button id="btnGroupDrop2" type="button" style="background: none;border: none;cursor: default; position: relative;
-                padding-left: 15px;" class="dropdown-not-toggle {{a.approvals.toLowerCase()}}"
-                        *ngIf="a.approvals != 'Approved' && a.approvals != 'Pending'" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{a.approvals}}
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="display: block;"
-                        *ngIf="a.ShowstatusDropDown && (a.approvals == 'Approved' || a.approvals == 'Pending')">
-                        <!-- <li class="pending"><a class="dropdown-item" (click)="changeStatus('Pending',a,i);a.ShowstatusDropDown=false">pending</a></li> -->
-                        <li class="modify">
-                          <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Modify',a,i)"
-                            data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
-
-                        </li>
-
-                        <li class="rjapproved">
-                          <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Approved',a,i)"
-                            data-bs-toggle="modal" data-bs-target="#myModal5">Approved</a>
-                        </li>
-                        <li class="rejected">
-                          <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Rejected',a,i)"
-                            data-bs-toggle="modal" data-bs-target="#myModal6">Rejected</a></li>
-                        <li class="broadcast"><a class="dropdown-item"
-                            (click)="a.ShowstatusDropDown=false;changeStatus('Broadcast',a,i)" data-bs-toggle="modal"
-                            data-bs-target="#myModal7">Broadcast</a></li>
-                      </ul>
-                    </td>
-                    <td *ngIf="showhidemenu.Rank" >
-                      <div style="width: 55px;" *ngIf="a.approvals == 'Live'">
-                        <input type="number" class="rank-input" min="0" max="1000" id="Rank" placeholder="Rank" [(ngModel)]="a.rank" (keyup.enter)="setrank(a.id,a.rank)">
-                        <i class="far fa-check-circle rank-icon pointer" (click)="setrank(a.id,a.rank)" title="Save Rank"></i>
-                      </div>
-                    </td>
-                    <td *ngIf="showhidemenu.BroadcastDate">
-                      <p class="mb-0 width-100 relative">{{a.broadcast_date}} <i class="fas fa-edit broadcat_edit"
-                          *ngIf="a.approvals == 'Broadcasting'"
-                          (click)="prodcastService.showPopUp.broadcast = true;prodcastService.selectedData = a"></i></p>
-                      <!-- <span class="small">{{a.BroadCastDataTime}}</span>                   -->
-                    </td>
-                    <td *ngIf="showhidemenu.Comments">
-
-                      <span (click)="showCommentSection(a)" class="comment-count" *ngIf="a.approvals== 'Live'">
-                        <i class="far fa-comment-dots"></i>
-                        <span> {{a.comment_count}}</span>
-                      </span>
-                    </td>
-                    <td class="text-center"
-                      *ngIf="a.approvals!= 'Live' && a.approvals!= 'Broadcasting' && a.approvals!= 'Rejected' && a.approvals!= 'Modify' && showhidemenu.Edit">
-                      <a (click)="a.Edit = true;enableEdit(a)" class="pointer"><i
-                          class="fas fa-pen"></i></a></td>
-                    <!-- <td class="text-center" *ngIf="a.Status == 'Live' && showhidemenu.Edit" [ngStyle]="{'pointer-events' : !a.broadcast_date ? 'auto' : 'none'}"><a (click)="a.EditProd = true;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true" *ngIf="a.is_admin_deleted == '0' && a.approvals != 'Modify'"><i class="fas fa-eye"></i></a></td>  -->
-                    <td
-                      *ngIf="showhidemenu.Delete && a.approvals!= 'Live' && a.approvals!= 'Broadcasting' && a.approvals!= 'Rejected' && a.approvals!= 'Modify'"
-                      class="relative">
-                      <a (click)="changeStatus('Delete',a,i)" class="pointer">
-                        <i class="fas fa-trash-alt"></i>
-                      </a>
-                      <!-- <span *ngIf="a.is_admin_deleted == '1'" title="Deleted by Admin"
-                        style="color:var(--red-color)">Deleted</span> -->
-                      <!-- <span *ngIf="a.is_deleted == 1 || a.is_admin_deleted == '1'" [ngStyle]="{'margin-top':a.is_admin_deleted == '1' ? '0px' :'25px'}" title="Deleted by RJ" class="rj_deleted_span">Deleted</span> -->
-                    </td>
-                   
-                  </tr>
-                </tbody>
-              </table>
-
-
+                </ul>
             </div>
-          </div>
+            <div class="row">
+                <div class="col-12">
+
+
+
+
+
+
+
+                    <div class="table-responsive dashboard-table" [ngStyle]="{'height' : prodcastService.dashboardList.length == 1 ? '226px':''}">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th *ngIf="showhidemenu.RJName">RJ Name</th>
+                                    <th class="pic" *ngIf="showhidemenu.Thumbnails">Picture</th>
+                                    <th *ngIf="showhidemenu.Title">Title</th>
+                                    <th *ngIf="showhidemenu.Category">
+                                        <a id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" aria-expanded="false" (click)="expandCategoryFilter();" style="cursor: pointer;">Category</a>
+                                        <ul class="dropdown-menu" style="display: block;" aria-labelledby="btnGroupDrop5" *ngIf="showcatDropDown">
+                                            <li *ngFor="let a of prodcastService.CategoryList"><a class="dropdown-item" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>
+                                        </ul>
+                                    </th>
+                                    <th width="170" *ngIf="showhidemenu.UploadDate">Upload Date</th>
+
+                                    <th *ngIf="showhidemenu.Approvals">
+                                        <a id="btnGroupDrop6" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" aria-expanded="false" (click)="expandStatusFilter()" style="cursor: pointer;">Status</a>
+                                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block;" *ngIf="showStatusDropDown">
+                                            <!-- <li class="pending" (click)="searchList('');showStatusDropDown = false"><a class="dropdown-item">All</a></li> -->
+
+                                            <li class="pending"><a class="dropdown-item" (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
+                                            <li class="rejected"><a class="dropdown-item" (click)="searchList('Rejected');showStatusDropDown = false">Rejected</a></li>
+                                            <li class="modify"><a class="dropdown-item" (click)="searchList('Modify');showStatusDropDown = false">Modify</a></li>
+
+                                            <li class="approved"><a class="dropdown-item" (click)="searchList('Approved');showStatusDropDown = false">Approved</a></li>
+                                            <li class="live"><a class="dropdown-item" (click)="searchList('Broadcast');showStatusDropDown = false">Broadcast</a></li>
+                                            <li class="live"><a class="dropdown-item" (click)="searchList('Live');showStatusDropDown = false">Live</a></li>
+                                        </ul>
+                                    </th>
+                                    <th *ngIf="showhidemenu.Rank" class="pointer" (click)="sortListByRank()">
+                                        Rank
+                                        <span style="position: relative;
+                      top: 5px;"><i class="fas fa-sort"></i></span>
+                                    </th>
+                                    <th width="240" *ngIf="showhidemenu.BroadcastDate">Broadcast Date</th>
+                                    <th *ngIf="showhidemenu.Comments">Comments
+
+                                    </th>
+                                    <th *ngIf="showhidemenu.Edit">Edit</th>
+                                    <th *ngIf="showhidemenu.Delete">Delete</th>
+
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let a of prodcastService.dashboardList;let i=index">
+                                <tr>
+                                    <td *ngIf="showhidemenu.RJName">
+                                        <p class="mb-0 rjname">{{a.fullname}}</p>
+                                    </td>
+                                    <td class="pic" *ngIf="showhidemenu.Thumbnails">
+                                        <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
+                                    </td>
+                                    <td class="rjsname" *ngIf="showhidemenu.Title">
+                                        <h5 class="mb-0">{{a.name}}</h5>
+                                        <!-- a.ShowProcastComment = true -->
+                                        <p><a style="cursor: pointer;color:#0e7ea3" (click)="prodcastService.IsView = true;prodcastService.editlist = a;showhidecnd.showEdit = true">About
+                        Podcast</a></p>
+                                    </td>
+                                    <td *ngIf="showhidemenu.Category">{{a.category}}</td>
+                                    <td *ngIf="showhidemenu.UploadDate">
+                                        <p class="mb-0 width-100">{{a.upload_date}}</p>
+                                        <!-- <span class="small">{{a.UploadTime}}</span> -->
+
+                                    </td>
+
+                                    <!-- The Modal [ngStyle]="{'opacity':a.ShowProcastComment ? '1':'0','display':a.ShowProcastComment ? 'block':'None'}"-->
+                                    <div class="modal fade" id="myModal">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="mb-0"> Heading</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="a.ShowProcastComment = false">X</button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    <p>{{a.description}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <td *ngIf="showhidemenu.Approvals" style="position: relative;">
+                                        <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approvals.toLowerCase()}}" *ngIf="a.approvals == 'Approved' || a.approvals == 'Pending'" data-bs-toggle="dropdown" aria-expanded="false" (click)="a.ShowstatusDropDown = !a.ShowstatusDropDown">
+                      {{a.approvals}}
+                    </button>
+                                        <button id="btnGroupDrop2" type="button" style="background: none;border: none;cursor: default; position: relative;
+                padding-left: 15px;" class="dropdown-not-toggle {{a.approvals.toLowerCase()}}" *ngIf="a.approvals != 'Approved' && a.approvals != 'Pending'" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{a.approvals}}
+                    </button>
+                                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="display: block;" *ngIf="a.ShowstatusDropDown && (a.approvals == 'Approved' || a.approvals == 'Pending')">
+                                            <!-- <li class="pending"><a class="dropdown-item" (click)="changeStatus('Pending',a,i);a.ShowstatusDropDown=false">pending</a></li> -->
+                                            <li class="modify">
+                                                <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Modify',a,i)" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
+
+                                            </li>
+
+                                            <li class="rjapproved" *ngIf="a.approvals != 'Approved'">
+                                                <a class="dropdown-item " (click)="a.ShowstatusDropDown=false;changeStatus( 'Approved',a,i) " data-bs-toggle="modal " data-bs-target="#myModal5 ">Approved</a>
+                                            </li>
+                                            <li class="rejected ">
+                                                <a class="dropdown-item " (click)="a.ShowstatusDropDown=false;changeStatus( 'Rejected',a,i) " data-bs-toggle="modal " data-bs-target="#myModal6 ">Rejected</a>
+                                            </li>
+                                            <li class="broadcast "><a class="dropdown-item " (click)="a.ShowstatusDropDown=false;changeStatus( 'Broadcast',a,i) " data-bs-toggle="modal " data-bs-target="#myModal7 ">Broadcast</a></li>
+                                        </ul>
+                                    </td>
+                                    <td *ngIf="showhidemenu.Rank ">
+                                        <div style="width: 55px; " *ngIf="a.approvals=='Live' ">
+                                            <input type="number " class="rank-input " min="0 " max="1000 " id="Rank " placeholder="Rank " [(ngModel)]="a.rank " (keyup.enter)="setrank(a.id,a.rank) ">
+                                            <i class="far fa-check-circle rank-icon pointer " (click)="setrank(a.id,a.rank) " title="Save Rank "></i>
+                                        </div>
+                                    </td>
+                                    <td *ngIf="showhidemenu.BroadcastDate ">
+                                        <p class="mb-0 width-100 relative ">{{a.broadcast_date}} <i class="fas fa-edit broadcat_edit " *ngIf="a.approvals=='Broadcasting' " (click)="prodcastService.showPopUp.broadcast=true;prodcastService.selectedData=a "></i></p>
+                                        <!-- <span class="small ">{{a.BroadCastDataTime}}</span>                   -->
+                                    </td>
+                                    <td *ngIf="showhidemenu.Comments ">
+
+                                        <span (click)="showCommentSection(a) " class="comment-count " *ngIf="a.approvals=='Live' ">
+                      <i class="far fa-comment-dots "></i>
+                      <span> {{a.comment_count}}</span>
+                                        </span>
+                                    </td>
+                                    <td class="text-center " *ngIf="showhidemenu.Edit">
+                                        <a *ngIf="a.approvals!='Live' && a.approvals!='Broadcasting' && a.approvals!='Rejected' && a.approvals!='Modify'" (click)="a.Edit=true;enableEdit(a) " class="pointer "><i class="fas fa-pen "></i></a>
+                                    </td>
+                                    <!-- <td class="text-center " *ngIf="a.Status=='Live' && showhidemenu.Edit " [ngStyle]="{ 'pointer-events' : !a.broadcast_date ? 'auto' : 'none'} "><a (click)="a.EditProd=t rue;showhidecnd.showEdit=true;prodcastService.editlist=a;prodcastService.IsView=true
+                                                " *ngIf="a.is_admin_deleted=='0' && a.approvals !='Modify' "><i class="fas fa-eye "></i></a></td>  -->
+                                    <td *ngIf="showhidemenu.Delete" class="relative">
+                                        <a *ngIf="a.approvals!='Rejected' && a.approvals!='Modify'" (click)="changeStatus( 'Delete',a,i) " class="pointer ">
+                                            <i class="fas fa-trash-alt "></i>
+                                        </a>
+                                        <!-- <span *ngIf="a.is_admin_deleted=='1' " title="Deleted by Admin "
+                        style="color:var(--red-color) ">Deleted</span> -->
+                                        <!-- <span *ngIf="a.is_deleted==1 || a.is_admin_deleted=='1' " [ngStyle]="{ 'margin-top':a.is_admin_deleted=='1' ? '0px' : '25px'} " title="Deleted by RJ " class="rj_deleted_span ">Deleted</span> -->
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <app-comments *ngIf="prodcastService.showComments"></app-comments>
-  <app-admin-edit-prodcast *ngIf="showhidecnd.showEdit"
-    (back)="showhidecnd.showEdit=false;prodcastService.getDashBoardList();"></app-admin-edit-prodcast>
+<app-comments *ngIf="prodcastService.showComments "></app-comments>
+<app-admin-edit-prodcast *ngIf="showhidecnd.showEdit " (back)="showhidecnd.showEdit=false;prodcastService.getDashBoardList(); "></app-admin-edit-prodcast>
 
-  <app-approval-popup
-    *ngIf="prodcastService.showPopUp.approval || prodcastService.showPopUp.rejected || prodcastService.showPopUp.broadcast|| prodcastService.showPopUp.modify || prodcastService.showPopUp.delete">
-  </app-approval-popup>
+<app-approval-popup *ngIf="prodcastService.showPopUp.approval || prodcastService.showPopUp.rejected || prodcastService.showPopUp.broadcast|| prodcastService.showPopUp.modify || prodcastService.showPopUp.delete ">
+</app-approval-popup>
