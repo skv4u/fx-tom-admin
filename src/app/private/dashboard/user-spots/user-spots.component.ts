@@ -26,6 +26,7 @@ export class UserSpotsComponent implements OnInit {
   // selectedpodcast: any;
 
   addSpot = {
+    "addspot_id": 0,
     "title": "",
     "link_type": "web",
     "link_value": "",
@@ -45,7 +46,7 @@ export class UserSpotsComponent implements OnInit {
   }
   CreateSpot() {
     if (!this.addSpot.title.trim().length) {
-      this.toast.error('Please add Spot name');
+      this.toast.error('Please add ads name');
       return;
     }
 
@@ -59,9 +60,9 @@ export class UserSpotsComponent implements OnInit {
       (data) => {
         if(data.Status == 'Success'){
           if(this.Id){
-            this.toast.success("Ad Spot updated successfully");
+            this.toast.success("Ads Spot updated successfully");
           }else{
-            this.toast.success("Ad Spot created successfully");
+            this.toast.success("Ads Spot created successfully");
           }
         }else{
           this.toast.error(data.Response); 
@@ -70,6 +71,7 @@ export class UserSpotsComponent implements OnInit {
         // this.NewSpotImage = "";
         this.ResetCategory();
         this.addSpot = {
+          "addspot_id": 0,
           "title": "",
           "link_type": "web",
           "link_value": "",
@@ -154,6 +156,7 @@ export class UserSpotsComponent implements OnInit {
   }
   editCategory(elem: any) {
     this.addSpot = {
+      "addspot_id": elem.addspot_id,
       "title": elem.title,
       "link_type": elem.link_type,
       "link_value": elem.link_value,
@@ -172,6 +175,7 @@ export class UserSpotsComponent implements OnInit {
       "button": "Create Ads"
     }
     this.addSpot = {
+      "addspot_id": 0,
       "title": "",
       "link_type": "web",
       "link_value": "",
@@ -179,5 +183,20 @@ export class UserSpotsComponent implements OnInit {
       "sequence": "1"
     }
     this.Id = 0;
+  }
+  removeFile(){
+    let req = {
+      filename : this.addSpot.image
+  }
+  this.prodCastService.loader = true;
+  this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
+    subscribe((data: any) => {
+      this.prodCastService.loader = false;
+      this.addSpot.image = '';
+    },err => {
+      this.prodCastService.loader = false;
+      this.addSpot.image = '';
+    });
+
   }
 }
