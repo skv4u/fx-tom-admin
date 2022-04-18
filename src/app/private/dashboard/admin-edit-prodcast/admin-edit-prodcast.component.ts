@@ -20,25 +20,25 @@ export class AdminEditProdcastComponent implements OnInit {
   LanguageList: any = [];
   noteList: any = [];
   ShowList: any = [];
-  constructor(public webservice: WebService, public prodcastservice: ProdcastService,public LocalStorage:LocalstorageService,public toast:ToastService,public router:Router) { }
+  constructor(public webservice: WebService, public prodcastservice: ProdcastService, public LocalStorage: LocalstorageService, public toast: ToastService, public router: Router) { }
 
   ngOnInit() {
     this.EditData = this.prodcastservice.editlist;
-    if(!Array.isArray(this.EditData.category))
-    this.EditData.category = this.EditData.category.split(",");
+    if (!Array.isArray(this.EditData.category))
+      this.EditData.category = this.EditData.category.split(",");
     this.EditData.age_restriction = this.EditData.age_restriction == 1 ? true : false;
     this.EditData.Notestocommunicate = "";
     this.getProdNoteList();
     this.getShowList();
   }
   getProdNoteList() {
-    this.prodcastservice.loader=true;
+    this.prodcastservice.loader = true;
     let req = {
       "podcast_id": this.EditData.id
     }
     this.webservice.commonMethod('podcast/note/list ', req, 'POST').subscribe(
       (data) => {
-        this.prodcastservice.loader=false;
+        this.prodcastservice.loader = false;
         this.noteList = data.Response;
       })
   }
@@ -48,20 +48,24 @@ export class AdminEditProdcastComponent implements OnInit {
     const file = element[0];
     if (file == undefined) return;
     // console.log(file.type, "element");
-     if(!(file.type.indexOf('audio') != -1 || file.type.indexOf('video') != -1)){
-       this.toast.error("Invalid audio file");
-       return
+    //  if(!(file.type.indexOf('audio') != -1 || file.type.indexOf('video') != -1)){
+    //    this.toast.error("Invalid audio file");
+    //    return
+    // }
+    if (this.webservice.validAudioList().indexOf(file.type) == -1) {
+      this.toast.error("Invalid audio file");
+      return
     }
     let formData = new FormData();
     formData.append('filename', file, file.name);
     this.prodcastservice.loader = true;
     this.webservice.UploadDocument("s3bucket/upload", formData).
-    subscribe((data: any) => {
+      subscribe((data: any) => {
         if (data.type === HttpEventType.Response) {
           console.log(data);
-        this.EditData.audiopath = data.body.Response;
-        this.prodcastservice.loader = false;
-        this.prodcastservice.loaderMessage = "Uploading...";
+          this.EditData.audiopath = data.body.Response;
+          this.prodcastservice.loader = false;
+          this.prodcastservice.loaderMessage = "Uploading...";
         }
         if (data.type === HttpEventType.UploadProgress) {
           const percentDone = Math.round(100 * data.loaded / data.total);
@@ -75,28 +79,32 @@ export class AdminEditProdcastComponent implements OnInit {
       });
 
 
-      // subscribe((data: any) => {
-      //   this.EditData.audiopath = data.Response;
-      //   this.prodcastservice.loader = false;
-      // }, err => {
-        
-      // });
+    // subscribe((data: any) => {
+    //   this.EditData.audiopath = data.Response;
+    //   this.prodcastservice.loader = false;
+    // }, err => {
+
+    // });
 
   }
 
   uploadFile(element) {
-    this.prodcastservice.loader=true;
     const file = element[0];
     if (file == undefined) return;
+    if (this.webservice.validImageList().indexOf(file.type) == -1) {
+      this.toast.error("Invalid image");
+      return
+    }
+    this.prodcastservice.loader = true;
     // console.log(file, "element");
     let formData = new FormData();
     formData.append('filename', file, file.name);
     this.webservice.UploadDocument("s3bucket/upload", formData).
       subscribe((data: any) => {
         if (data.type === HttpEventType.Response) {
-        this.EditData.imagepath = data.body.Response;
-        this.prodcastservice.loader = false;
-        this.prodcastservice.loaderMessage = "Uploading...";
+          this.EditData.imagepath = data.body.Response;
+          this.prodcastservice.loader = false;
+          this.prodcastservice.loaderMessage = "Uploading...";
         }
         if (data.type === HttpEventType.UploadProgress) {
           const percentDone = Math.round(100 * data.loaded / data.total);
@@ -108,22 +116,22 @@ export class AdminEditProdcastComponent implements OnInit {
         this.prodcastservice.loaderMessage = "Uploading...";
       });
 
-      
-     
-      //   this.http.post(this.APIUrl.DEV + '/' + url, formData, {
-      //     headers,
-      //     reportProgress: true,
-      //     observe: 'events'
-      //   }).subscribe(resp => {
-      //     if (resp.type === HttpEventType.Response) {
-      //       console.log('Upload complete');
-      //     }
-      //     if (resp.type === HttpEventType.UploadProgress) {
-      //       const percentDone = Math.round(100 * resp.loaded / resp.total);
-      //       console.log('Progress ' + percentDone + '%');
-      //     }
-      //   });
-      // }
+
+
+    //   this.http.post(this.APIUrl.DEV + '/' + url, formData, {
+    //     headers,
+    //     reportProgress: true,
+    //     observe: 'events'
+    //   }).subscribe(resp => {
+    //     if (resp.type === HttpEventType.Response) {
+    //       console.log('Upload complete');
+    //     }
+    //     if (resp.type === HttpEventType.UploadProgress) {
+    //       const percentDone = Math.round(100 * resp.loaded / resp.total);
+    //       console.log('Progress ' + percentDone + '%');
+    //     }
+    //   });
+    // }
 
 
 
@@ -137,23 +145,23 @@ export class AdminEditProdcastComponent implements OnInit {
   // }
 
   updateProdCast() {
-    if(!this.EditData.Notestocommunicate.trim().length){
+    if (!this.EditData.Notestocommunicate.trim().length) {
       this.toast.error('Please add Notes');
       return;
     }
-    if(this.EditData.audiopath == ''){
+    if (this.EditData.audiopath == '') {
       this.toast.error('Please upload audio');
       return;
     }
-    if(this.EditData.imagepath == ''){
+    if (this.EditData.imagepath == '') {
       this.toast.error('Please upload image');
       return;
     }
-    if(this.EditData.category == ''){
+    if (this.EditData.category == '') {
       this.toast.error('Please select category');
       return;
     }
-    this.prodcastservice.loader=true;
+    this.prodcastservice.loader = true;
     this.EditData.category = this.EditData.category.join(",");
     let req = {
       "id": this.EditData.id,
@@ -170,63 +178,63 @@ export class AdminEditProdcastComponent implements OnInit {
       "created_by": this.LocalStorage.getUserData().username,
       "usertype": "Admin",
       "note_description": this.EditData.Notestocommunicate,
-      "shows_id":this.EditData.shows_id
+      "shows_id": this.EditData.shows_id
       // "audio_path": this.EditData.audiopath
 
     }
     this.webservice.commonMethod('podcast/update', req, 'PUT').subscribe(
       (data) => {
-        this.prodcastservice.loader=false;
-        if(data.Status == 'Success' && data.Response && data.Response.length){
+        this.prodcastservice.loader = false;
+        if (data.Status == 'Success' && data.Response && data.Response.length) {
           this.toast.success('Updated Sucessfully');
           this.back.emit();
           // this.router.navigateByUrl('/dashboard');
-         // this.EditData.category = this.EditData.category.join(",");
-          
+          // this.EditData.category = this.EditData.category.join(",");
+
         }
       }
     )
   }
-backtodashboard(){
-  this.prodcastservice.loader=false;
-  // this.router.navigateByUrl('/dashboard');
-  this.prodcastservice.IsView = false;
-  this.EditData.category = this.EditData.category.join(",");
-  this.back.emit()
+  backtodashboard() {
+    this.prodcastservice.loader = false;
+    // this.router.navigateByUrl('/dashboard');
+    this.prodcastservice.IsView = false;
+    this.EditData.category = this.EditData.category.join(",");
+    this.back.emit()
   }
-  removeAudio(){
-    this.prodcastservice.loader=true;
+  removeAudio() {
+    this.prodcastservice.loader = true;
     let req = {
-      filename : this.EditData.audiopath
-  }
+      filename: this.EditData.audiopath
+    }
     this.webservice.commonMethod("s3bucket/remove", this.EditData.audiopath, 'DELETE').
       subscribe((data: any) => {
-        this.prodcastservice.loader=false;
+        this.prodcastservice.loader = false;
         this.EditData.audiopath = '';
-      },err=>{
-        this.prodcastservice.loader=false;
+      }, err => {
+        this.prodcastservice.loader = false;
         this.EditData.audiopath = '';//temp added due to api error
       });
   }
-  removeFile(){
-    this.prodcastservice.loader=true;
+  removeFile() {
+    this.prodcastservice.loader = true;
     let req = {
-        filename : this.EditData.imagepath
+      filename: this.EditData.imagepath
     }
     this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
       subscribe((data: any) => {
         this.EditData.imagepath = '';
-        this.prodcastservice.loader=false;
-      },err=>{
-        this.prodcastservice.loader=false;
+        this.prodcastservice.loader = false;
+      }, err => {
+        this.prodcastservice.loader = false;
         this.EditData.imagepath = '';
       });
   }
-  enableagerestriction(){
+  enableagerestriction() {
     this.EditData.age_restriction = this.EditData.age_restriction == true ? false : true;
   }
   getShowList() {
-    this.webservice.commonMethod('/user/shows/'+this.EditData.user_id, '', 'GET').subscribe(
+    this.webservice.commonMethod('/user/shows/' + this.EditData.user_id, '', 'GET').subscribe(
       (data) => {
         this.ShowList = data.Response;
       })

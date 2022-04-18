@@ -251,9 +251,13 @@ export class RjApprovalComponent implements OnInit {
   }
   
   uploadFile(element) {
-    this.prodcastService.loader=true;
     const file = element[0];
     if (file == undefined) return;
+    if (this.webService.validImageList().indexOf(file.type) == -1) {
+      this.toast.error("Invalid image");
+      return
+    }
+    this.prodcastService.loader=true;
     console.log(file, "element");
     if(file.type.indexOf('image') == -1){
       this.toast.error("Invalid image");

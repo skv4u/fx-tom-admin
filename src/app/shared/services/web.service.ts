@@ -4,7 +4,7 @@ import { ConfigurationMicroService } from './configuration-micro.service';
 @Injectable()
 export class WebService {
   APIUrl: string = "";
-  APIToken:any = "";
+  APIToken: any = "";
   constructor(private http: HttpClient, public configurationService: ConfigurationMicroService) {
     this.APIUrl = this.configurationService.getUrl();
   }
@@ -15,7 +15,7 @@ export class WebService {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization':'Bearer ' + localStorage.getItem('adminttptoken')
+      'Authorization': 'Bearer ' + localStorage.getItem('adminttptoken')
     })
     let endPoint = this.APIUrl + "/" + url;
     if (method == 'POST')
@@ -40,7 +40,7 @@ export class WebService {
     // };
     const headers = new HttpHeaders({
       'enctype': 'multipart/form-data',
-      'Authorization':'Bearer ' + localStorage.getItem('adminttptoken')
+      'Authorization': 'Bearer ' + localStorage.getItem('adminttptoken')
     });
     return this.http.post(this.APIUrl + '/' + url, data, {
       headers,
@@ -49,10 +49,10 @@ export class WebService {
     });
 
   }
-  UploadFile(url,formData) {
+  UploadFile(url, formData) {
     const headers = new HttpHeaders({
       'enctype': 'multipart/form-data',
-      'Authorization':'Bearer ' + localStorage.getItem('adminttptoken')
+      'Authorization': 'Bearer ' + localStorage.getItem('adminttptoken')
     });
     this.http.post(this.APIUrl + '/' + url, formData, {
       headers,
@@ -68,6 +68,17 @@ export class WebService {
       }
     });
   }
- 
 
+  validImageList():string[] {
+    return [
+      'image/png',
+      'image/jpeg',
+      'image/jpg'
+    ]
+  }
+  validAudioList():string[] {
+    return [
+      'audio/mp3'
+    ]
+  }
 }

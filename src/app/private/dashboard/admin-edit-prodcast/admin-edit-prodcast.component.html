@@ -1,9 +1,9 @@
-  <!--Header Start Here-->
-  <app-generic-header></app-generic-header>
-  <!--Header End Here-->
+<!--Header Start Here-->
+<app-generic-header></app-generic-header>
+<!--Header End Here-->
 
-  <!--Title sec Start Here-->
-  <!-- <div class="admin-sec">
+<!--Title sec Start Here-->
+<!-- <div class="admin-sec">
     <div class="row admin-top">   
      
       <div class="col-md-12 settings-main">
@@ -14,100 +14,100 @@
     </div>
   </div> -->
 
-  <!--Title sec End Here-->
+<!--Title sec End Here-->
 
 
-  <div class="body-main" *ngIf="!prodcastservice.IsView">
-    <div class="body-content">  
-      <h3 style="cursor: pointer;"><a (click)="back.emit();"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>   
-      <div class="c-podcast">
-        <h3>Edit a Podcast</h3>
-        <div class="row">
-          <div class="col-md-6">
+<div class="body-main" *ngIf="!prodcastservice.IsView">
+    <div class="body-content">
+        <h3 style="cursor: pointer;"><a (click)="back.emit();"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
+        <div class="c-podcast">
+            <h3>Edit a Podcast</h3>
             <div class="row">
-              <div class="col-md-9 mb-4">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Podcast Name"  [(ngModel)]="EditData.name" value="Podcast 34">
-                  <label for="floatingInput">Podcast Name</label>
-                </div>               
-              </div>
-              <!-- <div class="col-md-9 mb-4">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-9 mb-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Podcast Name" [(ngModel)]="EditData.name" value="Podcast 34">
+                                <label for="floatingInput">Podcast Name</label>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-9 mb-4">
                 <div class="form-floating">
                   <input type="text" class="form-control" id="floatingInput" placeholder="Author Name"  [(ngModel)]="EditData.author_name" value="RJ Name">
                   <label for="floatingInput">Author Name</label>
                 </div>                  
               </div> -->
-              <div class="col-md-9 mb-4 form-floating">
-               <select class="form-control" placeholder="Language" [(ngModel)]="EditData.language" >
+                        <div class="col-md-9 mb-4 form-floating">
+                            <select class="form-control" placeholder="Language" [(ngModel)]="EditData.language">
                  <option *ngFor="let a of prodcastservice.LanguageList">{{a.name}}</option>
                </select>
-               <label for="floatingInput" style="left: 18px;">Language</label>
-              </div>
-          
-              <div class="col-md-9 mb-4 form-floating">
-                <select class="form-control" placeholder="Category" [(ngModel)]="EditData.category" multiple style="height: 100% !important;background: none;">
+                            <label for="floatingInput" style="left: 18px;">Language</label>
+                        </div>
+
+                        <div class="col-md-9 mb-4 form-floating">
+                            <select class="form-control" placeholder="Category" [(ngModel)]="EditData.category" multiple style="height: 100% !important;background: none;">
                   <option *ngFor="let a of prodcastservice.CategoryList" [value]="a.name">{{a.name}}</option>
                 </select>
-                <label for="floatingInput" style="left: 18px;">Category</label>
-                <span style="font-size: 10px;">Use Ctrl or Shift key for multiple selection</span>
-               </div>
-               <div class="col-md-9 mb-4 form-floating">
-                <select class="form-control" placeholder="Show" [(ngModel)]="EditData.shows_id" >
+                            <label for="floatingInput" style="left: 18px;">Category</label>
+                            <span style="font-size: 10px;">Use Ctrl or Shift key for multiple selection</span>
+                        </div>
+                        <div class="col-md-9 mb-4 form-floating">
+                            <select class="form-control" placeholder="Show" [(ngModel)]="EditData.shows_id">
                   <option value="-1">None - Individual Podcast</option>
                   <option *ngFor="let a of ShowList" [value]="a.shows_id">{{a.name}}</option>
                 </select>
-                <label for="floatingInput" style="left: 18px;">Shows</label>
-               </div>
-               <div class="col-md-3 mb-4 d-flex align-items-center" >
-                 <p class="pe-3 mb-0">Age Restriction</p>
-                 <div class="form-check form-switch">
-                  <input class="form-check-input"  (click)="enableagerestriction()" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="EditData.age_restriction">
-                  <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                            <label for="floatingInput" style="left: 18px;">Shows</label>
+                        </div>
+                        <div class="col-md-3 mb-4 d-flex align-items-center">
+                            <p class="pe-3 mb-0">Age Restriction</p>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" (click)="enableagerestriction()" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="EditData.age_restriction">
+                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <textarea class="form-control" [(ngModel)]="EditData.description" placeholder="Describe you Podcast in few lines. Describe you Podcast in few lines.Describe you Podcast in few lines.Describe you Podcast in few lines.Describe you Podcast in few lines.Describe you Podcast in few lines.Describe you Podcast in few lines."></textarea>
+                        </div>
+                    </div>
                 </div>
-               </div>
-               <div class="col-md-12 mb-4">
-                <textarea class="form-control"  [(ngModel)]="EditData.description" placeholder="Describe you Podcast in few lines. Describe you Podcast in few lines.Describe you Podcast in few lines.Describe you Podcast in few lines.Describe you Podcast in few lines.Describe you Podcast in few lines.Describe you Podcast in few lines."></textarea>
-              </div>
-            </div>            
-          </div>
-          <div class="col-md-6">
-            <section>
-              <form action="" method="POST" enctype="multipart/form-data">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                      
-                        <div class="dropzone-wrapper">
-                          <div class="preview-zone" *ngIf="EditData.audiopath != ''">
-                              <div class="box box-solid">
-                                  <button (click)="removeAudio()" style="background: none;
+                <div class="col-md-6">
+                    <section>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+
+                                            <div class="dropzone-wrapper">
+                                                <div class="preview-zone" *ngIf="EditData.audiopath != ''">
+                                                    <div class="box box-solid">
+                                                        <button (click)="removeAudio()" style="background: none;
                                   color: #f00;
                                   border: none;
                                   position: absolute;
                                   right: -10px;
                                   top: -10px;
                               "><i class="fas fa-trash-alt"></i></button>
-                                  <div class="box-body">
-                                      <audio controls preload="auto" *ngIf="EditData.audiopath">
+                                                        <div class="box-body">
+                                                            <audio controls preload="auto" *ngIf="EditData.audiopath">
                                           <source [src]="EditData.audiopath" type="audio/mpeg">
                                           <source [src]="EditData.audiopath" type="audio/ogg">
                                           Your browser does not support the audio element.
                                       </audio>
-                                  </div>
-                              </div>
-                          </div>
-                          <div *ngIf="EditData.audiopath == ''">
-                              <div class="" style="text-align: center;">
-                                  <i class="glyphicon glyphicon-download-alt"></i>
-                                  <p class="mb-1">Drag and Drop Audio file</p>
-                                  <p class="mb-1">Or</p>
-                                  <p>Double click here to add form library</p>
-                              </div>
-                              <input type="file" #fileInput (change)="uploadaudio($event.target.files)" name="img_logo" class="dropzone" accept="audio/*,video/*">
-                          </div>
-                      </div>
-                        <!-- <div class="dropzone-wrapper">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="EditData.audiopath == ''">
+                                                    <div class="" style="text-align: center;">
+                                                        <i class="glyphicon glyphicon-download-alt"></i>
+                                                        <p class="mb-1">Drag and Drop Audio file</p>
+                                                        <p class="mb-1">Or</p>
+                                                        <p>Double click here to add form library</p>
+                                                    </div>
+                                                    <input type="file" #fileInput (change)="uploadaudio($event.target.files)" name="img_logo" class="dropzone" accept="audio/mp3">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="dropzone-wrapper">
                           <div class="preview-zone hidden">
                             <div class="box box-solid">
                               
@@ -139,204 +139,201 @@
 
                       </div>
                         </div> -->
-                      </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+
+
+                    <div class="drop-zone upload-image" *ngIf="!EditData.imagepath">
+                        <span class="drop-zone__prompt"><p>Upload <br/> Podcast picture <br/>Or<br/> Topic picture</p>                </span>
+                        <input type="file" name="myFile" class="drop-zone__input" style="display: block;" (change)="uploadFile($event.target.files)" accept="image/png,image/jpg,image/jpeg">
                     </div>
-                  </div>
-                </div>
-              </form>
-            </section>
-            
-            
-           
-            <div class="drop-zone upload-image" *ngIf="!EditData.imagepath">
-              <span class="drop-zone__prompt"><p>Upload <br/> Podcast picture <br/>Or<br/> Topic picture</p>                </span>
-              <input type="file" name="myFile" class="drop-zone__input" style="display: block;"  (change)="uploadFile($event.target.files)">
-            </div>
-            <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
-              <img [src]="EditData.imagepath" [alt]="EditData.imagepath">
-              <button (click)="removeFile()" style="right: -11px;
+                    <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
+                        <img [src]="EditData.imagepath" [alt]="EditData.imagepath">
+                        <button (click)="removeFile()" style="right: -11px;
               cursor: pointer;
               top: -11px;
               position: absolute;
               background: none;
               border: none;
               color: #f00;"><i class="fas fa-trash-alt"></i></button>
-          </div>
+                    </div>
 
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <textarea class="form-control my-4" placeholder="Notes to communicate"  [(ngModel)]="EditData.Notestocommunicate"></textarea>
-            <button class="custome-button"  (click)="updateProdCast()">Update</button>
-          </div>
-        </div>
-
-        <div class="row my-4">
-          <div class="col-12 mt-4">
-            <h2 class="mb-4">Notes on Podcast</h2>
-            <!-- <textarea class="form-control mb-4">Notes on edit if you wish to communicate admin</textarea> -->
-            <div class="table-responsive dashboard-table">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>User</th> 
-                    <th>Status</th>                    
-                    <th>Notes</th>                
-                    <th class="text-center">File</th>                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let a of noteList">
-                    <td>
-                      <p class="mb-0">{{a.note_date}}</p>                      
-                    </td>
-                    <td>
-                      <p class="m-0">{{a.fullname}}({{a.usertype}})</p>
-                    </td>
-                    
-                    <td>{{a.status}}</td>
-                    <td>{{a.description}}</td>
-                    <td class="text-center"><a download="audio.mp3" [href]="a.audio_path" target="_blank"><i class="far fa-file-download"></i></a></td>
-                  </tr>
-                             
-                 
-                </tbody>
-              </table>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="body-main" *ngIf="prodcastservice.IsView">
-    <div class="body-content">  
-      <h3 style="cursor: pointer;"><a (click)="backtodashboard()"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>   
-      <div class="c-podcast">
-        <h3>About Podcast</h3>
-        <div class="row">
-          <div class="col-md-6">
             <div class="row">
-             <div class="col-12 mb-4">
-               <p class="m-0">Podcast Name</p>
-               <h4>{{EditData.name}}</h4>
-             </div>
-             <!-- <div class="col-12 mb-4">
+                <div class="col-12">
+                    <textarea class="form-control my-4" placeholder="Notes to communicate" [(ngModel)]="EditData.Notestocommunicate"></textarea>
+                    <button class="custome-button" (click)="updateProdCast()">Update</button>
+                </div>
+            </div>
+
+            <div class="row my-4">
+                <div class="col-12 mt-4">
+                    <h2 class="mb-4">Notes on Podcast</h2>
+                    <!-- <textarea class="form-control mb-4">Notes on edit if you wish to communicate admin</textarea> -->
+                    <div class="table-responsive dashboard-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>User</th>
+                                    <th>Status</th>
+                                    <th>Notes</th>
+                                    <th class="text-center">File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let a of noteList">
+                                    <td>
+                                        <p class="mb-0">{{a.note_date}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="m-0">{{a.fullname}}({{a.usertype}})</p>
+                                    </td>
+
+                                    <td>{{a.status}}</td>
+                                    <td>{{a.description}}</td>
+                                    <td class="text-center"><a download="audio.mp3" [href]="a.audio_path" target="_blank"><i class="far fa-file-download"></i></a></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="body-main" *ngIf="prodcastservice.IsView">
+    <div class="body-content">
+        <h3 style="cursor: pointer;"><a (click)="backtodashboard()"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
+        <div class="c-podcast">
+            <h3>About Podcast</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Podcast Name</p>
+                            <h4>{{EditData.name}}</h4>
+                        </div>
+                        <!-- <div class="col-12 mb-4">
               <p class="m-0">Author Name</p>
               <h4>{{EditData.author_name}}</h4>
             </div> -->
-            <div class="col-12 mb-4">
-              <p class="m-0">Language</p>
-              <h4>{{EditData.language}}</h4>
-            </div>
-            <div class="col-12 mb-4">
-              <p class="m-0">Category</p>
-              <h4>{{EditData.category}}</h4>
-            </div>
-            <div class="col-12 mb-4">
-              <p class="m-0">Show</p>
-              <h4>{{EditData.shows_name}}</h4>
-            </div>
-            <div class="col-12 mb-4">
-              <p class="m-0">Discription</p>
-              <h4>{{EditData.description}}</h4>
-            </div>
-            </div>            
-          </div>
-          <div class="col-md-6">
-            <section>
-              <form action="" method="POST" enctype="multipart/form-data">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                      
-                      
-                        <div class="dropzone-wrapper border-0">
-                          <div class="preview-zone hidden">
-                            <div class="box box-solid">
-                              
-                              <div class="box-body">
-                                <div class="box-body" *ngIf="EditData.audiopath">
-                                  <audio controls preload="auto" >
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Language</p>
+                            <h4>{{EditData.language}}</h4>
+                        </div>
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Category</p>
+                            <h4>{{EditData.category}}</h4>
+                        </div>
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Show</p>
+                            <h4>{{EditData.shows_name}}</h4>
+                        </div>
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Discription</p>
+                            <h4>{{EditData.description}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <section>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+
+
+                                            <div class="dropzone-wrapper border-0">
+                                                <div class="preview-zone hidden">
+                                                    <div class="box box-solid">
+
+                                                        <div class="box-body">
+                                                            <div class="box-body" *ngIf="EditData.audiopath">
+                                                                <audio controls preload="auto">
                                     <source [src]="EditData.audiopath" type="audio/mpeg">
                                     <source [src]="EditData.audiopath" type="audio/ogg"> 
                                     </audio>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- <div class="dropzone-desc">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="dropzone-desc">
                             <i class="glyphicon glyphicon-download-alt"></i>
                             <p class="mb-1">" Morning comedy ver3 " file added</p>                           
                           </div>
                           <input type="file" name="img_logo" class="dropzone"> -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </section>           
-            <!-- <div class="drop-zone  border-0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    <!-- <div class="drop-zone  border-0">
               <span class="drop-zone__prompt"><p>Upload <br/> Podcast picture <br/>Or<br/> Topic picture</p>                </span>
               <input type="file" name="myFile" class="drop-zone__input">
             </div> -->
-            <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
-              <img [src]="EditData.imagepath" [alt]="EditData.imagepath">
+                    <div class="drop-zone upload-image" *ngIf="EditData.imagepath">
+                        <img [src]="EditData.imagepath" [alt]="EditData.imagepath">
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- <div class="row">
+            <!-- <div class="row">
           <div class="col-12">
            
             <button class="custome-button">Close</button>
           </div>
         </div> -->
 
-        <div class="row my-4">
-          <div class="col-12 mt-4">
-            <h2 class="mb-4">Notes on Podcast</h2>
-            <!-- <textarea class="form-control mb-4">Notes on edit if you wish to communicate admin</textarea> -->
-            <div class="table-responsive dashboard-table">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>User</th> 
-                    <th>Status</th>                    
-                    <th>Notes</th>                
-                    <th class="text-center">File</th>  
-                                
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let a of noteList">
-                    <td>
-                      <p class="mb-0">{{a.note_date}}</p>                      
-                    </td>
-                    <td>
-                      <p class="m-0">{{a.fullname}}({{a.usertype}})</p>
-                    </td>
-                    
-                    <td>{{a.status}}</td>
-                    <td>{{a.description}}</td>
-                    <td class="text-center"><a download="audio.mp3" [href]="a.audio_path" target="_blank"><i class="far fa-file-download"></i></a></td>
-                  </tr>
-                             
-                 
-                </tbody>
-              </table>
+            <div class="row my-4">
+                <div class="col-12 mt-4">
+                    <h2 class="mb-4">Notes on Podcast</h2>
+                    <!-- <textarea class="form-control mb-4">Notes on edit if you wish to communicate admin</textarea> -->
+                    <div class="table-responsive dashboard-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>User</th>
+                                    <th>Status</th>
+                                    <th>Notes</th>
+                                    <th class="text-center">File</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let a of noteList">
+                                    <td>
+                                        <p class="mb-0">{{a.note_date}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="m-0">{{a.fullname}}({{a.usertype}})</p>
+                                    </td>
+
+                                    <td>{{a.status}}</td>
+                                    <td>{{a.description}}</td>
+                                    <td class="text-center"><a download="audio.mp3" [href]="a.audio_path" target="_blank"><i class="far fa-file-download"></i></a></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
- 
-
-
+</div>

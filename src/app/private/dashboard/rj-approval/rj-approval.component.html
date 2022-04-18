@@ -1,122 +1,112 @@
 <div *ngIf="!IsEdit">
-  <!--Header Start Here-->
-  <app-generic-header></app-generic-header>
-  <!--Header End Here-->
+    <!--Header Start Here-->
+    <app-generic-header></app-generic-header>
+    <!--Header End Here-->
 
-  <!--Title sec Start Here-->
-  <div class="admin-sec">
-    <div class="row admin-top">
-      <div class="col-md-4 admin-title">
-        <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to
+    <!--Title sec Start Here-->
+    <div class="admin-sec">
+        <div class="row admin-top">
+            <div class="col-md-4 admin-title">
+                <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to
             Dashboard</a></h3>
-      </div>
-      <div class="col-md-4 tickets">
-        <ul>
-          <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
-          <li class="rejected"><strong>{{prodcastService.RJStatistics.RejectedRJTotal}}</strong> Rejected</li>
-          <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
-          <li class="blocked"><strong>{{prodcastService.RJStatistics.BlockedRJTotal}}</strong> Blocked</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!--Title sec End Here-->
-
-
-  <div class="body-main">
-    <div class="body-content">
-      <div class="row">
-        <div class="col-12 col-lg-12">
-          <h3>RJ Approval board</h3>
-          <div class="shadow-sm border-0 card card-body admin-height table-text p-0">
-            <div class="information">
-
-              <ul>
-                <!-- <li> <h4>Information</h4></li> -->
-                <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
-                <li class="rejected"><strong>{{prodcastService.RJStatistics.RejectedRJTotal}}</strong> Rejected</li>
-                <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
-                <li class="blocked"><strong>{{prodcastService.RJStatistics.BlockedRJTotal}}</strong> Blocked</li>
-              </ul>
             </div>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="pic">Picture</th>
-                    <th>RJ Name</th>
-                    <th>
+            <div class="col-md-4 tickets">
+                <ul>
+                    <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
+                    <li class="rejected"><strong>{{prodcastService.RJStatistics.RejectedRJTotal}}</strong> Rejected</li>
+                    <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
+                    <li class="blocked"><strong>{{prodcastService.RJStatistics.BlockedRJTotal}}</strong> Blocked</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle outsideclick"
-                        data-bs-toggle="dropdown" aria-expanded="false"
-                        (click)="showStatus = !showStatus;bindSingleClickEvent()">
+    <!--Title sec End Here-->
+
+
+    <div class="body-main">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <h3>RJ Approval board</h3>
+                    <div class="shadow-sm border-0 card card-body admin-height table-text p-0">
+                        <div class="information">
+
+                            <ul>
+                                <!-- <li> <h4>Information</h4></li> -->
+                                <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
+                                <li class="rejected"><strong>{{prodcastService.RJStatistics.RejectedRJTotal}}</strong> Rejected</li>
+                                <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
+                                <li class="blocked"><strong>{{prodcastService.RJStatistics.BlockedRJTotal}}</strong> Blocked</li>
+                            </ul>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="pic">Picture</th>
+                                        <th>RJ Name</th>
+                                        <th>
+
+                                            <button id="btnGroupDrop2" type="button" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" aria-expanded="false" (click)="showStatus = !showStatus;bindSingleClickEvent()">
                         <strong>Status</strong>
                       </button>
-                      <ul class="dropdown-menu " aria-labelledby="btnGroupDrop2"
-                        [ngStyle]="{'display' : showStatus ? 'block':'none'}">
-                        <li class="pending" (click)="searchList('');showStatus = false"><a class="dropdown-item">All</a>
-                        </li>
-                        <!-- <li class="pending"><a class="dropdown-item"
+                                            <ul class="dropdown-menu " aria-labelledby="btnGroupDrop2" [ngStyle]="{'display' : showStatus ? 'block':'none'}">
+                                                <li class="pending" (click)="searchList('');showStatus = false"><a class="dropdown-item">All</a>
+                                                </li>
+                                                <!-- <li class="pending"><a class="dropdown-item"
                             (click)="searchList('Pending');showStatus = false">Pending</a></li> -->
-                        <li class="approved"><a class="dropdown-item"
-                            (click)="searchList('Approved');showStatus = false">Approved</a></li>
-                        <li class="rejected"><a class="dropdown-item"
-                            (click)="searchList('Rejected');showStatus = false">Rejected</a></li>
-                        <li class="block"><a class="dropdown-item"
-                            (click)="searchList('Block');showStatus = false">Block</a></li>
-                      </ul>
-                    </th>
-                    <th>E-mail</th>
-                    <th>Phone Number</th>
-                    <th class="text-center">Edit Profile</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let a of RJList;let i=index">
-                    <td class="pic">
-                      <img [src]="a.profile_image" alt="img" *ngIf="a.profile_image" />
-                      <img src="assets/images/login-img.jpg" *ngIf="!a.profile_image" alt="img" />
-                    </td>
-                    <td class="rjsname">
-                      <h5 class="mb-0">{{a.fullname}}</h5>
-                      <!-- <p><a href="rj-profile.html">About the RJ</a></p>                     -->
-                    </td>
+                                                <li class="approved"><a class="dropdown-item" (click)="searchList('Approved');showStatus = false">Approved</a></li>
+                                                <li class="rejected"><a class="dropdown-item" (click)="searchList('Rejected');showStatus = false">Rejected</a></li>
+                                                <li class="block"><a class="dropdown-item" (click)="searchList('Block');showStatus = false">Block</a></li>
+                                            </ul>
+                                        </th>
+                                        <th>E-mail</th>
+                                        <th>Phone Number</th>
+                                        <th class="text-center">Edit Profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of RJList;let i=index">
+                                        <td class="pic">
+                                            <img [src]="a.profile_image" alt="img" *ngIf="a.profile_image" />
+                                            <img src="assets/images/login-img.jpg" *ngIf="!a.profile_image" alt="img" />
+                                        </td>
+                                        <td class="rjsname">
+                                            <h5 class="mb-0">{{a.fullname}}</h5>
+                                            <!-- <p><a href="rj-profile.html">About the RJ</a></p>                     -->
+                                        </td>
 
-                    <td style="position: relative;">
+                                        <td style="position: relative;">
 
 
-                      <button id="btnGroupDrop2" type="button"
-                        class="dropdown-toggle outsideclick {{a.approval_status.toLowerCase()}}"
-                        data-bs-toggle="dropdown" aria-expanded="false"
-                        (click)="a.ShowStatus = ! a.ShowStatus;currentIndex = i;bindSingleClickEvent()">
+                                            <button id="btnGroupDrop2" type="button" class="dropdown-toggle outsideclick {{a.approval_status.toLowerCase()}}" data-bs-toggle="dropdown" aria-expanded="false" (click)="a.ShowStatus = ! a.ShowStatus;currentIndex = i;bindSingleClickEvent()">
                         {{a.approval_status}}
                       </button>
-                      <ul class="dropdown-menu outsideclick" aria-labelledby="btnGroupDrop2" *ngIf="a.ShowStatus"
-                        style="display: block;">
-                        <!-- <li class="pending"><a class="dropdown-item"
+                                            <ul class="dropdown-menu outsideclick" aria-labelledby="btnGroupDrop2" *ngIf="a.ShowStatus" style="display: block;">
+                                                <!-- <li class="pending"><a class="dropdown-item"
                             (click)="a.ShowStatus=false;getApproveStatus(i,'Pending')">pending</a></li> -->
-                        <ng-container *ngIf="a.approval_status == 'Blocked'">
-                          <li class="approved">
-                            <a class="dropdown-item" (click)="a.ShowStatus=false;showPopup(i,'Approved')">Approved</a>
-                          </li>
-                        </ng-container>
+                                                <ng-container *ngIf="a.approval_status == 'Blocked'">
+                                                    <li class="approved">
+                                                        <a class="dropdown-item" (click)="a.ShowStatus=false;showPopup(i,'Approved')">Approved</a>
+                                                    </li>
+                                                </ng-container>
 
-                        <ng-container *ngIf="a.approval_status != 'Blocked'">
-                          <ng-container *ngFor="let b of statusList">
-                            <li class="{{b.toLowerCase()}}" *ngIf="a.approval_status != b">
-                              <a class="dropdown-item" (click)="a.ShowStatus=false;showPopup(i,b)">{{b}}</a></li>
-                          </ng-container>
-                        </ng-container>
+                                                <ng-container *ngIf="a.approval_status != 'Blocked'">
+                                                    <ng-container *ngFor="let b of statusList">
+                                                        <li class="{{b.toLowerCase()}}" *ngIf="a.approval_status != b">
+                                                            <a class="dropdown-item" (click)="a.ShowStatus=false;showPopup(i,b)">{{b}}</a></li>
+                                                    </ng-container>
+                                                </ng-container>
 
-                        <!-- <li class="rejected"><a class="dropdown-item"
+                                                <!-- <li class="rejected"><a class="dropdown-item"
                             (click)="a.ShowStatus=false;showPopup(i,'Rejected')">Rejected</a></li>
                         <li class="block"><a class="dropdown-item"
                             (click)="a.ShowStatus=false;showPopup(i,'Blocked')">Block</a></li> -->
-                      </ul>
+                                            </ul>
 
 
-                      <!-- <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.StatusCode}}" data-bs-toggle="dropdown"
+                                            <!-- <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.StatusCode}}" data-bs-toggle="dropdown"
                     aria-expanded="false" (click)="a.ShowStatus = ! a.ShowStatus">
                     {{a.approval_status}}
                   </button>                  
@@ -126,34 +116,34 @@
                     <li class="rejected"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Rejected')">Rejected</a></li>
                     <li class="block"><a class="dropdown-item" (click)="a.ShowStatus=false;getApproveStatus(i,'Block')">Block</a></li>
                   </ul> -->
-                    </td>
-                    <td>{{a.email}}</td>
-                    <td>{{a.phone}}</td>
-                    <td class="text-center"><a><i class="fas fa-pen" style="cursor:pointer"
+                                        </td>
+                                        <td>{{a.email}}</td>
+                                        <td>{{a.phone}}</td>
+                                        <td class="text-center"><a><i class="fas fa-pen" style="cursor:pointer"
                           (click)="IsEdit = true;getRJDetails(a)"></i></a></td>
-                  </tr>
-                </tbody>
+                                    </tr>
+                                </tbody>
 
-              </table>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <div *ngIf="IsEdit">
-  <!--Header Start Here-->
-  <app-generic-header></app-generic-header>
-  <!--Header End Here-->
+    <!--Header Start Here-->
+    <app-generic-header></app-generic-header>
+    <!--Header End Here-->
 
-  <!--Title sec Start Here-->
-  <div class="title-sec">
-    <div class="main-title">
-      <h1>Edit Profile</h1>
-    </div>
-    <!-- <div class="top-right">
+    <!--Title sec Start Here-->
+    <div class="title-sec">
+        <div class="main-title">
+            <h1>Edit Profile</h1>
+        </div>
+        <!-- <div class="top-right">
         <ul>
           <li><a href="signin.html">Sign in</a></li>
           <li class="active"><a href="register.html">Register</a></li>
@@ -161,216 +151,197 @@
   
       </div> -->
 
-  </div>
-  <!--Title sec End Here-->
-  <div class="body-main">
-    <div class="body-content">
-      <h3><a (click)="IsEdit=false" style="cursor: pointer;"><i class="fas fa-angle-left"></i> Back to RJ Approval
+    </div>
+    <!--Title sec End Here-->
+    <div class="body-main">
+        <div class="body-content">
+            <h3><a (click)="IsEdit=false" style="cursor: pointer;"><i class="fas fa-angle-left"></i> Back to RJ Approval
           board</a></h3>
-      <!-- <h4>Edit RJ Profile</h4> -->
-      <div class="title-sec mb-3 p-3 align-items-center justify-content-lg-between">
-        <div class="d-flex">
-          <h4 class="mb-0">Personal Information</h4>
-        </div>
-        <div class="d-flex" *ngIf="!isPersonalInformationOpen">
-          <i class="fal fa-plus-square fa-2x" (click)="isPersonalInformationOpen = true"></i>
-        </div>
-        <div class="d-flex" *ngIf="isPersonalInformationOpen">
-          <i class="fal fa-minus-square fa-2x" (click)="isPersonalInformationOpen = false"></i>
-        </div>
-      </div>
-      <form [formGroup]="registerForm">
-        <div class="row" *ngIf="isPersonalInformationOpen">
-          <div class="col-md-4 col-12 mb-4">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="fullname" placeholder="RJ Name" formControlName="fullname">
-              <label for="fullname">RJ Name *</label>
+            <!-- <h4>Edit RJ Profile</h4> -->
+            <div class="title-sec mb-3 p-3 align-items-center justify-content-lg-between">
+                <div class="d-flex">
+                    <h4 class="mb-0">Personal Information</h4>
+                </div>
+                <div class="d-flex" *ngIf="!isPersonalInformationOpen">
+                    <i class="fal fa-plus-square fa-2x" (click)="isPersonalInformationOpen = true"></i>
+                </div>
+                <div class="d-flex" *ngIf="isPersonalInformationOpen">
+                    <i class="fal fa-minus-square fa-2x" (click)="isPersonalInformationOpen = false"></i>
+                </div>
             </div>
-            <div class="required-error">
-              <span class="error-span"
-                *ngIf="registerForm.get('fullname').errors && (registerForm.get('fullname').touched || registerForm.get('fullname').dirty) || !isregisterFormValid">
+            <form [formGroup]="registerForm">
+                <div class="row" *ngIf="isPersonalInformationOpen">
+                    <div class="col-md-4 col-12 mb-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="fullname" placeholder="RJ Name" formControlName="fullname">
+                            <label for="fullname">RJ Name *</label>
+                        </div>
+                        <div class="required-error">
+                            <span class="error-span" *ngIf="registerForm.get('fullname').errors && (registerForm.get('fullname').touched || registerForm.get('fullname').dirty) || !isregisterFormValid">
                 <span *ngIf="registerForm.get('fullname').hasError('required')" style="color:#f00">
                   RJ Name is required
                 </span>
-              </span>
-            </div>
-          </div>
-          <div class="col-md-4 col-12 mb-4">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="username" placeholder="Login ID *" formControlName="username"
-                disabled>
-              <label for="username">Login ID *</label>
-            </div>
-            <div class="required-error">
-              <span class="error-span"
-                *ngIf="registerForm.get('username').errors && (registerForm.get('username').touched || registerForm.get('username').dirty) || !isregisterFormValid">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12 mb-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="username" placeholder="Login ID *" formControlName="username" disabled>
+                            <label for="username">Login ID *</label>
+                        </div>
+                        <div class="required-error">
+                            <span class="error-span" *ngIf="registerForm.get('username').errors && (registerForm.get('username').touched || registerForm.get('username').dirty) || !isregisterFormValid">
                 <span *ngIf="registerForm.get('username').hasError('required')" style="color:#f00">
                   Login ID is required
                 </span>
-              </span>
-            </div>
-          </div>
-          <div class="col-md-4 col-12 mb-4">
-            <div class="form-floating">
-              <input type="date" class="form-control" id="dob" placeholder="Date of Birth *" formControlName="dob"
-                (change)="validation()">
-              <label for="dob">Date of Birth *</label>
-            </div>
-            <div class="required-error">
-              <span class="error-span"
-                *ngIf="registerForm.get('dob').errors && (registerForm.get('dob').touched || registerForm.get('dob').dirty) || !isregisterFormValid">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12 mb-4">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="dob" placeholder="Date of Birth *" formControlName="dob" (change)="validation()">
+                            <label for="dob">Date of Birth *</label>
+                        </div>
+                        <div class="required-error">
+                            <span class="error-span" *ngIf="registerForm.get('dob').errors && (registerForm.get('dob').touched || registerForm.get('dob').dirty) || !isregisterFormValid">
                 <span *ngIf="registerForm.get('dob').hasError('required')" style="color:#f00">
                   Date of Birth is required
                 </span>
-              </span>
-            </div>
-          </div>
-          <div class="col-md-1 col-12 mb-4">
-            <div class="form-floating">
-              <select class="form-control" placeholder="ISD" [(ngModel)]="ISD" [ngModelOptions]="{standalone: true}"
-                (click)="getStateList()">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-12 mb-4">
+                        <div class="form-floating">
+                            <select class="form-control" placeholder="ISD" [(ngModel)]="ISD" [ngModelOptions]="{standalone: true}" (click)="getStateList()">
                 <option *ngFor="let country of countryList" [value]="country.dialcode">
                   {{country.dialcode}}</option>
               </select>
-              <label for="floatingInput">ISD</label>
-            </div>
-          </div>
-          <div class="col-md-5 col-12 mb-4">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="floatingInput" placeholder="Phone Number *"
-                formControlName="phone">
-              <label for="floatingInput">Phone Number *</label>
-            </div>
-            <div class="required-error">
-              <span class="error-span"
-                *ngIf="registerForm.get('phone').errors && (registerForm.get('phone').touched || registerForm.get('phone').dirty) || !isregisterFormValid">
+                            <label for="floatingInput">ISD</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-12 mb-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Phone Number *" formControlName="phone">
+                            <label for="floatingInput">Phone Number *</label>
+                        </div>
+                        <div class="required-error">
+                            <span class="error-span" *ngIf="registerForm.get('phone').errors && (registerForm.get('phone').touched || registerForm.get('phone').dirty) || !isregisterFormValid">
                 <span *ngIf="registerForm.get('phone').hasError('required')" style="color:#f00">
                   Phone Number is required
                 </span>
-                <span class="error-span" *ngIf="registerForm.get('phone').hasError('minlength')" style="color:#f00">
+                            <span class="error-span" *ngIf="registerForm.get('phone').hasError('minlength')" style="color:#f00">
                   Minimum length 10 Characters
                 </span>
-                <span class="error-span" *ngIf="registerForm.get('phone').hasError('maxlength')" style="color:#f00">
+                            <span class="error-span" *ngIf="registerForm.get('phone').hasError('maxlength')" style="color:#f00">
                   Maximum length 10 Characters
                 </span>
-                <span class="error-span" *ngIf="registerForm.get('phone').hasError('customNumber')" style="color:#f00">
+                            <span class="error-span" *ngIf="registerForm.get('phone').hasError('customNumber')" style="color:#f00">
                   Numbers Only
                 </span>
-              </span>
-            </div>
-          </div>
-          <div class="col-md-6 col-12 mb-4">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="floatingInput" placeholder="Email ID *"
-                formControlName="email">
-              <label for="floatingInput">Email ID *</label>
-            </div>
-            <div class="required-error">
-              <span class="error-span"
-                *ngIf="registerForm.get('email').errors && (registerForm.get('email').touched || registerForm.get('email').dirty) || !isregisterFormValid">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 mb-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Email ID *" formControlName="email">
+                            <label for="floatingInput">Email ID *</label>
+                        </div>
+                        <div class="required-error">
+                            <span class="error-span" *ngIf="registerForm.get('email').errors && (registerForm.get('email').touched || registerForm.get('email').dirty) || !isregisterFormValid">
                 <span *ngIf="registerForm.get('email').hasError('required')" style="color:#f00">
                   Email is required
                 </span>
-                <span class="error-span" *ngIf="registerForm.get('email').hasError('customEmail')" style="color:#f00">
+                            <span class="error-span" *ngIf="registerForm.get('email').hasError('customEmail')" style="color:#f00">
                   Invalid Email
                 </span>
-                <span class="error-span" *ngIf="registerForm.get('email').hasError('maxlength')" style="color:#f00">
+                            <span class="error-span" *ngIf="registerForm.get('email').hasError('maxlength')" style="color:#f00">
                   Maximum length 60 Charecters only
                 </span>
-              </span>
-            </div>
-          </div>
-          <div class="col-12 mb-4">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="floatingInput" placeholder="Address 1"
-                formControlName="address1">
-              <label for="floatingInput">Address 1</label>
-            </div>
-          </div>
-          <div class="col-12 mb-4">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="floatingInput" placeholder="Address 2"
-                formControlName="address2">
-              <label for="floatingInput">Address 2</label>
-            </div>
-          </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Address 1" formControlName="address1">
+                            <label for="floatingInput">Address 1</label>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Address 2" formControlName="address2">
+                            <label for="floatingInput">Address 2</label>
+                        </div>
+                    </div>
 
-          <div class="col-6 mb-4">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="floatingInput" placeholder="Address 3"
-                formControlName="address3">
-              <label for="floatingInput">Address 3</label>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="form-floating">
-              <select class="form-control" placeholder="Country" [(ngModel)]="country"
-                [ngModelOptions]="{standalone: true}" (click)="getStateList(country)">
+                    <div class="col-6 mb-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Address 3" formControlName="address3">
+                            <label for="floatingInput">Address 3</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="form-floating">
+                            <select class="form-control" placeholder="Country" [(ngModel)]="country" [ngModelOptions]="{standalone: true}" (click)="getStateList(country)">
                 <option *ngFor="let country of countryList" [value]="country.name">
                   {{country.name}}</option>
               </select>
-              <label for="floatingInput">Country</label>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="form-floating">
-              <select class="form-control" placeholder="State" [(ngModel)]="state"
-                [ngModelOptions]="{standalone: true}">
+                            <label for="floatingInput">Country</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="form-floating">
+                            <select class="form-control" placeholder="State" [(ngModel)]="state" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let state of stateList" [value]="state.name">
                   {{state.name}}</option>
               </select>
-              <label for="floatingInput">State</label>
-            </div>
-          </div>
+                            <label for="floatingInput">State</label>
+                        </div>
+                    </div>
 
-          <div class="col-md-12 col-12 mb-4 d-flex align-items-center flex-wrap radio-width">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="podcaster_type" id="inlineRadio1" value="Individual"
-                formControlName="podcaster_type" (change)="getpodcastdisable();">
-              <label class="form-check-label" for="inlineRadio1">Individual Podcaster</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="podcaster_type" id="inlineRadio2" value="Organisation"
-                formControlName="podcaster_type" (change)="getpodcastdisable();">
-              <label class="form-check-label" for="inlineRadio2">Organisation</label>
-            </div>
-            <div class="w-50">
-              <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Organisation working for?"
-                  formControlName="podcaster_value" [readOnly]="isindividual">
-                <label for="floatingInput">Organisation working for?</label>
-              </div>
-            </div>
-          </div>
-        </div>
+                    <div class="col-md-12 col-12 mb-4 d-flex align-items-center flex-wrap radio-width">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="podcaster_type" id="inlineRadio1" value="Individual" formControlName="podcaster_type" (change)="getpodcastdisable();">
+                            <label class="form-check-label" for="inlineRadio1">Individual Podcaster</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="podcaster_type" id="inlineRadio2" value="Organisation" formControlName="podcaster_type" (change)="getpodcastdisable();">
+                            <label class="form-check-label" for="inlineRadio2">Organisation</label>
+                        </div>
+                        <div class="w-50">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Organisation working for?" formControlName="podcaster_value" [readOnly]="isindividual">
+                                <label for="floatingInput">Organisation working for?</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
 
-        <div class="title-sec mb-3 p-3 align-items-center justify-content-lg-between">
-          <div class="d-flex">
-            <h4 class="mb-0">RJ Profile display information</h4>
-          </div>
-          <div class="d-flex" *ngIf="!isdisplayinformationOpen">
-            <i class="fal fa-plus-square fa-2x" (click)="isdisplayinformationOpen = true"></i>
-          </div>
-          <div class="d-flex" *ngIf="isdisplayinformationOpen">
-            <i class="fal fa-minus-square fa-2x" (click)="isdisplayinformationOpen = false"></i>
-          </div>
-        </div>
-        <div class="row" *ngIf="isdisplayinformationOpen">
-          <div class="col-md-3">
-            <div class="profile-pic drop-zone upload-image" style="max-width: 100%;" *ngIf="pictureFileName == ''">
-              <!-- <a>Upload Profile Picture</a> -->
-              <span class="drop-zone__prompt">
+                <div class="title-sec mb-3 p-3 align-items-center justify-content-lg-between">
+                    <div class="d-flex">
+                        <h4 class="mb-0">RJ Profile display information</h4>
+                    </div>
+                    <div class="d-flex" *ngIf="!isdisplayinformationOpen">
+                        <i class="fal fa-plus-square fa-2x" (click)="isdisplayinformationOpen = true"></i>
+                    </div>
+                    <div class="d-flex" *ngIf="isdisplayinformationOpen">
+                        <i class="fal fa-minus-square fa-2x" (click)="isdisplayinformationOpen = false"></i>
+                    </div>
+                </div>
+                <div class="row" *ngIf="isdisplayinformationOpen">
+                    <div class="col-md-3">
+                        <div class="profile-pic drop-zone upload-image" style="max-width: 100%;" *ngIf="pictureFileName == ''">
+                            <!-- <a>Upload Profile Picture</a> -->
+                            <span class="drop-zone__prompt">
                 <p>Upload Profile Picture</p>
               </span>
-              <input type="file" name="myFile" class="drop-zone__input" style="display: block;cursor: pointer;"
-                (change)="uploadFile($event.target.files)" accept="image/">
-            </div>
-            <div class="profile-pic drop-zone upload-image" style="max-width: 100%;" *ngIf="pictureFileName">
-              <img [src]="pictureFileName" style="position:absolute;" [alt]="pictureFileName">
-              <button (click)="removeFile()" style="right: -140px;
+                            <input type="file" name="myFile" class="drop-zone__input" style="display: block;cursor: pointer;" (change)="uploadFile($event.target.files)" accept="image/png,image/jpg,image/jpeg">
+                        </div>
+                        <div class="profile-pic drop-zone upload-image" style="max-width: 100%;" *ngIf="pictureFileName">
+                            <img [src]="pictureFileName" style="position:absolute;" [alt]="pictureFileName">
+                            <button (click)="removeFile()" style="right: -140px;
                           cursor: pointer;
                           top: -155px;
                           background: none;
@@ -378,68 +349,61 @@
                           color: #f00;
                           font-size: 20px;
                           position: relative;"><i class="fas fa-trash-alt"></i></button>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="row">
-              <div class="col-md-12 col-12 mb-4">
-                <div class="form-floating">
-                  <textarea type="text" class="form-control" id="floatingInput" placeholder="Twitter"
-                    formControlName="aboutme"></textarea>
-                  <label for="floatingInput">About Me</label>
-                </div>
-              </div>
-              <div class="col-md-6 col-12 mb-4">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Twitter"
-                    formControlName="twitter">
-                  <label for="floatingInput">Twitter</label>
-                </div>
-              </div>
-              <div class="col-md-6 col-12 mb-4">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Facebook"
-                    formControlName="facebook">
-                  <label for="floatingInput">Facebook</label>
-                </div>
-              </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-12 col-12 mb-4">
+                                <div class="form-floating">
+                                    <textarea type="text" class="form-control" id="floatingInput" placeholder="Twitter" formControlName="aboutme"></textarea>
+                                    <label for="floatingInput">About Me</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Twitter" formControlName="twitter">
+                                    <label for="floatingInput">Twitter</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Facebook" formControlName="facebook">
+                                    <label for="floatingInput">Facebook</label>
+                                </div>
+                            </div>
 
-              <div class="col-md-6 col-12 mb-4">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Snapchat"
-                    formControlName="snapchat">
-                  <label for="floatingInput">Snapchat</label>
-                </div>
-              </div>
-              <div class="col-md-6 col-12 mb-4">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Blogger"
-                    formControlName="blogger">
-                  <label for="floatingInput">Blogger</label>
-                </div>
-              </div>
+                            <div class="col-md-6 col-12 mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Snapchat" formControlName="snapchat">
+                                    <label for="floatingInput">Snapchat</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Blogger" formControlName="blogger">
+                                    <label for="floatingInput">Blogger</label>
+                                </div>
+                            </div>
 
-              <div class="col-md-6 col-12 mb-4">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Telegran"
-                    formControlName="telegram">
-                  <label for="floatingInput">Telegram</label>
-                </div>
-              </div>
-              <div class="col-md-6 col-12 mb-4">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="LinkedIn"
-                    formControlName="linkedin">
-                  <label for="floatingInput">LinkedIn</label>
-                </div>
-              </div>
-            </div>
+                            <div class="col-md-6 col-12 mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Telegran" formControlName="telegram">
+                                    <label for="floatingInput">Telegram</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="LinkedIn" formControlName="linkedin">
+                                    <label for="floatingInput">LinkedIn</label>
+                                </div>
+                            </div>
+                        </div>
 
-          </div>
-        </div>
+                    </div>
+                </div>
 
 
-        <!-- <div class="row mt-5">
+                <!-- <div class="row mt-5">
                   <div class="col-md-6 col-12 mb-4">
                       <div class="form-floating">
                           <input type="password" class="form-control" id="floatingInput" placeholder="Password" formControlName="password">
@@ -470,37 +434,37 @@
                   </div>
               </div> -->
 
-        <div class="row">
-          <div class="co1-12 mb-4">
-            <!-- <label><strong>Notes </strong></label>
+                <div class="row">
+                    <div class="co1-12 mb-4">
+                        <!-- <label><strong>Notes </strong></label>
             <textarea class="form-control mb-4" [(ngModel)]="reasonforEdit"
               [ngModelOptions]="{standalone: true}">Reason for edit</textarea> -->
-            <button class="custome-button" (click)="updateProfile()"><a>Update</a></button>
-          </div>
+                        <button class="custome-button" (click)="updateProfile()"><a>Update</a></button>
+                    </div>
 
+                </div>
+
+            </form>
         </div>
-
-      </form>
     </div>
-  </div>
 </div>
 
 
 
 <div *ngIf="showConfirmPopup">
-  <!--------------------------->
-  <!--Delete The Modal -->
-  <div class="background-grey"></div>
-  <div class="popup-box" style="height: 130px;text-align: center;">
-    <div>
-      <h4 class="mb-0"> Please Confirm on Status Change ?</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
-    </div>
+    <!--------------------------->
+    <!--Delete The Modal -->
+    <div class="background-grey"></div>
+    <div class="popup-box" style="height: 130px;text-align: center;">
+        <div>
+            <h4 class="mb-0"> Please Confirm on Status Change ?</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
+        </div>
 
-    <!-- Modal body href="dashboard.html" 366,367-->
-    <div class="modal-body">
-      <a><button class="custome-button mx-2" (click)="getApproveStatus()">Confirm</button></a>
-      <a><button class="custome-outline mx-2" (click)="showConfirmPopup = false">Cancel</button></a>
+        <!-- Modal body href="dashboard.html" 366,367-->
+        <div class="modal-body">
+            <a><button class="custome-button mx-2" (click)="getApproveStatus()">Confirm</button></a>
+            <a><button class="custome-outline mx-2" (click)="showConfirmPopup = false">Cancel</button></a>
+        </div>
     </div>
-  </div>
 </div>
