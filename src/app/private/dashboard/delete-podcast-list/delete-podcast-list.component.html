@@ -1,31 +1,31 @@
 <div>
 
-  <app-generic-header></app-generic-header>
-<div *ngIf="!IsView">
-  <div class="admin-sec" >
-    <div class="row admin-top">
-      <div class="col-md-4 admin-title">
-        <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
-      </div>
-      <!-- <div class="col-md-4 tickets">
+    <app-generic-header></app-generic-header>
+    <div *ngIf="!IsView">
+        <div class="admin-sec">
+            <div class="row admin-top">
+                <div class="col-md-4 admin-title">
+                    <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
+                </div>
+                <!-- <div class="col-md-4 tickets">
         <ul>
           <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
           <li class="rejected"><strong>{{prodcastService.RJStatistics.RejectedRJTotal}}</strong> Rejected</li>
           <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
         </ul>
       </div> -->
-    </div>
-  </div>
+            </div>
+        </div>
 
 
 
-  <div class="body-main">
-    <div class="body-content">
-      <div class="row">
-        <div class="col-12 col-lg-12">
-          <h3>Deleted Podcast board</h3>
-          <div class="shadow-sm border-0 card card-body admin-height table-text p-0">
-            <!-- <div class="information">
+        <div class="body-main">
+            <div class="body-content">
+                <div class="row">
+                    <div class="col-12 col-lg-12">
+                        <h3>Deleted Podcast board</h3>
+                        <div class="shadow-sm border-0 card card-body admin-height table-text p-0">
+                            <!-- <div class="information">
               <h4>Information</h4>
               <ul>
                 <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
@@ -33,85 +33,85 @@
                 <li class="approved"><strong>{{prodcastService.RJStatistics.ApprovedRJTotal}}</strong> Approved</li>
               </ul>
             </div> -->
-            <div class="table-responsive dashboard-table" >
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>RJ Name</th>
-                    <th class="pic">Picture</th>
-                    <th >Title</th>
-                    <th >
-                      <a  id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown"
-                      aria-expanded="false" (click)="showcatDropDown = !showcatDropDown" style="cursor: pointer;">Category</a>
-                      <ul class="dropdown-menu" style="display: block;" aria-labelledby="btnGroupDrop5" *ngIf="showcatDropDown">
-                        <li><a class="dropdown-item" *ngFor="let a of prodcastService.CategoryList" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>                  
-                      </ul>
-                    </th>
-                    <th class="text-center" >Upload Date</th>
-                    <th >
-                      <a id="btnGroupDrop6" class="dropdown-toggle" data-bs-toggle="dropdown"
-                      aria-expanded="false" (click)="showStatusDropDown = !showStatusDropDown" style="cursor: pointer;">Status</a>
-                      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block;" *ngIf="showStatusDropDown">
-                        <li class="modify"><a class="dropdown-item" (click)="searchList('Modify');showStatusDropDown = false">Modify</a></li>
-                        <li class="pending"><a class="dropdown-item" (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
-                        
-                        <li class="approved"><a class="dropdown-item" (click)="searchList('Approved');showStatusDropDown = false">Approved</a></li>
-                        <li class="rjapproved"><a class="dropdown-item" (click)="searchList('Broadcast');showStatusDropDown = false">Broadcast</a></li>
-                        <li class="rejected"><a class="dropdown-item" (click)="searchList('Rejected');showStatusDropDown = false">Rejected</a></li>
-                        
-                      </ul>
-                    </th>
-                    <th class="text-center" >Broadcast Date</th>
-                    <th >Comments
-                    
-                    </th>                
-                    <th class="text-center" >Revoke</th>
-                    
-                  </tr>
-                </thead>
-                <tbody *ngFor="let a of deleteList;let i=index">
-                  <tr>
-                    <td ><p class="mb-0">{{a.fullname}}</p></td>
-                    <td class="pic" >
-                      <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
-                    </td>
-                    <td class="rjsname" >
-                      <h5 class="mb-0">{{a.name}}</h5>
-                      <!-- a.ShowProcastComment = true -->
-                      <p><a style="cursor: pointer;color:#0e7ea3" (click)="IsView = true;currentIndex=i;getProdNoteList();">About Podcast</a></p>                   
-                    </td>
-                    <td >{{a.category}}</td>
-                    <td class="text-center">
-                      <p class="mb-0">{{a.upload_date}}</p>
-                      <!-- <span class="small">{{a.UploadTime}}</span> -->
-                      
-                    </td>
-    
-                      <!-- The Modal [ngStyle]="{'opacity':a.ShowProcastComment ? '1':'0','display':a.ShowProcastComment ? 'block':'None'}"-->
-                      <div class="modal fade" id="myModal" >
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-    
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                              <h4 class="mb-0"> Heading</h4>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="a.ShowProcastComment = false">X</button>
-                            </div>
-    
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                             <p>{{a.description}}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-    
-                      <td  style="position: relative;">
-                        <!-- <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approvals.toLowerCase()}}" data-bs-toggle="dropdown"
+                            <div class="table-responsive dashboard-table">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>RJ Name</th>
+                                            <th class="pic">Picture</th>
+                                            <th>Title</th>
+                                            <th>
+                                                <a id="btnGroupDrop5" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="showcatDropDown = !showcatDropDown" style="cursor: pointer;">Category</a>
+                                                <ul class="dropdown-menu" style="display: block;" aria-labelledby="btnGroupDrop5" *ngIf="showcatDropDown">
+                                                    <li><a class="dropdown-item" *ngFor="let a of prodcastService.CategoryList" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>
+                                                </ul>
+                                            </th>
+                                            <th class="text-center">Upload Date</th>
+                                            <th>
+                                                <a id="btnGroupDrop6" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="showStatusDropDown = !showStatusDropDown" style="cursor: pointer;">Status</a>
+                                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block;" *ngIf="showStatusDropDown">
+                                                    <li class="modify"><a class="dropdown-item" (click)="searchList('Modify');showStatusDropDown = false">Modify</a></li>
+                                                    <li class="pending"><a class="dropdown-item" (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
+
+                                                    <li class="approved"><a class="dropdown-item" (click)="searchList('Approved');showStatusDropDown = false">Approved</a></li>
+                                                    <li class="rjapproved"><a class="dropdown-item" (click)="searchList('Broadcast');showStatusDropDown = false">Broadcast</a></li>
+                                                    <li class="rejected"><a class="dropdown-item" (click)="searchList('Rejected');showStatusDropDown = false">Rejected</a></li>
+
+                                                </ul>
+                                            </th>
+                                            <th class="text-center">Broadcast Date</th>
+                                            <th>Comments
+
+                                            </th>
+                                            <th class="text-center">Revoke</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor="let a of prodcastService.deleteList;let i=index">
+                                        <tr>
+                                            <td>
+                                                <p class="mb-0">{{a.fullname}}</p>
+                                            </td>
+                                            <td class="pic">
+                                                <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
+                                            </td>
+                                            <td class="rjsname">
+                                                <h5 class="mb-0">{{a.name}}</h5>
+                                                <!-- a.ShowProcastComment = true -->
+                                                <p><a style="cursor: pointer;color:#0e7ea3" (click)="IsView = true;currentIndex=i;getProdNoteList();">About Podcast</a></p>
+                                            </td>
+                                            <td>{{a.category}}</td>
+                                            <td class="text-center">
+                                                <p class="mb-0">{{a.upload_date}}</p>
+                                                <!-- <span class="small">{{a.UploadTime}}</span> -->
+
+                                            </td>
+
+                                            <!-- The Modal [ngStyle]="{'opacity':a.ShowProcastComment ? '1':'0','display':a.ShowProcastComment ? 'block':'None'}"-->
+                                            <div class="modal fade" id="myModal">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header">
+                                                            <h4 class="mb-0"> Heading</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="a.ShowProcastComment = false">X</button>
+                                                        </div>
+
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body">
+                                                            <p>{{a.description}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <td style="position: relative;">
+                                                <!-- <button id="btnGroupDrop2" type="button" class="dropdown-toggle {{a.approvals.toLowerCase()}}" data-bs-toggle="dropdown"
                       aria-expanded="false" (click)="a.ShowstatusDropDown = !a.ShowstatusDropDown"> -->
-                      {{a.approvals}}
-                    <!-- </button>                   -->
-                    <!-- <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" *ngIf="a.ShowstatusDropDown" style="display: block;">
+                                                {{a.approvals}}
+                                                <!-- </button>                   -->
+                                                <!-- <ul class="dropdown-menu"  aria-labelledby="btnGroupDrop2" *ngIf="a.ShowstatusDropDown" style="display: block;">
                       <li class="pending"><a class="dropdown-item" (click)="changeStatus('Pending',a,i);a.ShowstatusDropDown=false">pending</a></li>
                       <li class="modify">
                         <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Modify',a,i)" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
@@ -125,152 +125,154 @@
                         <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Rejected',a,i)" data-bs-toggle="modal" data-bs-target="#myModal6">Rejected</a></li>
                       <li class="broadcast"><a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Broadcast',a,i)"  data-bs-toggle="modal" data-bs-target="#myModal7">Broadcast</a></li>
                     </ul> -->
-                      </td>
-                    <td class="text-center" >
-                      <p class="mb-0">{{a.broadcast_date}}</p>
-                      <!-- <span class="small">{{a.BroadCastDataTime}}</span>                   -->
-                    </td>
-                    <td class="text-center" >
-                      <span *ngIf="a.comment_count == '0'">None</span>
-                      <span *ngIf="a.comment_count != '0'" (click)="showcomments = true" style="cursor: pointer;">{{a.comment_count}}</span>
-                      {{a.Comments}}</td>    
-                    <td class="text-center" (click)="revokeSelectedPodcast(a)"><a><i class="fas fa-undo"></i></a></td>
-                                
-                  </tr>                      
-                </tbody>            
-              </table>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="mb-0">{{a.broadcast_date}}</p>
+                                                <!-- <span class="small">{{a.BroadCastDataTime}}</span>                   -->
+                                            </td>
+                                            <td class="text-center">
+                                                <span *ngIf="a.comment_count == '0'">None</span>
+                                                <span *ngIf="a.comment_count != '0'" (click)="showcomments = true" style="cursor: pointer;">{{a.comment_count}}</span> {{a.Comments}}
+                                            </td>
+                                            <td class="text-center" (click)="revokeSelectedPodcast(a)"><a><i class="fas fa-undo"></i></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
 </div>
 
 
 <div class="body-main" *ngIf="IsView">
-  <div class="body-content">  
-    <h3 style="cursor: pointer;"><a (click)="backtodashboard()"><i class="fas fa-angle-left"></i> Back to Delete Podcast board</a></h3>   
-    <div class="c-podcast">
-      <h3>About Delete Podcast</h3>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row">
-           <div class="col-12 mb-4">
-             <p class="m-0">Podcast Name</p>
-             <h4>{{deleteList[currentIndex].name}}</h4>
-           </div>
-           <!-- <div class="col-12 mb-4">
+    <div class="body-content">
+        <h3 style="cursor: pointer;"><a (click)="backtodashboard()"><i class="fas fa-angle-left"></i> Back to Delete Podcast board</a></h3>
+        <div class="c-podcast">
+            <h3>About Delete Podcast</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Podcast Name</p>
+                            <h4>{{prodcastService.deleteList[currentIndex].name}}</h4>
+                        </div>
+                        <!-- <div class="col-12 mb-4">
             <p class="m-0">Author Name</p>
             <h4>{{EditData.author_name}}</h4>
           </div> -->
-          <div class="col-12 mb-4">
-            <p class="m-0">Language</p>
-            <h4>{{deleteList[currentIndex].language}}</h4>
-          </div>
-          <div class="col-12 mb-4">
-            <p class="m-0">Category</p>
-            <h4>{{deleteList[currentIndex].category}}</h4>
-          </div>
-          <div class="col-12 mb-4">
-            <p class="m-0">Show</p>
-            <h4>{{deleteList[currentIndex].shows_name}}</h4>
-          </div>
-          <div class="col-12 mb-4">
-            <p class="m-0">Discription</p>
-            <h4>{{deleteList[currentIndex].description}}</h4>
-          </div>
-          </div>            
-        </div>
-        <div class="col-md-6">
-          <section>
-            <form action="" method="POST" enctype="multipart/form-data">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                    
-                    
-                      <div class="dropzone-wrapper border-0">
-                        <div class="preview-zone hidden">
-                          <div class="box box-solid">
-                            
-                            <div class="box-body">
-                              <div class="box-body" *ngIf="deleteList[currentIndex].audiopath">
-                                <audio controls preload="auto" >
-                                  <source [src]="deleteList[currentIndex].audiopath" type="audio/mpeg">
-                                  <source [src]="deleteList[currentIndex].audiopath" type="audio/ogg"> 
-                                  </audio>
-                              </div>
-                            </div>
-                          </div>
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Language</p>
+                            <h4>{{prodcastService.deleteList[currentIndex].language}}</h4>
                         </div>
-                        <!-- <div class="dropzone-desc">
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Category</p>
+                            <h4>{{prodcastService.deleteList[currentIndex].category}}</h4>
+                        </div>
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Show</p>
+                            <h4>{{prodcastService.deleteList[currentIndex].shows_name}}</h4>
+                        </div>
+                        <div class="col-12 mb-4">
+                            <p class="m-0">Discription</p>
+                            <h4>{{prodcastService.deleteList[currentIndex].description}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <section>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+
+
+                                            <div class="dropzone-wrapper border-0">
+                                                <div class="preview-zone hidden">
+                                                    <div class="box box-solid">
+
+                                                        <div class="box-body">
+                                                            <div class="box-body" *ngIf="prodcastService.deleteList[currentIndex].audiopath">
+                                                                <audio controls preload="auto">
+                                  <source [src]="prodcastService.deleteList[currentIndex].audiopath" type="audio/mpeg">
+                                  <source [src]="prodcastService.deleteList[currentIndex].audiopath" type="audio/ogg"> 
+                                  </audio>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="dropzone-desc">
                           <i class="glyphicon glyphicon-download-alt"></i>
                           <p class="mb-1">" Morning comedy ver3 " file added</p>                           
                         </div>
                         <input type="file" name="img_logo" class="dropzone"> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </section>           
-          <!-- <div class="drop-zone  border-0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    <!-- <div class="drop-zone  border-0">
             <span class="drop-zone__prompt"><p>Upload <br/> Podcast picture <br/>Or<br/> Topic picture</p>                </span>
             <input type="file" name="myFile" class="drop-zone__input">
           </div> -->
-          <div class="drop-zone upload-image" *ngIf="deleteList[currentIndex].imagepath">
-            <img [src]="deleteList[currentIndex].imagepath" [alt]="deleteList[currentIndex].imagepath">
-          </div>
-        </div>
-      </div>
-      <!-- <div class="row">
+                    <div class="drop-zone upload-image" *ngIf="prodcastService.deleteList[currentIndex].imagepath">
+                        <img [src]="prodcastService.deleteList[currentIndex].imagepath" [alt]="prodcastService.deleteList[currentIndex].imagepath">
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
         <div class="col-12">
          
           <button class="custome-button">Close</button>
         </div>
       </div> -->
 
-      <div class="row my-4">
-        <div class="col-12 mt-4">
-          <h2 class="mb-4">Notes on Podcast</h2>
-          <!-- <textarea class="form-control mb-4">Notes on edit if you wish to communicate admin</textarea> -->
-          <div class="table-responsive dashboard-table">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>User</th> 
-                  <th>Status</th>                    
-                  <th>Notes</th>                
-                  <th class="text-center">File</th>  
-                              
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let a of noteList">
-                  <td>
-                    <p class="mb-0">{{a.note_date}}</p>                      
-                  </td>
-                  <td>
-                    <p class="m-0">{{a.fullname}}({{a.usertype}})</p>
-                  </td>
-                  
-                  <td>{{a.status}}</td>
-                  <td>{{a.description}}</td>
-                  <td class="text-center"><a download="audio.mp3" [href]="a.audio_path" target="_blank"><i class="far fa-file-download"></i></a></td>
-                </tr>
-                           
-               
-              </tbody>
-            </table>
-          </div>
+            <div class="row my-4">
+                <div class="col-12 mt-4">
+                    <h2 class="mb-4">Notes on Podcast</h2>
+                    <!-- <textarea class="form-control mb-4">Notes on edit if you wish to communicate admin</textarea> -->
+                    <div class="table-responsive dashboard-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>User</th>
+                                    <th>Status</th>
+                                    <th>Notes</th>
+                                    <th class="text-center">File</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let a of noteList">
+                                    <td>
+                                        <p class="mb-0">{{a.note_date}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="m-0">{{a.fullname}}({{a.usertype}})</p>
+                                    </td>
+
+                                    <td>{{a.status}}</td>
+                                    <td>{{a.description}}</td>
+                                    <td class="text-center"><a download="audio.mp3" [href]="a.audio_path" target="_blank"><i class="far fa-file-download"></i></a></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 <app-page-loader *ngIf="isProgressing"></app-page-loader>
+<app-approval-popup *ngIf="prodcastService.showPopUp.Revoke">
+</app-approval-popup>

@@ -49,7 +49,7 @@ export class ApprovalPopupComponent implements OnInit {
       "user_id": this.prodcastService.selectedData.user_id,
       "usertype": "Admin",
       "note_description": this.notes,
-      "status": status,
+      "status": status == 'Revoke' ? 'Pending' :status,
       "created_by": this.prodcastService.loginUserName,
       "audio_path": this.prodcastService.selectedData.audiopath,
       "podcast_name": this.prodcastService.selectedData.name
@@ -60,6 +60,7 @@ export class ApprovalPopupComponent implements OnInit {
         this.prodcastService.showPopUp.approval = false;
         this.prodcastService.showPopUp.rejected = false;
         this.prodcastService.showPopUp.modify = false;
+        this.prodcastService.showPopUp.Revoke = false;
         if (data.Status == 'Success' && data.Response) {
           this.toast.success('Podcast ' + status + ' Sucessfully');
           this.prodcastService.getDashBoardList();
@@ -67,6 +68,31 @@ export class ApprovalPopupComponent implements OnInit {
           this.toast.error('Internal Server error');
       }
     )
+  }
+
+  selectedrevoke() {
+    this.prodcastService.loader = true;
+    let req = {
+      "podcast_id": this.prodcastService.selectedData.id,
+      "user_id": this.prodcastService.selectedData.user_id,
+      "usertype": "Admin",
+      "note_description": this.notes,
+      "status": 'Pending',
+      "created_by": this.prodcastService.loginUserName,
+      "audio_path": this.prodcastService.selectedData.audiopath,
+      "podcast_name": this.prodcastService.selectedData.name
+    }
+    this.webService.commonMethod('podcast/revoke/admin', req, 'POST').subscribe(
+      (data) => {
+        this.prodcastService.loader = false;
+        if (data.Status == "Success" && data.Response) {
+          this.prodcastService.showPopUp.Revoke = false;
+          this.toast.success('Revoked Sucessfully');
+          this.prodcastService.getDeletedList();
+        }else {
+
+        }
+      })
   }
 
   approveBroadcastCast() {
@@ -102,7 +128,8 @@ export class ApprovalPopupComponent implements OnInit {
       "note_description": this.notes,
       "status": this.prodcastService.selectedData.approvals,
       "created_by": "Admin",
-      "audio_path": this.prodcastService.selectedData.audiopath
+      "audio_path": this.prodcastService.selectedData.audiopath,
+      "podcast_name": this.prodcastService.selectedData.name
     }
     this.webService.commonMethod('podcast/delete/admin', req, 'POST').subscribe(
       (data) => {

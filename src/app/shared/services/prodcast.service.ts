@@ -29,7 +29,8 @@ export class ProdcastService {
     "rejected":false,
     "broadcast":false,
     "modify":false,
-    "delete":false
+    "delete":false,
+    "Revoke": false
   }
   dashboardList:any=[];
   dashboardList1:any=[];
@@ -44,6 +45,8 @@ export class ProdcastService {
   filterApplied:boolean=false;
   showComments:boolean=false;
   spotlist:any=[];
+  deleteList: any = [];
+  deleteList1: any = [];
   constructor(public webservice: WebService, public localStorage: LocalstorageService) {
     if(this.localStorage.getUserData()){
       this.loginUserName = this.localStorage.getUserData().fullname;
@@ -142,5 +145,15 @@ export class ProdcastService {
         
       }
     )
+  }
+  getDeletedList() {
+    this.loader = true;
+    this.webservice.commonMethod('podcast/deletedlist/admin', '', 'GET').subscribe(
+      (data) => {
+        this.loader = false;
+        this.deleteList = data.Response;
+        this.deleteList1 = data.Response;
+
+      })
   }
 }

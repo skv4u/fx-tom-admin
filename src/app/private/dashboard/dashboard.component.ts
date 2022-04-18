@@ -46,6 +46,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     // this.prodcastService.loader=false;
     // console.log("this.localStorage.getUserData()",this.localStorage.getUserData())
+    this.prodcastService.selectedData = [];
     if (!this.localStorage.getUserData()) {
       this.router.navigateByUrl('/login');
       return;
@@ -95,8 +96,8 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
   changeStatus(status, a, i) {
-
-    if (['Live', 'Broadcasting', 'Rejected', 'Modify'].indexOf(a.approvals) != -1) {
+    // 'Live', 'Broadcasting', 
+    if (['Rejected', 'Modify'].indexOf(a.approvals) != -1) {
       this.toast.error('Podcast is ' + a.approvals);
       return;
     }
@@ -120,10 +121,10 @@ export class DashboardComponent implements OnInit {
     else if (status == 'Modify')
       this.prodcastService.showPopUp.modify = true
     else if (status == 'Delete') {
-      if (a.approvals == 'Live') {
-        this.toast.error('Podcast has been live');
-        return;
-      }
+      // if (a.approvals == 'Live') {
+      //   this.toast.error('Podcast has been live');
+      //   return;
+      // }
       this.prodcastService.showPopUp.delete = true;
     }
   }

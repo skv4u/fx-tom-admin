@@ -1,55 +1,53 @@
-                
-                 
-                 <!-- Modify The Modal -->
-                   <div *ngIf="prodcastService.showPopUp.modify">
-                   <div class="background-grey"></div>
-                   <div class="popup-box">
-                     <div style="text-align: center;">
-                  <h3 class="mb-0"> Podcast Modification</h3>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.modify = false">X</button>
-                </div>
+<!-- Modify The Modal -->
+<div *ngIf="prodcastService.showPopUp.modify">
+    <div class="background-grey"></div>
+    <div class="popup-box">
+        <div style="text-align: center;">
+            <h3 class="mb-0"> Podcast Modification</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.modify = false">X</button>
+        </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                <h5 class="mb-4">Modification needs to be done on the following podcast</h5>
-                <div class="modify_changes">
-                  <span>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <h5 class="mb-4">Modification needs to be done on the following podcast</h5>
+            <div class="modify_changes">
+                <span>
                     <h5>RJ Name</h5>
                     <p>{{prodcastService.selectedData.fullname}}</p>
                   </span>
-                  <span>
+                <span>
                     <h5>Title</h5>
                     <p>{{prodcastService.selectedData.name}}</p>
                   </span>
-                  <span>
-                    <h5>Project</h5>
+                <span>
+                    <h5>Status</h5>
                     <p>{{prodcastService.selectedData.approvals}}</p>
                   </span>
-                </div>
-                <div class="modal-label mb-4">
-                  <label><strong>Notes to RJ</strong></label>
-                  <textarea class="form-control" [(ngModel)]="notes"></textarea>
-                </div>
-                <div>
-                  <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Modify')">Modify</button>
-                  <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.modify = false">Cancel</button></a>
-                </div>
-               
-                </div>
-              </div>
+            </div>
+            <div class="modal-label mb-4">
+                <label><strong>Notes to RJ</strong></label>
+                <textarea class="form-control" [(ngModel)]="notes"></textarea>
+            </div>
+            <div>
+                <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Modify')">Modify</button>
+                <a><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.modify = false">Cancel</button></a>
+            </div>
+
+        </div>
+    </div>
 </div>
-           
-           <!--------------------------------->
-           <div *ngIf="prodcastService.showPopUp.approval">
-            <!--Approved The Modal -->
-            <div class="background-grey"></div>
-            <div class="popup-box">
-              <div style="text-align: center;">
-                <h3 class="mb-0"> Podcast Approval</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.approval = false">X</button>
-                <div class="modal-body">
-                  <h5 class="mb-4">Are you sure you want to <strong>Approve</strong> following podcast</h5>
-                  <div class="modify_changes">
+
+<!--------------------------------->
+<div *ngIf="prodcastService.showPopUp.approval">
+    <!--Approved The Modal -->
+    <div class="background-grey"></div>
+    <div class="popup-box">
+        <div style="text-align: center;">
+            <h3 class="mb-0"> Podcast Approval</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.approval = false">X</button>
+            <div class="modal-body">
+                <h5 class="mb-4">Are you sure you want to <strong>Approve</strong> following podcast</h5>
+                <div class="modify_changes">
                     <span>
                       <h5>RJ Name</h5>
                       <p>{{prodcastService.selectedData.fullname}}</p>
@@ -62,147 +60,187 @@
                       <h5>Status</h5>
                       <p>{{prodcastService.selectedData.approvals}}</p>
                     </span>
-                  </div>
-                  <div class="modal-label mb-4">
+                </div>
+                <div class="modal-label mb-4">
                     <label><strong>Notes to RJ</strong></label>
                     <textarea class="form-control" [(ngModel)]="notes"></textarea>
-                  </div>
-                  <div>
+                </div>
+                <div>
                     <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Approved')">Approve</button>
-                    <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.approval = false">Cancel</button></a>
-                  </div>
-                 
-              </div>
-              </div>
-           </div>
-          </div>
+                    <a><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.approval = false">Cancel</button></a>
+                </div>
 
-           <div *ngIf="prodcastService.showPopUp.rejected">
- <!--------------------------------->
+            </div>
+        </div>
+    </div>
+</div>
 
-              <!--Rejected The Modal -->
-              <div class="background-grey"></div>
-              <div class="popup-box">
-                <div style="text-align: center;">
-                      <h3 class="mb-0"> Podcast Rejected</h3>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.rejected = false">X</button>
-                    </div>
+<div *ngIf="prodcastService.showPopUp.rejected">
+    <!--------------------------------->
 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                    <h5 class="mb-4">Are you sure you want to <strong>Reject</strong> following podcast</h5>
-                    <div class="modify_changes">
-                      <span>
+    <!--Rejected The Modal -->
+    <div class="background-grey"></div>
+    <div class="popup-box">
+        <div style="text-align: center;">
+            <h3 class="mb-0"> Podcast Rejected</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.rejected = false">X</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <h5 class="mb-4">Are you sure you want to <strong>Reject</strong> following podcast</h5>
+            <div class="modify_changes">
+                <span>
                         <h5>RJ Name</h5>
                         <p >{{prodcastService.selectedData.fullname}}</p>
                       </span>
-                      <span>
+                <span>
                         <h5>Title</h5>
                         <p >{{prodcastService.selectedData.name}}</p>
                       </span>
-                      <span>
+                <span>
                         <h5>Status</h5>
                         <p >{{prodcastService.selectedData.approvals}}</p>
                       </span>
-                    </div>
-                    <div class="modal-label mb-4">
-                      <label><strong>Notes to RJ</strong></label>
-                      <textarea class="form-control" [(ngModel)]="notes"></textarea>
-                    </div>
-                    <div>
-                      <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Rejected')">Reject</button>
-                      <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.rejected = false">Cancel</button></a>
-                    </div>
-                   
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="modal-label mb-4">
+                <label><strong>Notes to RJ</strong></label>
+                <textarea class="form-control" [(ngModel)]="notes"></textarea>
+            </div>
+            <div>
+                <button class="custome-button" style="text-align: center;" (click)="approveProdCast('Rejected')">Reject</button>
+                <a><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.rejected = false">Cancel</button></a>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
-                <div *ngIf="prodcastService.showPopUp.broadcast">
- <!--------------------------------->
-               <!--Broadcast The Modal -->
-               <div class="background-grey"></div>
-               <div class="popup-box" style="height:73vh">
-                 <div style="text-align: center;">
-                      <h3 class="mb-0"> Podcast Broadcast</h3>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.broadcast = false">X</button>
-                    </div>
+<div *ngIf="prodcastService.showPopUp.broadcast">
+    <!--------------------------------->
+    <!--Broadcast The Modal -->
+    <div class="background-grey"></div>
+    <div class="popup-box" style="height:73vh">
+        <div style="text-align: center;">
+            <h3 class="mb-0"> Podcast Broadcast</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.broadcast = false">X</button>
+        </div>
 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                    <h5 class="mb-4">Are you sure you want podcast to go Live</h5>
-                    <div class="modify_changes">
-                      <span>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <h5 class="mb-4">Are you sure you want podcast to go Live</h5>
+            <div class="modify_changes">
+                <span>
                         <h5>RJ Name</h5>
                         <p>{{prodcastService.selectedData.fullname}}</p>
                       </span>
-                      <span>
+                <span>
                         <h5>Title</h5>
                         <p>{{prodcastService.selectedData.name}}</p>
                       </span>
-                      <span>
+                <span>
                         <h5>Status</h5>
                         <p>{{prodcastService.selectedData.approvals}}</p>
                       </span>
-                    </div>
-                    <div class="modal-label mb-4 p-0 col-md-6 col-12">
-                      <label><strong>Schedule</strong></label>
-                      <div class="form-floating mb-4">
-                        <input type="date" class="form-control" id="floatingInput" placeholder="Date" [(ngModel)]="broadCastDate">
-                        <label for="floatingInput">Date</label>
-                      </div>   
-                      <!-- <div class="form-floating mb-4">
+            </div>
+            <div class="modal-label mb-4 p-0 col-md-6 col-12">
+                <label><strong>Schedule</strong></label>
+                <div class="form-floating mb-4">
+                    <input type="date" class="form-control" id="floatingInput" placeholder="Date" [(ngModel)]="broadCastDate">
+                    <label for="floatingInput">Date</label>
+                </div>
+                <!-- <div class="form-floating mb-4">
                         <input type="time" class="form-control" id="floatingInput" placeholder="Time" [(ngModel)]="broadCastTime">
                         <label for="floatingInput">Time</label>
                       </div>   -->
 
-                      <div class="mb-4">
-                        <div class="form-floating timehh" >
-                          <input type="text" class="form-control" id="floatingInput" placeholder="Hour" [(ngModel)]="hh" (keydown)="keyUpdownHH($event)">
-                          <label for="floatingInput">Hour</label>
-                          <span class="minus" (click)="updateHHMM('HH','-')"><i class="fas fa-minus-circle"></i></span>
-                          <span class="plus" (click)="updateHHMM('HH','+')"><i class="fas fa-plus-circle"></i></span>
-                        </div>
-                        <span class="hrmin">:</span>
-                        <div class="form-floating timehh" >
-                          <input type="text" class="form-control" id="floatingInput" placeholder="Minute" [(ngModel)]="mm" (keydown)="keyUpdownMM($event)">
-                          <label for="floatingInput">Minute</label>
-                          <span class="minus" (click)="updateHHMM('MM','-')"><i class="fas fa-minus-circle"></i></span>
-                          <span class="plus" (click)="updateHHMM('MM','+')"><i class="fas fa-plus-circle"></i></span>
-                        </div>  
-                      </div>  
-                      
-                      
+                <div class="mb-4">
+                    <div class="form-floating timehh">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Hour" [(ngModel)]="hh" (keydown)="keyUpdownHH($event)">
+                        <label for="floatingInput">Hour</label>
+                        <span class="minus" (click)="updateHHMM('HH','-')"><i class="fas fa-minus-circle"></i></span>
+                        <span class="plus" (click)="updateHHMM('HH','+')"><i class="fas fa-plus-circle"></i></span>
                     </div>
-                    <div>
-                      <button class="custome-button" style="text-align: center;" (click)="approveBroadcastCast()">Go to Live</button>
-                      <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.broadcast = false">Cancel</button></a>
+                    <span class="hrmin">:</span>
+                    <div class="form-floating timehh">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Minute" [(ngModel)]="mm" (keydown)="keyUpdownMM($event)">
+                        <label for="floatingInput">Minute</label>
+                        <span class="minus" (click)="updateHHMM('MM','-')"><i class="fas fa-minus-circle"></i></span>
+                        <span class="plus" (click)="updateHHMM('MM','+')"><i class="fas fa-plus-circle"></i></span>
                     </div>
-                   
-                    </div>
-                  </div>
                 </div>
 
-              <div *ngIf="prodcastService.showPopUp.delete">
-                 <!--------------------------->
-               <!--Delete The Modal -->
-               <div class="background-grey"></div>
-              <div class="popup-box" style="height: 55vh;text-align: center;">
-                 <div>
-                    <h4 class="mb-0" style="border-bottom: 1px solid #aaaa;"> Delete</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.delete = false">X</button>
-                  </div>
 
-                  <!-- Modal body href="dashboard.html" 366,367-->
-                    <div class="modal-body">
-                   <p>Do you really want to delete the Podcast ?" </p>
-                   <div class="modal-label mb-4">
-                    <label><strong>Notes to RJ</strong></label>
-                    <textarea class="form-control" [(ngModel)]="notes"></textarea>
-                  </div>
-                   <a ><button class="custome-button mx-2" (click)="deletePodCast()">Confirm</button></a>
-                   <a ><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.delete = false">Cancel</button></a>
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div>
+                <button class="custome-button" style="text-align: center;" (click)="approveBroadcastCast()">Go to Live</button>
+                <a><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.broadcast = false">Cancel</button></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="prodcastService.showPopUp.delete">
+    <!--------------------------->
+    <!--Delete The Modal -->
+    <div class="background-grey"></div>
+    <div class="popup-box" style="height: 55vh;text-align: center;">
+        <div>
+            <h4 class="mb-0" style="border-bottom: 1px solid #aaaa;"> Delete</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.delete = false">X</button>
+        </div>
+
+        <!-- Modal body href="dashboard.html" 366,367-->
+        <div class="modal-body">
+            <p>Do you really want to delete the Podcast ?" </p>
+            <div class="modal-label mb-4">
+                <label><strong>Notes to RJ</strong></label>
+                <textarea class="form-control" [(ngModel)]="notes"></textarea>
+            </div>
+            <a><button class="custome-button mx-2" (click)="deletePodCast()">Confirm</button></a>
+            <a><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.delete = false">Cancel</button></a>
+        </div>
+    </div>
+</div>
+
+<!-- Revoke -->
+
+<div *ngIf="prodcastService.showPopUp.Revoke">
+    <div class="background-grey"></div>
+    <div class="popup-box">
+        <div style="text-align: center;">
+            <h3 class="mb-0"> Podcast Revoke</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="prodcastService.showPopUp.Revoke = false">X</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <h5 class="mb-4">Are you sure you want to <strong>Revoke</strong> following podcast</h5>
+            <div class="modify_changes">
+                <span>
+                   <h5>RJ Name</h5>
+                   <p>{{prodcastService.selectedData.fullname}}</p>
+                 </span>
+                <span>
+                   <h5>Title</h5>
+                   <p>{{prodcastService.selectedData.name}}</p>
+                 </span>
+                <span>
+                   <h5>Status</h5>
+                   <p>{{prodcastService.selectedData.approvals}}</p>
+                 </span>
+            </div>
+            <div class="modal-label mb-4">
+                <label><strong>Reason to Revoke</strong></label>
+                <textarea class="form-control" [(ngModel)]="notes"></textarea>
+            </div>
+            <div>
+                <button class="custome-button" style="text-align: center;" (click)="selectedrevoke()">Revoke</button>
+                <a><button class="custome-outline mx-2"  (click)="prodcastService.showPopUp.Revoke = false">Cancel</button></a>
+            </div>
+
+        </div>
+    </div>
+</div>
