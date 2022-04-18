@@ -54,12 +54,21 @@ export class ProdcastService {
     this.getSpotList();
   }
   getCategoryList() {
+    this.CategoryList = [];
     this.webservice.commonMethod('category', '', 'GET').subscribe(
       (data) => {
         this.CategoryList = data.Response;
+      }, err =>{
+        // console.log(err);
+        if(err.status === 401){
+          localStorage.removeItem('adminttptoken');
+          alert("Token expired!, Reloading the page");
+          window.location.reload();
+        }
       })
   }
   getWebCategoryList() {
+    this.WebCategoryList = [];
     this.webservice.commonMethod('category/web', '', 'GET').subscribe(
       (data) => {
         this.WebCategoryList = data.Response;
@@ -67,6 +76,7 @@ export class ProdcastService {
   }
   
   getSpotList() {
+    this.spotlist = [];
     this.webservice.commonMethod('user/addspot', '', 'GET').subscribe(
       (data) => {
         this.spotlist = data.Response;
@@ -74,6 +84,7 @@ export class ProdcastService {
   } 
 
   getLanguageList() {
+    this.LanguageList = [];
     this.webservice.commonMethod('language', '', 'GET').subscribe(
       (data) => {
         this.LanguageList = data.Response;
@@ -81,6 +92,7 @@ export class ProdcastService {
   }
   getDashBoardList() {
     this.loader=true;
+    this.dashboardList = [];
     this.webservice.commonMethod('podcast/all', '', 'GET').subscribe(
       (data) => {
         this.loader=false;

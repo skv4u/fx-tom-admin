@@ -12,6 +12,7 @@ export class AppComponent {
   title = 'tomtom';
   constructor(public localStorage: LocalstorageService, public WebService: WebService,public prodcastService:ProdcastService) {
     this.prodcastService.loader=false;
+    this.prodcastService.getCategoryList();
   }
   
 }
