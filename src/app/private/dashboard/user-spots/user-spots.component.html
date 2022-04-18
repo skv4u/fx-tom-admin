@@ -91,7 +91,9 @@
                         <div class="with_image" *ngIf="a.image">
                             <img [src]="a.image" alt="No Image" />
                         </div>
-                        <span class="ml30">{{a.title}}</span>
+                        <span class="ml30">
+                            <span class="mybadge">{{a.sequence}}</span>
+                            {{a.title}}</span>
                         <span class="link">
               {{a.link_type}} : 
                <a *ngIf="a.link_type == 'web'" [href]="a.link_value" target="_blank" class="ml30">{{a.link_value}}</a>

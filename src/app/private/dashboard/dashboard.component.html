@@ -124,7 +124,7 @@
                             <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')"><i
                     class="fas fa-check-circle"></i> RJ Approvals</a></li>
                             <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/podcast-delete')"><i
-                    class="fas fa-trash-alt"></i> Podcast Delete List</a></li>
+                    class="fas fa-trash-alt"></i> Deleted Podcast</a></li>
                             <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')"><i
                     class="fas fa-edit"></i> Edit Category</a></li>
                             <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-language')"><i
@@ -179,7 +179,8 @@
                                     <th *ngIf="showhidemenu.Title">Title</th>
                                     <th *ngIf="showhidemenu.Category">
                                         <a id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" aria-expanded="false" (click)="expandCategoryFilter();" style="cursor: pointer;">Category</a>
-                                        <ul class="dropdown-menu" style="display: block;" aria-labelledby="btnGroupDrop5" *ngIf="showcatDropDown">
+                                        <ul class="dropdown-menu" style="display: block; height: 300px;
+                                        overflow: auto;" aria-labelledby="btnGroupDrop5" *ngIf="showcatDropDown">
                                             <li *ngFor="let a of prodcastService.CategoryList"><a class="dropdown-item" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>
                                         </ul>
                                     </th>

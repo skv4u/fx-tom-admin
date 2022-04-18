@@ -134,7 +134,7 @@
                                                 <span *ngIf="a.comment_count == '0'">None</span>
                                                 <span *ngIf="a.comment_count != '0'" (click)="showcomments = true" style="cursor: pointer;">{{a.comment_count}}</span> {{a.Comments}}
                                             </td>
-                                            <td class="text-center" (click)="revokeSelectedPodcast(a)"><a><i class="fas fa-undo"></i></a></td>
+                                            <td class="text-center" (click)="revokeSelectedPodcast(a)"><a class="pointer"><i class="fas fa-undo"></i></a></td>
 
                                         </tr>
                                     </tbody>
