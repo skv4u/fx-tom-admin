@@ -583,7 +583,7 @@
   padding: 0px 20px 21px 20px;
   border: 1px solid #ddd;
   margin: 20px 20px 0px 20px;
-  width: 260px;
+  width: 370px;
   overflow: hidden;
   .link{
     position: absolute;
@@ -602,4 +602,17 @@
   position: relative;
     color: #04724d;
     top: 5px;
+}
+.mybadge{
+  background: #ffeb3b;
+    /* padding: 2px; */
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    color: #f31818;
+    font-size: 11px;
+    font-weight: 700;
+    padding-top: 2px;
 }
