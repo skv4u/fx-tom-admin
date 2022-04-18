@@ -35,7 +35,7 @@
                     <div class="s-box outsideclick">
                         <a id="btnGroupDrop4" class="outsideclick" data-bs-toggle="dropdown" title="Filter" aria-expanded="false" (click)="showhidecnd.ShowFilter = !showhidecnd.ShowFilter; bindSingleClickEvent();"><i
                 class="fas fa-sliders-h"></i></a>
-                        <ul class="dropdown-menu top-filter" aria-labelledby="btnGroupDrop4" *ngIf="showhidecnd.ShowFilter" style="display: block; height: 300px; overflow: auto;">
+                        <ul class="dropdown-menu top-filter" aria-labelledby="btnGroupDrop4" *ngIf="showhidecnd.ShowFilter" style="display: block;">
                             <form>
                                 <li class="outsideclick">
                                     <div class="form-check mb-2 outsideclick">
@@ -124,7 +124,7 @@
                             <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/rj-approvals')"><i
                     class="fas fa-check-circle"></i> RJ Approvals</a></li>
                             <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/podcast-delete')"><i
-                    class="fas fa-trash-alt"></i> Podcast Delete List</a></li>
+                    class="fas fa-trash-alt"></i> Deleted Podcast</a></li>
                             <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-category')"><i
                     class="fas fa-edit"></i> Edit Category</a></li>
                             <li><a class="dropdown-item" (click)="showhidecnd.showSettings = false;router.navigateByUrl('/create-language')"><i
@@ -188,7 +188,7 @@
 
                                     <th *ngIf="showhidemenu.Approvals">
                                         <a id="btnGroupDrop6" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" aria-expanded="false" (click)="expandStatusFilter()" style="cursor: pointer;">Status</a>
-                                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block; height: 300px; overflow: auto;" *ngIf="showStatusDropDown">
+                                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop6" style="display: block;" *ngIf="showStatusDropDown">
                                             <!-- <li class="pending" (click)="searchList('');showStatusDropDown = false"><a class="dropdown-item">All</a></li> -->
 
                                             <li class="pending"><a class="dropdown-item" (click)="searchList('Pending');showStatusDropDown = false">Pending</a></li>
@@ -262,8 +262,7 @@
                 padding-left: 15px;" class="dropdown-not-toggle {{a.approvals.toLowerCase()}}" *ngIf="a.approvals != 'Approved' && a.approvals != 'Pending'" data-bs-toggle="dropdown" aria-expanded="false">
                       {{a.approvals}}
                     </button>
-                                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="display: block;height: 300px;
-                                        overflow: auto;" *ngIf="a.ShowstatusDropDown && (a.approvals == 'Approved' || a.approvals == 'Pending')">
+                                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="display: block;" *ngIf="a.ShowstatusDropDown && (a.approvals == 'Approved' || a.approvals == 'Pending')">
                                             <!-- <li class="pending"><a class="dropdown-item" (click)="changeStatus('Pending',a,i);a.ShowstatusDropDown=false">pending</a></li> -->
                                             <li class="modify">
                                                 <a class="dropdown-item" (click)="a.ShowstatusDropDown=false;changeStatus('Modify',a,i)" data-bs-toggle="modal" data-bs-target="#myModal4">Modify</a>
