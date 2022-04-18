@@ -12,72 +12,95 @@ import { WebService } from 'src/app/shared/services/web.service';
   styleUrls: ['./create-category.component.scss']
 })
 export class CreateCategoryComponent implements OnInit {
-  NewCatName:string='';
-  NewCatImage:string='';
-  apiCalled:boolean = false;
-  CategoryList:any=[];
-  imageUrl:any="";
-  showConfirmPopup:any="";
-  Id:any="";
-  constructor(public router: Router,public webservice:WebService,public prodCastService:ProdcastService,public localStorage:LocalstorageService, public toast:ToastService) { }
+  NewCatName: string = '';
+  NewCatImage: string = '';
+  apiCalled: boolean = false;
+  CategoryList: any = [];
+  imageUrl: any = "";
+  showConfirmPopup: any = "";
+  Id: any = 0;
+  caption = {
+    "title":"Add Category",
+    "button":"Add New Category"
+  }
+  constructor(public router: Router, public webservice: WebService, public prodCastService: ProdcastService, public localStorage: LocalstorageService, public toast: ToastService) { }
 
   ngOnInit() {
+    
   }
-  createCategory(){
-    if(this.NewCatName == ''){
+  createCategory() {
+
+    if (this.NewCatName == '') {
       this.toast.error('Please add category name');
       return;
     }
-    if(this.NewCatImage == ''){
+    if (this.NewCatImage == '') {
       this.toast.error('Please select image');
       return;
     }
-    this.prodCastService.loader=true;
-    let req={
-      "name": this.NewCatName,
-      "created_by": this.localStorage.getUserData() ? this.localStorage.getUserData().username : '',
-      "image":this.NewCatImage
-      }
-      this.webservice.commonMethod('/category', req, 'POST').subscribe(
-        (data) => {
-          this.toast.success("Category created successfully")
-          this.NewCatName = "";
-          this.NewCatImage = "";
-          this.prodCastService.loader=false;
-          this.prodCastService.getWebCategoryList();
-        },
-        err =>{
-          this.prodCastService.loader=false;
-          this.toast.error("Oops, Something went wrong");
-        }
-        )
+    if (this.Id)
+      this.CreateNewCategoryAPI();
+    else
+      this.CreateNewCategoryAPI();
   }
-  deleteProdCast(id){
-    this.prodCastService.loader=true;
-    this.webservice.commonMethod('/category/'+id, '', 'DELETE').subscribe(
-      (data)=>{
-        if(data.Status == "Success"){
-          this.toast.success("Deleted successfully")
-          this.prodCastService.loader=false;
-          this.showConfirmPopup=false;
-          this.prodCastService.getWebCategoryList();
+  CreateNewCategoryAPI() {
+    this.prodCastService.loader = true;
+    let req = {
+      "name": this.NewCatName,
+      "category_id": this.Id,
+      "created_by": this.localStorage.getUserData() ? this.localStorage.getUserData().username : '',
+      "image": this.NewCatImage
+    }
+    this.webservice.commonMethod('/category', req, 'POST').subscribe(
+      (data) => {
+        if(data.Status == 'Success'){
+        if(this.Id){
+          this.toast.success("Category updated successfully");
         }else{
-          this.prodCastService.loader=false;
-          this.showConfirmPopup=false;
+          this.toast.success("Category created successfully");
+        }
+      }else{
+        this.toast.error(data.Response);
+      }
+        // this.NewCatName = "";
+        // this.NewCatImage = "";
+        this.ResetCategory();
+        this.prodCastService.loader = false;
+        this.prodCastService.getWebCategoryList();
+      },
+      err => {
+        this.prodCastService.loader = false;
+        this.toast.error("Oops, Something went wrong");
+      }
+    )
+  }
+  deleteProdCast(id) {
+    this.prodCastService.loader = true;
+    this.webservice.commonMethod('/category/' + id, '', 'DELETE').subscribe(
+      (data) => {
+        if (data.Status == "Success") {
+          this.toast.success("Deleted successfully");
+          this.ResetCategory();
+          this.prodCastService.loader = false;
+          this.showConfirmPopup = false;
+          this.prodCastService.getWebCategoryList();
+        } else {
+          this.prodCastService.loader = false;
+          this.showConfirmPopup = false;
           this.toast.error(data.Response);
         }
-       
+
       },
-      err =>{
-        this.prodCastService.loader=false;
-        this.showConfirmPopup=false;
+      err => {
+        this.prodCastService.loader = false;
+        this.showConfirmPopup = false;
         this.toast.error("Oops, Something went wrong");
       }
     )
   }
 
   uploadFile(element) {
-    this.prodCastService.loader=true;
+    this.prodCastService.loader = true;
     const file = element[0];
     if (file == undefined) return;
     // console.log(file, "element");
@@ -86,9 +109,9 @@ export class CreateCategoryComponent implements OnInit {
     this.webservice.UploadDocument("s3bucket/upload", formData).
       subscribe((data: any) => {
         if (data.type === HttpEventType.Response) {
-        this.NewCatImage = data.body.Response;
-        this.prodCastService.loader = false;
-        this.prodCastService.loaderMessage = "Uploading...";
+          this.NewCatImage = data.body.Response;
+          this.prodCastService.loader = false;
+          this.prodCastService.loaderMessage = "Uploading...";
         }
         if (data.type === HttpEventType.UploadProgress) {
           const percentDone = Math.round(100 * data.loaded / data.total);
@@ -99,5 +122,38 @@ export class CreateCategoryComponent implements OnInit {
         this.NewCatImage = "";
         this.prodCastService.loaderMessage = "Uploading...";
       });
+  }
+  editCategory(elem) {
+    this.Id = elem.id;
+    this.NewCatName = elem.name;
+    this.NewCatImage = elem.image;
+    this.caption = {
+      "title":"Edit Category",
+      "button":"Update Category"
+    }
+  }
+  ResetCategory(){
+    this.NewCatName = '';
+    this.NewCatImage ='';
+    this.caption = {
+      "title":"Add Category",
+      "button":"Add New Category"
+    }
+    this.Id = 0;
+  }
+  removeFile(){
+    let req = {
+      filename : this.NewCatImage
+  }
+  this.prodCastService.loader = true;
+  this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
+    subscribe((data: any) => {
+      this.prodCastService.loader = false;
+      this.NewCatImage = '';
+    },err => {
+      this.prodCastService.loader = false;
+      this.NewCatImage = '';
+    });
+
   }
 }

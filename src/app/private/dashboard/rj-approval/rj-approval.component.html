@@ -7,7 +7,8 @@
   <div class="admin-sec">
     <div class="row admin-top">
       <div class="col-md-4 admin-title">
-        <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
+        <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to
+            Dashboard</a></h3>
       </div>
       <div class="col-md-4 tickets">
         <ul>
@@ -30,7 +31,7 @@
           <h3>RJ Approval board</h3>
           <div class="shadow-sm border-0 card card-body admin-height table-text p-0">
             <div class="information">
-             
+
               <ul>
                 <!-- <li> <h4>Information</h4></li> -->
                 <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
@@ -47,13 +48,15 @@
                     <th>RJ Name</th>
                     <th>
 
-                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown"
-                        aria-expanded="false" (click)="showStatus = !showStatus;bindSingleClickEvent()">
+                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle outsideclick"
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        (click)="showStatus = !showStatus;bindSingleClickEvent()">
                         <strong>Status</strong>
                       </button>
-                      <ul class="dropdown-menu " aria-labelledby="btnGroupDrop2" [ngStyle]="{'display' : showStatus ? 'block':'none'}"
-                        >
-                        <li class="pending" (click)="searchList('');showStatus = false"><a class="dropdown-item">All</a></li>
+                      <ul class="dropdown-menu " aria-labelledby="btnGroupDrop2"
+                        [ngStyle]="{'display' : showStatus ? 'block':'none'}">
+                        <li class="pending" (click)="searchList('');showStatus = false"><a class="dropdown-item">All</a>
+                        </li>
                         <!-- <li class="pending"><a class="dropdown-item"
                             (click)="searchList('Pending');showStatus = false">Pending</a></li> -->
                         <li class="approved"><a class="dropdown-item"
@@ -83,18 +86,29 @@
                     <td style="position: relative;">
 
 
-                      <button id="btnGroupDrop2" type="button" class="dropdown-toggle outsideclick {{a.approval_status.toLowerCase()}}" data-bs-toggle="dropdown"
-                        aria-expanded="false" (click)="a.ShowStatus = ! a.ShowStatus;currentIndex = i;bindSingleClickEvent()">
+                      <button id="btnGroupDrop2" type="button"
+                        class="dropdown-toggle outsideclick {{a.approval_status.toLowerCase()}}"
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        (click)="a.ShowStatus = ! a.ShowStatus;currentIndex = i;bindSingleClickEvent()">
                         {{a.approval_status}}
                       </button>
-                      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" *ngIf="a.ShowStatus"
+                      <ul class="dropdown-menu outsideclick" aria-labelledby="btnGroupDrop2" *ngIf="a.ShowStatus"
                         style="display: block;">
                         <!-- <li class="pending"><a class="dropdown-item"
                             (click)="a.ShowStatus=false;getApproveStatus(i,'Pending')">pending</a></li> -->
-                            <ng-container *ngFor="let b of statusList">
-                        <li class="{{b.toLowerCase()}}" *ngIf="a.approval_status != b">
-                          <a class="dropdown-item" (click)="a.ShowStatus=false;showPopup(i,b)">{{b}}</a></li>
+                        <ng-container *ngIf="a.approval_status == 'Blocked'">
+                          <li class="approved">
+                            <a class="dropdown-item" (click)="a.ShowStatus=false;showPopup(i,'Approved')">Approved</a>
+                          </li>
                         </ng-container>
+
+                        <ng-container *ngIf="a.approval_status != 'Blocked'">
+                          <ng-container *ngFor="let b of statusList">
+                            <li class="{{b.toLowerCase()}}" *ngIf="a.approval_status != b">
+                              <a class="dropdown-item" (click)="a.ShowStatus=false;showPopup(i,b)">{{b}}</a></li>
+                          </ng-container>
+                        </ng-container>
+
                         <!-- <li class="rejected"><a class="dropdown-item"
                             (click)="a.ShowStatus=false;showPopup(i,'Rejected')">Rejected</a></li>
                         <li class="block"><a class="dropdown-item"
@@ -115,7 +129,8 @@
                     </td>
                     <td>{{a.email}}</td>
                     <td>{{a.phone}}</td>
-                    <td class="text-center"><a><i class="fas fa-pen" style="cursor:pointer" (click)="IsEdit = true;getRJDetails(a)"></i></a></td>
+                    <td class="text-center"><a><i class="fas fa-pen" style="cursor:pointer"
+                          (click)="IsEdit = true;getRJDetails(a)"></i></a></td>
                   </tr>
                 </tbody>
 
@@ -150,7 +165,8 @@
   <!--Title sec End Here-->
   <div class="body-main">
     <div class="body-content">
-      <h3><a (click)="IsEdit=false" style="cursor: pointer;"><i class="fas fa-angle-left"></i> Back to RJ Approval board</a></h3>
+      <h3><a (click)="IsEdit=false" style="cursor: pointer;"><i class="fas fa-angle-left"></i> Back to RJ Approval
+          board</a></h3>
       <!-- <h4>Edit RJ Profile</h4> -->
       <div class="title-sec mb-3 p-3 align-items-center justify-content-lg-between">
         <div class="d-flex">
@@ -181,14 +197,14 @@
           </div>
           <div class="col-md-4 col-12 mb-4">
             <div class="form-floating">
-              <input type="text" class="form-control" id="username" placeholder="Login ID *"
-                formControlName="username" disabled>
+              <input type="text" class="form-control" id="username" placeholder="Login ID *" formControlName="username"
+                disabled>
               <label for="username">Login ID *</label>
             </div>
             <div class="required-error">
               <span class="error-span"
                 *ngIf="registerForm.get('username').errors && (registerForm.get('username').touched || registerForm.get('username').dirty) || !isregisterFormValid">
-                <span *ngIf="registerForm.get('username').hasError('required')" style="color:#f00" >
+                <span *ngIf="registerForm.get('username').hasError('required')" style="color:#f00">
                   Login ID is required
                 </span>
               </span>
@@ -196,7 +212,8 @@
           </div>
           <div class="col-md-4 col-12 mb-4">
             <div class="form-floating">
-              <input type="date" class="form-control" id="dob" placeholder="Date of Birth *" formControlName="dob" (change)="validation()">
+              <input type="date" class="form-control" id="dob" placeholder="Date of Birth *" formControlName="dob"
+                (change)="validation()">
               <label for="dob">Date of Birth *</label>
             </div>
             <div class="required-error">
@@ -210,13 +227,14 @@
           </div>
           <div class="col-md-1 col-12 mb-4">
             <div class="form-floating">
-                <select class="form-control" placeholder="ISD" [(ngModel)]="ISD" [ngModelOptions]="{standalone: true}" (click)="getStateList()">
-                    <option *ngFor="let country of countryList" [value]="country.dialcode">
-                        {{country.dialcode}}</option>
-                </select>
-                <label for="floatingInput">ISD</label>
+              <select class="form-control" placeholder="ISD" [(ngModel)]="ISD" [ngModelOptions]="{standalone: true}"
+                (click)="getStateList()">
+                <option *ngFor="let country of countryList" [value]="country.dialcode">
+                  {{country.dialcode}}</option>
+              </select>
+              <label for="floatingInput">ISD</label>
             </div>
-        </div>
+          </div>
           <div class="col-md-5 col-12 mb-4">
             <div class="form-floating">
               <input type="text" class="form-control" id="floatingInput" placeholder="Phone Number *"
@@ -314,7 +332,7 @@
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="podcaster_type" id="inlineRadio2" value="Organisation"
                 formControlName="podcaster_type" (change)="getpodcastdisable();">
-              <label class="form-check-label" for="inlineRadio2" >Organisation</label>
+              <label class="form-check-label" for="inlineRadio2">Organisation</label>
             </div>
             <div class="w-50">
               <div class="form-floating">
@@ -471,18 +489,18 @@
 
 <div *ngIf="showConfirmPopup">
   <!--------------------------->
-<!--Delete The Modal -->
-<div class="background-grey"></div>
-<div class="popup-box" style="height: 130px;text-align: center;">
-  <div>
-     <h4 class="mb-0"> Please Confirm on Status Change ?</h4>
-     <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
-   </div>
+  <!--Delete The Modal -->
+  <div class="background-grey"></div>
+  <div class="popup-box" style="height: 130px;text-align: center;">
+    <div>
+      <h4 class="mb-0"> Please Confirm on Status Change ?</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
+    </div>
 
-   <!-- Modal body href="dashboard.html" 366,367-->
-     <div class="modal-body">
-    <a ><button class="custome-button mx-2" (click)="getApproveStatus()">Confirm</button></a>
-    <a ><button class="custome-outline mx-2"  (click)="showConfirmPopup = false">Cancel</button></a>
-   </div>
- </div>
+    <!-- Modal body href="dashboard.html" 366,367-->
+    <div class="modal-body">
+      <a><button class="custome-button mx-2" (click)="getApproveStatus()">Confirm</button></a>
+      <a><button class="custome-outline mx-2" (click)="showConfirmPopup = false">Cancel</button></a>
+    </div>
+  </div>
 </div>

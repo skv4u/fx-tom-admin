@@ -1,75 +1,75 @@
-
-  <!--Header Start Here-->
-  <app-generic-header></app-generic-header>
-  <!--Header End Here-->
+<!--Header Start Here-->
+<app-generic-header></app-generic-header>
+<!--Header End Here-->
 
 <div class="body-main">
-  <div class="body-content" style="height: 85vh;">  
-    <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/dasdboard')"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>   
- 
-      <h3>Add Category</h3>
+    <div class="body-content" style="height: 85vh;">
+        <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/dasdboard')"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
 
-       
-          <div class="row">
+        <h3>{{caption.title}}</h3>
+
+
+        <div class="row">
             <div class="col-md-12 px-1 d-flex">
-              <div style="min-width: 70%;">
-                <div class="input-group mx-2">
-                    <input type="text" class="form-control" placeholder="Enter New Category" [(ngModel)]="NewCatName">
-                &nbsp;
-                &nbsp;
-                <div class="drop-zone upload-image" *ngIf="!NewCatImage" style="height:40px;border-radius:0px;width: 65px;background: none;">
-                 
-                  <!-- <span class="drop-zone__prompt"><p>Upload <br/> Category picture</p>                </span> -->
-                  <i class="fas fa-file-upload" title="upload category picture" style="font-size: 28px;"></i>
-                  <input type="file" name="myFile" class="drop-zone__input" style="display: block;"  (change)="uploadFile($event.target.files)">
+                <div style="min-width: 70%;">
+                    <div class="input-group mx-2">
+                        <input type="text" class="form-control" placeholder="Enter New Category" [(ngModel)]="NewCatName"> &nbsp; &nbsp;
+                        <div class="drop-zone upload-image" *ngIf="!NewCatImage" style="height:40px;border-radius:0px;width: 42px;">
 
+                            <!-- <span class="drop-zone__prompt"><p>Upload <br/> Category picture</p>                </span> -->
+                            <i class="fas fa-file-upload" title="upload category picture" style="font-size: 28px;"></i>
+                            <input type="file" name="myFile" class="drop-zone__input" style="display: block;" (change)="uploadFile($event.target.files)" accept="Image/*">
+
+                        </div>
+                        <div class="drop-zone upload-image" style="height:40px;border-radius:0px;width: 42px;overflow: hidden;" *ngIf="NewCatImage">
+                            <img [src]="NewCatImage" [alt]="NewCatImage" style="border-radius: 0px;">
+                        </div>
+                        <button *ngIf="NewCatImage" (click)="removeFile()" style="right: -11px;cursor: pointer;background: none;border: none;color: #f00;position: absolute;top: -10px;"><i class="fas fa-trash-alt"></i></button>
+                        <!-- <input type="text" class="form-control" placeholder="SVG Url(Optional)" [(ngModel)]="NewCatImage"> -->
+                    </div>
                 </div>
-                <div class="drop-zone upload-image" style="height:40px;border-radius:0px;width: 65px;background: none;overflow: hidden;" *ngIf="NewCatImage">
-                  <img [src]="NewCatImage" [alt]="NewCatImage" style="border-radius: 0px;object-fit: cover;">
-              </div>
-              
-                  <!-- <input type="text" class="form-control" placeholder="SVG Url(Optional)" [(ngModel)]="NewCatImage"> -->
-              </div>
-              </div>
-              <button class="custome-button mx-4" (click)="createCategory()">Add New Category</button>
-              <img *ngIf="apiCalled" src="./assets/images/loader.gif" style="width: auto;height: 38px;margin-left: 20px;">
+                <button class="custome-button mx-4" (click)="createCategory()">{{caption.button}}</button>
+                <a *ngIf="Id != 0" (click)="ResetCategory()" class="rjapproved" style="margin-top: 10px;cursor: pointer;">Cancel</a>
+                <img *ngIf="apiCalled" src="./assets/images/loader.gif" style="width: auto;height: 38px;margin-left: 20px;">
             </div>
-          </div>            
-          <div class="row">
+        </div>
+        <div class="row">
             <div class="col-md-12 px-1 d-flex">
-             <ul class="c-list">
-               <li *ngFor="let a of prodCastService.WebCategoryList">
-                 <div class="no_image" *ngIf="!a.image">
-                  <img  src="./assets/images/noimage.png" alt="No Image" />
-                 </div> 
-                 <div class="with_image" *ngIf="a.image">
-                  <img  [src]="a.image" alt="No Image" />
-                 </div>
-                 <span class="ml30">{{a.name}}</span> 
-                 <i class="fas fa-trash-alt" (click)="Id=a.id;showConfirmPopup=true;"></i>
-                </li>
-             </ul>
-          </div>            
-     
- 
-  </div>
-</div>
+                <ul class="c-list">
+                    <li *ngFor="let a of prodCastService.WebCategoryList">
+                        <div class="no_image" *ngIf="!a.image">
+                            <img src="./assets/images/noimage.png" alt="No Image" />
+                        </div>
+                        <div class="with_image" *ngIf="a.image">
+                            <img [src]="a.image" alt="No Image" />
+                        </div>
+                        <span class="ml30">{{a.name}}</span>
+                        <i class="fas fa-edit" (click)="editCategory(a)" style="right: 25px;"></i>
+                        <i class="fas fa-trash-alt" (click)="Id=a.id;showConfirmPopup=true;"></i>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
 </div>
 
 <div *ngIf="showConfirmPopup">
-  <!--------------------------->
-<!--Delete The Modal -->
-<div class="background-grey"></div>
-<div class="popup-box" style="height: 130px;text-align: center;">
-  <div>
-     <h4 class="mb-0"> Please Confirm on Delete ?</h4>
-     <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
-   </div>
+    <!--------------------------->
+    <!--Delete The Modal -->
+    <div class="background-grey"></div>
+    <div class="popup-box" style="height: 130px;text-align: center;">
+        <div>
+            <h4 class="mb-0"> Please Confirm on Delete ?</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
+        </div>
 
-   <!-- Modal body href="dashboard.html" 366,367-->
-     <div class="modal-body">
-    <a ><button class="custome-button mx-2" (click)="deleteProdCast(Id)">Confirm</button></a>
-    <a ><button class="custome-outline mx-2"  (click)="showConfirmPopup = false">Cancel</button></a>
-   </div>
- </div>
+        <!-- Modal body href="dashboard.html" 366,367-->
+        <div class="modal-body">
+            <a><button class="custome-button mx-2" (click)="deleteProdCast(Id)">Confirm</button></a>
+            <a><button class="custome-outline mx-2"  (click)="showConfirmPopup = false">Cancel</button></a>
+        </div>
+    </div>
 </div>

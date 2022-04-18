@@ -3,123 +3,129 @@
 <!--Header End Here-->
 
 <div class="body-main">
-  <div class="body-content" style="height: 85vh;">
-    <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/dasdboard')"><i class="fas fa-angle-left"></i> Back
+    <div class="body-content" style="height: 85vh;">
+        <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/dasdboard')"><i class="fas fa-angle-left"></i> Back
         to Dashboard</a></h3>
 
-    <h3>Adds Spot</h3>
+        <h3>{{caption.title}}</h3>
 
 
-    <div class="row">
-      <div class="col-md-3">
-        <div class="form-floating">
-          <input type="text" id="title" class="form-control" placeholder="Adds Title" [(ngModel)]="addSpot.title">
-          <label for="title">Adds Title</label>
-        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="text" id="title" class="form-control" placeholder="Ads Title" [(ngModel)]="addSpot.title">
+                    <label for="title">Ads Spot</label>
+                </div>
 
-      </div>
-      <div class="col-md-2">
-        <div class="form-floating">
-          <select id="link_type" class="form-control" [(ngModel)]="addSpot.link_type" placeholder="Link Type" (change)="LinkTypeChage()">
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select id="link_type" class="form-control" [(ngModel)]="addSpot.link_type" placeholder="Link Type" (change)="LinkTypeChage()">
             <option value="web">Web Link</option>
             <option value="podcast">Podcast Link</option>
           </select>
-          <label for="link_type">Link Type</label>
-        </div>
-      </div>
+                    <label for="link_type">Link Type</label>
+                </div>
+            </div>
 
-      <div class="col-md-2">
-        <div class="form-floating" *ngIf="addSpot.link_type == 'web'">        
-          <input  type="text" class="form-control" placeholder="Selected Link Value"
-          [(ngModel)]="addSpot.link_value">
-          <label for="title">Selected Link Value</label>
-        </div>
-      
-        <div class="form-floating" *ngIf="addSpot.link_type == 'podcast'" >
-          <select [(ngModel)]="addSpot.link_value" class="form-control" placeholder="Selected Link Value" id="link_value">
+            <div class="col-md-2">
+                <div class="form-floating" *ngIf="addSpot.link_type == 'web'">
+                    <input type="text" class="form-control" placeholder="Selected Link Value" [(ngModel)]="addSpot.link_value">
+                    <label for="title">Selected Link Value</label>
+                </div>
+
+                <div class="form-floating" *ngIf="addSpot.link_type == 'podcast'">
+                    <select [(ngModel)]="addSpot.link_value" class="form-control" placeholder="Selected Link Value" id="link_value">
             <option *ngFor="let m of podCastList" [value]="m.podcast_id">{{m.podcast_title}} ({{m.rj_name}})</option>
             <label for="link_value">Selected Link Value</label>
           </select>
-        </div>
-
-      
-      </div>
-      <div class="col-md-1">
-        <div class="form-floating">        
-          <input  type="number" class="form-control" placeholder="Sequence"
-          [(ngModel)]="addSpot.sequence" min="1">
-          <label for="title">Sequence</label>
-        </div>
-       
-      </div>
- 
-      <div class="col-md-1">
-        <div class="drop-zone upload-image" *ngIf="!addSpot.image"
-          style="height:40px;border-radius:0px;width: 65px;background: none;">
-          <i class="fas fa-file-upload" title="upload category picture" style="font-size: 28px;"></i>
-          <input type="file" name="myFile" class="drop-zone__input" style="display: block;"
-            (change)="uploadFile($event.target.files)">
-
-        </div>
-        <div class="drop-zone upload-image"
-          style="height:40px;border-radius:0px;width: 65px;background: none;overflow: hidden;"
-          *ngIf="addSpot.image">
-          <img [src]="addSpot.image" [alt]="addSpot.image" style="border-radius: 0px;object-fit: cover;">
-        </div>
-        
-      </div>
-   
-      <div class="col-md-3">
-        <button class="custome-button mx-4" style="padding: 8px 20px;" (click)="CreateSpot()">Create Adds</button>
-        <!-- <img  src="./assets/images/loader.gif" style="width: auto;height: 38px;margin-left: 20px;"> -->
-      </div>
-    </div>
+                </div>
 
 
-    <div class="row">
-      <div class="col-md-12 px-1 d-flex">
-        <ul class="c-list">
-          <li *ngFor="let a of prodCastService.spotlist" class="addspot">
-            <div class="no_image" *ngIf="!a.image">
-              <img src="./assets/images/noimage.png" alt="No Image" />
             </div>
-            <div class="with_image" *ngIf="a.image">
-              <img [src]="a.image" alt="No Image" />
+            <div class="col-md-1">
+                <div class="form-floating">
+                    <input type="number" class="form-control" placeholder="Sequence" [(ngModel)]="addSpot.sequence" min="1">
+                    <label for="title">Sequence</label>
+                </div>
+
             </div>
-            <span class="ml30">{{a.title}}</span>
-            <span class="link">
+
+            <div class="col-md-1">
+                <div class="drop-zone upload-image" *ngIf="!addSpot.image" style="height:40px;border-radius:0px;width: 65px;background: none;">
+                    <i class="fas fa-file-upload" title="upload category picture" style="font-size: 28px;"></i>
+                    <input type="file" name="myFile" class="drop-zone__input" style="display: block;" (change)="uploadFile($event.target.files)" accept="image/*">
+
+                </div>
+                <div class="drop-zone upload-image" style="height:40px;border-radius:0px;width: 65px;background: none;overflow: hidden;" *ngIf="addSpot.image">
+                    <img [src]="addSpot.image" [alt]="addSpot.image" style="border-radius: 0px;object-fit: cover;">
+                </div>
+
+                <button *ngIf="addSpot.image" (click)="removeFile()" style="right: -65px;
+                cursor: pointer;
+                background: none;
+                border: none;
+                color: #f00;
+                position: relative;
+                top: -50px;"><i class="fas fa-trash-alt"></i></button>
+
+            </div>
+
+            <div class="col-md-3">
+                <button class="custome-button mx-4" style="padding: 8px 20px;" (click)="CreateSpot()">{{caption.button}}</button>
+                <a *ngIf="Id != 0" (click)="ResetCategory()" class="rjapproved" style="top: 10px;
+                position: relative;
+                cursor: pointer;">Cancel</a>
+                <!-- <img  src="./assets/images/loader.gif" style="width: auto;height: 38px;margin-left: 20px;"> -->
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12 px-1 d-flex">
+                <ul class="c-list">
+                    <li *ngFor="let a of prodCastService.spotlist" class="addspot">
+                        <div class="no_image" *ngIf="!a.image">
+                            <img src="./assets/images/noimage.png" alt="No Image" />
+                        </div>
+                        <div class="with_image" *ngIf="a.image">
+                            <img [src]="a.image" alt="No Image" />
+                        </div>
+                        <span class="ml30">
+                            <span class="mybadge">{{a.sequence}}</span>
+                            {{a.title}}</span>
+                        <span class="link">
               {{a.link_type}} : 
                <a *ngIf="a.link_type == 'web'" [href]="a.link_value" target="_blank" class="ml30">{{a.link_value}}</a>
                <span *ngIf="a.link_type == 'podcast'">{{a.link_value}}</span>
 
-            </span>
-            
-            
-            <i class="fas fa-trash-alt" (click)="Id=a.addspot_id;showConfirmPopup=true;"></i>
-          </li>
-        </ul>
-      </div>
+                        </span>
+                        <i class="fas fa-edit" (click)="editCategory(a)" style="right: 25px;"></i>
+                        <i class="fas fa-trash-alt" (click)="Id=a.addspot_id;showConfirmPopup=true;"></i>
+                    </li>
+                </ul>
+            </div>
 
 
+        </div>
     </div>
-  </div>
 </div>
 
 
 <div *ngIf="showConfirmPopup">
-  <!--------------------------->
-  <!--Delete The Modal -->
-  <div class="background-grey"></div>
-  <div class="popup-box" style="height: 130px;text-align: center;">
-    <div>
-      <h4 class="mb-0"> Please Confirm on Delete ?</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
-    </div>
+    <!--------------------------->
+    <!--Delete The Modal -->
+    <div class="background-grey"></div>
+    <div class="popup-box" style="height: 130px;text-align: center;">
+        <div>
+            <h4 class="mb-0"> Please Confirm on Delete ?</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="showConfirmPopup = false">X</button>
+        </div>
 
-    <!-- Modal body href="dashboard.html" 366,367-->
-    <div class="modal-body">
-      <a><button class="custome-button mx-2" (click)="deleteSpot()">Confirm</button></a>
-      <a><button class="custome-outline mx-2" (click)="showConfirmPopup = false">Cancel</button></a>
+        <!-- Modal body href="dashboard.html" 366,367-->
+        <div class="modal-body">
+            <a><button class="custome-button mx-2" (click)="deleteSpot()">Confirm</button></a>
+            <a><button class="custome-outline mx-2" (click)="showConfirmPopup = false">Cancel</button></a>
+        </div>
     </div>
-  </div>
 </div>
