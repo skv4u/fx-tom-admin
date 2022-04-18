@@ -3,21 +3,21 @@ import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { ConfigurationMicroService } from './configuration-micro.service';
 @Injectable()
 export class WebService {
-  APIUrl: any = {};
+  APIUrl: string = "";
   APIToken:any = "";
   constructor(private http: HttpClient, public configurationService: ConfigurationMicroService) {
     this.APIUrl = this.configurationService.getUrl();
   }
 
-  commonMethod(url: string, data: any, method?: string, url_type?: string): any {
+  commonMethod(url: string, data: any, method?: string): any {
     method = method ? method : 'POST';
-    url_type = url_type ? url_type : 'DEV';
+    // url_type = url_type ? url_type : 'DEV';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization':'Bearer ' + localStorage.getItem('adminttptoken')
     })
-    let endPoint = this.APIUrl[url_type] + "/" + url;
+    let endPoint = this.APIUrl + "/" + url;
     if (method == 'POST')
       return this.http.post(endPoint, data, { headers });
     else if (method == 'GET')
@@ -42,7 +42,7 @@ export class WebService {
       'enctype': 'multipart/form-data',
       'Authorization':'Bearer ' + localStorage.getItem('adminttptoken')
     });
-    return this.http.post(this.APIUrl.DEV + '/' + url, data, {
+    return this.http.post(this.APIUrl + '/' + url, data, {
       headers,
       reportProgress: true,
       observe: 'events'
@@ -54,7 +54,7 @@ export class WebService {
       'enctype': 'multipart/form-data',
       'Authorization':'Bearer ' + localStorage.getItem('adminttptoken')
     });
-    this.http.post(this.APIUrl.DEV + '/' + url, formData, {
+    this.http.post(this.APIUrl + '/' + url, formData, {
       headers,
       reportProgress: true,
       observe: 'events'
