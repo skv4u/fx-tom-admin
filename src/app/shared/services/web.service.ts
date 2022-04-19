@@ -78,7 +78,9 @@ export class WebService {
   }
   validAudioList():string[] {
     return [
-      'audio/mp3'
+      'audio/mp3',
+      'audio/mpeg',
+      'audio/x-mpeg-3'
     ]
   }
 }
