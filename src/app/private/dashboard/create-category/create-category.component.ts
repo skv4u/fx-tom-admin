@@ -135,6 +135,7 @@ export class CreateCategoryComponent implements OnInit {
       "title":"Edit Category",
       "button":"Update Category"
     }
+    window.scrollTo(0, 0)
   }
   ResetCategory(){
     this.NewCatName = '';

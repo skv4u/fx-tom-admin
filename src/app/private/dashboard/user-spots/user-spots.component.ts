@@ -172,6 +172,7 @@ export class UserSpotsComponent implements OnInit {
       "title": "Edit Ads Spot",
       "button": "Update Ads"
     }
+    window.scrollTo(0, 0)
   }
   ResetCategory() {
     this.caption = {
