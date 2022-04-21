@@ -1,0 +1,31 @@
+.list-group {
+    font-size: 13px;
+    li {
+        cursor: pointer;
+        &:hover,
+        &.active1 {
+            background-color: #F7F8D4;
+        }
+    }
+}
+
+.chat-container {
+    font-size: 13px;
+    .card-header {
+        img {
+            border-radius: 50%;
+            height: 32px;
+        }
+        span.online-status {
+            color: green;
+            /* margin-top: 6px; */
+            position: relative;
+            top: 4px;
+            left: 5px;
+        }
+        span.rjname {
+            position: relative;
+            left: 10px;
+        }
+    }
+}

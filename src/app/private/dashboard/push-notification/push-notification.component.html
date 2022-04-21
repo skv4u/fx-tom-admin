@@ -1,41 +1,75 @@
 <!--Header Start Here-->
 <app-generic-header></app-generic-header>
 <!--Header End Here-->
-
 <div class="body-main">
-    <div class="body-content" style="height: 85vh;">
-        <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/dasdboard')"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
-        <div class="col-md-3">
-            <div style="padding: 10px;">
-                <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" class="chat-input" type="text" placeholder="Search here..">
-                <span *ngIf="search" (click)="search=''" style="float: right; cursor: pointer;margin-top: 15px;"><i
+    <div class="body-content">
+        <div class="row">
+            <div class="col-md-3">
+                <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/dasdboard')"><i class="fas fa-angle-left"></i>
+            Back
+            to Dashboard</a></h3>
+                <div style="padding: 10px;">
+                    <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" class="chat-input" type="text" placeholder="Search here..">
+                    <span *ngIf="search" (click)="search=''" style="float: right; cursor: pointer;margin-top: 15px;"><i
               class="fas fa-times"></i></span>
-            </div>
-            <ul class="list-group" style="height: 90vh; overflow: auto;">
-                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let m of podcastList | searchlist: search" (click)="loadSelectedPodcast(m)" [class.active1]="m.Active">
-                    <div>
-                        <img [src]="m.Image" *ngIf="m.Image" style="border-radius: 50%; height: 25px;width: 30px;">
-                        <img src="./assets/images/nopicuser.png" *ngIf="!m.Image" style="border-radius: 50%; height: 25px;width: 30px;">
-                        <span class="username" style="margin-left: 5px;">{{m.Name}}</span>
-                    </div>
-                    <span>{{m.Description}}</span>
-                </li>
-
-            </ul>
-        </div>
-        <div class="col-md-9">
-            <div class="col-sm-12">
-                <div class="col-sm-4">
-
                 </div>
-                <div class="col-sm-8">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="Podcast Name">
+                <ul class="list-group" style="height: 90vh; overflow: auto;">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let m of podcastList | searchlist: search" (click)="loadSelectedPodcast(m)" [class.active1]="m.Active">
+                        <div>
+                            <img [src]="m.imagepath" *ngIf="m.imagepath" style="border-radius: 50%; height: 25px;width: 30px;">
+                            <img src="./assets/images/nopicuser.png" *ngIf="!m.imagepath" style="border-radius: 50%; height: 25px;width: 30px;">
+                            <span class="username" style="margin-left: 5px;">{{m.podcast_name}}</span>
+                        </div>
+                        <span>{{m.description}}</span>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-9" style="background: #fff; padding: 0px 20px 0px 0px;">
+                <div class="chat-container">
+                    <div class="card">
+                        <div class="card-body" id="scroll" style="height: 80vh; overflow: auto;">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div *ngIf="!podcastDetails.imagepath" class="drop-zone upload-image" style="height:100px;border-radius:10px;width: 150px;">
+                                            <i class="fas fa-file-upload" title="upload category picture" style="font-size: 28px;"></i>
+                                            <input type="file" name="myFile" class="drop-zone__input" style="display: block;" (change)="uploadFile($event.target.files)" accept="image/png,image/jpg,image/jpeg">
+
+                                        </div>
+                                        <div *ngIf="podcastDetails.imagepath" class="drop-zone upload-image" style="height:100px;border-radius:10px;width: 150px;overflow: hidden;">
+                                            <img [src]="podcastDetails.imagepath" [alt]="podcastDetails.imagepath" style="border-radius: 0px;height: 100px;
+                                            width: 150px;">
+                                        </div>
+                                        <button *ngIf="podcastDetails.imagepath" (click)="removeFile()" style="right: 735px;
+                                        cursor: pointer;
+                                        background: none;
+                                        border: none;
+                                        color: #f00;
+                                        position: absolute;
+                                        top: 9px;"><i class="fas fa-trash-alt"></i></button>
+                                        <!-- <input type="text" class="form-control" placeholder="SVG Url(Optional)" [(ngModel)]="NewCatImage"> -->
+
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-floating" style="top: 25px;
+                                        left: -25px">
+                                            <input type="text" class="form-control" id="floatingInput" placeholder="Podcast Name" [(ngModel)]="podcastDetails.podcast_name">
+                                            <label>Podcast Name</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea class="form-control my-4" placeholder="Description" [(ngModel)]="podcastDetails.description"></textarea>
+                            </div>
+                            <div class="col-sm-12">
+                                <button class="custome-button mx-4" (click)="sendtoAll('All')">Send to All</button>
+                                <button class="custome-button mx-4" [disabled]="!this.podcastDetails.podcast_id" (click)="sendtoAll('Subscribed')">Send to Subscribed User</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-12">
-                <textarea class="form-control my-4" placeholder="Notes to communicate"></textarea>
             </div>
         </div>
     </div>
