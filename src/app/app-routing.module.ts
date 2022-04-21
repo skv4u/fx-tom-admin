@@ -9,6 +9,7 @@ import { EditLanguageComponent } from './private/dashboard/edit-language/edit-la
 import { RjApprovalComponent } from './private/dashboard/rj-approval/rj-approval.component';
 import { UserSpotsComponent } from './private/dashboard/user-spots/user-spots.component';
 import { LoginComponent } from './public/login/login.component';
+import { PushNotificationComponent } from './private/dashboard/push-notification/push-notification.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'rj-approvals', component: RjApprovalComponent },
   {path: 'podcast-delete', component: DeletePodcastListComponent },
   {path: 'comments', component: CommentsComponent },
+  {path: 'push-notification', component: PushNotificationComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 

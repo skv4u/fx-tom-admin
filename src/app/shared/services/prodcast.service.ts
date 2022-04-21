@@ -105,8 +105,8 @@ export class ProdcastService {
         if (data.Response && data.Response.length) {
           this.dashboardList1= data.Response;
           this.dashboardList = data.Response;
-          this.getUserStatistics();
         }
+        this.getUserStatistics();
       }
     )
   }

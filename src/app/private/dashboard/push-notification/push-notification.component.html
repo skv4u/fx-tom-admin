@@ -1,0 +1,41 @@
+<!--Header Start Here-->
+<app-generic-header></app-generic-header>
+<!--Header End Here-->
+
+<div class="body-main">
+    <div class="body-content" style="height: 85vh;">
+        <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/dasdboard')"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
+        <div class="col-md-3">
+            <div style="padding: 10px;">
+                <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" class="chat-input" type="text" placeholder="Search here..">
+                <span *ngIf="search" (click)="search=''" style="float: right; cursor: pointer;margin-top: 15px;"><i
+              class="fas fa-times"></i></span>
+            </div>
+            <ul class="list-group" style="height: 90vh; overflow: auto;">
+                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let m of podcastList | searchlist: search" (click)="loadSelectedPodcast(m)" [class.active1]="m.active">
+                    <div>
+                        <img [src]="m.profile_image" *ngIf="m.profile_image" style="border-radius: 50%; height: 25px;width: 30px;">
+                        <img src="./assets/images/nopicuser.png" *ngIf="!m.profile_image" style="border-radius: 50%; height: 25px;width: 30px;">
+                        <span class="username" style="margin-left: 5px;">{{m.name}}</span>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="col-sm-12">
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Podcast Name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <textarea class="form-control my-4" placeholder="Notes to communicate"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

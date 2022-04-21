@@ -25,6 +25,8 @@ import { ApprovalPopupComponent } from './private/dashboard/approval-popup/appro
 import { DeletePodcastListComponent } from './private/dashboard/delete-podcast-list/delete-podcast-list.component';
 import { CommentsComponent } from './private/dashboard/comments/comments.component';
 import { UserSpotsComponent } from './private/dashboard/user-spots/user-spots.component';
+import { PushNotificationComponent } from './private/dashboard/push-notification/push-notification.component';
+import { SearchlistPipe } from './shared/pipes/searchlist.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,9 @@ import { UserSpotsComponent } from './private/dashboard/user-spots/user-spots.co
     ApprovalPopupComponent,
     DeletePodcastListComponent,
     CommentsComponent,
-    UserSpotsComponent
+    UserSpotsComponent,
+    PushNotificationComponent,
+    SearchlistPipe
   ],
   imports: [
     BrowserModule,
