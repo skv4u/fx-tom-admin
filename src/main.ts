@@ -7,11 +7,13 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
 }
-let time=0;
 if (!localStorage.getItem('adminttptoken')) {
-  time=1000;
  let  PROTOCOL: string = window.location.host.includes("localhost") ? 'http:' : window.location.protocol;
-  let url = PROTOCOL+'//ec2-35-173-233-212.compute-1.amazonaws.com/api/token/generate';
+  let url = window.location.origin+'/api/token/generate';
+  if(window.location.host.includes("localhost")){
+    url = "http://ec2-15-207-52-38.ap-south-1.compute.amazonaws.com/api/token/generate"; // QA 
+    // url = "http://rj.tomtompodcast.com/api/token/generate"; //Prod 
+  }
   fetch(url).then(response => {
     // handle the response
     response.json().then(data => {
@@ -25,6 +27,6 @@ if (!localStorage.getItem('adminttptoken')) {
 } 
 setTimeout(()=>{
   platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));
-},time);
+},1000);
 
 
