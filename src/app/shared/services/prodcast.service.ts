@@ -66,7 +66,7 @@ export class ProdcastService {
         // console.log(err);
         if(err.status === 401){
           localStorage.removeItem('adminttptoken');
-          alert("Token expired!, Reloading the page");
+          // alert("Token expired!, Reloading the page");
           window.location.reload();
         }
       })

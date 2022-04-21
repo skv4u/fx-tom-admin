@@ -12,12 +12,13 @@
               class="fas fa-times"></i></span>
             </div>
             <ul class="list-group" style="height: 90vh; overflow: auto;">
-                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let m of podcastList | searchlist: search" (click)="loadSelectedPodcast(m)" [class.active1]="m.active">
+                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let m of podcastList | searchlist: search" (click)="loadSelectedPodcast(m)" [class.active1]="m.Active">
                     <div>
-                        <img [src]="m.profile_image" *ngIf="m.profile_image" style="border-radius: 50%; height: 25px;width: 30px;">
-                        <img src="./assets/images/nopicuser.png" *ngIf="!m.profile_image" style="border-radius: 50%; height: 25px;width: 30px;">
-                        <span class="username" style="margin-left: 5px;">{{m.name}}</span>
+                        <img [src]="m.Image" *ngIf="m.Image" style="border-radius: 50%; height: 25px;width: 30px;">
+                        <img src="./assets/images/nopicuser.png" *ngIf="!m.Image" style="border-radius: 50%; height: 25px;width: 30px;">
+                        <span class="username" style="margin-left: 5px;">{{m.Name}}</span>
                     </div>
+                    <span>{{m.Description}}</span>
                 </li>
 
             </ul>
