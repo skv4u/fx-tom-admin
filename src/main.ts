@@ -11,8 +11,8 @@ if (!localStorage.getItem('adminttptoken')) {
  let  PROTOCOL: string = window.location.host.includes("localhost") ? 'http:' : window.location.protocol;
   let url = window.location.origin+'/api/token/generate';
   if(window.location.host.includes("localhost")){
-    url = "http://ec2-15-207-52-38.ap-south-1.compute.amazonaws.com/api/token/generate"; // QA 
-    // url = "http://rj.tomtompodcast.com/api/token/generate"; //Prod 
+    // url = "http://ec2-15-207-52-38.ap-south-1.compute.amazonaws.com/api/token/generate"; // Prod 
+    url = "http://ec2-34-197-255-9.compute-1.amazonaws.com/api/token/generate"; //QA 
   }
   fetch(url).then(response => {
     // handle the response
