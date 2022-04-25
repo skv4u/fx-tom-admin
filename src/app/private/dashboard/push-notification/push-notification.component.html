@@ -6,34 +6,34 @@
         <div class="row">
             <div>
                 <a href="#" (click)="$event.preventDefault();router.navigateByUrl('/dasdboard')" style="margin-left: 10px;">
-                  <i style="margin-top: 3px;" class="fas fa-angle-left"></i> Back to Dashboard</a>
-              </div>
+                    <i style="margin-top: 3px;" class="fas fa-angle-left"></i> Back to Dashboard</a>
+            </div>
             <div class="col-md-3">
                 <!-- <h3 style="cursor: pointer;"><a (click)="router.navigateByUrl('/dasdboard')"><i class="fas fa-angle-left"></i>
             Back
             to Dashboard</a></h3> -->
-            
+
                 <div style="padding: 10px;">
-                    <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" class="chat-input" type="text" placeholder="Search here..">
+                    <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" class="chat-input" type="text" placeholder="Search live podcast here...">
                     <span *ngIf="search" (click)="search=''" style="float: right; cursor: pointer;margin-top: 15px;"><i
-              class="fas fa-times"></i></span>
+                            class="fas fa-times"></i></span>
                 </div>
                 <ul class="list-group" style="height: 90vh; overflow: auto;">
                     <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let m of podcastList | searchlist: search" (click)="loadSelectedPodcast(m)" [class.active1]="m.Active">
                         <div class="podcast-live-list">
                             <span class="img"><img [src]="m.imagepath" *ngIf="m.imagepath">
-                            <img src="./assets/images/nopicuser.png" *ngIf="!m.imagepath">
-                        </span>
+                                <img src="./assets/images/nopicuser.png" *ngIf="!m.imagepath">
+                            </span>
                             <span class="username" style="margin-left: 5px;">
-                                {{m.podcast_name}}                               
+                                {{m.podcast_name}}
                             </span>
                             <span>
                                 By {{m.rj_name}} <br />
                                 Live on {{m.broadcast_date}}
                             </span>
-                            
+
                         </div>
-                        
+
                     </li>
 
                 </ul>
@@ -62,8 +62,8 @@
                                         border: none;
                                         color: #f00;
                                         position: absolute;
-                                        top: -10px;
-                                        right: 28px;
+                                        top: -8px;
+                                        right: 45px;
                                         z-index: 2;"><i class="fas fa-trash-alt"></i></button>
                                         <!-- <input type="text" class="form-control" placeholder="SVG Url(Optional)" [(ngModel)]="NewCatImage"> -->
 
@@ -74,16 +74,37 @@
                                             <label>Podcast Name</label>
                                         </div>
                                         <div class="form-floating">
-                                        <textarea class="form-control my-4" placeholder="Description" [(ngModel)]="podcastDetails.description"></textarea>
-                                        <label>Podcast Description</label>
-                                    </div>
+                                            <textarea class="form-control my-4" placeholder="Description" [(ngModel)]="podcastDetails.description"></textarea>
+                                            <label>Podcast Description</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                         
+
                             <div class="col-sm-12">
                                 <button class="custome-button mx-4" (click)="sendtoAll('All')">Send to All</button>
                                 <button class="custome-button mx-4" [disabled]="!this.podcastDetails.podcast_id" (click)="sendtoAll('Subscribed')">Send to Subscribed User</button>
+                            </div>
+                            <div class="col-sm-12">
+                                <p>Server Response</p>
+                                <div class="alert alert-success d-flex align-items-center" role="alert">
+                                    <!-- <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                                        <use xlink:href="#check-circle-fill" />
+                                    </svg> -->
+                                    <i class="fas fa-check"></i>
+                                    <div style="margin-left: 8px;">
+                                        Success Count : {{successCount}}
+                                    </div>
+                                </div>
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <!-- <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg> -->
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <div style="margin-left: 8px;">
+                                        Failure Count : {{failureCount}}
+                                    </div>
+                                </div>
+                                <!-- <span class="success">Sucess: {{successCount}}</span> -->
+                                <!-- <span class="success">Failure: {{failureCount}}</span> -->
                             </div>
                         </div>
                     </div>

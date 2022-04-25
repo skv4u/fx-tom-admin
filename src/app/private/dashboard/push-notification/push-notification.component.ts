@@ -25,7 +25,9 @@ export class PushNotificationComponent implements OnInit {
     "description": "",
     "imagepath": ""
   }
-  constructor(public router: Router, public webservice: WebService, public toast: ToastService, public prodCastService: ProdcastService) { }
+  successCount: number = 0;
+  failureCount: number = 0;
+    constructor(public router: Router, public webservice: WebService, public toast: ToastService, public prodCastService: ProdcastService) { }
 
   ngOnInit() {
     this.getPodcastList();
@@ -45,18 +47,18 @@ export class PushNotificationComponent implements OnInit {
     }
   }
   removeFile() {
-    let req = {
-      filename: this.podcastDetails.imagepath
-    }
-    this.prodCastService.loader = true;
-    this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
-      subscribe((data: any) => {
-        this.prodCastService.loader = false;
-        this.podcastDetails.imagepath = '';
-      }, err => {
-        this.prodCastService.loader = false;
-        this.podcastDetails.imagepath = '';
-      });
+    // let req = {
+    //   filename: this.podcastDetails.imagepath
+    // }
+    // this.prodCastService.loader = true;
+    // this.webservice.commonMethod("s3bucket/remove", req, 'DELETE').
+    //   subscribe((data: any) => {
+    //     this.prodCastService.loader = false;
+    this.podcastDetails.imagepath = '';
+    // }, err => {
+    //   this.prodCastService.loader = false;
+    //   this.podcastDetails.imagepath = '';
+    // });
 
   }
   uploadFile(element) {
@@ -106,7 +108,11 @@ export class PushNotificationComponent implements OnInit {
     }
     this.webservice.commonMethod('fcm/send', req, 'POST').subscribe(
       (data) => {
-
+        if (data.Status == 'Success') {
+          let list = JSON.parse(data.Response);
+          this.successCount = list.success;
+          this.failureCount = list.failure;
+        }
       })
   }
   getPodcastList() {
