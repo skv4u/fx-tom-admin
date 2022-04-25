@@ -6,11 +6,19 @@
     <!--Title sec Start Here-->
     <div class="admin-sec">
         <div class="row admin-top">
-            <div class="col-md-4 admin-title">
+            <div class="col-md-4 admin-title" style="width: 20%;">
                 <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to
             Dashboard</a></h3>
             </div>
-            <div class="col-md-4 tickets">
+            <div class="col-md-4 top-search">
+                <div class="input-group mb-0">
+                    <button class="btn btn-outline-secondary" type="submit"><i
+            class="fas fa-search"></i></button>
+                    <input type="text" class="form-control" [(ngModel)]="serachvalue" placeholder="Search for podcast or Company or Data">
+                </div>
+
+            </div>
+            <div class="col-md-4 tickets" style="width: 46%;">
                 <ul>
                     <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
                     <li class="rejected"><strong>{{prodcastService.RJStatistics.RejectedRJTotal}}</strong> Rejected</li>
@@ -67,7 +75,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let a of RJList;let i=index">
+                                    <tr *ngFor="let a of RJList | searchlist: serachvalue;let i=index">
                                         <td class="pic">
                                             <img [src]="a.profile_image" alt="img" *ngIf="a.profile_image" />
                                             <img src="assets/images/login-img.jpg" *ngIf="!a.profile_image" alt="img" />

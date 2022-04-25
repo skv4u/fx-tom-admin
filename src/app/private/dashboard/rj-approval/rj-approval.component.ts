@@ -38,6 +38,7 @@ export class RjApprovalComponent implements OnInit {
   editData:any;
   showConfirmPopup:boolean=false;
   status:string="";
+  serachvalue: string = '';
   statusList:any=["Approved","Rejected","Blocked"]
   constructor(public prodcastService:ProdcastService,public webService:WebService,public toast:ToastService, public fb: FormBuilder,public _localStorage:LocalstorageService,public _commonService:CommonService,public render:Renderer2) { }
 
