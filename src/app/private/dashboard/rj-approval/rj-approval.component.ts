@@ -245,7 +245,7 @@ export class RjApprovalComponent implements OnInit {
       data => {
         if(data.Status == 'Success' && data.Response && data.Response.length){
           this.stateList = data.Response;
-          this.state = this.stateList[0].name;
+          this.state = this.state ? this.state : this.stateList[0].name;
         }
       }
     )

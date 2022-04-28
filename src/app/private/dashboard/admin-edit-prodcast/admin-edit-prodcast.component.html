@@ -237,9 +237,16 @@
                             <p class="m-0">Category</p>
                             <h4>{{EditData.category}}</h4>
                         </div>
-                        <div class="col-12 mb-4">
+                        <div class="col-6 mb-4">
                             <p class="m-0">Show</p>
                             <h4>{{EditData.shows_name}}</h4>
+                        </div>
+                        <div class="col-6 mb-4">
+                            <p class="pe-3 mb-0">Age Restriction</p>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input curser" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="EditData.age_restriction" disabled>
+                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                            </div>
                         </div>
                         <div class="col-12 mb-4">
                             <p class="m-0">Discription</p>
