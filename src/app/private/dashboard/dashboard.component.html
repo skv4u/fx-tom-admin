@@ -88,6 +88,10 @@
                                         <input class="form-check-input" type="checkbox" id="check11" [checked]="showhidemenu.Rank" (change)="showhidemenu.Rank = !showhidemenu.Rank">
                                         <label class="form-check-label" for="check11">Rank</label>
                                     </div>
+                                    <div class="form-check mb-2 outsideclick">
+                                        <input class="form-check-input" type="checkbox" id="check12" [checked]="showhidemenu.Shows" (change)="showhidemenu.Shows = !showhidemenu.Shows">
+                                        <label class="form-check-label" for="check12">Shows</label>
+                                    </div>
                                     <button class="custome-button my-3" (click)="showhidecnd.ShowFilter = false">Done</button>
                                 </li>
                             </form>
@@ -185,6 +189,7 @@
                                             <li *ngFor="let a of prodcastService.CategoryList"><a class="dropdown-item" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>
                                         </ul>
                                     </th>
+                                    <th *ngIf="showhidemenu.Shows">Shows Name</th>
                                     <th width="170" *ngIf="showhidemenu.UploadDate">Upload Date</th>
 
                                     <th *ngIf="showhidemenu.Approvals">
@@ -230,6 +235,8 @@
                         Podcast</a></p>
                                     </td>
                                     <td *ngIf="showhidemenu.Category">{{a.category}}</td>
+                                    <td *ngIf="showhidemenu.Shows">{{a.shows_name}}</td>
+                                    
                                     <td *ngIf="showhidemenu.UploadDate">
                                         <p class="mb-0 width-100">{{a.upload_date}}</p>
                                         <!-- <span class="small">{{a.UploadTime}}</span> -->

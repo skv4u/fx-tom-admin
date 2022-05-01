@@ -30,7 +30,8 @@ export class DashboardComponent implements OnInit {
     "BroadcastDate": true,
     "Edit": true,
     "Delete": true,
-    "Rank": true
+    "Rank": true,
+    "Shows":true
   }
   serachvalue: string = "";
   showStatusDropDown: boolean = false;

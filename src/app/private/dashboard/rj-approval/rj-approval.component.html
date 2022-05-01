@@ -10,14 +10,7 @@
                 <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to
             Dashboard</a></h3>
             </div>
-            <div class="col-md-4 top-search">
-                <div class="input-group mb-0">
-                    <button class="btn btn-outline-secondary" type="submit"><i
-            class="fas fa-search"></i></button>
-                    <input type="text" class="form-control" [(ngModel)]="serachvalue" placeholder="Search for podcast or Company or Data">
-                </div>
-
-            </div>
+           
             <div class="col-md-4 tickets" style="width: 46%;">
                 <ul>
                     <li class="pending"><strong>{{prodcastService.RJStatistics.PendingRJTotal}}</strong> Pending</li>
@@ -36,7 +29,17 @@
         <div class="body-content">
             <div class="row">
                 <div class="col-12 col-lg-12">
+                    <div style="display: flex;">
                     <h3>RJ Approval board</h3>
+                    <div class="col-md-4 top-search" style="margin-top: 7px;margin-left: 10px;">
+                        <div class="input-group mb-0">
+                            <button class="btn btn-outline-secondary" type="submit"><i
+                    class="fas fa-search"></i></button>
+                            <input type="text" class="form-control" [(ngModel)]="serachvalue" placeholder="Search RJ details here...">
+                        </div>
+        
+                    </div>
+                </div>
                     <div class="shadow-sm border-0 card card-body admin-height table-text p-0">
                         <div class="information">
 
@@ -312,13 +315,13 @@
                             <label class="form-check-label" for="inlineRadio1">Individual Podcaster</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="podcaster_type" id="inlineRadio2" value="organisation" formControlName="podcaster_type" (change)="getpodcastdisable();">
-                            <label class="form-check-label" for="inlineRadio2">Organisation</label>
+                            <input class="form-check-input" type="radio" name="podcaster_type" id="inlineRadio2" value="organization" formControlName="podcaster_type" (change)="getpodcastdisable();">
+                            <label class="form-check-label" for="inlineRadio2">Organization</label>
                         </div>
                         <div class="w-50">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Organisation working for?" formControlName="podcaster_value" [readOnly]="isindividual">
-                                <label for="floatingInput">Organisation working for?</label>
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Organization working for?" formControlName="podcaster_value" [readOnly]="isindividual">
+                                <label for="floatingInput">Organization working for?</label>
                             </div>
                         </div>
                     </div>
