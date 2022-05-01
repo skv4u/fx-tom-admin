@@ -310,7 +310,7 @@ export class RjApprovalComponent implements OnInit {
   }
 
   getpodcastdisable(){
-    if(this.registerForm.value.podcaster_type == 'Individual'){
+    if(this.registerForm.value.podcaster_type == 'individual'){
       this.isindividual = true;
      this.registerForm.get("podcaster_value").setValue(' ');
     }else{
