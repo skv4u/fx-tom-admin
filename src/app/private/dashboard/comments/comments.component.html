@@ -115,11 +115,11 @@
                 <button type="button"><i class="far fa-thumbs-down dislike" [class.active]="a.comment_you_disliked != '0'" (click)="LikeandHeart(a.comment_id,'dislike')"></i>
                    <span> {{a.dislikecount}} </span>
                 </button>
-                <button type="button">
+                <!-- <button type="button">
                     <i class="far fa-heart heart" [class.active]="a.comment_you_hearted != '0'" 
                     (click)="LikeandHeart(a.comment_id,'heart')"></i>
                    <span> {{a.heartcount}} </span>
-                </button>
+                </button> -->
                 <button type="button" *ngIf="!a.comment_input_visible" (click)="a.comment_input_visible = true">                   
                      <a style="border-bottom: 1px solid;
                     padding-bottom: 3px;
@@ -165,11 +165,11 @@
                         <button type="button"><i class="far fa-thumbs-down dislike" [class.active]="b.reply_you_disliked != '0'" (click)="replyldh(b.reply_id,'dislike')"></i>
                            <span> {{b.dislikecount}} </span>
                         </button>
-                        <button type="button">
+                        <!-- <button type="button">
                             <i class="far fa-heart heart" [class.active]="b.reply_you_hearted != '0'" 
                             (click)="replyldh(b.reply_id,'heart')"></i>
                            <span> {{b.heartcount}} </span>
-                        </button>
+                        </button> -->
                       </div>
                       </li>
               </ul>
