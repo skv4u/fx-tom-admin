@@ -69,6 +69,22 @@ export class DashboardComponent implements OnInit {
 
     this.resetvalues();
   }
+  searchList1(data?: any) {
+    let tempdata = data ? data : this.serachvalue
+    // let temp = this.prodcastService.dashboardList1.filter(x => JSON.stringify(x).toLowerCase().includes(tempdata.toLowerCase()));
+    // let temp = this.prodcastService.dashboardList1.filter(x => Object.values(x).join("").toLowerCase().includes(tempdata.toLowerCase()));
+
+    let temp = this.prodcastService.dashboardList1.filter(x => {
+      let arr = [x.name,x.category,x.upload_date,x.broadcast_date,x.shows_name,x.approvals,x.fullname];
+      return arr.join("").toLowerCase().includes(tempdata.toLowerCase())
+    }
+    );
+    this.prodcastService.dashboardList = temp;
+    this.prodcastService.filterApplied = true;
+
+    this.resetvalues();
+  }
+ 
   sortListByRank() {
     // if(this.)
     let list = this.prodcastService.dashboardList1.filter(v => v.approvals == 'Live' && v.rank != 0);
