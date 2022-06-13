@@ -110,6 +110,7 @@ export class DashboardComponent implements OnInit {
 
   logOut() {
     localStorage.removeItem('admin_user_data');
+    localStorage.removeItem('rjttptoken');
     this.router.navigateByUrl('/login');
   }
   changeStatus(status, a, i) {

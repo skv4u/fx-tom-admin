@@ -239,5 +239,12 @@ export class AdminEditProdcastComponent implements OnInit {
         this.ShowList = data.Response;
       })
   }
+  getAudioName(){
+    if(this.EditData.audiopath){
+      let str = this.EditData.audiopath.substring(this.EditData.audiopath.lastIndexOf("/")+1);
+      return str.substring(str.indexOf("_")+1);
+    }
+    return '';
+  }
 
 }

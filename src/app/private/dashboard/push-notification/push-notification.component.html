@@ -85,7 +85,7 @@
                                 <button class="custome-button mx-4" (click)="sendtoAll('All')">Send to All</button>
                                 <button class="custome-button mx-4" [disabled]="!this.podcastDetails.podcast_id" (click)="sendtoAll('Subscribed')">Send to Subscribed User</button>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" *ngIf="apidone">
                                 <p>Server Response</p>
                                 <div class="alert alert-success d-flex align-items-center" role="alert">
                                     <!-- <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">

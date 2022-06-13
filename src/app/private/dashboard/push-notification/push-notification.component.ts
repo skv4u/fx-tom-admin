@@ -27,7 +27,7 @@ export class PushNotificationComponent implements OnInit {
   }
   successCount: number = 0;
   failureCount: number = 0;
-    constructor(public router: Router, public webservice: WebService, public toast: ToastService, public prodCastService: ProdcastService) { }
+  constructor(public router: Router, public webservice: WebService, public toast: ToastService, public prodCastService: ProdcastService) { }
 
   ngOnInit() {
     this.getPodcastList();
@@ -89,7 +89,9 @@ export class PushNotificationComponent implements OnInit {
         this.prodCastService.loaderMessage = "Uploading...";
       });
   }
+  apidone:boolean = false;
   sendtoAll(type: string) {
+    this.apidone = false;
     if (!this.podcastDetails.podcast_name.trim().length) {
       this.toast.error('Please provide podcast name');
       return
@@ -98,6 +100,8 @@ export class PushNotificationComponent implements OnInit {
       this.toast.error('Please provide description');
       return
     }
+    this.prodCastService.loader = true;
+    this.prodCastService.loaderMessage = "Please wait...";
     let req = {
       "rj_id": this.podcastDetails.rj_user_id,
       "podcast_id": this.podcastDetails.podcast_id,
@@ -113,6 +117,12 @@ export class PushNotificationComponent implements OnInit {
           this.successCount = list.success;
           this.failureCount = list.failure;
         }
+        this.prodCastService.loader = false;
+        this.prodCastService.loaderMessage = "Please wait...";
+        this.apidone = true;
+      },err =>{
+        this.prodCastService.loader = false;
+        this.prodCastService.loaderMessage = "Please wait...";
       })
   }
   getPodcastList() {
