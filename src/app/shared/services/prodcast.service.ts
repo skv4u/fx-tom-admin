@@ -7,54 +7,53 @@ export class ProdcastService {
   editlist: any = {}
   CategoryList: any = [];
   WebCategoryList: any = [];
-  LanguageList:any = [];
-  IsView:boolean=false;
+  LanguageList: any = [];
+  IsView: boolean = false;
   loginUserName: string = "";
-  loader:boolean=true;
-  loaderMessage:string="Loading...";
-  selectedData:any={};
+  loader: boolean = true;
+  loaderMessage: string = "Loading...";
+  selectedData: any = {};
   UserStastics: any = {
-    "PendingTotal":"",
+    "PendingTotal": "",
     "ApprovedTotal": "",
     "RejectedTotal": "",
     "BlockedTotal": "",
     "TotalRJ": "",
-    "CommentTotal":"",
-    "LiveTotal":"",
-    "TotalNotificationCount":"",
-    "UnreadNotificationCount":"0"
+    "CommentTotal": "",
+    "LiveTotal": "",
+    "TotalNotificationCount": "",
+    "UnreadNotificationCount": "0"
   }
-  showPopUp:any={
-    'approval':false,
-    "rejected":false,
-    "broadcast":false,
-    "modify":false,
-    "delete":false,
+  showPopUp: any = {
+    'approval': false,
+    "rejected": false,
+    "broadcast": false,
+    "modify": false,
+    "delete": false,
     "Revoke": false
   }
-  dashboardList:any=[];
-  dashboardList1:any=[];
-  NotificationList:any=[];
-  SelectedRJforApprove:string="";
-  RJStatistics:any={
-    "PendingRJTotal":"",
+  dashboardList: any = [];
+  dashboardList1: any = [];
+  NotificationList: any = [];
+  SelectedRJforApprove: string = "";
+  RJStatistics: any = {
+    "PendingRJTotal": "",
     "RejectedRJTotal": "",
     "ApprovedRJTotal": "",
     "BlockedRJTotal": "",
   };
-  filterApplied:boolean=false;
-  showComments:boolean=false;
-  spotlist:any=[];
+  filterApplied: boolean = false;
+  showComments: boolean = false;
+  spotlist: any = [];
   deleteList: any = [];
   deleteList1: any = [];
   constructor(public webservice: WebService, public localStorage: LocalstorageService) {
-    if(this.localStorage.getUserData()){
+    if (this.localStorage.getUserData()) {
       this.loginUserName = this.localStorage.getUserData().fullname;
+      // this.getCategoryList();
+      
     }
-    this.getCategoryList();
-    this.getLanguageList();
-    this.getWebCategoryList();
-    this.getSpotList();
+
   }
   getCategoryList() {
     this.CategoryList = [];
@@ -62,9 +61,9 @@ export class ProdcastService {
       (data) => {
         this.CategoryList = data.Response;
       },
-      err =>{
+      err => {
         // console.log(err);
-        if(err.status === 401){
+        if (err.status === 401) {
           localStorage.removeItem('adminttptoken');
           // alert("Token expired!, Reloading the page");
           window.location.reload();
@@ -78,14 +77,14 @@ export class ProdcastService {
         this.WebCategoryList = data.Response;
       })
   }
-  
+
   getSpotList() {
     this.spotlist = [];
     this.webservice.commonMethod('user/addspot', '', 'GET').subscribe(
       (data) => {
         this.spotlist = data.Response;
       })
-  } 
+  }
 
   getLanguageList() {
     this.LanguageList = [];
@@ -95,29 +94,29 @@ export class ProdcastService {
       })
   }
   getDashBoardList() {
-    this.loader=true;
+    this.loader = true;
     this.dashboardList = [];
     this.webservice.commonMethod('podcast/all', '', 'GET').subscribe(
       (data) => {
-        this.loader=false;
-        this.filterApplied=false;
+        this.loader = false;
+        this.filterApplied = false;
         this.dashboardList = [];
         if (data.Response && data.Response.length) {
-          this.dashboardList1= data.Response;
+          this.dashboardList1 = data.Response;
           this.dashboardList = data.Response;
         }
         this.getUserStatistics();
       }
-    )
+    );
   }
   getUserStatistics() {
     let req = {
       "user_id": this.localStorage.getUserData().id
     }
     this.webservice.commonMethod('user/statistics/admin', req, 'GET').subscribe(
-      (data)=>{
-        if(data.Response && data.Response.length)
-        this.UserStastics =data.Response[0];
+      (data) => {
+        if (data.Response && data.Response.length)
+          this.UserStastics = data.Response[0];
         this.getRjStatistics();
         this.getNotificationList()
       }
@@ -129,25 +128,25 @@ export class ProdcastService {
       "user_id": this.localStorage.getUserData().id
     }
     this.webservice.commonMethod('user/rjstatistics', req, 'GET').subscribe(
-      (data)=>{
-        if(data.Response && data.Response.length)
-        this.RJStatistics =data.Response[0];
+      (data) => {
+        if (data.Response && data.Response.length)
+          this.RJStatistics = data.Response[0];
       }
     )
   }
 
-  getNotificationList(){
+  getNotificationList() {
     let req = {
       "user_id": this.localStorage.getUserData().id,
-      "usertype":"Admin"
+      "usertype": "Admin"
     }
     this.webservice.commonMethod('user/notificationlist', req, 'POST').subscribe(
-      (data)=>{
-        if(data.Response && data.Response.length)
-        this.NotificationList = data.Response;
+      (data) => {
+        if (data.Response && data.Response.length)
+          this.NotificationList = data.Response;
       },
-      err=>{
-        
+      err => {
+
       }
     )
   }

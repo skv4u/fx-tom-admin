@@ -4,6 +4,7 @@ import { LocalstorageService } from 'src/app/shared/services/localstorage.servic
 import { Router } from '@angular/router';
 import { WebService } from 'src/app/shared/services/web.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { ProdcastService } from 'src/app/shared/services/prodcast.service';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +18,8 @@ export class LoginComponent implements OnInit {
   });
   loginFormValid: boolean = true;
   isUserDataExists: boolean = false;
-  apiCalled:boolean=false;
-  constructor(public formBuilder: FormBuilder, public _localStorage: LocalstorageService, public router: Router, public webservice: WebService,public ToastService:ToastService) { }
+  apiCalled: boolean = false;
+  constructor(public formBuilder: FormBuilder, public _localStorage: LocalstorageService, public router: Router, public webservice: WebService, public ToastService: ToastService, public prodcastService: ProdcastService) { }
   ngOnInit() {
     let UserData = this._localStorage.getUserData();
     this.isUserDataExists = UserData ? true : false;
@@ -31,20 +32,25 @@ export class LoginComponent implements OnInit {
     else
       this.loginFormValid = true;
     if (this.loginFormValid) {
-      this.apiCalled=true;
+      this.apiCalled = true;
       let req = {
         "username": this.loginForm.value.UserName,
         "password": this.loginForm.value.Password
       }
       this.webservice.commonMethod('user/login/admin', req, 'POST').subscribe(
         (data) => {
-          this.apiCalled=false;
+          this.apiCalled = false;
           if (data.Status == 'Success' && data.Response) {
             this._localStorage.setUserData(data.Response);
             // this.ToastService.success('Login Successfully')
+            this.prodcastService.getCategoryList();
+            this.prodcastService.getLanguageList();
+            this.prodcastService.getWebCategoryList();
+            this.prodcastService.getSpotList();
             this.router.navigate(['/dashboard']);
+           
           }
-          else{
+          else {
             this.ToastService.error(data.Response)
           }
         })
