@@ -234,7 +234,7 @@ export class AdminEditProdcastComponent implements OnInit {
     this.EditData.age_restriction = this.EditData.age_restriction == true ? false : true;
   }
   getShowList() {
-    this.webservice.commonMethod('/user/shows/' + this.EditData.user_id, '', 'GET').subscribe(
+    this.webservice.commonMethod('user/shows/' + this.EditData.user_id, '', 'GET').subscribe(
       (data) => {
         this.ShowList = data.Response;
       })

@@ -41,7 +41,9 @@ export class LoginComponent implements OnInit {
         (data) => {
           this.apiCalled = false;
           if (data.Status == 'Success' && data.Response) {
-            this._localStorage.setUserData(data.Response);
+            // this._localStorage.setUserData(data.Response);
+            this._localStorage.setUserData(data.Response.userdata);
+            localStorage.setItem('adminttptoken', data.Response.token);
             // this.ToastService.success('Login Successfully')
             this.prodcastService.getCategoryList();
             this.prodcastService.getLanguageList();
