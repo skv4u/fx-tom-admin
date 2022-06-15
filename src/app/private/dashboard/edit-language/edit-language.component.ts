@@ -32,10 +32,11 @@ export class EditLanguageComponent implements OnInit {
           this.toast.success("Language created successfully")
           this.NewLangName = "";
           this.prodCastService.getLanguageList();
-        },
-        err=>{
-          this.prodCastService.loader=false;
-          this.toast.error("Oops, Something went wrong");
+        }, err => {
+          this.prodCastService.loader = false;
+          if (err.status === 401) {
+            this.prodCastService.TokenExpied();
+          }
         }
         )
   }
@@ -55,9 +56,13 @@ export class EditLanguageComponent implements OnInit {
         }
       },
       err =>{
+      }, err => {
         this.prodCastService.loader=false;
         this.showConfirmPopup=false;
         this.toast.error("Oops, Something went wrong");
+        if (err.status === 401) {
+          this.prodCastService.TokenExpied();
+        }
       }
     )
   }

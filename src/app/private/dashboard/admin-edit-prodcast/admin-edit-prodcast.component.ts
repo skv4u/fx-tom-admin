@@ -40,6 +40,10 @@ export class AdminEditProdcastComponent implements OnInit {
       (data) => {
         this.prodcastservice.loader = false;
         this.noteList = data.Response;
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastservice.TokenExpied();
+        }
       })
   }
 
@@ -192,6 +196,10 @@ export class AdminEditProdcastComponent implements OnInit {
           // this.EditData.category = this.EditData.category.join(",");
 
         }
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastservice.TokenExpied();
+        }
       }
     )
   }
@@ -237,6 +245,10 @@ export class AdminEditProdcastComponent implements OnInit {
     this.webservice.commonMethod('user/shows/' + this.EditData.user_id, '', 'GET').subscribe(
       (data) => {
         this.ShowList = data.Response;
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastservice.TokenExpied();
+        }
       })
   }
   getAudioName(){

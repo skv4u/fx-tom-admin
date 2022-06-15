@@ -68,6 +68,11 @@ export class DeletePodcastListComponent implements OnInit {
       (data) => {
         this.prodcastService.loader = false;
         this.noteList = data.Response;
+      }, err => {
+        this.prodcastService.loader = false;
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       })
   }
 }

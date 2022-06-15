@@ -66,6 +66,10 @@ export class ApprovalPopupComponent implements OnInit {
           this.prodcastService.getDashBoardList();
         } else
           this.toast.error('Internal Server error');
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }
@@ -92,6 +96,10 @@ export class ApprovalPopupComponent implements OnInit {
         }else {
 
         }
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       })
   }
 
@@ -115,6 +123,10 @@ export class ApprovalPopupComponent implements OnInit {
         }
         else
           this.toast.error('Internal Server error');
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }
@@ -142,6 +154,10 @@ export class ApprovalPopupComponent implements OnInit {
         }
         else
           this.toast.error('Internal Server error');
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }

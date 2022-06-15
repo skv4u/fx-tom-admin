@@ -172,6 +172,10 @@ export class DashboardComponent implements OnInit {
     this.webservice.commonMethod('user/notification/adminupdate', '', 'PUT').subscribe(
       (data) => {
         this.prodcastService.getUserStatistics();
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }
@@ -257,6 +261,10 @@ export class DashboardComponent implements OnInit {
         this.prodcastService.loader = false;
         if (data.Status == 'Success' && data.Response) {
           this.toast.success('Rank Updated Sucesfully');
+        }
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
         }
       }
     )

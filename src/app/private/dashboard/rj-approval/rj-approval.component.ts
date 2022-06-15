@@ -57,6 +57,10 @@ export class RjApprovalComponent implements OnInit {
           a.ShowStatus = false;
         }
         this.RJList1=this.RJList
+      }, err => {
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       })
   }
 
@@ -98,9 +102,13 @@ export class RjApprovalComponent implements OnInit {
        else{
          this.toast.error('invalid data');         
        }
-      },err=>{
+      // },err=>{
+      }, err => {
         this.prodcastService.loader=false;
         this.showConfirmPopup = false;
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }

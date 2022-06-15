@@ -40,9 +40,13 @@ export class CommentsComponent implements OnInit {
           a.replycomment = "";
         }
         this.showplayer = true;
-      },
-      err => {
+      // },
+      // err => {
+      }, err => {
         this.prodcastService.loader = false;
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }
@@ -63,9 +67,11 @@ export class CommentsComponent implements OnInit {
         if (data.Status == "Success" && data.Response)
           this.getCommentList();
 
-      },
-      err => {
+      }, err => {
         this.prodcastService.loader = false;
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }
@@ -90,9 +96,11 @@ export class CommentsComponent implements OnInit {
           this.CommentsList = data.Response;
           this.getCommentList();
         }
-      },
-      err => {
+      }, err => {
         this.prodcastService.loader = false;
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }
@@ -120,9 +128,11 @@ export class CommentsComponent implements OnInit {
         document.getElementById('commenttext').innerHTML = "";
         this.getCommentList();
         // this.CommentsList=data.Response;
-      },
-      err => {
+      }, err => {
         this.prodcastService.loader = false;
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }
@@ -139,9 +149,11 @@ export class CommentsComponent implements OnInit {
         this.prodcastService.loader = false;
         if (data.Status == 'Success' && data.Response)
           this.getCommentList();
-      },
-      err => {
+      }, err => {
         this.prodcastService.loader = false;
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }
@@ -156,9 +168,11 @@ export class CommentsComponent implements OnInit {
         this.prodcastService.loader = false;
         if (data.Status == 'Success' && data.Response)
           this.getCommentList();
-      },
-      err => {
+      }, err => {
         this.prodcastService.loader = false;
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }
@@ -176,9 +190,11 @@ export class CommentsComponent implements OnInit {
         this.prodcastService.loader = false;
         if (data.Status == "Success" && data.Response)
           this.getCommentList();
-      },
-      err => {
+      }, err => {
         this.prodcastService.loader = false;
+        if (err.status === 401) {
+          this.prodcastService.TokenExpied();
+        }
       }
     )
   }

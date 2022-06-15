@@ -120,9 +120,14 @@ export class PushNotificationComponent implements OnInit {
         this.prodCastService.loader = false;
         this.prodCastService.loaderMessage = "Please wait...";
         this.apidone = true;
-      },err =>{
+      // },err =>{
+      //   this.prodCastService.loader = false;
+      }, err => {
         this.prodCastService.loader = false;
         this.prodCastService.loaderMessage = "Please wait...";
+        if (err.status === 401) {
+          this.prodCastService.TokenExpied();
+        }
       })
   }
   getPodcastList() {
@@ -132,6 +137,11 @@ export class PushNotificationComponent implements OnInit {
           this.podcastList = data.Response;
         }
         console.log(data, "data");
+      }, err => {
+        this.prodCastService.loader = false;
+        if (err.status === 401) {
+          this.prodCastService.TokenExpied();
+        }
       })
   }
 }

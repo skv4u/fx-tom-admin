@@ -67,10 +67,11 @@ export class CreateCategoryComponent implements OnInit {
         this.ResetCategory();
         this.prodCastService.loader = false;
         this.prodCastService.getWebCategoryList();
-      },
-      err => {
+      }, err => {
         this.prodCastService.loader = false;
-        this.toast.error("Oops, Something went wrong");
+        if (err.status === 401) {
+          this.prodCastService.TokenExpied();
+        }
       }
     )
   }
@@ -90,11 +91,16 @@ export class CreateCategoryComponent implements OnInit {
           this.toast.error(data.Response);
         }
 
-      },
-      err => {
+      // },
+      // err => {
+      //   this.prodCastService.loader = false;
+      //   this.toast.error("Oops, Something went wrong");
+      }, err => {
         this.prodCastService.loader = false;
         this.showConfirmPopup = false;
-        this.toast.error("Oops, Something went wrong");
+        if (err.status === 401) {
+          this.prodCastService.TokenExpied();
+        }
       }
     )
   }

@@ -75,6 +75,10 @@ export class ProdcastService {
     this.webservice.commonMethod('category/web', '', 'GET').subscribe(
       (data) => {
         this.WebCategoryList = data.Response;
+      }, err => {
+        if (err.status === 401) {
+          this.TokenExpied();
+        }
       })
   }
 
@@ -83,6 +87,10 @@ export class ProdcastService {
     this.webservice.commonMethod('user/addspot', '', 'GET').subscribe(
       (data) => {
         this.spotlist = data.Response;
+      }, err => {
+        if (err.status === 401) {
+          this.TokenExpied();
+        }
       })
   }
 
@@ -106,6 +114,10 @@ export class ProdcastService {
           this.dashboardList = data.Response;
         }
         this.getUserStatistics();
+      }, err => {
+        if (err.status === 401) {
+          this.TokenExpied();
+        }
       }
     );
   }
@@ -119,6 +131,10 @@ export class ProdcastService {
           this.UserStastics = data.Response[0];
         this.getRjStatistics();
         this.getNotificationList()
+      }, err => {
+        if (err.status === 401) {
+          this.TokenExpied();
+        }
       }
     )
   }
@@ -131,6 +147,10 @@ export class ProdcastService {
       (data) => {
         if (data.Response && data.Response.length)
           this.RJStatistics = data.Response[0];
+      }, err => {
+        if (err.status === 401) {
+          this.TokenExpied();
+        }
       }
     )
   }
@@ -144,9 +164,10 @@ export class ProdcastService {
       (data) => {
         if (data.Response && data.Response.length)
           this.NotificationList = data.Response;
-      },
-      err => {
-
+      }, err => {
+        if (err.status === 401) {
+          this.TokenExpied();
+        }
       }
     )
   }
@@ -157,7 +178,21 @@ export class ProdcastService {
         this.loader = false;
         this.deleteList = data.Response;
         this.deleteList1 = data.Response;
-
-      })
+      }, err => {
+        if (err.status === 401) {
+          this.TokenExpied();
+        }
+      }
+      )
   }
+
+  TokenExpied(){
+    localStorage.removeItem('adminttptoken');
+    localStorage.removeItem('user_data');
+    localStorage.removeItem('admin_user_data');
+     alert("Token expired!, Rediecting to login");
+     window.location.reload();
+}
+
+
 }

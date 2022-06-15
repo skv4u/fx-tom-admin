@@ -80,10 +80,14 @@ export class UserSpotsComponent implements OnInit {
         };
         this.prodCastService.loader = false;
         this.prodCastService.getSpotList();
-      },
-      err => {
+      // },
+      // err => {
+      }, err => {
         this.prodCastService.loader = false;
         this.toast.error("Oops, Something went wrong");
+        if (err.status === 401) {
+          this.prodCastService.TokenExpied();
+        }
       }
     )
   }
@@ -108,9 +112,13 @@ export class UserSpotsComponent implements OnInit {
 
       },
       err => {
+      }, err => {
         this.prodCastService.loader = false;
         this.showConfirmPopup = false;
         this.toast.error("Oops, Something went wrong");
+        if (err.status === 401) {
+          this.prodCastService.TokenExpied();
+        }
       }
     )
   }
@@ -151,6 +159,10 @@ export class UserSpotsComponent implements OnInit {
         this.podCastList = data.Response;
         // if (this.podCastList.length)
         //   this.addSpot.link_value = this.podCastList[0].podcast_id;
+      }, err => {
+        if (err.status === 401) {
+          this.prodCastService.TokenExpied();
+        }
       })
   }
   LinkTypeChage() {
