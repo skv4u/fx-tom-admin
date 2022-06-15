@@ -34,9 +34,9 @@ export class EditLanguageComponent implements OnInit {
           this.prodCastService.getLanguageList();
         }, err => {
           this.prodCastService.loader = false;
-          if (err.status === 401) {
-            this.prodCastService.TokenExpied();
-          }
+          // if (err.status === 401) {
+            this.prodCastService.TokenExpied(err.status);
+          // }
         }
         )
   }
@@ -60,9 +60,9 @@ export class EditLanguageComponent implements OnInit {
         this.prodCastService.loader=false;
         this.showConfirmPopup=false;
         this.toast.error("Oops, Something went wrong");
-        if (err.status === 401) {
-          this.prodCastService.TokenExpied();
-        }
+        // if (err.status === 401) {
+          this.prodCastService.TokenExpied(err.status);
+        // }
       }
     )
   }

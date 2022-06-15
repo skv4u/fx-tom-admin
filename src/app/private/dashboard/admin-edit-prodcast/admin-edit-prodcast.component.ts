@@ -41,9 +41,7 @@ export class AdminEditProdcastComponent implements OnInit {
         this.prodcastservice.loader = false;
         this.noteList = data.Response;
       }, err => {
-        if (err.status === 401) {
-          this.prodcastservice.TokenExpied();
-        }
+          this.prodcastservice.TokenExpied(err.status);
       })
   }
 
@@ -197,9 +195,7 @@ export class AdminEditProdcastComponent implements OnInit {
 
         }
       }, err => {
-        if (err.status === 401) {
-          this.prodcastservice.TokenExpied();
-        }
+          this.prodcastservice.TokenExpied(err.status);
       }
     )
   }
@@ -246,9 +242,7 @@ export class AdminEditProdcastComponent implements OnInit {
       (data) => {
         this.ShowList = data.Response;
       }, err => {
-        if (err.status === 401) {
-          this.prodcastservice.TokenExpied();
-        }
+          this.prodcastservice.TokenExpied(err.status);
       })
   }
   getAudioName(){

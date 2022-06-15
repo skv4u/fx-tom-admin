@@ -58,9 +58,7 @@ export class RjApprovalComponent implements OnInit {
         }
         this.RJList1=this.RJList
       }, err => {
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.TokenExpied(err.status);
       })
   }
 
@@ -106,9 +104,9 @@ export class RjApprovalComponent implements OnInit {
       }, err => {
         this.prodcastService.loader=false;
         this.showConfirmPopup = false;
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+        // if (err.status === 401) {
+          this.prodcastService.TokenExpied(err.status);
+        // }
       }
     )
   }

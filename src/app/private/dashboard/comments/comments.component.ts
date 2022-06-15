@@ -43,10 +43,7 @@ export class CommentsComponent implements OnInit {
       // },
       // err => {
       }, err => {
-        this.prodcastService.loader = false;
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.loader = false;this.prodcastService.TokenExpied(err.status);
       }
     )
   }
@@ -68,10 +65,7 @@ export class CommentsComponent implements OnInit {
           this.getCommentList();
 
       }, err => {
-        this.prodcastService.loader = false;
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.loader = false;this.prodcastService.TokenExpied(err.status);
       }
     )
   }
@@ -97,10 +91,7 @@ export class CommentsComponent implements OnInit {
           this.getCommentList();
         }
       }, err => {
-        this.prodcastService.loader = false;
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.loader = false;this.prodcastService.TokenExpied(err.status);
       }
     )
   }
@@ -129,10 +120,7 @@ export class CommentsComponent implements OnInit {
         this.getCommentList();
         // this.CommentsList=data.Response;
       }, err => {
-        this.prodcastService.loader = false;
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.loader = false;this.prodcastService.TokenExpied(err.status);
       }
     )
   }
@@ -150,10 +138,7 @@ export class CommentsComponent implements OnInit {
         if (data.Status == 'Success' && data.Response)
           this.getCommentList();
       }, err => {
-        this.prodcastService.loader = false;
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.loader = false;this.prodcastService.TokenExpied(err.status);
       }
     )
   }
@@ -169,10 +154,7 @@ export class CommentsComponent implements OnInit {
         if (data.Status == 'Success' && data.Response)
           this.getCommentList();
       }, err => {
-        this.prodcastService.loader = false;
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.loader = false;this.prodcastService.TokenExpied(err.status);
       }
     )
   }
@@ -191,10 +173,7 @@ export class CommentsComponent implements OnInit {
         if (data.Status == "Success" && data.Response)
           this.getCommentList();
       }, err => {
-        this.prodcastService.loader = false;
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.loader = false;this.prodcastService.TokenExpied(err.status);
       }
     )
   }

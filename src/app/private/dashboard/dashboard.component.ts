@@ -173,9 +173,7 @@ export class DashboardComponent implements OnInit {
       (data) => {
         this.prodcastService.getUserStatistics();
       }, err => {
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.TokenExpied(err.status);
       }
     )
   }
@@ -263,9 +261,7 @@ export class DashboardComponent implements OnInit {
           this.toast.success('Rank Updated Sucesfully');
         }
       }, err => {
-        if (err.status === 401) {
-          this.prodcastService.TokenExpied();
-        }
+          this.prodcastService.TokenExpied(err.status);
       }
     )
   }
