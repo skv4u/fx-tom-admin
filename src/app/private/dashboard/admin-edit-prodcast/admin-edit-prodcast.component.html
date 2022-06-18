@@ -54,7 +54,7 @@
               <span style="font-size: 10px;">Use Ctrl or Shift key for multiple selection</span>
             </div>
             <div class="col-md-9 mb-4 form-floating">
-              <select class="form-control" placeholder="Show" [(ngModel)]="EditData.shows_id">
+              <select class="form-control" placeholder="Show" [(ngModel)]="EditData.shows_id" (change)="showsimageselection()">
                 <option value="-1">None - Individual Podcast</option>
                 <option *ngFor="let a of ShowList" [value]="a.shows_id">{{a.name}}</option>
               </select>

@@ -253,4 +253,17 @@ export class AdminEditProdcastComponent implements OnInit {
     return '';
   }
 
+  showsimageselection(){
+    debugger
+    if(this.EditData.shows_id != -1){
+    for(let image of this.ShowList){
+      if(this.EditData.shows_id == image.shows_id){
+        this.EditData.imagepath = image.image
+      }
+    }
+    }else{
+      this.EditData.imagepath = '';
+    }
+  }
+
 }

@@ -1,0 +1,61 @@
+<!--Header Start Here-->
+<app-generic-header></app-generic-header>
+<!--Header End Here-->
+
+<div class="admin-sec">
+  <div class="row admin-top">
+      <div class="col-md-4 admin-title">
+          <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
+      </div>
+  </div>
+</div>
+
+<div class="body-main">
+  <div class="body-content">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+        <div class="col-sm-5">
+          <div class="form-floating">
+                <select class="form-control" placeholder="Selection Type" [(ngModel)]="selectionType">
+                  <option *ngFor="let a of selectionList" [value]="a">{{a}}</option>
+                </select>
+                <label for="floatingInput" style="left: 18px;">Selection Type</label>
+              </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="input-group mb-0 mx-4">
+              <input type="text" class="form-control" placeholder="Search {{selectionType}} here" [(ngModel)]="selectionValue" (keyup.enter)="LoadDetails()">
+                <!-- <button class="btn btn-outline-secondary" type="button"><i -->
+                        <!-- class="fas fa-search"></i></button> -->
+            </div>
+        </div>
+        <div class="col-sm-2">
+          <button type="button" class="custome-button" style="right: -50px;position: relative;" (click)="LoadDetails()">Search</button>
+        </div>
+      </div>
+      </div>
+      <div class="table-responsive dashboard-table" *ngIf="searchList.length">
+      <table class="table">
+        <thead>
+          <tr>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of searchList">
+            <td>{{s.fullname}}</td>
+            <td>{{s.mobile}}</td>
+            <td>{{s.email}}</td>
+            <td *ngIf="s.is_active == '1'"><a href="/" (click)="updateBlockorUnblock(s.is_active,s.mobuser_id)">Block</a></td>
+            <td *ngIf="s.is_active != '1'"><a href="/" (click)="updateBlockorUnblock(s.is_active,s.mobuser_id)">Unblock</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>

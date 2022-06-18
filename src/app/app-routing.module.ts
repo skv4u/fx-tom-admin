@@ -10,6 +10,7 @@ import { RjApprovalComponent } from './private/dashboard/rj-approval/rj-approval
 import { UserSpotsComponent } from './private/dashboard/user-spots/user-spots.component';
 import { LoginComponent } from './public/login/login.component';
 import { PushNotificationComponent } from './private/dashboard/push-notification/push-notification.component';
+import { MobileUserComponent } from './private/dashboard/mobile-user/mobile-user.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'podcast-delete', component: DeletePodcastListComponent },
   {path: 'comments', component: CommentsComponent },
   {path: 'push-notification', component: PushNotificationComponent },
+  {path: 'app-user', component: MobileUserComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
