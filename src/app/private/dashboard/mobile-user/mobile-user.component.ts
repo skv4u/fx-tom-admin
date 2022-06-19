@@ -20,8 +20,8 @@ export class MobileUserComponent implements OnInit {
   }
 
   LoadDetails() {
-    if (this.selectionValue.trim().length < 3) {
-      this._toaster.error("Minimum 3 characters required");
+    if (this.selectionValue.trim().length < 2) {
+      this._toaster.error("Minimum 2 characters required");
       return
     }
     this.searchList = [];
@@ -44,6 +44,10 @@ export class MobileUserComponent implements OnInit {
     })
 
   }
+  selectionChangeValue(){
+    this.selectionValue = '';
+    this.searchList = [];
+  }
 
   updateBlockorUnblock(active, mobuserid) {
     let req = {
@@ -51,10 +55,11 @@ export class MobileUserComponent implements OnInit {
       "mobuser_id": mobuserid
     }
     this.ps.loader = true;
-    this._webService.commonMethod('', req, "PUT").subscribe(
+    this._webService.commonMethod('admin/mobuser/status_update', req, "PUT").subscribe(
       data => {
         if (data.Status == 'Success') {
           this._toaster.success('Status updated successfully');
+          this.LoadDetails();
         } else {
           this._toaster.error('Something went wrong');
         }
