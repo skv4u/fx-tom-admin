@@ -28,6 +28,7 @@ import { UserSpotsComponent } from './private/dashboard/user-spots/user-spots.co
 import { PushNotificationComponent } from './private/dashboard/push-notification/push-notification.component';
 import { SearchlistPipe } from './shared/pipes/searchlist.pipe';
 import { MobileUserComponent } from './private/dashboard/mobile-user/mobile-user.component';
+import { ReportedComponent } from './private/dashboard/reported/reported.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { MobileUserComponent } from './private/dashboard/mobile-user/mobile-user
     UserSpotsComponent,
     PushNotificationComponent,
     SearchlistPipe,
-    MobileUserComponent
+    MobileUserComponent,
+    ReportedComponent
   ],
   imports: [
     BrowserModule,

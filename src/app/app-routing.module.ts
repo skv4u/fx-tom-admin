@@ -11,6 +11,7 @@ import { UserSpotsComponent } from './private/dashboard/user-spots/user-spots.co
 import { LoginComponent } from './public/login/login.component';
 import { PushNotificationComponent } from './private/dashboard/push-notification/push-notification.component';
 import { MobileUserComponent } from './private/dashboard/mobile-user/mobile-user.component';
+import { ReportedComponent } from './private/dashboard/reported/reported.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'comments', component: CommentsComponent },
   {path: 'push-notification', component: PushNotificationComponent },
   {path: 'app-user', component: MobileUserComponent },
+  {path: 'reported', component: ReportedComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 

@@ -1,0 +1,41 @@
+<!--Header Start Here-->
+<app-generic-header></app-generic-header>
+<!--Header End Here-->
+
+<div class="admin-sec">
+  <div class="row admin-top">
+      <div class="col-md-4 admin-title">
+          <h3 class="mb-0" style="cursor: pointer;"><a routerLink="/dashboard"><i class="fas fa-angle-left"></i> Back to Dashboard</a></h3>
+      </div>
+  </div>
+</div>
+
+<div class="body-main">
+  <div class="body-content">
+    <div class="row">
+      <div class="table-responsive dashboard-table">
+      <table class="table">
+        <thead>
+          <tr>
+          <th>Name</th>
+          <th>Comment</th>
+          <th>Reported By</th>
+          <th>Reported Data</th>
+          <th></th>
+          <!-- <th></th> -->
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of reportedList">
+            <td>{{s.commentor_name}}</td>
+            <td>{{s.comment_description}}</td>
+            <td>{{s.reported_by}}</td>
+            <td>{{s.reported_data}}</td>
+            <td><a style="color: rgb(4, 0, 255);cursor: pointer;" (click)="DeleteComment(s.comment_id)">Delete Comment</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>
