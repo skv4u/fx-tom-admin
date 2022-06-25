@@ -228,7 +228,7 @@
                                         <p class="mb-0 rjname">{{a.fullname}}</p>
                                     </td>
                                     <td class="pic" *ngIf="showhidemenu.Thumbnails">
-                                        <img *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
+                                        <img loading="lazy" *ngIf="a.imagepath" [src]="a.imagepath" alt="img" />
                                     </td>
                                     <td class="rjsname" *ngIf="showhidemenu.Title">
                                         <h5 class="mb-0">{{a.name}}</h5>
