@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
       }
       this.webservice.commonMethod('user/login/admin', req, 'POST').subscribe(
         (data) => {
+          let decriptData = atob(data.Response);
+          data.Response = JSON.parse(decriptData)
           this.apiCalled = false;
           if (data.Status == 'Success' && data.Response && data.Response.userdata && data.Response.token && typeof data.Response != 'string') {
             // this._localStorage.setUserData(data.Response);
