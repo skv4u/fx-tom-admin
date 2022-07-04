@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.webservice.commonMethod('user/login/admin', req, 'POST').subscribe(
         (data) => {
           this.apiCalled = false;
-          if (data.Status == 'Success' && data.Response) {
+          if (data.Status == 'Success' && data.Response && data.Response.userdata && data.Response.token && typeof data.Response != 'string') {
             // this._localStorage.setUserData(data.Response);
             this._localStorage.setUserData(data.Response.userdata);
             localStorage.setItem('adminttptoken', data.Response.token);
@@ -49,8 +49,7 @@ export class LoginComponent implements OnInit {
             this.prodcastService.getLanguageList();
             this.prodcastService.getWebCategoryList();
             this.prodcastService.getSpotList();
-            this.router.navigate(['/dashboard']);
-           
+            this.router.navigate(['/dashboard']);           
           }
           else {
             this.ToastService.error(data.Response)
