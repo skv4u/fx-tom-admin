@@ -14,6 +14,7 @@ import { WebService } from 'src/app/shared/services/web.service';
 export class CreateCategoryComponent implements OnInit {
   NewCatName: string = '';
   NewCatImage: string = '';
+  NewCatSequence: number = 1;
   apiCalled: boolean = false;
   CategoryList: any = [];
   imageUrl: any = "";
@@ -48,8 +49,9 @@ export class CreateCategoryComponent implements OnInit {
     let req = {
       "name": this.NewCatName,
       "category_id": this.Id,
-      "created_by": this.localStorage.getUserData() ? this.localStorage.getUserData().username : '',
-      "image": this.NewCatImage
+     // "created_by": this.localStorage.getUserData() ? this.localStorage.getUserData().username : '',
+      "image": this.NewCatImage,
+      "sequence": this.NewCatSequence
     }
     this.webservice.commonMethod('/category', req, 'POST').subscribe(
       (data) => {
@@ -131,6 +133,7 @@ export class CreateCategoryComponent implements OnInit {
     this.Id = elem.id;
     this.NewCatName = elem.name;
     this.NewCatImage = elem.image;
+    this.NewCatSequence = elem.sequence;
     this.caption = {
       "title":"Edit Category",
       "button":"Update Category"
@@ -140,6 +143,7 @@ export class CreateCategoryComponent implements OnInit {
   ResetCategory(){
     this.NewCatName = '';
     this.NewCatImage ='';
+    this.NewCatSequence = 1;
     this.caption = {
       "title":"Add Category",
       "button":"Add New Category"

@@ -55,6 +55,7 @@ export class DashboardComponent implements OnInit {
     this.prodcastService.loginUserName = this.localStorage.getUserData().fullname;
     this.prodcastService.IsView = false;
     this.apicalled = true;
+    this.prodcastService.getWebCategoryList();
     this.prodcastService.getDashBoardList();
     this.apicalled = false;
     this.prodcastService.filterApplied = false;

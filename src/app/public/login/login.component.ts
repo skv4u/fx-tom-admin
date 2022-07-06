@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
             this._localStorage.setUserData(data.Response.userdata);
             localStorage.setItem('adminttptoken', data.Response.token);
             // this.ToastService.success('Login Successfully')
-            this.prodcastService.getCategoryList();
+            //this.prodcastService.getCategoryList();
             this.prodcastService.getLanguageList();
             this.prodcastService.getWebCategoryList();
             this.prodcastService.getSpotList();

@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(public localStorage: LocalstorageService, public WebService: WebService, public prodcastService: ProdcastService) {
     this.prodcastService.loader = false;
     if( this.localStorage.getUserData()){
-      this.prodcastService.getCategoryList();
+     // this.prodcastService.getCategoryList();
       this.prodcastService.getLanguageList();
       this.prodcastService.getWebCategoryList();
       this.prodcastService.getSpotList();

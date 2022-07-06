@@ -74,6 +74,7 @@
                                         </th>
                                         <th>E-mail</th>
                                         <th>Phone Number</th>
+                                        <th>Rank</th>
                                         <th class="text-center">Edit Profile</th>
                                     </tr>
                                 </thead>
@@ -130,6 +131,10 @@
                                         </td>
                                         <td>{{a.email}}</td>
                                         <td>{{a.phone}}</td>
+                                        <td><div style="width: 55px;">
+                                            <input type="number " class="rank-input " min="0 " max="1000 " id="Rank " placeholder="Rank " [(ngModel)]="a.rank " (keyup.enter)="setrank(a.id,a.rank) ">
+                                            <i class="far fa-check-circle rank-icon pointer " (click)="setrank(a.id,a.rank) " title="Save Rank "></i>
+                                        </div></td>
                                         <td class="text-center"><a><i class="fas fa-pen" style="cursor:pointer"
                           (click)="IsEdit = true;getRJDetails(a)"></i></a></td>
                                     </tr>
