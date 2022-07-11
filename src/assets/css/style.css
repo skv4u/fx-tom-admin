@@ -478,7 +478,7 @@ textarea.form-control {
 }
 
 .body-main {
-  overflow: auto;
+  overflow: hidden;
 
 }
 
@@ -631,6 +631,7 @@ textarea.form-control {
 .settings-main .s-box a {
   color: var(--light-gray);
 }
+
 /* 
 .settings-main .s-box sup {
   background: var(--red-color);
@@ -932,7 +933,7 @@ td.rjsname p {
 }
 
 .information.dasdboard ul {
-  justify-content: center;
+  justify-content: left;
 }
 
 .information ul {
@@ -1089,8 +1090,16 @@ ul.dropdown-menu li a {
   overflow-y: auto;
 }
 
+.dashboard-table-new {
+  margin-bottom: 50px;
+  height: auto;
+}
+
+
 .dashboard-table table thead {
-  border-bottom: 1px solid var(--light-gray);
+  /* border-bottom: 1px solid var(--light-gray); */
+  border-top: 1px solid var(--light-gray);
+  background: #e9e9e9;
 }
 
 tr td {
@@ -1231,6 +1240,7 @@ tr:nth-child(even) {
   position: absolute;
   border-radius: 50%;
 }
+
 .dashboard-table .dropdown-toggle.broadcast {
   position: relative;
   padding-left: 15px;
@@ -1300,6 +1310,7 @@ tr:nth-child(even) {
   font-size: var(--clamp16);
   padding: 5px 20px;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .dashboard-table ul.dropdown-menu li:before {

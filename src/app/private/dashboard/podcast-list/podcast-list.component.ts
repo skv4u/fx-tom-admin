@@ -6,11 +6,11 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 import { WebService } from 'src/app/shared/services/web.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-podcast-list',
+  templateUrl: './podcast-list.component.html',
+  styleUrls: ['./podcast-list.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class PodcastListComponent implements OnInit {
   showhidecnd: any = {
     "showEdit": false,
     "ShowFilter": false,
@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
     this.prodcastService.IsView = false;
     this.apicalled = true;
     this.prodcastService.getWebCategoryList();
-    this.prodcastService.getDashBoardList();
+    this.prodcastService.getDashBoardListNew();
     this.apicalled = false;
     this.prodcastService.filterApplied = false;
   }
@@ -83,6 +83,44 @@ export class DashboardComponent implements OnInit {
     this.prodcastService.dashboardList = temp;
     this.prodcastService.filterApplied = true;
 
+    this.resetvalues();
+  }
+  searchListAPI(){
+    this.prodcastService.usecase = 'search';
+    this.prodcastService.usecaseValue = this.serachvalue;
+    this.prodcastService.getDashBoardListNew(true);
+    this.prodcastService.filterApplied = true;
+    this.resetvalues();
+  }
+  categoryFilter(name:string){
+    this.prodcastService.usecase = 'category';
+    this.prodcastService.usecaseValue = name;
+    this.prodcastService.getDashBoardListNew(true);
+    this.prodcastService.filterApplied = true;
+    this.serachvalue = "";
+    this.resetvalues();
+  }
+  statusFilter(name){
+    this.prodcastService.usecase = 'status';
+    this.prodcastService.usecaseValue = name;
+    this.prodcastService.getDashBoardListNew(true);
+    this.prodcastService.filterApplied = true;
+    this.serachvalue = "";
+
+    this.resetvalues();
+  }
+  refreshPodcastList(){
+    this.prodcastService.usecase = "";
+    this.prodcastService.usecaseValue = "";
+    this.prodcastService.getDashBoardListNew();
+    this.prodcastService.filterApplied = false;
+    this.serachvalue="";
+  }
+  sortListByRankAPI(){
+    this.prodcastService.usecase = "rank";
+    this.prodcastService.usecaseValue = "";
+    this.prodcastService.getDashBoardListNew();
+    this.prodcastService.filterApplied = true;
     this.resetvalues();
   }
  
@@ -266,6 +304,5 @@ export class DashboardComponent implements OnInit {
       }
     )
   }
- 
 }
 

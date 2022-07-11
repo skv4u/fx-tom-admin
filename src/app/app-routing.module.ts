@@ -12,11 +12,13 @@ import { LoginComponent } from './public/login/login.component';
 import { PushNotificationComponent } from './private/dashboard/push-notification/push-notification.component';
 import { MobileUserComponent } from './private/dashboard/mobile-user/mobile-user.component';
 import { ReportedComponent } from './private/dashboard/reported/reported.component';
+import { PodcastListComponent } from './private/dashboard/podcast-list/podcast-list.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   {path: 'login', component: LoginComponent },
-  {path: 'dashboard', component: DashboardComponent },
+  // {path: 'dashboard', component: DashboardComponent },
+  {path: 'dashboard', component: PodcastListComponent },
   {path: 'admineditprodcast', component: AdminEditProdcastComponent },
   {path: 'create-category', component: CreateCategoryComponent },
   {path: 'user-spot', component: UserSpotsComponent },

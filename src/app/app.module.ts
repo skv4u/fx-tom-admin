@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './public/login/login.component';
 import { SignupComponent } from './public/signup/signup.component';
-import { PodcastListComponent } from './private/podcast-list/podcast-list.component';
+import { PodcastListComponent } from './private/dashboard/podcast-list/podcast-list.component';
 import { ConfigurationMicroService } from './shared/services/configuration-micro.service';
 import { CommonService } from './shared/services/common.service';
 import { LocalstorageService } from './shared/services/localstorage.service';
@@ -29,6 +29,7 @@ import { PushNotificationComponent } from './private/dashboard/push-notification
 import { SearchlistPipe } from './shared/pipes/searchlist.pipe';
 import { MobileUserComponent } from './private/dashboard/mobile-user/mobile-user.component';
 import { ReportedComponent } from './private/dashboard/reported/reported.component';
+import { PaginationComponent } from './private/pagination/pagination.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { ReportedComponent } from './private/dashboard/reported/reported.compone
     PushNotificationComponent,
     SearchlistPipe,
     MobileUserComponent,
-    ReportedComponent
+    ReportedComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

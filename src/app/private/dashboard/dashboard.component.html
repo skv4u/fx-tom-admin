@@ -28,7 +28,7 @@
             <div class="col-md-4 settings-main">
                 <div class="s_inner">
                     <div class="s-box">
-                        <a [class.active]="prodcastService.filterApplied" title="Refresh" (click)="prodcastService.getDashBoardList();prodcastService.filterApplied=false;this.serachvalue='';">
+                        <a [class.active]="prodcastService.filterApplied" title="Refresh" (click)="prodcastService.getDashBoardListNew();prodcastService.filterApplied=false;this.serachvalue='';">
                             <i class="fas fa-sync"></i>
                         </a>
                     </div>
@@ -188,7 +188,7 @@
                                         <a id="btnGroupDrop5" class="dropdown-toggle outsideclick" data-bs-toggle="dropdown" aria-expanded="false" (click)="expandCategoryFilter();" style="cursor: pointer;">Category</a>
                                         <ul class="dropdown-menu" style="display: block; height: 300px;
                                         overflow: auto;" aria-labelledby="btnGroupDrop5" *ngIf="showcatDropDown">
-                                            <li *ngFor="let a of prodcastService.CategoryList"><a class="dropdown-item" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>
+                                            <li *ngFor="let a of prodcastService.WebCategoryList"><a class="dropdown-item" (click)="searchList(a.name);showcatDropDown = false">{{a.name}}</a></li>
                                         </ul>
                                     </th>
                                     <th *ngIf="showhidemenu.Shows">Shows Name</th>
@@ -332,7 +332,7 @@
 </div>
 
 <app-comments *ngIf="prodcastService.showComments "></app-comments>
-<app-admin-edit-prodcast *ngIf="showhidecnd.showEdit " (back)="showhidecnd.showEdit=false;prodcastService.getDashBoardList(); "></app-admin-edit-prodcast>
+<app-admin-edit-prodcast *ngIf="showhidecnd.showEdit " (back)="showhidecnd.showEdit=false;prodcastService.getDashBoardListNew(); "></app-admin-edit-prodcast>
 
 <app-approval-popup *ngIf="prodcastService.showPopUp.approval || prodcastService.showPopUp.rejected || prodcastService.showPopUp.broadcast|| prodcastService.showPopUp.modify || prodcastService.showPopUp.delete ">
 </app-approval-popup>

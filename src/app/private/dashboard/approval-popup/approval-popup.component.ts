@@ -63,7 +63,7 @@ export class ApprovalPopupComponent implements OnInit {
         this.prodcastService.showPopUp.Revoke = false;
         if (data.Status == 'Success' && data.Response) {
           this.toast.success('Podcast ' + status + ' Sucessfully');
-          this.prodcastService.getDashBoardList();
+          this.prodcastService.getDashBoardListNew();
         } else
           this.toast.error('Internal Server error');
       }, err => {
@@ -115,7 +115,7 @@ export class ApprovalPopupComponent implements OnInit {
         this.prodcastService.showPopUp.broadcast = false;
         if (data.Status == 'Success' && data.Response) {
           this.toast.success('Broadcasted Sucessfully');
-          this.prodcastService.getDashBoardList();
+          this.prodcastService.getDashBoardListNew();
         }
         else
           this.toast.error('Internal Server error');
@@ -144,7 +144,7 @@ export class ApprovalPopupComponent implements OnInit {
         this.prodcastService.showPopUp.delete = false;
         if (data.Status == 'Success' && data.Response) {
           this.toast.success('Deleted Sucessfully');
-          this.prodcastService.getDashBoardList();
+          this.prodcastService.getDashBoardListNew();
         }
         else
           this.toast.error('Internal Server error');
