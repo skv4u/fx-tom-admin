@@ -12,6 +12,14 @@ export class GenericHeaderComponent implements OnInit {
 
   constructor(public prodcastService:ProdcastService,public router:Router,public localStorage:LocalstorageService) { }
   srcimg="./assets/images/login-img.jpg";
+  showhidecnd: any = {
+    "showEdit": false,
+    "ShowFilter": false,
+    "showBell": false,
+    "showEmail": false,
+    "showSettings": false,
+    "showEditProd": false
+  }
   ngOnInit() {
     if(this.localStorage.getUserData() && this.localStorage.getUserData().profile_image !=""){
       this.srcimg=this.localStorage.getUserData().profile_image;

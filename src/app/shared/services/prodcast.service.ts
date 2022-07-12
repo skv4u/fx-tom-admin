@@ -135,10 +135,10 @@ export class ProdcastService {
         if(!this.usecase.trim().length)
         this.filterApplied = false;
         this.dashboardList = [];
-        if (data.Response && data.Response.list) {
+        if (data && data.Response && data.Response.length) {
           // this.dashboardList1 = data.Response;
-          this.totalRows = data.Response.total_rows;
-          this.dashboardList = data.Response.list;
+          this.totalRows = data.TotalRows;
+          this.dashboardList = data.Response;
 
           let t = Math.ceil(this.totalRows / this.PAGE_SIZE);
           let tl = [];
@@ -146,6 +146,8 @@ export class ProdcastService {
             tl.push(i);
           }
           this.gotopagelist = tl;
+        }else{
+          this.toastService.error("Oops! Something went wrong..")
         }
         if (!dashflage)
           this.getUserStatistics();

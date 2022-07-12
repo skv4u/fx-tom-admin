@@ -711,7 +711,7 @@ textarea.form-control {
   border: 1px solid var(--pending);
 }
 
-.top-img:before {
+/* .top-img:before {
   position: absolute;
   right: 1px;
   bottom: 5px;
@@ -720,7 +720,7 @@ textarea.form-control {
   border-radius: 50%;
   content: "";
   background: var(--approved);
-}
+} */
 
 .logo-right .dropdown-toggle {
   border: none;
