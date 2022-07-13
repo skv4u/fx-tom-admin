@@ -86,6 +86,7 @@ export class PodcastListComponent implements OnInit {
     this.resetvalues();
   }
   searchListAPI(){
+    this.prodcastService.pageNumber = 0;
     this.prodcastService.usecase = 'search';
     this.prodcastService.usecaseValue = this.serachvalue;
     this.prodcastService.getDashBoardListNew(true);
@@ -93,6 +94,7 @@ export class PodcastListComponent implements OnInit {
     this.resetvalues();
   }
   categoryFilter(name:string){
+    this.prodcastService.pageNumber = 0;
     this.prodcastService.usecase = 'category';
     this.prodcastService.usecaseValue = name;
     this.prodcastService.getDashBoardListNew(true);
@@ -101,6 +103,7 @@ export class PodcastListComponent implements OnInit {
     this.resetvalues();
   }
   statusFilter(name){
+    this.prodcastService.pageNumber = 0;
     this.prodcastService.usecase = 'status';
     this.prodcastService.usecaseValue = name;
     this.prodcastService.getDashBoardListNew(true);
@@ -110,6 +113,7 @@ export class PodcastListComponent implements OnInit {
     this.resetvalues();
   }
   refreshPodcastList(){
+    this.prodcastService.pageNumber = 0;
     this.prodcastService.usecase = "";
     this.prodcastService.usecaseValue = "";
     this.prodcastService.getDashBoardListNew();
@@ -117,6 +121,7 @@ export class PodcastListComponent implements OnInit {
     this.serachvalue="";
   }
   sortListByRankAPI(){
+    this.prodcastService.pageNumber = 0;
     this.prodcastService.usecase = "rank";
     this.prodcastService.usecaseValue = "";
     this.prodcastService.getDashBoardListNew();
@@ -267,7 +272,7 @@ export class PodcastListComponent implements OnInit {
   }
   private cancelClick: Function;
   handleClick($event: any) {
-    console.log("unbind")
+    // console.log("unbind")
     let target = $event.target.classList.contains('outsideclick') ||
       $event.target.parentNode.classList.contains('outsideclick')
     if (target || target == null) return;
