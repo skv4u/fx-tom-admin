@@ -36,6 +36,7 @@
 
                 <div class="form-floating" *ngIf="addSpot.link_type == 'podcast'">
                     <select [(ngModel)]="addSpot.link_value" class="form-control" placeholder="Selected Link Value" id="link_value">
+                        <option value="">None</option>
             <option *ngFor="let m of podCastList" [value]="m.podcast_id">{{m.podcast_title}} ({{m.rj_name}})</option>
             <label for="link_value">Selected Link Value</label>
           </select>
